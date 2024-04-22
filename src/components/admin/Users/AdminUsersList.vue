@@ -8,7 +8,8 @@
             <div class="flex-block" @click.prevent="() => undefined">
               <div class="item-flex">
                 <div class="line-item-left">
-                  <ToggleInfoItem title="email" :content="user.userAccount.email" @submit="updateUserAccount(user.userAccount)">
+                  <ToggleInfoItem title="email" :content="user.userAccount.email"
+                    @submit="updateUserAccount(user.userAccount)">
                     <el-input v-model="user.userAccount.email" />
                   </ToggleInfoItem>
                 </div>
@@ -300,6 +301,7 @@ const updateUser = async (item: User): Promise<void> => {
     justify-content: space-between;
     align-items: center;
   }
+
   .line-item {
     display: flex;
     justify-content: space-between;
@@ -307,6 +309,7 @@ const updateUser = async (item: User): Promise<void> => {
     width: 100%;
     padding: 0;
   }
+
   .item-flex {
     display: flex;
     width: 100%;

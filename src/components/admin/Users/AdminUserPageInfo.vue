@@ -1,15 +1,11 @@
 <template>
-  <el-form>
-    <LeftRightContainer left-width="280px">
-      <template #right>
-        <div class="container">
-          <el-form-item label="Название" prop="surname">
-            <el-input v-model="user.name" placeholder="Введите название" formatter="firstLetterUpper" @blur="update" />
-          </el-form-item>
-        </div>
-      </template>
-    </LeftRightContainer>
-  </el-form>
+  <LeftRightContainer left-width="280px">
+    <template #right>
+      <div class="container">
+        <el-input v-model="user.name" placeholder="Введите название" formatter="firstLetterUpper" @blur="update" />
+      </div>
+    </template>
+  </LeftRightContainer>
 </template>
 
 <script lang="ts" setup>

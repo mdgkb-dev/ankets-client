@@ -1,10 +1,8 @@
 import { createRouter, createWebHistory, NavigationGuardNext, RouteLocationNormalized, RouteRecordRaw } from 'vue-router';
 
-import AuthPage from '@/components/Auth/AuthPage.vue';
-import PageNotFound from '@/components/PageNotFound.vue';
+// import AuthPage from '@/components/Auth/AuthPage.vue';
+import PageNotFound from '@/services/components/PageNotFound.vue';
 import indexAdminRoutes from '@/router/indexAdminRoutes';
-import LocalStore from '@/services/classes/LocalStore';
-import LocalStoreKeys from '@/services/interfaces/LocalStoreKeys';
 import UserService from '@/services/User';
 import store from '@/store/index';
 
@@ -42,13 +40,13 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     redirect: '/admin/patients',
   },
-  {
-    path: '/login',
-    component: AuthPage,
-    meta: {
-      layout: 'LoginLayout',
-    },
-  },
+  // {
+  //   path: '/login',
+  //   component: AuthPage,
+  //   meta: {
+  //     layout: 'LoginLayout',
+  //   },
+  // },
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
