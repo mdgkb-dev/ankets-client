@@ -5,23 +5,16 @@
       <use xlink:href="#menu-icon" />
     </svg>
   </div>
-  <div
-    v-if="mounted"
-    class="admin-side-menu"
-    :style="{
-      marginLeft: showMenuBar ? '0px' : '',
-    }"
-  >
+  <div v-if="mounted" class="admin-side-menu" :style="{
+    marginLeft: showMenuBar ? '0px' : '',
+  }">
     <div class="menu-body">
       <div @select="closeDrawer">
         <template v-for="item in menus" :key="item.name">
           <div @click="showMenuBar = false">
-            <div
-              v-if="item.link !== '/'"
+            <div v-if="item.link !== '/'"
               :class="{ 'selected-menu-item': item.link === activePath, 'menu-item': item.to !== activePath }"
-              :index="item.link"
-              @click="Router.To(item.link)"
-            >
+              :index="item.link" @click="Router.To(item.link)">
               {{ item.name }}
             </div>
           </div>
@@ -61,9 +54,9 @@ watch(
 );
 
 onBeforeMount(async () => {
-  const filterQuery = new FilterQuery();
-  filterQuery.setSortModel(MenusSortsLib.byOrder());
-  await Store.GetAll('menus', { withCache: true, filterQuery });
+  const ftsp = new FTSP();
+  ftsp.setSortModel(MenusSortsLib.byOrder());
+  await Store.FTSP('menus', { withCache: true, ftsp: ftsp });
   activePath.value = Router.Route().path;
   mounted.value = true;
 });
@@ -142,9 +135,12 @@ $background-color: whitesmoke;
   border-right: 1px solid #c4c4c4;
   z-index: 10;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* IE 10 and IE 11 */
+  user-select: none;
+  /* Standard syntax */
 }
 
 .el-menu,

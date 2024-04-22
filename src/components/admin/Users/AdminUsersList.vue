@@ -31,7 +31,7 @@
       </div>
     </div>
   </AdminListWrapper>
-  <ModalWindow :show="showAddModal" title="Добавить пациента" @close="showAddModal = false">
+  <ModalWindow :show="showAddModal" title="Добавить пользователя" @close="showAddModal = false">
     <CreateUserForm @add="showAddModal = false" />
   </ModalWindow>
 </template>
