@@ -1,5 +1,5 @@
 <template>
-  <AuthForm @action="action" />
+  <AuthForm :restrict-register="true" @action="action" />
 </template>
 
 <script lang="ts" setup>

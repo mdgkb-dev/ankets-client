@@ -7,6 +7,7 @@ import AuthStatuses from '@/services/interfaces/AuthStatuses';
 import IEmailPassword from '@/services/interfaces/IEmailPassword';
 
 export default class AuthForm {
+  restrictRegister = false
   status: AuthStatuses = AuthStatuses.Login;
   email = new EmailField();
   password = new PasswordField();
@@ -70,7 +71,12 @@ export default class AuthForm {
   }
 
   getAuthButtons(): AuthButton[] {
-    return AuthStatusesObjects[this.status].buttons as AuthButton[];
+    const buttons = AuthStatusesObjects[this.status].buttons as AuthButton[];
+    console.log(buttons, this.restrictRegister)
+    if (this.restrictRegister) {
+      return buttons.filter((b: AuthButton) => b.getStatus() !== AuthStatuses.Register)
+    }
+    return buttons
   }
 
   getSuccessMessage(): string {

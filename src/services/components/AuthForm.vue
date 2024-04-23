@@ -15,15 +15,8 @@
           <el-input ref="passwordRepeatRef" v-model="form.passwordRepeat.text" placeholder="Пароль" type="password" />
         </el-form-item>
         <div class="btn-group">
-          <Button
-            v-for="btn in buttons"
-            :key="btn.getStatus()"
-            :color-swap="true"
-            :text="btn.label"
-            :button="btn.disabled"
-            :button-class="btn.isSubmit ? 'btn-active' : 'btn'"
-            @click="authButtonClick(btn)"
-          />
+          <Button v-for="btn in buttons" :key="btn.getStatus()" :color-swap="true" :text="btn.label"
+            :button="btn.disabled" :button-class="btn.isSubmit ? 'btn-active' : 'btn'" @click="authButtonClick(btn)" />
         </div>
       </el-form>
     </div>
@@ -31,6 +24,13 @@
 </template>
 
 <script lang="ts" setup>
+const props = defineProps({
+  restrictRegister: {
+    type: Boolean as PropType<boolean>,
+    default: false
+  },
+});
+
 import AuthButton from '@/services/classes/AuthButton';
 import AuthForm from '@/services/classes/AuthForm';
 import Message from '@/services/classes/Message';
@@ -39,6 +39,8 @@ import Provider from '@/services/Provider/Provider';
 import AuthStatuses from '../interfaces/AuthStatuses';
 
 const form: ComputedRef<AuthForm> = Store.Item('auth', 'form');
+form.value.restrictRegister = props.restrictRegister
+
 const auth: ComputedRef<AuthForm> = Store.Item('auth', 'auth');
 
 const emailRef = ref();
