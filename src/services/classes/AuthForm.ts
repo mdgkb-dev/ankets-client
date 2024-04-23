@@ -72,7 +72,6 @@ export default class AuthForm {
 
   getAuthButtons(): AuthButton[] {
     const buttons = AuthStatusesObjects[this.status].buttons as AuthButton[];
-    console.log(buttons, this.restrictRegister)
     if (this.restrictRegister) {
       return buttons.filter((b: AuthButton) => b.getStatus() !== AuthStatuses.Register)
     }
