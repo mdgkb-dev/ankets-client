@@ -1,5 +1,5 @@
 <template>
-  <div class="text-field">
+  <div class="text-field" :class="customClass">
     <label v-if="label" class="text-field__label" :for="label">
       {{ label }}
     </label>
@@ -10,6 +10,7 @@
       :placeholder="placeholder" 
       :readonly="readonly"
       :disabled="disabled"
+      
       v-model="model">
   </div>
 </template>
@@ -27,6 +28,7 @@ const props = defineProps({
   value: { type: String as PropType<string>, default: '', required: false },
   readonly: { type: Boolean as PropType<Boolean>, default: false, required: false },
   disabled: { type: Boolean as PropType<Boolean>, default: false, required: false },
+  customClass: { type: String as PropType<string>, required: false, default: '' },
 });
 </script>
 
@@ -73,8 +75,8 @@ input[type='text'] {
   border: 1px solid #bdbdbd;
   border-radius: 0.25rem;
   transition:
-    border-color 0.15s ease-in-out,
-    box-shadow 0.15s ease-in-out;
+  border-color 0.15s ease-in-out,
+  box-shadow 0.15s ease-in-out;
 }
 
 .text-field__input::placeholder {

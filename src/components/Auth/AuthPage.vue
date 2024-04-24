@@ -1,5 +1,7 @@
 <template>
-  <AuthForm :restrict-register="true" @action="action" />
+  <div class="auth-container">
+    <AuthForm :restrict-register="true" @action="action" />
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -12,6 +14,12 @@ const action = () => {
 </script>
 
 <style scoped lang="scss">
+
+.auth-container {
+  width: 100%;
+  height: 70vh;
+}
+
 .card-content {
   width: 60%;
   margin: 50px auto 65px auto;

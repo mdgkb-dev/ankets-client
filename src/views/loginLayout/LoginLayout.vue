@@ -1,10 +1,7 @@
 <template>
-  <el-container class="main-container">
-    <el-header style="width: 100%; padding: 0"></el-header>
-    <el-main class="container" style="padding: 10%">
-      <slot />
-    </el-main>
-  </el-container>
+  <el-main class="container">
+    <slot />
+  </el-main>
 </template>
 
 <script lang="ts">
@@ -16,6 +13,13 @@ export default defineComponent({
 </script>
 
 <style>
+
+.container {
+  width: 100%;
+  background: #B8D6FF;
+  margin: 0;
+}
+
 #app {
   height: 100%;
 }
