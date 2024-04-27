@@ -2,8 +2,11 @@
   <div class="auth-card">
     <StringItem custom-class="auth-title" string="Авторизация"/>
     <div class="auth-body">
-      <PAnketInput placeholder="Имя пользователя" margin="40px auto 0 auto" icon="user" icon-class="user-icon" />
+      <PAnketInput placeholder="Имя пользователя" margin="40px auto 0 auto" icon="user" icon-class="user-icon" >
+        <IconPassword />
+      </PAnketInput>
       <PAnketInput placeholder="Пароль" margin="10px auto 0 auto" icon="password" icon-class="password-icon" >
+        <IconUser />
         <template #help >
           <StringItem custom-class="help-string" string="Забыли пароль?"/>
         </template>
@@ -45,7 +48,9 @@ import AuthButton from '@/services/classes/AuthButton';
 import AuthForm from '@/services/classes/AuthForm';
 import Message from '@/services/classes/Message';
 import Provider from '@/services/Provider/Provider';
-import PAnketInput from '@/services/components/PAnketInput.vue'
+import PAnketInput from '@/services/components/PAnketInput.vue';
+import IconUser from '@/services/components/Icons/IconUser.vue';
+import IconPassword from '@/services/components/Icons/IconPassword.vue';
 
 import AuthStatuses from '../interfaces/AuthStatuses';
 import StringItem from './StringItem.vue';

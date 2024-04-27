@@ -102,6 +102,8 @@ declare module 'vue' {
     FTSPPanel: typeof import('./src/services/components/FTSPPanel.vue')['default']
     GeneralItem: typeof import('./src/services/components/GeneralItem.vue')['default']
     GridContainer: typeof import('./src/services/components/GridContainer.vue')['default']
+    IconPassword: typeof import('./src/services/components/Icons/IconPassword.vue')['default']
+    IconUser: typeof import('./src/services/components/Icons/IconUser.vue')['default']
     ImageCropper: typeof import('./src/services/components/ImageCropper.vue')['default']
     InfoItem: typeof import('./src/services/components/InfoItem.vue')['default']
     InfoItemSelectButtons: typeof import('./src/services/components/InfoItemSelectButtons.vue')['default']

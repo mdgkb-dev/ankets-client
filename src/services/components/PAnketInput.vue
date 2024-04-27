@@ -12,21 +12,24 @@
       :disabled="disabled"
       v-model="model">
 
-    <div v-if="icon" class="icon-field" >
+    <div class="icon-field" >
+      <slot />
+    </div>    
+    <!-- <div v-if="icon" class="icon-field" >
       <svg :class="iconClass">
         <use :xlink:href="'#' + icon"></use>
       </svg>
-    </div>
+    </div> -->
     <div class="help-field">
       <slot name="help" />
     </div>
   </div>
-  <div class="hidden"><component :is="iconComponent[icon]" /></div>
+  <!-- <div class="hidden"><component :is="iconComponent[icon]" /></div> -->
 </template>
 
 <script setup lang="ts">
-import User from '@/services/assets/svg/User.svg';
-import Password from '@/services/assets/svg/Password.svg';
+// import User from '@/services/assets/svg/User.svg';
+// import Password from '@/services/assets/svg/Password.svg';
 
 const model = defineModel();
 
@@ -40,8 +43,8 @@ const props = defineProps({
   readonly: { type: Boolean as PropType<Boolean>, default: false, required: false },
   disabled: { type: Boolean as PropType<Boolean>, default: false, required: false },
   margin: { type: String as PropType<string>, required: false, default: '' },
-  iconClass: { type: String as PropType<string>, required: false, default: '' },
-  icon: { type: String as PropType<string>, required: false, default: '' },
+  // iconClass: { type: String as PropType<string>, required: false, default: '' },
+  // icon: { type: String as PropType<string>, required: false, default: '' },
 });
 
 const iconComponent = {
@@ -75,18 +78,18 @@ const iconComponent = {
   overflow: hidden;
 }
 
-.user-icon {
-  widows: 28px;
-  height: 28px;
-  fill: #5F6A99;
-}
+// .user-icon {
+//   width: 28px;
+//   height: 28px;
+//   fill: #5F6A99;
+// }
 
-.password-icon {
-  widows: 28px;
-  height: 28px;
-  stroke: #5F6A99;
-  fill: #F5FAFF;
-}
+// .password-icon {
+//   width: 28px;
+//   height: 28px;
+//   stroke: #5F6A99;
+//   fill: #F5FAFF;
+// }
 
 .icon-field {
   position: absolute;
