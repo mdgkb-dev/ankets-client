@@ -168,4 +168,21 @@ const textStyle = computed(() => {
   height: auto;
   max-height: 36px;
 }
+
+.auth-button {
+  box-sizing: border-box;
+  width: 100%;
+  height: 52px;
+  border: none;
+  border-radius: 5px;
+  background: #5E6CE7;
+  color: #ffffff;
+  font-size: 17px;
+  font-family: Gilroy, Arial, Helvetica, sans-serif;
+  cursor: pointer;
+}
+
+.auth-button:hover {
+  background: lighten($color: #5E6CE7, $amount: 3%);
+}
 </style>
