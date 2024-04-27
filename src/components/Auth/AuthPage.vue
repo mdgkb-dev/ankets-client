@@ -1,10 +1,11 @@
 <template>
   <div class="auth-container">
-    <AuthForm :restrict-register="true" @action="action" />
+    <AnketAuthForm :restrict-register="true" @action="action" />
   </div>
 </template>
 
 <script lang="ts" setup>
+import AnketAuthForm from '@/components/Auth/AnketAuthForm.vue';
 const form: ComputedRef<AuthForm> = Store.Getters('auth/form');
 const action = () => {
   if (form.value.isLogin()) {

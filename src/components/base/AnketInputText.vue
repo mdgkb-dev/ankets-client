@@ -10,26 +10,15 @@
       :placeholder="placeholder" 
       :readonly="readonly"
       :disabled="disabled"
-      v-model="model">
-
-    <div class="icon-field" >
-      <slot />
-    </div>    
-    <!-- <div v-if="icon" class="icon-field" >
-      <svg :class="iconClass">
-        <use :xlink:href="'#' + icon"></use>
-      </svg>
-    </div> -->
-    <div class="help-field">
-      <slot name="help" />
-    </div>
+      v-model="model"
+      :style="{ paddingLeft: left ? '60px' : '20px' }"
+    >
+    <div v-if="left" class="left-field" ><slot /></div>    
+    <div v-if="right" class="right-field"><slot name="right" /></div>
   </div>
-  <!-- <div class="hidden"><component :is="iconComponent[icon]" /></div> -->
 </template>
 
 <script setup lang="ts">
-// import User from '@/services/assets/svg/User.svg';
-// import Password from '@/services/assets/svg/Password.svg';
 
 const model = defineModel();
 
@@ -43,22 +32,14 @@ const props = defineProps({
   readonly: { type: Boolean as PropType<Boolean>, default: false, required: false },
   disabled: { type: Boolean as PropType<Boolean>, default: false, required: false },
   margin: { type: String as PropType<string>, required: false, default: '' },
-  // iconClass: { type: String as PropType<string>, required: false, default: '' },
-  // icon: { type: String as PropType<string>, required: false, default: '' },
+  left: { type: Boolean as PropType<Boolean>, default: false, required: false },
+  right: { type: Boolean as PropType<Boolean>, default: false, required: false },
 });
 
-const iconComponent = {
-  'user': User,
-  'password': Password,
-};
 </script>
 
 <style lang="scss" scoped>
 @import '@/assets/styles/elements/base-style.scss';
-
-.hidden {
-  display: none;
-}
 
 *,
 *::before,
@@ -66,7 +47,7 @@ const iconComponent = {
   box-sizing: border-box;
 }
 
-.help-field {
+.right-field {
   position: absolute;
   display: flex;
   justify-content: right;
@@ -78,20 +59,8 @@ const iconComponent = {
   overflow: hidden;
 }
 
-// .user-icon {
-//   width: 28px;
-//   height: 28px;
-//   fill: #5F6A99;
-// }
 
-// .password-icon {
-//   width: 28px;
-//   height: 28px;
-//   stroke: #5F6A99;
-//   fill: #F5FAFF;
-// }
-
-.icon-field {
+.left-field {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -108,7 +77,7 @@ input[type='text'] {
   font-size: inherit;
   line-height: inherit;
   margin: 0;
-  font-family: Comfortaa, Arial, Helvetica, sans-serif;
+  font-family: Gilroy, Arial, Helvetica, sans-serif;
   font-size: 16px;
 }
 
@@ -149,11 +118,7 @@ input[type='text'] {
 
 .text-field__input:focus {
   color: #5F6A99;
-  // background-color: #fff;
-  // border-color: #409eff;
   outline: 0;
-  // box-shadow: 0 0 0 0.1rem rgba(64, 158, 255, 0.8);
-  // box-shadow: rgb(25, 121, 207) 0px 0px 1px 1px;
 }
 
 .text-field__input:disabled,

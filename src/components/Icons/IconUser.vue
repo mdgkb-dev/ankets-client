@@ -1,12 +1,6 @@
 <template>
-  <svg :style="{
-    width: width,
-    height: height,
-    fill: hoverColor ? (hovering ? hoverColor : color) : (hovering ? color : color),
-  }"
-    @mouseenter="hovering = true"
-    @mouseleave="hovering = false"
-  >
+  <svg :style="{ width: width, height: height, fill: hoverColor ? (hovering ? hoverColor : color) : (hovering ? color : color),
+  }" @mouseenter="hovering = true" @mouseleave="hovering = false">
     <use xlink:href="#user"></use>
   </svg>
 
@@ -19,32 +13,16 @@
 </template>
 
 <script lang="ts" setup>
-
 const hovering = ref(false);
 const props = defineProps({
-  color: {
-    type: String as PropType<string>,
-    default: '#5F6A99',
-  },
-  hoverColor: {
-    type: String as PropType<string>,
-    default: '',
-  },
-  width: {
-    type: String as PropType<string>,
-    default: '28px',
-  },
-  height: {
-    type: String as PropType<string>,
-    default: '28px',
-  },
+  color: { type: String as PropType<string>, default: '#5F6A99' },
+  hoverColor: { type: String as PropType<string>, default: '' },
+  width: { type: String as PropType<string>, default: '28px' },
+  height: { type: String as PropType<string>, default: '28px' },
 });
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/elements/base-style.scss';
-
-.hidden {
-  display: none;
-}
+  @import '@/assets/styles/elements/base-style.scss';
+  .hidden { display: none }
 </style>
