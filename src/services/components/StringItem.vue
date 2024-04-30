@@ -42,11 +42,17 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
+@import '@/assets/styles/base-style.scss';
+
 .string {
   max-width: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   background: inherit;
+  font-family: $base-font;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 </style>

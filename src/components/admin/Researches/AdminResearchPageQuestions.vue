@@ -90,7 +90,7 @@ const updateOrder = async (): Promise<void> => {
 
 <style lang="scss" scoped>
 @import '@/assets/elements/collapse.scss';
-@import '@/assets/styles/elements/base-style.scss';
+@import '@/assets/styles/base-style.scss';
 
 .number:hover>.icon-move {
   visibility: visible;

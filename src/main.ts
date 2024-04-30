@@ -49,3 +49,4 @@ router.isReady().then(() => {
 export function getStore() {
   return store;
 }
+

@@ -41,7 +41,7 @@ const action = (f: CallableFunction) => {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/elements/base-style.scss';
+@import '@/assets/styles/base-style.scss';
 
 $header-bottom-height: 20px;
 $header-bottom-background-color: whitesmoke;
