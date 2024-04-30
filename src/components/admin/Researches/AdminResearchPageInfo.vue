@@ -27,7 +27,7 @@ const update = async () => {
 
 <style lang="scss" scoped>
 @import '@/assets/elements/pageInfo.scss';
-@import '@/assets/styles/elements/base-style.scss';
+@import '@/assets/styles/base-style.scss';
 
 .container {
   width: 100%;

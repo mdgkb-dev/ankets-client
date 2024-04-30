@@ -1,14 +1,14 @@
 <template>
   <div class="auth-card">
-    <StringItem custom-class="auth-title" string="Авторизация"/>
+    <StringItem custom-class="auth-title" string="Авторизация" font-weight="bold" />
     <div class="auth-body">
-      <AnketInputText placeholder="Имя пользователя" margin="40px auto 0 auto" :left="true" ><IconUser /></AnketInputText>
-      <AnketInputText placeholder="Пароль" margin="10px auto 0 auto" :left="true" :right="true"><IconPassword />
+      <PInput placeholder="Имя пользователя" margin="40px auto 0 auto" ><IconUser /></PInput>
+      <PInput placeholder="Пароль" margin="10px auto 0 auto"><IconPassword />
         <template #right >
           <StringItem custom-class="help-string" string="Забыли пароль?"/>
         </template>
-      </AnketInputText>
-      <AnketInputCheckBox v-model="check" label="Запомнить пароль" width="24px" height="24px" font-size="12px" />
+      </PInput>
+      <PCheckBox v-model="check" label="Запомнить пароль" width="24px" height="24px" font-size="12px" />
       <PButton text="Войти" button-class="auth-button" />
     </div>
   </div>
@@ -26,10 +26,10 @@ const props = defineProps({
 import AuthForm from '@/services/classes/AuthForm';
 // import Message from '@/services/classes/Message';
 // import Provider from '@/services/Provider/Provider';
-import AnketInputText from '@/components/base/AnketInputText.vue';
+import PInput from '@/services/components/PInput copy.vue';
 import IconUser from '@/components/Icons/IconUser.vue';
 import IconPassword from '@/components/Icons/IconPassword.vue';
-import AnketInputCheckBox from '@/components/base/AnketInputCheckBox.vue';
+import PCheckBox from '@/services/components/PCheckBox.vue';
 
 // import AuthStatuses from '@/services/interfaces/AuthStatuses.ts';
 import StringItem from '@/services/components/StringItem.vue';
@@ -135,6 +135,8 @@ onMounted(() => {
 
 <style scoped lang="scss">
 
+@import '@/assets/styles/base-style.scss';
+
 .auth-card {
   max-width: 760px;
   height: 424px;
@@ -162,12 +164,15 @@ onMounted(() => {
 }
 
 .help-string {
+  display: flex;
+  justify-content: right;
+  align-items: center;
   color: #5F6A99;
   font-size: 16px;
   font-family: Gilroy, Arial, Helvetica, sans-serif;
   opacity: 0.4;
-  margin-right: 5px;
   cursor: pointer;
+  width: 124px;
 }
 
 .help-string:hover {

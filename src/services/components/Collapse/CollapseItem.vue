@@ -124,7 +124,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/elements/base-style.scss';
+@import '@/assets/styles/base-style.scss';
 
 .hidden {
   display: none;
@@ -134,7 +134,7 @@ export default defineComponent({
   position: relative;
   width: calc(100% - 10px);
   border: $light-pink-border;
-  border-radius: $normal-border-radius;
+  border-radius: $border-radius;
   background: #ffffff;
   margin: 10px 8px 2px 2px;
   cursor: pointer;

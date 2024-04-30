@@ -118,7 +118,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/elements/base-style.scss';
+@import '@/assets/styles/base-style.scss';
 
 .hidden {
   display: none;
@@ -135,7 +135,7 @@ export default defineComponent({
   align-items: center;
   cursor: pointer;
   transition: 0.3s;
-  border-radius: $normal-border-radius;
+  border-radius: $border-radius;
   border: $custom-border;
   text-align: center;
   overflow: hidden;

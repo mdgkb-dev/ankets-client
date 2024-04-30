@@ -6,11 +6,12 @@
     @mouseenter="hovering = true"
     @mouseleave="hovering = false"
   >
-    <div v-if="icon" class="button-icon" >
+    <div v-if="icon" class="button-icon" >  
       <svg :class="iconClass">
         <use :xlink:href="'#' + icon"></use>
       </svg>
     </div>
+    <div v-if="!icon" ><slot /></div>
     <div class="text" :style="textStyle">
       {{ text }}
     </div>
@@ -136,7 +137,7 @@ const textStyle = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/elements/base-style.scss';
+@import '@/assets/styles/base-style.scss';
 
 .button {
   display: flex;
