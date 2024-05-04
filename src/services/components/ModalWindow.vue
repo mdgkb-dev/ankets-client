@@ -95,6 +95,16 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import '@/assets/elements/collapse.scss';
+@import '@/assets/styles/base-style.scss';
+
+.base-title {
+  margin: 0 auto;
+  padding: 55px 0 20px 0;
+  color: #5F6A99;
+  font-size: 28px;
+  font-family: Gilroy, Arial, Helvetica, sans-serif;
+  border-bottom: 1px solid #E3E7FB;
+}
 
 .dialog-header {
   display: flex;

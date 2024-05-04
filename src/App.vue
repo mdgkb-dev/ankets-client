@@ -31,7 +31,7 @@ export default defineComponent({
     );
 
     const changeDocumentTitle = () => {
-      const defaultTitle = 'ТСР';
+      const defaultTitle = 'ANKETS';
       document.title = Provider.route().meta.title ? `${Provider.route().meta.title} | ТСР` : defaultTitle;
     };
 

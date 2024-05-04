@@ -1,6 +1,7 @@
 <template>
   <svg 
     class="icon"
+    :class="iconClass"
     :style="{
       margin: margin,
       width: size,
@@ -30,6 +31,7 @@ const props = defineProps({
   hoverColor: { type: String as PropType<string>, default: '' },
   size: { type: String as PropType<string>, default: '' },
   margin: { type: String as PropType<string>, default: '0 15px 0 0' },
+  iconClass: { type: String as PropType<string>, required: false, default: '' },
 });
 </script>
 

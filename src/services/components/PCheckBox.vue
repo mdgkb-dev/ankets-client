@@ -1,9 +1,9 @@
 <template>
   <div class="check-line">
     <label class="check-field__label" :style="{ fontSize: fontSize}">
-      <input class="check-field__input" type="checkbox" v-model="model">
+      <input class="check-field__input" type="checkbox" v-model="switchPosition" >
       <div class="pointer">
-        <AnketsIconSwitch :switch-position="model" margin="12px 10px 12px 0" hover-color="#343E5C" size="22px"/>
+        <slot />
       </div>
         {{  label }}
     </label>
@@ -11,14 +11,16 @@
 </template>
 
 <script lang="ts" setup>
-import AnketsIconSwitch from '@/components/Icons/AnketsIconSwitch.vue';
 
 const ToggleOn = ref(false);
-const model = defineModel();
+const switchPosition = defineModel();
+const emits = defineEmits(['switchPosition']);
 const props = defineProps({
   label: { type: String as PropType<string>, default: 'label' },
   fontSize: { type: String as PropType<string>, default: '14px' },
+  switchPosition: { type: Boolean as PropType<boolean>, default: false },
 });
+emits('switchPosition', switchPosition);
 </script>
 
 <style lang="scss" scoped>

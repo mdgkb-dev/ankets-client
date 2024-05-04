@@ -1,15 +1,17 @@
 <template>
-  <div class="auth-card">
-    <StringItem custom-class="auth-title" string="Авторизация" font-weight="bold" />
-    <div class="auth-body">
+  <div class="modal-card">
+    <StringItem custom-class="base-title" string="Авторизация" font-weight="bold" />
+    <div class="modal-body">
       <PInput placeholder="Имя пользователя" margin="40px auto 0 auto" ><IconUser /></PInput>
       <PInput placeholder="Пароль" margin="10px auto 0 auto"><IconPassword />
         <template #right >
           <StringItem custom-class="help-string" string="Забыли пароль?"/>
         </template>
       </PInput>
-      <PCheckBox v-model="check" label="Запомнить пароль" width="24px" height="24px" font-size="12px" />
-      <PButton text="Войти" button-class="auth-button" />
+      <PCheckBox v-model="check" label="Запомнить пароль" width="24px" height="24px" font-size="12px">
+        <IconAnketsSwitch :switch-position="check" margin="12px 10px 12px 0" hover-color="#343E5C" size="22px"/>
+      </PCheckBox>
+      <PButton text="Войти" button-class="base-button" />
     </div>
   </div>
 </template>
@@ -30,12 +32,14 @@ import PInput from '@/services/components/PInput copy.vue';
 import IconUser from '@/components/Icons/IconUser.vue';
 import IconPassword from '@/components/Icons/IconPassword.vue';
 import PCheckBox from '@/services/components/PCheckBox.vue';
+import IconAnketsSwitch from '@/components/Icons/IconAnketsSwitch.vue';
 
 // import AuthStatuses from '@/services/interfaces/AuthStatuses.ts';
 import StringItem from '@/services/components/StringItem.vue';
 import PButton from '@/services/components/PButton.vue';
 
 const check = ref(false);
+const switchPosition = ref(false);
 const form: ComputedRef<AuthForm> = Store.Item('auth', 'form');
 form.value.restrictRegister = props.restrictRegister
 
@@ -137,7 +141,7 @@ onMounted(() => {
 
 @import '@/assets/styles/base-style.scss';
 
-.auth-card {
+.modal-card {
   max-width: 760px;
   height: 424px;
   margin: 0 auto;
@@ -148,7 +152,7 @@ onMounted(() => {
   box-sizing: border-box;
 }
 
-.auth-title {
+.base-title {
   margin: 0 auto;
   padding: 55px 0 20px 0;
   color: #5F6A99;
@@ -157,7 +161,7 @@ onMounted(() => {
   border-bottom: 1px solid #E3E7FB;
 }
 
-.auth-body {
+.modal-body {
   width: 100%;
   max-width: 560px;
   margin: 0 auto;
@@ -182,7 +186,7 @@ onMounted(() => {
   opacity: 1;
 }
 
-.auth-button {
+.base-button {
   box-sizing: border-box;
   width: 100%;
   max-width: 560px;
@@ -196,7 +200,7 @@ onMounted(() => {
   cursor: pointer;
 }
 
-.auth-button:hover {
+.base-button:hover {
   background: lighten($color: #5E6CE7, $amount: 3%);
 }
 </style>

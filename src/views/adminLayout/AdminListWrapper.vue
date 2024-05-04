@@ -43,6 +43,8 @@ defineProps({
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/styles/base-style.scss';
+
 :deep(.el-table) {
   width: 100%;
   height: 100%;
@@ -67,7 +69,7 @@ defineProps({
 
 :deep(.el-table__body-wrapper) {
   height: 100% !important;
-  overflow: auto;
+  overflow: hidden;
   overflow-y: overlay;
 }
 
@@ -83,11 +85,12 @@ defineProps({
   &-main {
     flex-shrink: 1;
     overflow: hidden;
-    height: 100%;
+    height: calc(100% - 100px);
   }
 
   .filters {
     margin-bottom: 0;
+    background: $base-content-color;
 
     &-header-top {
       display: flex;
