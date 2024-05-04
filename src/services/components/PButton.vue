@@ -11,7 +11,7 @@
         <use :xlink:href="'#' + icon"></use>
       </svg>
     </div>
-    <div v-if="!icon" ><slot /></div>
+    <div v-if="!icon" class="button-icon"><slot /></div>
     <div class="text" :style="textStyle">
       {{ text }}
     </div>
@@ -162,10 +162,9 @@ const textStyle = computed(() => {
 }
 
 .text {
-  margin-top: auto;
-  margin-bottom: auto;
   display: flex;
   justify-content: center;
+  align-items: center;
   height: auto;
   max-height: 36px;
 }

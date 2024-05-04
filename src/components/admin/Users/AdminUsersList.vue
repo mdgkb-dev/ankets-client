@@ -2,12 +2,13 @@
   <AdminListWrapper v-if="mounted" pagination show-header>
     <div class="scroll-block">
       <div class="user-count">Количество пользователей: {{ count }}</div>
-      <div v-for="user in users" :key="user.id">
+      <div v-for="(user, i) in users" :key="user.id">
         <CollapseItem :is-collaps="false" padding="0 8px">
           <template #inside-title>
             <div class="flex-block" @click.prevent="() => undefined">
               <div class="item-flex">
                 <div class="line-item-left">
+                  <PButton :text="i+1" button-class="number"/>
                   <ToggleInfoItem title="email" :content="user.userAccount.email"
                     @submit="updateUserAccount(user.userAccount)">
                     <el-input v-model="user.userAccount.email" />
@@ -20,24 +21,25 @@
                   </ToggleInfoItem>
                 </div>
               </div>
-              <div class="item-flex">
+              <!-- <div class="item-flex">
                 <ToggleInfoItem title="Подразделение" :content="user.division" @submit="updateUser(user)">
                   <el-input v-model="user.division" />
                 </ToggleInfoItem>
-              </div>
+              </div> -->
             </div>
           </template>
         </CollapseItem>
       </div>
     </div>
   </AdminListWrapper>
-  <ModalWindow :show="showAddModal" title="Добавить пользователя" @close="showAddModal = false">
+  <ModalWindow :show="showAddModal" @close="showAddModal = false">
     <CreateUserForm @add="showAddModal = false" />
   </ModalWindow>
 </template>
 
 <script lang="ts" setup>
 import User from '@/classes/User';
+import PButton from '@/services/components/PButton.vue';
 // import UsersSortsLib from '@/libs/sorts/UsersSortsLib';
 
 const showAddModal: Ref<boolean> = ref(false);
@@ -61,7 +63,7 @@ const addUser = async (): Promise<void> => {
 
 Hooks.onBeforeMount(load, {
   adminHeader: {
-    title: 'Пользователи',
+    title: 'Список пользователей',
     buttons: [{ text: 'Добавить', type: 'normal-button', action: addUser }],
   },
   pagination: { storeModule: 'users', action: 'ftsp' },
@@ -76,6 +78,25 @@ const updateUser = async (item: User): Promise<void> => {
 </script>
 <style lang="scss" scoped>
 @import '@/assets/styles/base-style.scss';
+
+.number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 40px;
+  max-width: 40px;
+  min-height: 40px;
+  max-height: 40px;
+  border: 1px solid rgb(227, 227, 227);
+  border-radius: 5px;
+  overflow: hidden;
+  background: $base-background;
+  font-size: $base-font-large-size;
+  font-family: $base-font;
+  color: $base-font-color;
+  margin-right: 8px;
+  padding: 0;
+}
 
 .button {
   width: auto;
@@ -196,10 +217,11 @@ const updateUser = async (item: User): Promise<void> => {
 }
 
 .scroll-block {
-  height: 100%;
+  height: 78vh;
   overflow: hidden;
-  overflow-y: scroll;
-  margin-left: 8px;
+  overflow-y: auto;
+  padding: 0 20px;
+  background: $base-content-color;
 }
 
 .registers-tooltip {
@@ -285,9 +307,9 @@ const updateUser = async (item: User): Promise<void> => {
 }
 
 .user-count {
-  margin-top: 10px;
-  color: $site_light_pink;
-  font-size: 14px;
+  color: $base-font-color;
+  font-size: $base-font-size;
+  font-family: $base-font;
 }
 
 :deep(.el-form-item) {

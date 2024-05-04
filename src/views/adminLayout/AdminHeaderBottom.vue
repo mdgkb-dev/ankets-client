@@ -1,20 +1,30 @@
 <template>
   <div :key="headerParams" class="admin-header-bottom">
-    <div class="flex-between">
-      <h4 class="menu-title">
-        {{ headerParams.title }}
-        <el-badge v-if="headerParams.applicationsCount" :value="headerParams.applicationsCount" type="danger" />
-      </h4>
-      <div class="button-group">
-        <div v-for="item in headerParams.buttons" :key="item" style="margin: 0 0 0 10px">
-          <Button v-if="item.action && item.condition" :text="item.text" :button-class="item.type" @click="action(item.action)" />
-        </div>
-        <div v-if="headSpinner" class="system-message">
-          <StringItem string="Сохранение" font-size="20px" padding="0 10px" />
-          <span class="loader-spinner" />
-        </div>
-        <div v-else-if="headSuccess" class="system-message">
-          <StringItem string="Успешно сохранено" font-size="20px" padding="0 10px" color="green" />
+    <div class="content-container">
+      <div class="user-login-panel">
+        <!-- TODO user account-->
+        <StringItem string="test@gmail.com" font-size="12px" width="auto"/>
+        <IconAccount color="#C2C8E9" margin="0 0 0 8px"/>
+      </div>
+      <div class="flex-between">
+        <h4 class="menu-title">
+          <StringItem custom-class="auth-title" :string="headerParams.title" font-weight="bold" font-size="28px"/>
+          <el-badge v-if="headerParams.applicationsCount" :value="headerParams.applicationsCount" type="danger" />
+        </h4>
+        <div class="button-group">
+          <div v-for="item in headerParams.buttons" :key="item" style="margin: 0 0 0 10px">
+            <!-- <Button v-if="item.action && item.condition" :text="item.text" :button-class="item.type" @click="action(item.action)" /> -->
+            <PButton v-if="item.action && item.condition" :text="item.text" button-class="add-button" @click="action(item.action)" >
+              <IconAddButton size="20px" color="#F5FAFF"/>
+            </PButton>
+          </div>
+          <div v-if="headSpinner" class="system-message">
+            <StringItem string="Сохранение" font-size="20px" padding="0 10px" />
+            <span class="loader-spinner" />
+          </div>
+          <div v-else-if="headSuccess" class="system-message">
+            <StringItem string="Успешно сохранено" font-size="20px" padding="0 10px" color="green" />
+          </div>
         </div>
       </div>
     </div>
@@ -24,10 +34,15 @@
 <script lang="ts" setup>
 import AdminHeaderParams from '@/services/classes/admin/AdminHeaderParams';
 import Provider from '@/services/Provider/Provider';
+import StringItem from '@/services/components/StringItem.vue';
+import IconAccount from '@/components/Icons/IconAccount.vue';
+import PButton from '@/services/components/PButton.vue';
+import IconAddButton from '@/components/Icons/IconAddButton.vue';
 
 const headerParams: Ref<AdminHeaderParams> = Store.Item('admin', 'headerParams');
 const headSpinner: Ref<boolean> = Store.Item('admin', 'headerSpinner');
 const headSuccess: Ref<boolean> = Store.Item('admin', 'headerSuccess');
+
 const goBack = () => {
   Provider.router.go(-1);
 };
@@ -43,18 +58,50 @@ const action = (f: CallableFunction) => {
 <style lang="scss" scoped>
 @import '@/assets/styles/base-style.scss';
 
-$header-bottom-height: 20px;
-$header-bottom-background-color: whitesmoke;
-// $header-shadow: 0 0 10px 0 rgb(0 0 0 / 20%);
-$header-shadow: 0 10px 10px -10px rgba(0 0 0 / 20%);
+.add-button {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  box-sizing: border-box;
+  width: auto;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  background: #5E6CE7;
+  color: #ffffff;
+  font-size: 13px;
+  font-family: Gilroy, Arial, Helvetica, sans-serif;
+  cursor: pointer;
+  padding: 0 25px;
+}
+
+.add-button:hover {
+  background: lighten($color: #5E6CE7, $amount: 3%);
+}
+
+.content-container {
+  display: block;
+  width: 100%;
+  background: $base-content-color;
+}
+
+.user-login-panel {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  height: 64px;
+  border-bottom: 1px solid #E3E7FB;
+  margin: 0 20px;
+}
 
 .admin-header-bottom {
-  height: $header-bottom-height;
-  box-shadow: $header-shadow;
-  background-color: $header-bottom-background-color;
+  box-shadow: none;
+  // background-color: $base-content-color;
   display: flex;
   align-items: center;
-  padding: 20px 10px;
+  // height: 60vh;
+  overflow: hidden;
 }
 
 h4 {
@@ -63,10 +110,12 @@ h4 {
 }
 
 .flex-between {
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  padding: 0 20px;
 }
 
 .button-group {
@@ -178,9 +227,6 @@ h4 {
 }
 
 @media (max-width: 992px) {
-  .menu-title {
-    margin-left: 34px;
-  }
   .menu-title {
     font-size: 14px;
   }

@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-drawer v-model="isDrawerOpen" custom-class="admin-drawer" :size="'auto'" direction="ltr" :with-header="false" @closed="closeDrawer">
-      <AdminSideMenu />
+      <AdminSideMenu :shadow="false" :border="false" padding="20px"/>
     </el-drawer>
   </div>
 </template>

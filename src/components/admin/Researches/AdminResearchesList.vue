@@ -56,7 +56,7 @@ const addResearch = async (): Promise<void> => {
 
 Hooks.onBeforeMount(load, {
   adminHeader: {
-    title: 'Исследования',
+    title: 'Список анкет',
     buttons: [{ text: 'Добавить', type: 'normal-button', action: addResearch }],
   },
   pagination: { storeModule: 'researches', action: 'ftsp' },
@@ -185,10 +185,11 @@ Hooks.onBeforeMount(load, {
 }
 
 .scroll-block {
-  height: 100%;
+  height: 78vh;
   overflow: hidden;
-  overflow-y: scroll;
-  margin-left: 8px;
+  overflow-y: auto;
+  padding: 0 20px;
+  background: $base-content-color;
 }
 
 .registers-tooltip {
@@ -273,10 +274,10 @@ Hooks.onBeforeMount(load, {
   cursor: pointer;
 }
 
-.research-count {
-  margin-top: 10px;
-  color: $site_light_pink;
-  font-size: 14px;
+.research-count  {
+  color: $base-font-color;
+  font-size: $base-font-size;
+  font-family: $base-font;
 }
 
 :deep(.el-form-item) {
