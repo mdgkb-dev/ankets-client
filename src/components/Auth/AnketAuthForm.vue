@@ -28,7 +28,7 @@ const props = defineProps({
 import AuthForm from '@/services/classes/AuthForm';
 // import Message from '@/services/classes/Message';
 // import Provider from '@/services/Provider/Provider';
-import PInput from '@/services/components/PInput copy.vue';
+import PInput from '@/services/components/PInput.vue';
 import IconUser from '@/components/Icons/IconUser.vue';
 import IconPassword from '@/components/Icons/IconPassword.vue';
 import PCheckBox from '@/services/components/PCheckBox.vue';
@@ -143,18 +143,17 @@ onMounted(() => {
 
 .modal-card {
   max-width: 760px;
-  height: 424px;
   margin: 0 auto;
   background: #fff;
   border-radius: 5px;
   margin: 238px auto 0 auto;
-  padding: 0 30px;
+  padding: 60px 20px;
   box-sizing: border-box;
 }
 
 .base-title {
   margin: 0 auto;
-  padding: 55px 0 20px 0;
+  padding: 0 0 20px 0;
   color: #5F6A99;
   font-size: 28px;
   font-family: Gilroy, Arial, Helvetica, sans-serif;

@@ -46,7 +46,4 @@ const props = defineProps({
     fill: $icon-hover-color;
   }
 
-  .sw {
-    fill:red;
-  }
 </style>

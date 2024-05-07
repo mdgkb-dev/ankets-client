@@ -7,7 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    2: typeof import('./src/components/Icons/IconUser copy 2.vue')['default']
+    2: typeof import('./src/services/components/PInput copy 2.vue')['default']
     Account: typeof import('./src/components/Icons/Account.vue')['default']
     AdaptiveContainer: typeof import('./src/services/components/AdaptiveContainer.vue')['default']
     AdaptiveContainerHorizontal: typeof import('./src/services/components/AdaptiveContainerHorizontal.vue')['default']
@@ -118,6 +118,7 @@ declare module 'vue' {
     IconCheckbox: typeof import('./src/components/Icons/IconCheckbox.vue')['default']
     IconCheckboxOff: typeof import('./src/components/Icons/IconCheckboxOff.vue')['default']
     IconCheckboxOn: typeof import('./src/components/Icons/IconCheckboxOn.vue')['default']
+    IconClose: typeof import('./src/components/Icons/IconClose.vue')['default']
     IconDepartment: typeof import('./src/components/Icons/IconDepartment.vue')['default']
     IconJob: typeof import('./src/components/Icons/IconJob.vue')['default']
     IconMenu: typeof import('./src/components/Icons/IconMenu.vue')['default']
@@ -170,9 +171,11 @@ declare module 'vue' {
     PersonalityList: typeof import('./src/components/admin/Patients/PersonalityList.vue')['default']
     PhoneForm: typeof import('./src/services/components/PhoneForm.vue')['default']
     PInput: typeof import('./src/services/components/PInput.vue')['default']
-    'PInput copy': typeof import('./src/services/components/PInput copy.vue')['default']
+    PInput_old: typeof import('./src/services/components/PInput_old.vue')['default']
+    PModalWindow: typeof import('./src/services/components/PModalWindow.vue')['default']
     PPagination: typeof import('./src/services/components/PPagination.vue')['default']
     PropertyHeader: typeof import('./src/components/admin/Research/PropertyHeader.vue')['default']
+    PSelect: typeof import('./src/services/components/PSelect.vue')['default']
     QuestionChildrenEdit: typeof import('./src/components/admin/Researches/QuestionChildrenEdit.vue')['default']
     QuestionComponent: typeof import('./src/components/admin/Patients/QuestionComponent.vue')['default']
     QuestionEdit: typeof import('./src/components/admin/Researches/QuestionEdit.vue')['default']
