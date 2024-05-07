@@ -27,9 +27,9 @@
   <ModalWindow :show="showAddModal" title="Добавить анкету" @close="showAddModal = false">
     <CreateResearchForm @add="showAddModal = false" />
   </ModalWindow>
-  <ModalWindow :show="showAssignResearchModal" title="Назначить анкету" @close="showAssignResearchModal = false">
+  <PModalWindow :show="showAssignResearchModal" @close="showAssignResearchModal = false" >
     <AssignResearchForm @add="showAssignResearchModal = false" />
-  </ModalWindow>
+  </PModalWindow>
 </template>
 
 <script lang="ts" setup>
@@ -37,6 +37,7 @@ import Research from '@/classes/Research';
 import ResearchesSortsLib from '@/libs/sorts/ResearchesSortsLib';
 import Hooks from '@/services/Hooks/Hooks';
 import Provider from '@/services/Provider/Provider';
+import PModalWindow from '@/services/components/PModalWindow.vue';
 
 const showAddModal: Ref<boolean> = ref(false);
 const showAssignResearchModal: Ref<boolean> = ref(false);

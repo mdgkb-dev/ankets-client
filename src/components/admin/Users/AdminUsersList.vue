@@ -32,7 +32,7 @@
       </div>
     </div>
   </AdminListWrapper>
-  <PModalWindow :show="showAddModal" @close="showAddModal = false" width="760px" :show-close="false">
+  <PModalWindow :show="showAddModal" @close="showAddModal = false">
     <CreateUserForm @add="showAddModal = false" />
   </PModalWindow>
 </template>

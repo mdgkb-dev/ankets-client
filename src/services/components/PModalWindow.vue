@@ -56,7 +56,7 @@ export default defineComponent({
     },
     showClose: {
       type: Boolean as PropType<boolean>,
-      default: true,
+      default: false,
     },
   },
   emits: ['save', 'close'],
