@@ -8,9 +8,11 @@ enum MType {
 
 export default class Message {
   private static Show(m: string, t: MType): void {
+    console.log('show')
     if (!m || !t) {
       return;
     }
+    console.log(ElMessage)
     ElMessage({
       message: m,
       type: t,

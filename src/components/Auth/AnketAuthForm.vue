@@ -2,16 +2,22 @@
   <div class="modal-card">
     <StringItem custom-class="base-title" string="Авторизация" font-weight="bold" />
     <div class="modal-body">
-      <PInput placeholder="Имя пользователя" margin="40px auto 0 auto" ><IconUser /></PInput>
-      <PInput placeholder="Пароль" margin="10px auto 0 auto"><IconPassword />
-        <template #right >
-          <StringItem custom-class="help-string" string="Забыли пароль?"/>
+      <PInput v-if="form.email.show(form.status)" v-model="form.email.email" placeholder="Email"
+        margin="40px auto 0 auto">
+        <IconUser />
+      </PInput>
+      <PInput v-if="form.password.show(form.status)" v-model="form.password.password" placeholder="Пароль"
+        margin="10px auto 0 auto">
+        <IconPassword />
+        <template #right>
+          <StringItem custom-class="help-string" string="Забыли пароль?" @click="restore" />
         </template>
       </PInput>
       <PCheckBox v-model="check" label="Запомнить пароль" width="24px" height="24px" font-size="12px">
-        <IconAnketsSwitch :switch-position="check" margin="12px 10px 12px 0" hover-color="#343E5C" size="22px"/>
+        <IconAnketsSwitch :switch-position="check" margin="12px 10px 12px 0" hover-color="#343E5C" size="22px" />
       </PCheckBox>
-      <PButton text="Войти" button-class="base-button" />
+      <PButton v-for="b in buttons" :key="b.label" :text="b.label" button-class="base-button"
+        @click="authButtonClick(b)" />
     </div>
   </div>
 </template>
@@ -24,6 +30,8 @@ const props = defineProps({
   },
 });
 
+import AuthStatuses from '@/services/interfaces/AuthStatuses';
+import AuthButton from '@/services/classes/AuthButton'
 // import AuthButton from '@/services/classes/AuthButton';
 import AuthForm from '@/services/classes/AuthForm';
 // import Message from '@/services/classes/Message';
@@ -33,16 +41,26 @@ import IconUser from '@/components/Icons/IconUser.vue';
 import IconPassword from '@/components/Icons/IconPassword.vue';
 import PCheckBox from '@/services/components/PCheckBox.vue';
 import IconAnketsSwitch from '@/components/Icons/IconAnketsSwitch.vue';
-
+import Message from '@/services/classes/Message'
 // import AuthStatuses from '@/services/interfaces/AuthStatuses.ts';
 import StringItem from '@/services/components/StringItem.vue';
 import PButton from '@/services/components/PButton.vue';
 
+const emits = defineEmits(['action']);
 const check = ref(false);
 const switchPosition = ref(false);
 const form: ComputedRef<AuthForm> = Store.Item('auth', 'form');
 form.value.restrictRegister = props.restrictRegister
 
+const buttons = computed(() => {
+  if (form.value.status === AuthStatuses.Login) {
+    return [AuthButton.Login(true)]
+  }
+  if (form.value.status === AuthStatuses.Restore) {
+    return [AuthButton.Restore(true)]
+  }
+  return []
+});
 const auth: ComputedRef<AuthForm> = Store.Item('auth', 'auth');
 
 // const emailRef = ref();
@@ -58,87 +76,71 @@ const auth: ComputedRef<AuthForm> = Store.Item('auth', 'auth');
 //   form.value.setStatus(AuthStatuses.Login);
 // };
 
-// const login = () => {
-//   form.value.reset();
-// };
+const login = () => {
+  form.value.reset();
 
-// const restore = async () => {
-//   form.value.reset();
-//   await Provider.router.push('/main');
-// };
+};
 
-// const refresh = async () => {
-//   form.value.reset();
-//   await Provider.router.push('/main');
-//   auth.value.logout();
-// };
+const restore = async () => {
+  form.value.setStatus(AuthStatuses.Restore)
 
-// const authButtonClick = async (authButton: AuthButton): Promise<void> => {
-//   authButton.off();
-//   if (!authButton.isSubmit) {
-//     authButton.on();
-//     return form.value.setStatus(authButton.getStatus());
-//   }
+};
 
-//   const errors = form.value.getErrors();
-//   if (errors.length > 0) {
-//     Message.Error(errors.join(', '));
-//     authButton.on();
-//     return;
-//   }
+const refresh = async () => {
+  form.value.reset();
+  await Provider.router.push('/main');
+  auth.value.logout();
+};
 
-//   try {
-//     Store.Dispatch(`auth/${form.value.getAction()}`);
-//     Message.Success(form.value.getSuccessMessage());
-//   } catch (error) {
-//     return;
-//   }
-//   switch (form.value.status) {
-//     case AuthStatuses.Login:
-//       login();
-//       break;
+const authButtonClick = async (authButton: AuthButton): Promise<void> => {
+  console.log('click')
+  authButton.off();
+  if (!authButton.isSubmit) {
+    authButton.on();
+    return form.value.setStatus(authButton.getStatus());
+  }
 
-//     case AuthStatuses.Register:
-//       registration();
-//       break;
+  const errors = form.value.getErrors();
+  console.log(errors)
+  if (errors.length > 0) {
+    console.log(errors)
+    Message.Error(errors.join(', '));
+    authButton.on();
+    return;
+  }
 
-//     case AuthStatuses.Restore:
-//       await restore();
-//       break;
 
-//     case AuthStatuses.Refresh:
-//       await refresh();
-//       break;
-//     default:
-//       break;
-//   }
-//   authButton.on();
-//   emits('action');
-// };
+  try {
+    Store.Dispatch(`auth/${form.value.getAction()}`);
+    Message.Success(form.value.getSuccessMessage());
+  } catch (error) {
+    return;
+  }
+  switch (form.value.status) {
+    case AuthStatuses.Login:
+      login();
+      break;
+
+    case AuthStatuses.Restore:
+      await restore();
+      break;
+
+    case AuthStatuses.Refresh:
+      await refresh();
+      break;
+    default:
+      break;
+  }
+  authButton.on();
+  emits('action');
+};
 
 onBeforeUnmount(() => {
   form.value.reset;
 });
-const focus = () => {
-  if (form.value.isRefresh()) {
-    passwordRef.value.focus();
-    return;
-  }
-  emailRef.value.focus();
-};
-watch(
-  () => form.value.status,
-  () => {
-    focus();
-  }
-);
-onMounted(() => {
-  focus();
-});
 </script>
 
 <style scoped lang="scss">
-
 @import '@/assets/styles/base-style.scss';
 
 .modal-card {
