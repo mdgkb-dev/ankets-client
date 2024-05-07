@@ -57,7 +57,7 @@ const buttons = computed(() => {
     return [AuthButton.Login(true)]
   }
   if (form.value.status === AuthStatuses.Restore) {
-    return [AuthButton.Restore(true)]
+    return [AuthButton.Restore()]
   }
   return []
 });

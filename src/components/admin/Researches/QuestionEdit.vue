@@ -1,18 +1,15 @@
 <template>
   <div class="q-container">
     <SelectValueType :selected-type="question.valueType" @select="selectType" />
-    <button v-if="question.valueType.isNumber()" class="admin-add2" @click="edit">+ Добавить варианты ответов числового вида</button>
+    <button v-if="question.valueType.isNumber()" class="admin-add2" @click="edit">+ Добавить варианты ответов числового
+      вида</button>
   </div>
 
   <!-- <SetSelect v-if="question.questionVariants.length" :research-result="researchResult" :question="question" @fill="fill" /> -->
   <!-- <hr /> -->
   <component :is="component" :question="question" />
-  <ModalWindow
-    v-if="questionVariantsModalOpened"
-    :show="questionVariantsModalOpened"
-    title="Варианты ответов числового вида"
-    @close="questionVariantsModalOpened = false"
-  >
+  <ModalWindow v-if="questionVariantsModalOpened" :show="questionVariantsModalOpened"
+    title="Варианты ответов числового вида" @close="questionVariantsModalOpened = false">
     <div class="tools-buttons">
       <button class="admin-add" @click="addVariant()">+ Добавить</button>
     </div>
@@ -90,9 +87,9 @@ const updateVariant = async (item: QuestionVariant) => {
 };
 
 const removeVariant = async (id: string) => {
+  await Store.Remove('questionVariants', id);
   ClassHelper.RemoveFromClassById(id, props.question.questionVariants);
   sort(props.question.questionVariants);
-  await Store.Remove('questionVariants', id);
 };
 
 const addVariant = async () => {

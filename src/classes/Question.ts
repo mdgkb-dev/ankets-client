@@ -45,6 +45,7 @@ export default class Question {
   }
   static Create(researchId?: string): Question {
     const item = new Question();
+    item.id = ClassHelper.CreateUUID()
     item.researchId = researchId;
     return item;
   }

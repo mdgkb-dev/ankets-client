@@ -72,8 +72,8 @@ const addQuestion = async () => {
 };
 
 const removeQuestion = async (id: string) => {
-  ClassHelper.RemoveFromClassById(id, research.value.questions);
   await Store.Remove('questions', id);
+  ClassHelper.RemoveFromClassById(id, research.value.questions);
   research.value.setQuestionsOrder();
   sort(research.value.questions);
   research.value.questions.forEach((q: Question) => {

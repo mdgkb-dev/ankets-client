@@ -10,7 +10,8 @@
         <div class="container">
           <div class="q-marker"></div>
           <div class="ch-title">
-            <StringItem :string="'Под-вопрос ' + (index + 1)" font-size="14px" padding="0" justify-content="left" margin="0 0 5px 5px" />
+            <StringItem :string="'Под-вопрос ' + (index + 1)" font-size="14px" padding="0" justify-content="left"
+              margin="0 0 5px 5px" />
           </div>
           <el-input v-model="element.name" placeholder="Введите текст вопроса" @blur="" />
 
@@ -46,12 +47,12 @@ const selectType = async (itemName: string, question: Question) => {
 };
 
 const addChild = async () => {
-  console.log('question');
   const item = props.question.addChild();
   await Store.Create('questions', item);
 };
 
 const removeQuestion = async (id: string) => {
+  console.log(id)
   await Store.Remove('questions', id);
   ClassHelper.RemoveFromClassById(id, props.question.children);
   sort(props.question.children);
@@ -68,9 +69,8 @@ const updateOrder = async (): Promise<void> => {
 </script>
 
 <style lang="scss" scoped>
-
 .q-marker {
-  position:absolute;
+  position: absolute;
   left: -32px;
   top: 13px;
   width: 14px;

@@ -1,7 +1,5 @@
 <template>
   <AdminListWrapper v-if="mounted" pagination show-header>
-    <!-- <AdminResearchesListFilters @load="loadResearches" /> -->
-
     <div class="scroll-block">
       <div class="research-count">Количество исследований: {{ count }}</div>
       <div v-for="research in researches" :key="research.id">
@@ -12,6 +10,8 @@
                 <div class="line-item-left">
                   <Button button-class="edit-button" color="#006bb4" icon="edit" icon-class="edit-icon"
                     @click="Router.ToAdmin('researches/' + research.id)" />
+                  <Button button-class="edit-button" color="#006bb4" icon="edit" icon-class="edit-icon"
+                    @click="assignResearch(research.id)" />
                   <StringItem :string="research.name" />
                 </div>
               </div>
@@ -27,6 +27,9 @@
   <ModalWindow :show="showAddModal" title="Добавить анкету" @close="showAddModal = false">
     <CreateResearchForm @add="showAddModal = false" />
   </ModalWindow>
+  <ModalWindow :show="showAssignResearchModal" title="Назначить анкету" @close="showAssignResearchModal = false">
+    <AssignResearchForm @add="showAssignResearchModal = false" />
+  </ModalWindow>
 </template>
 
 <script lang="ts" setup>
@@ -36,6 +39,7 @@ import Hooks from '@/services/Hooks/Hooks';
 import Provider from '@/services/Provider/Provider';
 
 const showAddModal: Ref<boolean> = ref(false);
+const showAssignResearchModal: Ref<boolean> = ref(false);
 const researches: Ref<Research[]> = computed(() => Provider.store.getters['researches/items']);
 const count: Ref<number> = computed(() => Provider.store.getters['researches/count']);
 
@@ -54,6 +58,10 @@ const addResearch = async (): Promise<void> => {
   showAddModal.value = !showAddModal.value;
 };
 
+const assignResearch = async (): Promise<void> => {
+  showAssignResearchModal.value = !showAssignResearchModal.value;
+};
+
 Hooks.onBeforeMount(load, {
   adminHeader: {
     title: 'Список анкет',
@@ -62,6 +70,7 @@ Hooks.onBeforeMount(load, {
   pagination: { storeModule: 'researches', action: 'ftsp' },
   sortsLib: ResearchesSortsLib,
 });
+
 </script>
 <style lang="scss" scoped>
 @import '@/assets/styles/base-style.scss';
@@ -274,7 +283,7 @@ Hooks.onBeforeMount(load, {
   cursor: pointer;
 }
 
-.research-count  {
+.research-count {
   color: $base-font-color;
   font-size: $base-font-size;
   font-family: $base-font;

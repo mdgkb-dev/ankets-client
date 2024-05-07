@@ -49,6 +49,7 @@ declare module 'vue' {
     AnketInputText: typeof import('./src/components/base/AnketInputText.vue')['default']
     AnketsIconSwitch: typeof import('./src/components/Icons/AnketsIconSwitch.vue')['default']
     AnswerVariantsEdit: typeof import('./src/components/admin/Researches/AnswerVariantsEdit.vue')['default']
+    AssignResearchForm: typeof import('./src/components/admin/Researches/AssignResearchForm.vue')['default']
     AuthForm: typeof import('./src/services/components/AuthForm.vue')['default']
     AuthModal: typeof import('./src/services/components/AuthModal.vue')['default']
     AuthPage: typeof import('./src/components/Auth/AuthPage.vue')['default']

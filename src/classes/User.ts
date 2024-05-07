@@ -63,4 +63,7 @@ export default class User {
   static GetClassName(): string {
     return 'user';
   }
+  getName(): string {
+    return this.userAccount.email
+  }
 }
