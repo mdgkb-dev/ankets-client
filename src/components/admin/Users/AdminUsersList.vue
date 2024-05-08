@@ -32,14 +32,15 @@
       </div>
     </div>
   </AdminListWrapper>
-  <ModalWindow :show="showAddModal" @close="showAddModal = false">
+  <PModalWindow :show="showAddModal" @close="showAddModal = false">
     <CreateUserForm @add="showAddModal = false" />
-  </ModalWindow>
+  </PModalWindow>
 </template>
 
 <script lang="ts" setup>
 import User from '@/classes/User';
 import PButton from '@/services/components/PButton.vue';
+import PModalWindow from '@/services/components/PModalWindow.vue';
 // import UsersSortsLib from '@/libs/sorts/UsersSortsLib';
 
 const showAddModal: Ref<boolean> = ref(false);

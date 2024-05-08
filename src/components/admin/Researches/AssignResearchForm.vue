@@ -1,11 +1,40 @@
 <template>
-  <InfoItem title="название" icon="edit-title" :with-open-window="false" :with-hover="false" border-color="#ffffff"
-    base-box-margin="0 0 15px 0" padding="0" width="100%">
-    <el-select>
-      <el-option v-for="user in users" :key="user.id" :label="user.getName()" />
-    </el-select>
-  </InfoItem>
-  <Button button-class="save-button" text="Назначить" @click="create" />
+  <ModalCard title="Назначить анкету">
+    <StringItem margin="20px 0 0 0">
+      Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, 
+      когда нужно быстро заполнить макеты или прототипы содержимым. 
+      Это тестовый контент, который не должен нести никакого смысла, 
+      лишь показать наличие самого текста или продемонстрировать типографику в деле.
+    </StringItem>
+    <PSelect placeholder="Выберите эксперта" margin="20px auto 0 auto" >
+      <template #left><IconUser /></template>
+      <option>Вариант 1</option>
+      <option>Вариант 2</option>
+      <option>Вариант 3</option>
+    </PSelect>
+    <PSelect placeholder="Выберите шаблон анкеты" margin="10px auto 0 auto" >
+      <template #left><IconJob /></template>
+      <option>Вариант 1</option>
+      <option>Вариант 2</option>
+      <option>Вариант 3</option>
+    </PSelect>
+    <PSelect placeholder="Выберите шаблон письма" margin="10px auto 0 auto" >
+      <template #left><IconJob /></template>
+      <option>Вариант 1</option>
+      <option>Вариант 2</option>
+      <option>Вариант 3</option>
+    </PSelect>
+    <div class="flex-line">
+      <PSelect placeholder="Нозология" margin="10px 5px 0 0" >
+        <template #left><IconDepartment /></template>
+        <option>Вариант 1</option>
+        <option>Вариант 2</option>
+        <option>Вариант 3</option>
+      </PSelect>
+      <PInput placeholder="Ссылка" margin="10px 0 0 5px" ><IconLink /></PInput>
+    </div>
+    <PButton text="Назначить" button-class="base-button" />
+  </ModalCard>
 </template>
 
 <script setup lang="ts">
@@ -13,6 +42,15 @@ import { onBeforeMount, Ref, ref } from 'vue';
 
 import Research from '@/classes/Research';
 import Provider from '@/services/Provider/Provider';
+import ModalCard from '@/components/ Base/ModalCard.vue';
+import IconUser from '@/components/Icons/IconUser.vue';
+import PInput from '@/services/components/PInput.vue';
+import StringItem from '@/services/components/StringItem.vue';
+import PButton from '@/services/components/PButton.vue';
+import PSelect from '@/services/components/PSelect.vue';
+import IconJob from '@/components/Icons/IconJob.vue';
+import IconDepartment from '@/components/Icons/IconDepartment.vue';
+import IconLink from '@/components/Icons/IconLink.vue';
 
 const showSnilsForm: Ref<boolean> = ref(true);
 const research: Ref<Research> = ref(Research.Create());
@@ -43,13 +81,39 @@ const create = async (): Promise<void> => {
 @import '@/assets/elements/collapse.scss';
 @import '@/assets/styles/base-style.scss';
 
-.save-button {
-  width: 300px;
-  border-radius: 5px;
-  height: 42px;
-  color: #006bb4;
-  background: #dff2f8;
+.flex-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 560px;
+}
+
+
+.base-title {
   margin: 0 auto;
-  font-size: 14px;
+  padding: 0 0 20px 0;
+  color: #5F6A99;
+  font-size: 28px;
+  font-family: Gilroy, Arial, Helvetica, sans-serif;
+  border-bottom: 1px solid #E3E7FB;
+}
+
+.base-button {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 560px;
+  height: 52px;
+  border: none;
+  border-radius: 5px;
+  background: #5E6CE7;
+  color: #ffffff;
+  font-size: 17px;
+  font-family: Gilroy, Arial, Helvetica, sans-serif;
+  cursor: pointer;
+  margin: 30px 0 0 0;
+}
+
+.base-button:hover {
+  background: lighten($color: #5E6CE7, $amount: 3%);
 }
 </style>

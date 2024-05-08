@@ -1,5 +1,6 @@
 <template>
   <div class="string" :style="styleObject" :class="customClass" @click="$emit('click')">
+    <div v-if="!string" class="text"><slot /></div>
     {{ string }}
   </div>
 </template>
@@ -56,6 +57,11 @@ export default defineComponent({
   user-select: none; /* Standard syntax */
   color: $base-font-color;
   font-size: $base-font-size;
+}
+
+.text {
+  box-sizing: border-box;
+  width: 100%;
 }
 
 // .string:hover {
