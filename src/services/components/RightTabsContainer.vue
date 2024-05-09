@@ -175,7 +175,7 @@ export default defineComponent({
   height: calc(100% - 10px);
   background: $custom-background;
   overflow: hidden;
-  // overflow-y: auto;
+  overflow-y: auto;
   // padding-right: 3px;
 }
 

@@ -1,23 +1,17 @@
 <template>
   <div class="mainblock">
     <div class="mainline">
-      <div
-        class="mainblock-left"
-        :style="{
-          minWidth: leftWidth,
-          maxWidth: leftWidth,
-          background: background,
-          display: leftWidth !== '0px' ? 'block' : 'none',
-        }"
-      >
+      <div class="mainblock-left" :style="{
+        minWidth: leftWidth,
+        maxWidth: leftWidth,
+        background: background,
+        display: leftWidth !== '0px' ? 'block' : 'none',
+      }">
         <slot name="left" />
       </div>
-      <div
-        class="mainblock-right"
-        :style="{
-          background: background,
-        }"
-      >
+      <div class="mainblock-right" :style="{
+        background: background,
+      }">
         <slot name="right" />
       </div>
     </div>
@@ -85,6 +79,7 @@ export default defineComponent({
   .mainblock {
     padding: 10px 0;
   }
+
   .mainline {
     display: block;
   }

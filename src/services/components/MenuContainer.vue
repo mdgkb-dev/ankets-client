@@ -76,7 +76,7 @@ export default defineComponent({
   overflow: auto;
   height: 100%;
   overflow: hidden;
-  // overflow-y: auto;
+  overflow-y: auto;
   padding-bottom: 50px;
 }
 
@@ -115,7 +115,7 @@ export default defineComponent({
   .top-menu {
     max-height: 123px;
     overflow: hidden;
-    // overflow-y: auto;
+    overflow-y: auto;
   }
 }
 </style>
