@@ -1,6 +1,5 @@
 <template>
   <div class="string" :style="styleObject" :class="customClass" @click="$emit('click')">
-    <div v-if="!string" class="text"><slot /></div>
     {{ string }}
   </div>
 </template>
@@ -43,29 +42,11 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-@import '@/assets/styles/base-style.scss';
-
 .string {
   max-width: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   background: inherit;
-  font-family: $base-font;
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
-  color: $base-font-color;
-  font-size: $base-font-size;
 }
-
-.text {
-  box-sizing: border-box;
-  width: 100%;
-}
-
-// .string:hover {
-//   color: $site_dark_gray;
-// }
-
 </style>
