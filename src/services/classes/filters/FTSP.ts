@@ -6,6 +6,7 @@ import ClassHelper from '@/services/ClassHelper';
 import SortModel from '../SortModel';
 
 export default class FTSP {
+  private static instance: FTSP
   id?: string;
 
   @ClassHelper.GetClassConstructor(FilterModel)
@@ -17,6 +18,13 @@ export default class FTSP {
 
   constructor(i?: FTSP) {
     ClassHelper.BuildClass(this, i);
+  }
+
+  static Get(): FTSP {
+    if (!this.instance) {
+      this.instance = new FTSP()
+    }
+    return this.instance
   }
 
   createFrom(ftsp: string): void {
