@@ -178,6 +178,7 @@ declare module 'vue' {
     PMessage: typeof import('./src/components/ Base/PMessage.vue')['default']
     PModalWindow: typeof import('./src/services/components/PModalWindow.vue')['default']
     PPagination: typeof import('./src/services/components/PPagination.vue')['default']
+    ProfileInfoPage: typeof import('./src/components/Profile/ProfileInfoPage.vue')['default']
     PropertyHeader: typeof import('./src/components/admin/Research/PropertyHeader.vue')['default']
     PSelect: typeof import('./src/services/components/PSelect.vue')['default']
     QuestionChildrenEdit: typeof import('./src/components/admin/Researches/QuestionChildrenEdit.vue')['default']
