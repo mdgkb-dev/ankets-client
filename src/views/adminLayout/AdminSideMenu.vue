@@ -1,8 +1,6 @@
 <template>
   <div class="menu-icon" @click="openMenuBar()">
     <IconMenuLines hover-color="#343D5C" size="32px" margin="0 0 0 15px"/>
-    <!-- <IconPfArrowLeft size="20px" />
-    <StringItem custom-class="auth-title" string=" меню" width="auto" margin="0 0 0 10px"/> -->
   </div>
   <div v-if="mounted" class="admin-side-menu" 
     :style="{
@@ -14,22 +12,35 @@
       <StringItem string="Логотип" padding="33px 0 0 0" color="#6B7CC6" /> <!--Logo-->
     </div>
     <div class="menu-tools" @click="showMenuBar = false">
-      <IconPfArrowLeft />
-      <StringItem string="Скрыть меню" width="auto" margin="0 0 0 10px" />
+      <IconPfArrowLeft size="20px"/>
+      <StringItem string="Скрыть меню" width="auto" margin="0 0 0 10px" padding="3px 0 0 0"/>
     </div>
     <div class="menu-body">
-      <!-- <div @select="closeDrawer"> -->
       <div>
-        <template v-for="item in menus" :key="item.name">
-          <!-- <div @click="showMenuBar = false"> -->
-          <div>
+        <DropListItem name="Мой профиль">
+          <StringItem string="Общие данные" width="auto" justifyContent="left" padding="6px 0" @click="Router.To('/profile')"/>
+          <StringItem string="Документы" width="auto" justifyContent="left" padding="6px 0"/>
+          <StringItem string="Экспертизы" width="auto" justifyContent="left" padding="6px 0"/>
+          <StringItem string="Мои настройки" width="auto" justifyContent="left" padding="6px 0"/>
+        </DropListItem>
+        <DropListItem name="Анкеты">
+          <StringItem string="Список анкет" width="auto" justifyContent="left" padding="6px 0"/>
+          <StringItem string="Конструктор анкет" width="auto" justifyContent="left" padding="6px 0"/>
+        </DropListItem>
+        <DropListItem name="Администрирование">
+          <template v-for="item in menus" :key="item.name">
             <div v-if="item.link !== '/'"
               :class="{ 'selected-menu-item': item.link === activePath, 'menu-item': item.to !== activePath }"
               :index="item.link" @click="Router.To(item.link)">
               {{ item.name }}
             </div>
-          </div>
-        </template>
+          </template>
+          <StringItem string="Документы" width="auto" justifyContent="left" padding="6px 0"/>
+          <StringItem string="Экспертизы" width="auto" justifyContent="left" padding="6px 0"/>
+          <StringItem string="Мои настройки" width="auto" justifyContent="left" padding="6px 0"/>
+        </DropListItem>
+        <DropListItem name="Аналитика"></DropListItem>
+        <DropListItem name="Чат"></DropListItem>
       </div>
     </div>
     <div class="exit-button-container">
@@ -46,6 +57,7 @@ import Router from '@/services/Router';
 import StringItem from '@/services/components/StringItem.vue';
 import IconPfArrowLeft from '@/components/Icons/IconPfArrowLeft.vue';
 import PButton from '@/services/components/PButton.vue';
+import DropListItem from '@/views/adminLayout/DropListItem.vue';
 
 const props = defineProps({ 
   shadow: { type: Boolean as PropType<Boolean>, default: true },
@@ -95,77 +107,15 @@ const logout = async () => {
 <style lang="scss" scoped>
 @import '@/assets/styles/base-style.scss';
 
-.exit-button {
-  border: none;
-  background: inherit;
-  color: $base-font-color;
-  font-family: $base-font;
-  margin: 0 0 0 20px;
-  font-size: $base-font-large-size;
-  cursor: pointer;
-}
-
-.exit-button:hover {
-  color: $site_dark_gray;
-}
-
-.menu-tools {
-  height: 60px;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  padding: 0 20px;
-  cursor: pointer;
-}
-
-.menu-header {
-  box-sizing: border-box;
-  margin: 0 20px;
-  height: 65px;
-  border-bottom: 1px solid #E3E7FB;
-}
-
-.save-button {
-  width: calc(100% - 20px);
-  border-radius: 5px;
-  height: 34px;
-  color: #006bb4;
-  background: #dff2f8;
-  margin: 0 10px;
-  font-size: 14px;
-}
-
-.hidden {
-  display: none;
-}
-
-.exit-button-container {
-  margin: 0;
-  width: 100%;
-  display: flex;
-  justify-content: left;
+.menu-icon {
   position: absolute;
-  bottom: 50px;
-}
-
-::-webkit-scrollbar {
-  display: block;
-  width: 8px;
-  height: 8px;
-  background-color: rgba(245, 245, 245, 0.47);
-}
-
-::-webkit-scrollbar-track {
-  border-radius: 10px;
-  background-color: #f5f5f5;
-  margin: 5px 0;
-}
-
-::-webkit-scrollbar-thumb {
-  height: 20px;
-  border-radius: 10px;
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: rgba(85, 85, 85, 0.25);
+  top: 14px;
+  left: 5px;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
 .admin-side-menu {
@@ -187,52 +137,20 @@ const logout = async () => {
   user-select: none; /* Standard syntax */
 }
 
-.el-menu,
-.el-menu-item {
-  border: none;
+.menu-header {
+  box-sizing: border-box;
+  margin: 0 20px;
+  height: 65px;
+  border-bottom: 1px solid #E3E7FB;
 }
 
-.row-menu-title {
-  margin-right: 20px;
-}
-
-.sub-menu-container {
-  position: relative;
-
-  .el-badge {
-    position: absolute;
-    top: -10px;
-    left: -10px;
-  }
-}
-
-.menu-item-container {
+.menu-tools {
+  height: 60px;
   display: flex;
+  justify-content: left;
   align-items: center;
-
-  .el-badge {
-    margin-left: 5px;
-  }
-}
-
-.menu-icon {
-  position: absolute;
-  top: 14px;
-  left: 5px;
-  z-index: 5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 0 20px;
   cursor: pointer;
-}
-
-.blur {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 4;
 }
 
 .menu-item {
@@ -240,11 +158,11 @@ const logout = async () => {
   display: flex;
   justify-content: left;
   align-items: center;
-  padding: 0 20px;
-  height: 40px;
+  padding: 6px 0;
   cursor: pointer;
   color: $base-font-color;
   font-family: $base-font;
+  font-size: $base-font-size;
 }
 
 .menu-item:hover {
@@ -256,27 +174,42 @@ const logout = async () => {
   display: flex;
   justify-content: left;
   align-items: center;
-  padding: 0 20px;
-  height: 40px;
+  padding: 6px 0;
   color: $site_dark_gray;
   font-family: $base-font;
   text-decoration: underline;
+  font-size: $base-font-size;
 }
 
-.menu-item:hover {
+.selected-menu-item:hover {
   background: #ffffff;
 }
 
-
-@media screen and (max-width: 992px) {
-  // .admin-side-menu {
-  //   position: absolute;
-  //   top: 0;
-  //   left: 0;
-  //   z-index: 5;
-  //   margin-left: -250px;
-  // }
-
-
+.exit-button-container {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  position: absolute;
+  bottom: 50px;
 }
+
+.exit-button {
+  border: none;
+  background: inherit;
+  color: $base-font-color;
+  font-family: $base-font;
+  margin: 0 0 0 20px;
+  font-size: $base-font-large-size;
+  cursor: pointer;
+}
+
+.exit-button:hover {
+  color: $site_dark_gray;
+}
+
+.menu-body {
+  padding: 0 20px;
+}
+
 </style>

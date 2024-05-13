@@ -25,9 +25,6 @@ const props = defineProps({
   text: { type: String as PropType<string>, default: '', },
 });
 
-
-
-
 </script>
 
 <style lang="scss" scoped>
