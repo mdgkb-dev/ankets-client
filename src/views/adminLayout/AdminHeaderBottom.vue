@@ -8,7 +8,7 @@
       </div>
       <div class="flex-between">
         <h4 class="menu-title">
-          <StringItem custom-class="auth-title" :string="headerParams.title" font-weight="bold" font-size="28px"/>
+          <StringItem :string="headerParams.title" font-weight="bold" font-size="28px"/>
           <el-badge v-if="headerParams.applicationsCount" :value="headerParams.applicationsCount" type="danger" />
         </h4>
         <div class="button-group">
