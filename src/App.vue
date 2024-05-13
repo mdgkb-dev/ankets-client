@@ -1,4 +1,5 @@
 <template>
+  <!-- <PMessage :title="message" /> -->
   <Suspense>
     <component :is="$route.meta.layout || 'AdminLayout'" v-if="mounted">
       <router-view />
@@ -12,8 +13,11 @@ import { onBeforeMount, Ref, ref } from 'vue';
 
 import AdminLayout from '@/views/adminLayout/AdminLayout.vue';
 import LoginLayout from '@/views/loginLayout/LoginLayout.vue';
+import PMessage from '@/components/ Base/PMessage.vue';
 
 import Provider from './services/Provider/Provider';
+
+// const message =
 
 export default defineComponent({
   name: 'App',

@@ -5,6 +5,7 @@ import PageNotFound from '@/services/components/PageNotFound.vue';
 import indexAdminRoutes from '@/router/indexAdminRoutes';
 import UserService from '@/services/User';
 import store from '@/store/index';
+import ProfileInfoPage from '@/components/Profile/ProfileInfoPage.vue';
 
 export const isAuthorized = (next: NavigationGuardNext): void => {
   next();
@@ -46,6 +47,11 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       layout: 'LoginLayout',
     },
+  },
+
+  {
+    path: '/profile',
+    component: ProfileInfoPage,
   },
   {
     path: '/:pathMatch(.*)*',
