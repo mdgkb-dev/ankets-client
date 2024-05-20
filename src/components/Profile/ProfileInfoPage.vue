@@ -26,6 +26,6 @@ import IconDepartment from '@/components/Icons/IconDepartment.vue';
 
 .bg {
   box-sizing: border-box;
-  background: $custom-background;
+  background: $secondary-background;
 }
 </style>

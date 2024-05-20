@@ -71,7 +71,7 @@ Hooks.onBeforeMount(load, {
 }
 
 .tab:hover {
-  background: $custom-background;
+  background: $secondary-background;
 }
 
 .selected-tab {
@@ -92,7 +92,7 @@ Hooks.onBeforeMount(load, {
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
 
-  background: $custom-background;
+  background: $secondary-background;
   margin: -0.5px;
   z-index: 1;
 }
