@@ -1,3 +1,28 @@
+//admin colors
+$admin_blue_color: #409EFE;  //blue
+$admin_dark_blue_color: #2368AE;
+$admin_blue_background: #DDF2F9;
+
+$admin_green_color: #00B5A4;  //green
+$admin_dark_green_color: #008276;
+$admin_green_background: #C7ECEA;
+
+$admin_yellow_color: #F59433;  //yellow
+$admin_dark_yellow_color: #9A5006;
+$admin_yellow_background: #F9EEDD;
+
+$admin_red_color: #E46862;  //red
+$admin_dark_red_color: #B83616;
+$admin_red_background: #F9E0DD;
+
+$admin_disabled_color: #D5D8DF;  //disabled
+$admin_disabled_background: #F9F9F9;
+
+$admin_grey_color: #A3A9BE;  //grey 
+$admin_dark_grey_color: #797E8F;
+$admin_grey_background: #EFEFEF;
+
+
 // FOR ANKETS
 
 $base-background: #ffffff;  //$background-color: whitesmoke;
@@ -15,7 +40,6 @@ $site_light_pink: #B0A4C0;
 
 $light-pink-border: 1px solid #B0A4C0;
 $custom-border: 1px solid #343D5C;
-
 
 // font
 $title-font: Gilroy, Roboto, Helvetica, sans-serif;
@@ -61,6 +85,17 @@ $p-input-margin: 0;
 $p-input-padding: 0 20px;
 $p-input-border-radius: 5px;
 $p-input-border: none;
+
+//PButton
+$p-button-width: 100%;
+$p-button-min-width: 150px;
+$p-button-max-width: 100%;
+$p-button-height: 40px;
+$p-button-margin: auto;
+$p-button-padding: 0 10px;
+$p-button-border-radius: 5px;
+$p-button-border: 1px solid #DCDFE6;
+$p-button-transition: $transition;
 
 
 
