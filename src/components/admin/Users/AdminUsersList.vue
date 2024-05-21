@@ -8,7 +8,8 @@
             <div class="flex-block" @click.prevent="() => undefined">
               <div class="item-flex">
                 <div class="line-item-left">
-                  <PButton :text="i+1" button-class="number"/>
+                  <PButton :text="i + 1" button-class="number" />
+                  <PButton text="Редактировать" button-class="number" @click="edit(user)" />
                   <ToggleInfoItem title="email" :content="user.userAccount.email"
                     @submit="updateUserAccount(user.userAccount)">
                     <el-input v-model="user.userAccount.email" />
@@ -32,7 +33,7 @@
       </div>
     </div>
   </AdminListWrapper>
-  <PModalWindow :show="showAddModal" @close="showAddModal = false">
+  <PModalWindow width="960px" top="10vh" :show="showAddModal" @close="showAddModal = false">
     <CreateUserForm @add="showAddModal = false" />
   </PModalWindow>
 </template>
@@ -75,6 +76,9 @@ const updateUserAccount = async (item: UserAccount): Promise<void> => {
 };
 const updateUser = async (item: User): Promise<void> => {
   await Store.Update('users', item);
+};
+const edit = async (item: User): Promise<void> => {
+  await Router.ToAdmin('users/' + item.id);
 };
 </script>
 <style lang="scss" scoped>
