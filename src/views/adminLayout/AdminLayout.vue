@@ -1,21 +1,22 @@
 <template>
   <div style="min-height: 100vh">
     <KeepAlive :include="[]" :max="0">
-      <div>
+      <div class="bg">
         <AdminHeaderTop v-if="showTopHeader" />
         <div class="admin-main-container">
           <AdminSideMenu :shadow="false" :border="false" padding="20px" />
           <div class="admin-container">
             <AdminHeaderBottom style="position: sticky; z-index: 2;" />
-            <div v-if="$route.meta.adminLayout === AdminLayout.TableList" class="field" style="height: inherit">
+            <slot />
+            <!-- <div v-if="$route.meta.adminLayout === AdminLayout.TableList" class="field" style="height: inherit">
               <slot />
             </div>
-            <div v-else class="field">
+            <div v-else class="field" style="height: inherit">
               <slot />
-            </div>
+            </div> -->
           </div>
         </div>
-        <AdminMenuDrawer />
+        <!-- <AdminMenuDrawer /> -->
       </div>
     </KeepAlive>
   </div>
@@ -50,7 +51,11 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/styles/base-style.scss';
+
 .admin-main-container {
+  display: flex;
+  justify-content: left;
   height: calc(100vh);
   box-sizing: border-box;
 }
@@ -67,10 +72,10 @@ export default defineComponent({
   box-sizing: border-box;
 }
 
-.field {
-  height: calc(100% - 10px);
+.bg {
+  height: 100%;
   box-sizing: border-box;
-  height: inherit;
+  background: $site_light_grey;
 }
 
 @media (max-width: 992px) {

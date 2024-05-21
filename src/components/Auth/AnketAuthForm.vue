@@ -16,7 +16,7 @@
       <PCheckBox v-model="check" label="Запомнить пароль" width="24px" height="24px" font-size="12px">
         <IconAnketsSwitch :switch-position="check" margin="12px 10px 12px 0" hover-color="#343E5C" size="22px" />
       </PCheckBox>
-      <PButton v-for="b in buttons" :key="b.label" :text="b.label" button-class="base-button"
+      <PButton v-for="b in buttons" :key="b.label" :text="b.label" skin="royal" type="blue"
         @click="authButtonClick(b)" />
     </div>
   </div>
@@ -187,21 +187,4 @@ onBeforeUnmount(() => {
   opacity: 1;
 }
 
-.base-button {
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 560px;
-  height: 52px;
-  border: none;
-  border-radius: 5px;
-  background: #5E6CE7;
-  color: #ffffff;
-  font-size: 17px;
-  font-family: Gilroy, Arial, Helvetica, sans-serif;
-  cursor: pointer;
-}
-
-.base-button:hover {
-  background: lighten($color: #5E6CE7, $amount: 3%);
-}
 </style>

@@ -82,7 +82,7 @@ const props = defineProps({
   width: 100%;
   font-family: $input-font;
   color: $input-label-color;
-  font-size: $base-font-small-size;
+  font-size: $base-font-size;
   margin: $input-label-margin;
 }
 

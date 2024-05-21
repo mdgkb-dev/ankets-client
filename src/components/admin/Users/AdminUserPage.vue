@@ -1,37 +1,59 @@
 <template>
-  <ModalCard>
-    <el-input v-model="user.human.surname" label="Фамилия" @blur="updateHuman" />
-    <el-input v-model="user.human.name" label="Имя" @blur="updateHuman" />
-    <el-input v-model="user.human.patronymic" label="Отчество" @blur="updateHuman" />
-    <div>
-      <PInputData v-model="user.human.dateBirth" @blur="update" />
-    </div>
-    <div>
-      <PInputData v-model="user.human.dateBirth" @blur="update" />
-    </div>
-    <div>
-      <el-input v-model="user.email" @blur="update" />
-      <el-input v-model="user.phone" @blur="update" />
-    </div>
-    <div>
-      <el-input v-model="user.inn" @blur="update" />
-      <el-input v-model="user.snils" @blur="update" />
-    </div>
-    <div>
-      <el-input v-model="user.passportNum" @blur="update" />
-      <el-input v-model="user.passportSeria" @blur="update" />
-      <el-input v-model="user.passportDivision" @blur="update" />
-      <el-input v-model="user.passportDivisionCode" @blur="update" />
-      <el-input v-model="user.passportCitzenship" @blur="update" />
-    </div>
-  </ModalCard>
+  <InfoBlock>
+    <template #foto>
+      <div class="foto">
+        <div class="f"></div>
+      </div>
+    </template>
+    <template #header-info>
+      <GridContainer grid-template-columns="repeat(auto-fit, minmax(280px, 1fr))" background="#ffffff" max-width="100%" gridGap="10px" margin="0 auto">
+        <PInput  v-model="user.human.surname" placeholder="Фамилия" margin="0"></PInput>
+        <PInput  v-model="user.human.name" placeholder="Имя" margin="0"></PInput>
+        <PInput  v-model="user.human.patronymic" placeholder="Отчество" margin="0"></PInput>
+      </GridContainer>
+      <GridContainer grid-template-columns="repeat(auto-fit, minmax(280px, 1fr))" background="#ffffff" max-width="100%" gridGap="10px" margin="0 auto">
+        <PInputData v-model="user.human.dateBirth" margin="10px 0 0 0" @blur="update" />
+        <PSelect margin="10px 0 0 0"></PSelect>
+      </GridContainer>
+      <GridContainer grid-template-columns="repeat(auto-fit, minmax(280px, 1fr))" background="#ffffff" max-width="100%" gridGap="10px" margin="0 auto">
+        <PInput  v-model="user.email" placeholder="Адрес эл.почты" margin="10px 0 0 0"></PInput>
+        <PInput  v-model="user.email" placeholder="Дополнительный адрес эл.почты" margin="10px 0 0 0"></PInput>
+      </GridContainer>
+    </template>
+    <template #footer-info>
+      <GridContainer grid-template-columns="repeat(auto-fit, minmax(280px, 1fr))" background="#ffffff" max-width="100%" gridGap="10px" margin="0 auto">
+        <PInput  v-model="user.phone" placeholder="Рабочий телефон" margin="0"></PInput>
+        <PInput  v-model="user.phone" placeholder="Мобильный телефон" margin="0"></PInput>
+      </GridContainer>
+      <GridContainer grid-template-columns="repeat(auto-fit, minmax(280px, 1fr))" background="#ffffff" max-width="100%" gridGap="10px" margin="0 auto">
+        <PInput  v-model="user.inn" label="ИИН" margin="20px 0 0 0"></PInput>
+        <PInput  v-model="user.snils" label="СНИЛС" margin="20px 0 0 0"></PInput>
+      </GridContainer>
+    </template>
+  </InfoBlock>
+  <InfoBlock>
+    <template #header-info>
+      <GridContainer grid-template-columns="repeat(auto-fit, minmax(280px, 1fr))" background="#ffffff" max-width="100%" gridGap="10px" margin="0 auto">
+        <PInput  v-model="user.passportNum" label="Документ, удостоверяющий личность" placeholder="Паспорт"  margin="10px 0 0 0"></PInput>
+        <PInput  v-model="user.passportNum" label="Номер"  margin="10px 0 0 0"></PInput>
+        <PInput  v-model="user.passportSeria" label="Серия"  margin="10px 0 0 0"></PInput>
+      </GridContainer>
+      <GridContainer grid-template-columns="repeat(auto-fit, minmax(280px, 1fr))" background="#ffffff" max-width="100%" gridGap="10px" margin="0 auto">
+        <PInput  v-model="user.passportDivision" label="Подразделение"  margin="20px 0 0 0"></PInput>
+        <PInput  v-model="user.passportDivisionCode" label="Код"  margin="20px 0 0 0"></PInput>
+        <PInput  v-model="user.passportCitzenship" label="Гражданство"  margin="20px 0 0 0"></PInput>
+      </GridContainer>
+    </template>
+  </InfoBlock>
 </template>
 
 <script setup lang="ts">
 import AdminUserPageInfo from './AdminUserPageInfo.vue';
 import PInput from '@/services/components/PInput.vue';
+import InfoBlock from '@/components/Profile/InfoBlock.vue'
 
 import ModalCard from '@/components/Base/ModalCard.vue';
+import GridContainer from '@/services/components/GridContainer.vue';
 const mounted = ref(false);
 const user: Ref<User> = Store.Item('users');
 
@@ -77,6 +99,29 @@ Hooks.onBeforeMount(load, {
 <style lang="scss" scoped>
 @import '@/assets/elements/collapse.scss';
 @import '@/assets/styles/base-style.scss';
+
+.foto {
+  min-width: 186px;
+  max-width: 186px;
+  min-height: 186px;
+  max-height: 186px;
+}
+.f {
+  min-width: 150px;
+  max-width: 150px;
+  min-height: 150px;
+  max-height: 150px;
+  background: #D9D9D9;
+  border-radius: 15px;
+}
+
+
+.header-block {
+  display: flex;
+  justify-content: left;
+}
+
+
 
 .background-with-color {
   background: grey

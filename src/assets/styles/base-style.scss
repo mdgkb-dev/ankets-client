@@ -45,7 +45,7 @@ $icon-transition: 0.2s;
 
 //base-browser-input
 $input-height: 52px;
-$input-background: #F5FAFF;
+$input-background: $site_light_grey;
 $input-border: none;
 $input-font-color: $base-font-color;
 $input-font-size: $base-font-large-size;
@@ -54,7 +54,7 @@ $input-margin: 0;
 $input-padding: 0;
 $input-width: 100%;
 $input-label-color: $base-font-color;
-$input-label-margin: 0 0 5px 0;
+$input-label-margin: 0 0 8px 0;
 $input-readonly-background: #f5f5f5;
 
 //PInput
