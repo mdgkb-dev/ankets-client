@@ -31,6 +31,7 @@
 import AdminUserPageInfo from './AdminUserPageInfo.vue';
 import PInput from '@/services/components/PInput.vue';
 
+import ModalCard from '@/components/Base/ModalCard.vue';
 const mounted = ref(false);
 const user: Ref<User> = Store.Item('users');
 

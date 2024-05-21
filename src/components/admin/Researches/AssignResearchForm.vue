@@ -1,37 +1,47 @@
 <template>
   <ModalCard title="Назначить анкету">
     <StringItem margin="20px 0 0 0">
-      Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, 
-      когда нужно быстро заполнить макеты или прототипы содержимым. 
-      Это тестовый контент, который не должен нести никакого смысла, 
+      Рыбатекст используется дизайнерами, проектировщиками и фронтендерами,
+      когда нужно быстро заполнить макеты или прототипы содержимым.
+      Это тестовый контент, который не должен нести никакого смысла,
       лишь показать наличие самого текста или продемонстрировать типографику в деле.
     </StringItem>
-    <PSelect placeholder="Выберите эксперта" margin="20px auto 0 auto" >
-      <template #left><IconUser /></template>
+    <PSelect placeholder="Выберите эксперта" margin="20px auto 0 auto">
+      <template #left>
+        <IconUser />
+      </template>
       <option>Вариант 1</option>
       <option>Вариант 2</option>
       <option>Вариант 3</option>
     </PSelect>
-    <PSelect placeholder="Выберите шаблон анкеты" margin="10px auto 0 auto" >
-      <template #left><IconJob /></template>
+    <PSelect placeholder="Выберите шаблон анкеты" margin="10px auto 0 auto">
+      <template #left>
+        <IconJob />
+      </template>
       <option>Вариант 1</option>
       <option>Вариант 2</option>
       <option>Вариант 3</option>
     </PSelect>
-    <PSelect placeholder="Выберите шаблон письма" margin="10px auto 0 auto" >
-      <template #left><IconJob /></template>
+    <PSelect placeholder="Выберите шаблон письма" margin="10px auto 0 auto">
+      <template #left>
+        <IconJob />
+      </template>
       <option>Вариант 1</option>
       <option>Вариант 2</option>
       <option>Вариант 3</option>
     </PSelect>
     <div class="flex-line">
-      <PSelect placeholder="Нозология" margin="10px 5px 0 0" >
-        <template #left><IconDepartment /></template>
+      <PSelect placeholder="Нозология" margin="10px 5px 0 0">
+        <template #left>
+          <IconDepartment />
+        </template>
         <option>Вариант 1</option>
         <option>Вариант 2</option>
         <option>Вариант 3</option>
       </PSelect>
-      <PInput placeholder="Ссылка" margin="10px 0 0 5px" ><IconLink /></PInput>
+      <PInput placeholder="Ссылка" margin="10px 0 0 5px">
+        <IconLink />
+      </PInput>
     </div>
     <PButton text="Назначить" button-class="base-button" />
   </ModalCard>
@@ -42,7 +52,7 @@ import { onBeforeMount, Ref, ref } from 'vue';
 
 import Research from '@/classes/Research';
 import Provider from '@/services/Provider/Provider';
-import ModalCard from '@/components/ Base/ModalCard.vue';
+import ModalCard from '@/components/Base/ModalCard.vue';
 import IconUser from '@/components/Icons/IconUser.vue';
 import PInput from '@/services/components/PInput.vue';
 import StringItem from '@/services/components/StringItem.vue';

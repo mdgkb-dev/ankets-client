@@ -21,6 +21,7 @@ export default class User {
 
   position = '';
   division = '';
+  role = '';
 
   // docs 
   inn = ''

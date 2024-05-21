@@ -29,7 +29,7 @@ import PButton from '@/services/components/PButton.vue';
 import PSelect from '@/services/components/PSelect.vue';
 import IconJob from '@/components/Icons/IconJob.vue';
 import IconDepartment from '@/components/Icons/IconDepartment.vue';
-import ModalCard from '@/components/ Base/ModalCard.vue';
+import ModalCard from '@/components/Base/ModalCard.vue';
 const emit = defineEmits(['add']);
 const user: Ref<User> = ref(User.Create());
 
