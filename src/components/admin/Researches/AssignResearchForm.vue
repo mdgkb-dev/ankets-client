@@ -10,39 +10,8 @@
       <template #left>
         <IconUser />
       </template>
-      <option>Вариант 1</option>
-      <option>Вариант 2</option>
-      <option>Вариант 3</option>
+      <option v-for="user in users" :key="user.id"> {{ user.id }}</option>
     </PSelect>
-    <PSelect placeholder="Выберите шаблон анкеты" margin="10px auto 0 auto">
-      <template #left>
-        <IconJob />
-      </template>
-      <option>Вариант 1</option>
-      <option>Вариант 2</option>
-      <option>Вариант 3</option>
-    </PSelect>
-    <PSelect placeholder="Выберите шаблон письма" margin="10px auto 0 auto">
-      <template #left>
-        <IconJob />
-      </template>
-      <option>Вариант 1</option>
-      <option>Вариант 2</option>
-      <option>Вариант 3</option>
-    </PSelect>
-    <div class="flex-line">
-      <PSelect placeholder="Нозология" margin="10px 5px 0 0">
-        <template #left>
-          <IconDepartment />
-        </template>
-        <option>Вариант 1</option>
-        <option>Вариант 2</option>
-        <option>Вариант 3</option>
-      </PSelect>
-      <PInput placeholder="Ссылка" margin="10px 0 0 5px">
-        <IconLink />
-      </PInput>
-    </div>
     <PButton text="Назначить" button-class="base-button" />
   </ModalCard>
 </template>
