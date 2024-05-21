@@ -1,15 +1,19 @@
-<template>    
-  <div class="text-field" :style="{margin: margin, padding: padding}" >
+<template>
+  <div class="text-field" :style="{ margin: margin, padding: padding }">
     <label v-if="label" class="text-field__label" :for="label">
-        {{ label }}
-      </label>
+      {{ label }}
+    </label>
     <div class="field">
-      <div class="left-field"><slot name="left" /></div>
+      <div class="left-field">
+        <slot name="left" />
+      </div>
       <select class="text-field__input" v-model="model">
-        <option disabled >{{ placeholder }}</option>
+        <option disabled>{{ placeholder }}</option>
         <slot />
       </select>
-      <div class="right-field"><slot name="right" /></div>
+      <div class="right-field">
+        <slot name="right" />
+      </div>
     </div>
   </div>
 </template>
@@ -113,13 +117,17 @@ option {
   outline: 0;
 }
 
-.text-field__input::-ms-expand { display: none; } 
- .text-field__input:hover { 
-  
-  border-color: #888; } 
+.text-field__input::-ms-expand {
+  display: none;
+}
 
- .text-field__input option { 
-  
-  font-weight:normal; } 
+.text-field__input:hover {
 
+  border-color: #888;
+}
+
+.text-field__input option {
+
+  font-weight: normal;
+}
 </style>

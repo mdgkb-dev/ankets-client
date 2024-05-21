@@ -1,19 +1,23 @@
 <template>
   <ModalCard title="Добавить нового пользователя">
-    <PInput placeholder="ФИО" margin="40px auto 0 auto" ><IconUser /></PInput>
-    <PSelect placeholder="Менеджер" margin="10px auto 0 auto" >
-      <template #left><IconJob /></template>
+    <PInput placeholder="Email" margin="40px auto 0 auto" v-model="user.email" />
+
+    <PSelect placeholder="Должность" margin="10px auto 0 auto" v-model="user.role">
+      <template #left>
+        <IconJob />
+      </template>
+      <option>Эксперт</option>
+      <option>Администратор</option>
+    </PSelect>
+    <PSelect placeholder="Нозология" margin="10px auto 0 auto">
+      <template #left>
+        <IconDepartment />
+      </template>
       <option>Вариант 1</option>
       <option>Вариант 2</option>
       <option>Вариант 3</option>
     </PSelect>
-    <PSelect placeholder="Нозология" margin="10px auto 0 auto" >
-      <template #left><IconDepartment /></template>
-      <option>Вариант 1</option>
-      <option>Вариант 2</option>
-      <option>Вариант 3</option>
-    </PSelect>
-    <PButton text="Назначить" button-class="base-button" />
+    <PButton text="Добавить" button-class="base-button" @click="create" />
   </ModalCard>
 </template>
 
@@ -25,8 +29,7 @@ import PButton from '@/services/components/PButton.vue';
 import PSelect from '@/services/components/PSelect.vue';
 import IconJob from '@/components/Icons/IconJob.vue';
 import IconDepartment from '@/components/Icons/IconDepartment.vue';
-import ModalCard from '@/components/ Base/ModalCard.vue';
-
+import ModalCard from '@/components/Base/ModalCard.vue';
 const emit = defineEmits(['add']);
 const user: Ref<User> = ref(User.Create());
 

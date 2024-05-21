@@ -21,7 +21,17 @@ export default class User {
 
   position = '';
   division = '';
-  // registerPropertyToUser: RegisterPropertyToUser[] = [];
+  role = '';
+
+  // docs 
+  inn = ''
+  snils = ''
+
+  passportNum = ''
+  passportSeria = ''
+  passportDivision = ''
+  passportDivisionCode = ''
+  passportCitzenship = ''
 
   constructor(i?: User) {
     ClassHelper.BuildClass(this, i);
