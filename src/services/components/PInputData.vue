@@ -1,19 +1,17 @@
-<template>
-  <div class="text-field" :style="{ margin: margin, padding: padding }">
+<template>    
+  <div class="text-field" :style="{margin: margin, padding: padding}" >
     <label v-if="label" class="text-field__label" :for="label">
-      {{ label }}
-    </label>
+        {{ label }}
+      </label>
     <div class="field">
-      <div class="left-field">
-        <slot name="left" />
-      </div>
-      <select class="text-field__input" v-model="model">
-        <option disabled>{{ placeholder }}</option>
-        <slot />
-      </select>
-      <div class="right-field">
-        <slot name="right" />
-      </div>
+      <div class="left-field"><slot /></div>
+      <input 
+        class="text-field__input" 
+        type="date" :name="label" 
+        :id="label" 
+        v-model="model"
+      >
+      <div class="right-field"><slot name="right" /></div>
     </div>
   </div>
 </template>
@@ -28,11 +26,10 @@ const props = defineProps({
   text: { type: String as PropType<string>, default: '', required: false },
   label: { type: String as PropType<string>, default: '', required: false },
   placeholder: { type: String as PropType<string>, default: '', required: false },
-  value: { type: String as PropType<string>, default: '', required: false },
   readonly: { type: Boolean as PropType<Boolean>, default: false, required: false },
   disabled: { type: Boolean as PropType<Boolean>, default: false, required: false },
   margin: { type: String as PropType<string>, required: false, default: '' },
-  padding: { type: String as PropType<string>, required: false, default: '' },
+  padding: { type: String as PropType<string>, default: '', required: false },
 });
 
 </script>
@@ -44,10 +41,6 @@ const props = defineProps({
 *::before,
 *::after {
   box-sizing: border-box;
-}
-
-option {
-  padding: 0;
 }
 
 .field {
@@ -103,7 +96,6 @@ option {
   border: $input-border;
   margin: $input-margin;
   padding: $input-padding;
-  padding: 0;
 }
 
 .text-field__input::placeholder {
@@ -117,17 +109,9 @@ option {
   outline: 0;
 }
 
-.text-field__input::-ms-expand {
-  display: none;
-}
-
-.text-field__input:hover {
-
-  border-color: #888;
-}
-
-.text-field__input option {
-
-  font-weight: normal;
+.text-field__input:disabled,
+.text-field__input[readonly] {
+  background-color: $input-readonly-background;
+  opacity: 1;
 }
 </style>
