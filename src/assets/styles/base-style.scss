@@ -1,61 +1,29 @@
-//admin colors
-$admin_blue_color: #409EFE;  //blue
-$admin_dark_blue_color: #2368AE;
-$admin_blue_background: #DDF2F9;
+//---------------------------------------------------------------BASE------------------------------------------------------------------
+@import '@/services/assets/style/buttons/base-button-colors.scss'; //base buttons skin colors (базовые цвета скинов кнопок)
+//-------------------------------------------------------------------------------------------------------------------------------------
 
-$admin_green_color: #00B5A4;  //green
-$admin_dark_green_color: #008276;
-$admin_green_background: #C7ECEA;
+//----------------------------------------------------------FOR ALL PROJECTS-----------------------------------------------------------
+//content
+$base-background: $main_white;
+$secondary-background: $main_light_blue;
+$menu-background: $main_white;
 
-$admin_yellow_color: #F59433;  //yellow
-$admin_dark_yellow_color: #9A5006;
-$admin_yellow_background: #F9EEDD;
+$transition: 0s;
 
-$admin_red_color: #E46862;  //red
-$admin_dark_red_color: #B83616;
-$admin_red_background: #F9E0DD;
+$normal-shadow: rgba(0, 0, 0, 0.1) 0px 5px 5px, rgba(0, 0, 0, 0.1) 0px -1px 3px, rgba(0, 0, 0, 0.1) 0px 4px 6px,
+rgba(0, 0, 0, 0.1) 0px 2px 3px, rgba(0, 0, 0, 0.1) 0px -3px 5px;
 
-$admin_disabled_color: #D5D8DF;  //disabled
-$admin_disabled_background: #F9F9F9;
-
-$admin_grey_color: #A3A9BE;  //grey 
-$admin_dark_grey_color: #797E8F;
-$admin_grey_background: #EFEFEF;
-
-
-// FOR ANKETS
-
-$base-background: #ffffff;  //$background-color: whitesmoke;
-$custom-background: #DFF2F8;
-
-$menu-background: $base-background;
-
-$base-content-color: #F5FAFF;
-
+//border-radius
 $border-radius: 5px;
+$small-border-radius: 3px;
 $big-border-radius: 10px;
 
-$site_dark_gray: #343D5C; 
-$site_light_pink: #B0A4C0;
-
+//border
+$normal-border:1px solid #e9e9e9;
+$normal-darker-border:1px solid #c3c3c3;
+$dark-border:1px solid #999999;
 $light-pink-border: 1px solid #B0A4C0;
 $custom-border: 1px solid #343D5C;
-
-// font
-$title-font: Gilroy, Roboto, Helvetica, sans-serif;
-$title-font-weight: regular;
-$title-font-bold-weight: bold;
-
-$base-font: Gilroy, Roboto, Helvetica, sans-serif;
-
-$base-font-size: 14px;
-$base-font-small-size: 12px;
-$base-font-large-size: 16px;
-
-$base-font-weight: regular;
-$base-font-bold-weight: bold;
-$base-font-color: #5F6A99;
-
 
 //icon 
 $icon-width: 28px;
@@ -74,10 +42,8 @@ $input-font: $base-font;
 $input-margin: 0;
 $input-padding: 0;
 $input-width: 100%;
-
 $input-label-color: $base-font-color;
 $input-label-margin: 0 0 5px 0;
-
 $input-readonly-background: #f5f5f5;
 
 //PInput
@@ -98,6 +64,12 @@ $p-button-border: 1px solid #DCDFE6;
 $p-button-transition: $transition;
 
 
+//-------------------------------------------------------------PROJECT-ANKETS----------------------------------------------------------
+@import '@/assets/styles/ankets-color.scss'; //ankets project colors (цвета проекта)
+@import '@/assets/styles/ankets-font.scss'; // ankets project font (шрифты проекта)
+
+//content
+$base-content-color: $site_light_grey;
 
 
 
