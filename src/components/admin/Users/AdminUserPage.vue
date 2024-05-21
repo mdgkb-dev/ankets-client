@@ -1,34 +1,30 @@
 <template>
-  <!-- <MenuContainer v-if="mounted" min-menu-item-width="160px" background="#DFF2F8"> -->
-  <!-- <template #body> -->
-  <div>
-    <PInput v-model="user.human.surname" />
-    <PInput v-model="user.human.name" />
-    <PInput v-model="user.human.patronymic" />
-  </div>
-  <div>
-    <PInputData v-model="user.human.dateBirth" />
-  </div>
-  <div>
-    <PInputData v-model="user.human.dateBirth" />
-  </div>
-  <div>
-    <PInput v-model="user.email" />
-    <PInput v-model="user.phone" />
-  </div>
-  <div>
-    <PInput v-model="user.inn" />
-    <PInput v-model="user.snils" />
-  </div>
-  <div>
-    <PInput v-model="user.passportNum" />
-    <PInput v-model="user.passportSeria" />
-    <PInput v-model="user.passportDivision" />
-    <PInput v-model="user.passportDivisionCode" />
-    <PInput v-model="user.passportCitzenship" />
-  </div>
-  <!-- </template> -->
-  <!-- </MenuContainer> -->
+  <ModalCard>
+    <el-input v-model="user.human.surname" label="Фамилия" @blur="updateHuman" />
+    <el-input v-model="user.human.name" label="Имя" @blur="updateHuman" />
+    <el-input v-model="user.human.patronymic" label="Отчество" @blur="updateHuman" />
+    <div>
+      <PInputData v-model="user.human.dateBirth" @blur="update" />
+    </div>
+    <div>
+      <PInputData v-model="user.human.dateBirth" @blur="update" />
+    </div>
+    <div>
+      <el-input v-model="user.email" @blur="update" />
+      <el-input v-model="user.phone" @blur="update" />
+    </div>
+    <div>
+      <el-input v-model="user.inn" @blur="update" />
+      <el-input v-model="user.snils" @blur="update" />
+    </div>
+    <div>
+      <el-input v-model="user.passportNum" @blur="update" />
+      <el-input v-model="user.passportSeria" @blur="update" />
+      <el-input v-model="user.passportDivision" @blur="update" />
+      <el-input v-model="user.passportDivisionCode" @blur="update" />
+      <el-input v-model="user.passportCitzenship" @blur="update" />
+    </div>
+  </ModalCard>
 </template>
 
 <script setup lang="ts">
@@ -42,8 +38,16 @@ const components = {
   AdminUserPageInfo: AdminUserPageInfo,
 };
 
+const updateHuman = async () => {
+  await Store.Update('humans', user.value.human);
+};
+
+const update = async () => {
+  await Store.Update('users', user.value);
+};
+
 const load = async () => {
-  await Provider.loadItem();
+  await Store.Get("users", Router.Id());
   mounted.value = true;
   return;
 };
@@ -72,6 +76,10 @@ Hooks.onBeforeMount(load, {
 <style lang="scss" scoped>
 @import '@/assets/elements/collapse.scss';
 @import '@/assets/styles/base-style.scss';
+
+.background-with-color {
+  background: grey
+}
 
 .field {
   width: 100%;

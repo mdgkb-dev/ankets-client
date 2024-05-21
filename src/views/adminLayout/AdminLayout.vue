@@ -4,15 +4,15 @@
       <div>
         <AdminHeaderTop v-if="showTopHeader" />
         <div class="admin-main-container">
-          <AdminSideMenu :shadow="false" :border="false" padding="20px"/>
+          <AdminSideMenu :shadow="false" :border="false" padding="20px" />
           <div class="admin-container">
             <AdminHeaderBottom style="position: sticky; z-index: 2;" />
-            <div v-if="$route.meta.adminLayout === AdminLayout.TableList" class="field" style="height: inherit">
-              <slot />
-            </div>
-            <div v-else class="field">
-              <slot />
-            </div>
+            <!-- <div v-if="$route.meta.adminLayout === AdminLayout.TableList" class="field" style="height: inherit"> -->
+            <slot />
+            <!-- </div> -->
+            <!-- <div v-else class="field"> -->
+            <!-- <slot /> -->
+            <!-- </div> -->
           </div>
         </div>
         <AdminMenuDrawer />
