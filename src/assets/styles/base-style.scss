@@ -1,3 +1,13 @@
+//-------------------------------------------------------------PROJECT-ANKETS----------------------------------------------------------
+@import '@/assets/styles/ankets-color.scss'; //ankets project colors (цвета проекта)
+@import '@/assets/styles/ankets-font.scss'; // ankets project font (шрифты проекта)
+
+//content
+$base-content-color: $site_light_grey;
+
+
+
+
 //---------------------------------------------------------------BASE------------------------------------------------------------------
 @import '@/services/assets/style/buttons/base-button-colors.scss'; //base buttons skin colors (базовые цвета скинов кнопок)
 //-------------------------------------------------------------------------------------------------------------------------------------
@@ -62,17 +72,5 @@ $p-button-padding: 0 10px;
 $p-button-border-radius: 5px;
 $p-button-border: 1px solid #DCDFE6;
 $p-button-transition: $transition;
-
-
-//-------------------------------------------------------------PROJECT-ANKETS----------------------------------------------------------
-@import '@/assets/styles/ankets-color.scss'; //ankets project colors (цвета проекта)
-@import '@/assets/styles/ankets-font.scss'; // ankets project font (шрифты проекта)
-
-//content
-$base-content-color: $site_light_grey;
-
-
-
-
 
 
