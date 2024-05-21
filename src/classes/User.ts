@@ -23,10 +23,13 @@ export default class User {
   division = '';
   role = '';
 
+  name = '';
+  surname = '';
+  patronymic = '';
+  isMale = true;
   // docs 
   inn = ''
   snils = ''
-
   passportNum = ''
   passportSeria = ''
   passportDivision = ''

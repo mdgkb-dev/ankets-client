@@ -7,9 +7,6 @@
       <PInputData v-model="user.human.dateBirth" @blur="update" />
     </div>
     <div>
-      <PInputData v-model="user.human.dateBirth" @blur="update" />
-    </div>
-    <div>
       <el-input v-model="user.email" @blur="update" />
       <el-input v-model="user.phone" @blur="update" />
     </div>
