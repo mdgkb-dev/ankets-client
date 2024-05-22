@@ -14,8 +14,8 @@
         <div class="button-group">
           <div v-for="item in headerParams.buttons" :key="item" style="margin: 0 0 0 10px">
             <!-- <Button v-if="item.action && item.condition" :text="item.text" :button-class="item.type" @click="action(item.action)" /> -->
-            <PButton v-if="item.action && item.condition" :text="item.text" button-class="add-button" @click="action(item.action)" >
-              <IconAddButton size="20px" color="#F5FAFF"/>
+            <PButton v-if="item.action && item.condition" :text="item.text" skin="royal" type="blue" height="30px" padding="0 25px" @click="action(item.action)" >
+              <IconAddButton v-if="item.text !== 'Удалить'" size="20px" color="#F5FAFF" margin="0 5px 0 0"/>
             </PButton>
           </div>
           <div v-if="headSpinner" class="system-message">
@@ -116,6 +116,7 @@ h4 {
   align-items: center;
   width: 100%;
   padding: 0 20px;
+  min-height: 83px;
 }
 
 .button-group {

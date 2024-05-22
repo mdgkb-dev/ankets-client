@@ -8,8 +8,8 @@
             <div class="flex-block" @click.prevent="() => undefined">
               <div class="item-flex">
                 <div class="line-item-left">
-                  <PButton :text="i + 1" button-class="number" />
-                  <PButton text="Редактировать" button-class="number" @click="edit(user)" />
+                  <StringItem :string="i + 1" width="42px" margin="4px 0 0 0" />
+                  <PButton skin=text text="Редактировать" margin="0 20px 0 5px" @click="edit(user)" />
                   <ToggleInfoItem title="email" :content="user.userAccount.email"
                     @submit="updateUserAccount(user.userAccount)">
                     <el-input v-model="user.userAccount.email" />
@@ -42,6 +42,7 @@
 import User from '@/classes/User';
 import PButton from '@/services/components/PButton.vue';
 import PModalWindow from '@/services/components/PModalWindow.vue';
+import StringItem from '@/services/components/StringItem.vue';
 // import UsersSortsLib from '@/libs/sorts/UsersSortsLib';
 
 const showAddModal: Ref<boolean> = ref(false);
@@ -66,7 +67,7 @@ const addUser = async (): Promise<void> => {
 Hooks.onBeforeMount(load, {
   adminHeader: {
     title: 'Список пользователей',
-    buttons: [{ text: 'Добавить', type: 'normal-button', action: addUser }],
+    buttons: [{ text: 'Добавить пользователя', type: 'normal-button', action: addUser }],
   },
   pagination: { storeModule: 'users', action: 'ftsp' },
   // sortsLib: UsersSortsLib,

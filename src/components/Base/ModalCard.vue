@@ -15,7 +15,7 @@ import { computed, defineComponent, onBeforeMount, PropType, Ref, ref, withDirec
 
 
 export default defineComponent({
-  name: 'ModalWindow',
+  name: 'ModalCard',
   props: {
     title: {
       type: String as PropType<string>,
