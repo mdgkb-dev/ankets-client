@@ -46,7 +46,7 @@
       </div>
     </div>
     <div class="exit-button-container">
-      <PButton button-class="exit-button" text="Выйти" @click="logout" />
+      <PButton skin="royal" type="blue" text="Выйти" @click="logout" height="30px" margin="0 10px"/>
     </div>
   </div>
 </template>
