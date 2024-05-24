@@ -1,22 +1,21 @@
 <template>
   <ModalCard title="Добавить нового пользователя">
     <PInput placeholder="Email" margin="40px auto 0 auto" v-model="user.userAccount.email" />
-
-    <PSelect placeholder="Должность" margin="10px auto 0 auto" v-model="user.role">
-      <template #left>
-        <IconJob />
-      </template>
-      <option>Эксперт</option>
-      <option>Администратор</option>
-    </PSelect>
-    <PSelect placeholder="Нозология" margin="10px auto 0 auto">
-      <template #left>
-        <IconDepartment />
-      </template>
-      <option>Вариант 1</option>
-      <option>Вариант 2</option>
-      <option>Вариант 3</option>
-    </PSelect>
+    <!-- <PSelect placeholder="Должность" margin="10px auto 0 auto" v-model="user.role"> -->
+    <!--   <template #left> -->
+    <!--     <IconJob /> -->
+    <!--   </template> -->
+    <!--   <option>Эксперт</option> -->
+    <!--   <option>Администратор</option> -->
+    <!-- </PSelect> -->
+    <!--  <PSelect placeholder="Нозология" margin="10px auto 0 auto"> -->
+    <!--   <template #left> -->
+    <!--     <IconDepartment /> -->
+    <!--   </template> -->
+    <!--   <option>Вариант 1</option> -->
+    <!--   <option>Вариант 2</option> -->
+    <!--   <option>Вариант 3</option> -->
+    <!-- </PSelect> -->
     <PButton text="Добавить" skin="royal" @click="create" type="blue" />
   </ModalCard>
 </template>
@@ -34,6 +33,7 @@ const emit = defineEmits(['add']);
 const user: Ref<User> = ref(User.Create());
 
 const create = async (): Promise<void> => {
+  user.value.role = 'expert'
   await Store.Create('humans', user.value.human);
   await Store.Create('usersAccounts', user.value.userAccount);
   await Store.Create('users', user.value);
