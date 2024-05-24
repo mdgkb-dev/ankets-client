@@ -1,7 +1,7 @@
 <template>
   <AdminListWrapper v-if="mounted" pagination show-header>
     <div class="scroll-block">
-      <div class="user-count">Количество пользователей: {{ count }}</div>
+      <!-- <div class="user-count">Количество пользователей: {{ count }}</div> -->
       <div v-for="(userResearch, i) in usersResearches" :key="userResearch.id">
         <CollapseItem :is-collaps="false" padding="0 8px">
           <template #inside-title>
