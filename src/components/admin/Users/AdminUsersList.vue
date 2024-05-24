@@ -9,7 +9,7 @@
               <div class="item-flex">
                 <div class="line-item-left">
                   <StringItem :string="i + 1" width="42px" margin="4px 0 0 0" />
-                  <PButton skin="text" text="Редактировать" margin="0 20px 0 5px" @click="edit(user)" />
+                  <PButton skin="text" text="Редактировать" width="120px" margin="0 20px 0 0px" @click="edit(user)" />
                   <ToggleInfoItem title="email" :content="user.userAccount.email"
                     @submit="updateUserAccount(user.userAccount)">
                     <el-input v-model="user.userAccount.email" />
