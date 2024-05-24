@@ -1,18 +1,14 @@
 <template>
   <ModalCard title="Назначить анкету">
-    <StringItem margin="20px 0 0 0">
-      Рыбатекст используется дизайнерами, проектировщиками и фронтендерами,
-      когда нужно быстро заполнить макеты или прототипы содержимым.
-      Это тестовый контент, который не должен нести никакого смысла,
-      лишь показать наличие самого текста или продемонстрировать типографику в деле.
-    </StringItem>
-    <PSelect placeholder="Выберите эксперта" margin="20px auto 0 auto">
+    <PSelect placeholder="Выберите эксперта" margin="20px auto 0 auto" v-model="selectedUserId">
       <template #left>
         <IconUser />
       </template>
-      <option v-for="user in users" :key="user.id"> {{ user.id }}</option>
+      <option v-for="user in users" :key="user.id" :label="user.userAccount.email" :value="user.id"> {{
+        user.userAccount.email
+      }}</option>
     </PSelect>
-    <PButton text="Назначить" button-class="base-button" />
+    <PButton text="Назначить" skin="royal" type="blue" @click="create" />
   </ModalCard>
 </template>
 
@@ -20,6 +16,7 @@
 import { onBeforeMount, Ref, ref } from 'vue';
 
 import Research from '@/classes/Research';
+import UserResearch from '@/classes/UserResearch';
 import Provider from '@/services/Provider/Provider';
 import ModalCard from '@/components/Base/ModalCard.vue';
 import IconUser from '@/components/Icons/IconUser.vue';
@@ -30,11 +27,15 @@ import PSelect from '@/services/components/PSelect.vue';
 import IconJob from '@/components/Icons/IconJob.vue';
 import IconDepartment from '@/components/Icons/IconDepartment.vue';
 import IconLink from '@/components/Icons/IconLink.vue';
-
+const props = defineProps({
+  researchId: { type: String as PropType<String>, default: '' }
+});
 const showSnilsForm: Ref<boolean> = ref(true);
-const research: Ref<Research> = ref(Research.Create());
+const userResearch: Ref<Research> = ref(UserResearch.Create());
+
 const emits = defineEmits(['add']);
 const users = Store.Items('users')
+const selectedUserId = ref('')
 
 onBeforeMount(async () => {
   const f = new FTSP()
@@ -42,16 +43,9 @@ onBeforeMount(async () => {
   await Store.FTSP('users', { ftsp: f })
 });
 
-// const addToDomain = async (): Promise<void> => {
-//   await Provider.store.dispatch('researchsDomains/addToDomain', existingResearch.value.id);
-//   await Provider.store.dispatch('researchs/get', existingResearch.value.id);
-//   Provider.store.commit('researchs/unshiftToAll', existingResearch.value.id);
-//   emit('add');
-// };
-
 const create = async (): Promise<void> => {
-  await Provider.store.dispatch('researches/create', research.value);
-  Provider.store.commit('researches/unshiftToAll', research.value);
+  userResearch.value.assign(selectedUserId.value, props.researchId)
+  await Store.Create('usersResearches', userResearch.value)
   emits('add');
 };
 

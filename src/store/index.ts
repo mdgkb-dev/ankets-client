@@ -49,6 +49,7 @@ import { questionVariants } from '@/store/modules/questionVariants';
 import { registers } from '@/store/modules/registers';
 import { representatives } from '@/store/modules/representatives';
 import { representativeTypes } from '@/store/modules/representativeTypes';
+import { usersResearches } from '@/store/modules/usersResearches';
 import { researches } from '@/store/modules/researches';
 import { researchesPools } from '@/store/modules/researchesPools';
 import { researchesResults } from '@/store/modules/researchesResults';
@@ -128,6 +129,7 @@ const store: StoreOptions<RootState> = {
     contacts,
     answerVariants,
     questionVariants,
+    usersResearches,
     ...lib,
   },
 };

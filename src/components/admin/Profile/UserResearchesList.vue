@@ -2,31 +2,24 @@
   <AdminListWrapper v-if="mounted" pagination show-header>
     <div class="scroll-block">
       <div class="user-count">Количество пользователей: {{ count }}</div>
-      <div v-for="(user, i) in users" :key="user.id">
+      <div v-for="(userResearch, i) in usersResearches" :key="userResearch.id">
         <CollapseItem :is-collaps="false" padding="0 8px">
           <template #inside-title>
             <div class="flex-block" @click.prevent="() => undefined">
               <div class="item-flex">
                 <div class="line-item-left">
-                  <StringItem :string="i + 1" width="42px" margin="4px 0 0 0" />
-                  <PButton skin="text" text="Редактировать" margin="0 20px 0 5px" @click="edit(user)" />
-                  <ToggleInfoItem title="email" :content="user.userAccount.email"
-                    @submit="updateUserAccount(user.userAccount)">
-                    <el-input v-model="user.userAccount.email" />
-                  </ToggleInfoItem>
+                  <PButton skin="text" text="Заполнить" margin="0 20px 0 5px" @click="edit(userResearch)" />
+                  <InfoItem>
+                    <StringItem :string="userResearch.num" width="42px" margin="4px 0 0 0" />
+                  </InfoItem>
                 </div>
-
-                <div class="line-item-right">
-                  <ToggleInfoItem title="Должность" :content="user.position" @submit="updateUser(user)">
-                    <el-input v-model="user.position" />
-                  </ToggleInfoItem>
-                </div>
+                <InfoItem>
+                  <StringItem :string="userResearch.createdAt" width="42px" margin="4px 0 0 0" />
+                </InfoItem>
+                <InfoItem>
+                  <StringItem :string="userResearch.research.name" width="42px" margin="4px 0 0 0" />
+                </InfoItem>
               </div>
-              <!-- <div class="item-flex">
-                <ToggleInfoItem title="Подразделение" :content="user.division" @submit="updateUser(user)">
-                  <el-input v-model="user.division" />
-                </ToggleInfoItem>
-              </div> -->
             </div>
           </template>
         </CollapseItem>
@@ -43,10 +36,9 @@ import User from '@/classes/User';
 import PButton from '@/services/components/PButton.vue';
 import PModalWindow from '@/services/components/PModalWindow.vue';
 import StringItem from '@/services/components/StringItem.vue';
-// import UsersSortsLib from '@/libs/sorts/UsersSortsLib';
 
 const showAddModal: Ref<boolean> = ref(false);
-const users: Ref<User[]> = Store.Items('users');
+const usersResearches: Ref<UserResearch[]> = Store.Items('usersResearches');
 const count: Ref<number> = Store.Count('users');
 
 const mounted = ref(false);
@@ -57,7 +49,8 @@ const loadUsers = async () => {
 };
 
 const load = async () => {
-  await Promise.all([loadUsers()]);
+  await Store.FTSP('usersResearches')
+  mounted.value = true
 };
 
 const addUser = async (): Promise<void> => {
@@ -66,10 +59,10 @@ const addUser = async (): Promise<void> => {
 
 Hooks.onBeforeMount(load, {
   adminHeader: {
-    title: 'Список пользователей',
-    buttons: [{ text: 'Добавить пользователя', type: 'normal-button', action: addUser }],
+    title: 'Мои анкеты',
+    // buttons: [{ text: 'Добавить пользователя', type: 'normal-button', action: addUser }],
   },
-  pagination: { storeModule: 'users', action: 'ftsp' },
+  pagination: { storeModule: 'usersResearches', action: 'ftsp' },
   // sortsLib: UsersSortsLib,
 });
 const updateUserAccount = async (item: UserAccount): Promise<void> => {

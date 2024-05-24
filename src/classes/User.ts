@@ -18,6 +18,7 @@ export default class User {
   @ClassHelper.GetClassConstructor(RegionUser)
   regionsUsers: RegionUser[] = [];
   regionsUsersForDelete: string[] = [];
+  humanId?: string;
 
   position = '';
   division = '';
@@ -45,8 +46,12 @@ export default class User {
     item.id = ClassHelper.CreateUUID();
     item.userAccount = UserAccount.Create();
     item.userAccountId = item.userAccount.id;
+    item.human = new Human()
+    item.human.id = ClassHelper.CreateUUID()
+    item.humanId = item.human.id
     return item;
   }
+
   addRegister(isAdd: boolean, registerId: string): void {
     if (isAdd) {
       const registerUser = new RegisterUser();

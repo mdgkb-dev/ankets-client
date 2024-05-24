@@ -1,33 +1,35 @@
 <template>
   <div class="menu-icon" @click="openMenuBar()">
-    <IconMenuLines hover-color="#343D5C" size="32px" margin="0 0 0 15px"/>
+    <IconMenuLines hover-color="#343D5C" size="32px" margin="0 0 0 15px" />
   </div>
-  <div v-if="mounted" class="admin-side-menu" 
-    :style="{
-      marginLeft: showMenuBar ? '0px' : '-250px', 
-      boxShadow: shadow ? '0 0 6px rgba(0, 0, 0, 0.3)' : 'none',
-      borderRight: border ? '1px solid #c4c4c4' : 'none',
-    }">
+  <div v-if="mounted" class="admin-side-menu" :style="{
+    marginLeft: showMenuBar ? '0px' : '-250px',
+    boxShadow: shadow ? '0 0 6px rgba(0, 0, 0, 0.3)' : 'none',
+    borderRight: border ? '1px solid #c4c4c4' : 'none',
+  }">
     <div class="menu-header">
       <StringItem string="Логотип" padding="33px 0 0 0" color="#6B7CC6" /> <!--Logo-->
     </div>
     <div class="menu-tools" @click="showMenuBar = false">
-      <IconPfArrowLeft size="20px"/>
-      <StringItem string="Скрыть меню" width="auto" margin="0 0 0 10px" padding="3px 0 0 0"/>
+      <IconPfArrowLeft size="20px" />
+      <StringItem string="Скрыть меню" width="auto" margin="0 0 0 10px" padding="3px 0 0 0" />
     </div>
     <div class="menu-body">
       <div>
         <DropListItem name="Мой профиль">
-          <StringItem string="Общие данные" width="auto" justifyContent="left" padding="6px 0" @click="Router.To('/profile')"/>
-          <StringItem string="Документы" width="auto" justifyContent="left" padding="6px 0"/>
-          <StringItem string="Экспертизы" width="auto" justifyContent="left" padding="6px 0"/>
-          <StringItem string="Мои настройки" width="auto" justifyContent="left" padding="6px 0"/>
+          <StringItem string="Общие данные" width="auto" justify-content="left" padding="6px 0"
+            @click="Router.To('/profile')" />
+          <StringItem string="Мои анкеты" width="auto" justify-content="left" padding="6px 0"
+            @click="Router.To('/profile/users-researches/' + user.id)" />
+          <!-- <StringItem string="Документы" width="auto" justify-content="left" padding="6px 0" /> -->
+          <!-- <StringItem string="Экспертизы" width="auto" justify-content="left" padding="6px 0" /> -->
+          <!-- <StringItem string="Мои настройки" width="auto" justify-content="left" padding="6px 0" /> -->
         </DropListItem>
-        <DropListItem name="Анкеты">
-          <StringItem string="Список анкет" width="auto" justifyContent="left" padding="6px 0"/>
-          <StringItem string="Конструктор анкет" width="auto" justifyContent="left" padding="6px 0"/>
+        <DropListItem name="Анкеты" v-if="isAdmin">
+          <StringItem string="Список анкет" width="auto" justify-content="left" padding="6px 0" />
+          <StringItem string="Конструктор анкет" width="auto" justify-content="left" padding="6px 0" />
         </DropListItem>
-        <DropListItem name="Администрирование">
+        <DropListItem name="Администрирование" v-if="isAdmin">
           <template v-for="item in menus" :key="item.name">
             <div v-if="item.link !== '/'"
               :class="{ 'selected-menu-item': item.link === activePath, 'menu-item': item.to !== activePath }"
@@ -35,11 +37,11 @@
               {{ item.name }}
             </div>
           </template>
-          <StringItem string="Документы" width="auto" justifyContent="left" padding="6px 0"/>
-          <StringItem string="Экспертизы" width="auto" justifyContent="left" padding="6px 0"/>
-          <StringItem string="Мои настройки" width="auto" justifyContent="left" padding="6px 0"/>
+          <StringItem string="Документы" width="auto" justify-content="left" padding="6px 0" />
+          <StringItem string="Экспертизы" width="auto" justify-content="left" padding="6px 0" />
+          <StringItem string="Мои настройки" width="auto" justify-content="left" padding="6px 0" />
         </DropListItem>
-        <DropListItem name="Аналитика"></DropListItem>
+        <DropListItem name="Аналитика" v-if="isAdmin"></DropListItem>
         <DropListItem name="Чат"></DropListItem>
       </div>
     </div>
@@ -59,7 +61,7 @@ import IconPfArrowLeft from '@/components/Icons/IconPfArrowLeft.vue';
 import PButton from '@/services/components/PButton.vue';
 import DropListItem from '@/views/adminLayout/DropListItem.vue';
 
-const props = defineProps({ 
+const props = defineProps({
   shadow: { type: Boolean as PropType<Boolean>, default: true },
   border: { type: Boolean as PropType<Boolean>, default: true },
 });
@@ -69,6 +71,8 @@ const isCollapseSideMenu = Store.Item('admin', 'isCollapseSideMenu');
 const closeDrawer = () => Store.Commit('admin/closeDrawer');
 const activePath: Ref<string> = ref('');
 const auth = Store.Item('auth', 'auth');
+const user = computed(() => auth.value.user.get())
+const isAdmin = computed(() => user.value.role === 'admin')
 // const applicationsCounts: Ref<IApplicationsCount[]> = computed(() => store.getters['admin/applicationsCounts']);
 const mounted = ref(false);
 const showMenuBar: Ref<boolean> = ref(true);
@@ -132,9 +136,12 @@ const logout = async () => {
   padding: 0;
   border-right: 1px solid #c4c4c4;
   z-index: 10;
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* IE 10 and IE 11 */
+  user-select: none;
+  /* Standard syntax */
 }
 
 .menu-header {
@@ -211,5 +218,4 @@ const logout = async () => {
 .menu-body {
   padding: 0 20px;
 }
-
 </style>

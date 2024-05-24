@@ -7,7 +7,7 @@
       <div class="left-field">
         <slot name="left" />
       </div>
-      <select class="text-field__input" v-model="model">
+      <select class="text-field__input" v-model="model" @change="select">
         <option disabled>{{ placeholder }}</option>
         <slot />
       </select>
@@ -21,7 +21,7 @@
 <script setup lang="ts">
 
 const model = defineModel();
-
+const emits = defineEmits(['change']);
 defineOptions({ inheritAttrs: false });
 
 const props = defineProps({
@@ -34,6 +34,10 @@ const props = defineProps({
   margin: { type: String as PropType<string>, required: false, default: '' },
   padding: { type: String as PropType<string>, required: false, default: '' },
 });
+
+const select = (v: unknown) => {
+  emits('change', v)
+}
 
 </script>
 

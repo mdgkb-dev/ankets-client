@@ -10,8 +10,7 @@
                 <div class="line-item-left">
                   <Button button-class="edit-button" color="#006bb4" icon="edit" icon-class="edit-icon"
                     @click="Router.ToAdmin('researches/' + research.id)" />
-                  <Button button-class="edit-button" color="#006bb4" icon="edit" icon-class="edit-icon"
-                    @click="assignResearch(research.id)" />
+                  <PButton skin="text" text="Назначить" type="blue" @click="assignResearch(research.id)" />
                   <StringItem :string="research.name" />
                 </div>
               </div>
@@ -27,8 +26,8 @@
   <ModalWindow :show="showAddModal" title="Добавить анкету" @close="showAddModal = false">
     <CreateResearchForm @add="showAddModal = false" />
   </ModalWindow>
-  <PModalWindow :show="showAssignResearchModal" @close="showAssignResearchModal = false" >
-    <AssignResearchForm @add="showAssignResearchModal = false" />
+  <PModalWindow :show="showAssignResearchModal" @close="showAssignResearchModal = false">
+    <AssignResearchForm @add="showAssignResearchModal = false" :research-id="assignResearchId" />
   </PModalWindow>
 </template>
 
@@ -41,6 +40,7 @@ import PModalWindow from '@/services/components/PModalWindow.vue';
 
 const showAddModal: Ref<boolean> = ref(false);
 const showAssignResearchModal: Ref<boolean> = ref(false);
+const assignResearchId: Ref<string> = ref('');
 const researches: Ref<Research[]> = computed(() => Provider.store.getters['researches/items']);
 const count: Ref<number> = computed(() => Provider.store.getters['researches/count']);
 
@@ -59,7 +59,8 @@ const addResearch = async (): Promise<void> => {
   showAddModal.value = !showAddModal.value;
 };
 
-const assignResearch = async (): Promise<void> => {
+const assignResearch = async (researchId: string): Promise<void> => {
+  assignResearchId.value = researchId
   showAssignResearchModal.value = !showAssignResearchModal.value;
 };
 

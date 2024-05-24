@@ -230,6 +230,7 @@ declare module 'vue' {
     ToggleInfoItem: typeof import('./src/services/components/ToggleInfoItem.vue')['default']
     TopSliderContainer: typeof import('./src/services/components/TopSliderContainer.vue')['default']
     UploaderSingleScan: typeof import('./src/services/components/UploaderSingleScan.vue')['default']
+    UserResearchesList: typeof import('./src/components/admin/Profile/UserResearchesList.vue')['default']
     VerticalCollapseContainer: typeof import('./src/services/components/Collapse/VerticalCollapseContainer.vue')['default']
   }
 }

@@ -10,12 +10,24 @@ export default class UserResearch {
   // searchGroup: SearchGroup = new SearchGroup();
   searchElementMetas: any[] = [];
   num = '';
+  createdAt?: Date
   constructor(i?: UserResearch) {
     ClassHelper.BuildClass(this, i);
   }
+  static Create(): UserResearch {
+    const item = new UserResearch()
+    item.id = ClassHelper.CreateUUID()
+    return item
+  }
+
+  assign(userId: string, researchId: string) {
+    this.userId = userId
+    this.researchId = researchId
+    this.setNum()
+  }
 
   // (год/месяц/день/порядковый номер эксперта/порядковый номер анкеты - 2024/01/24/03/01)
-  setNum(experNum: string, anketNum: string) {
+  setNum() {
     const d = new Date()
     const year = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
     const month = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);

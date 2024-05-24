@@ -1,6 +1,6 @@
 <template>
   <ModalCard title="Добавить нового пользователя">
-    <PInput placeholder="Email" margin="40px auto 0 auto" v-model="user.email" />
+    <PInput placeholder="Email" margin="40px auto 0 auto" v-model="user.userAccount.email" />
 
     <PSelect placeholder="Должность" margin="10px auto 0 auto" v-model="user.role">
       <template #left>
@@ -17,7 +17,7 @@
       <option>Вариант 2</option>
       <option>Вариант 3</option>
     </PSelect>
-    <PButton text="Добавить" button-class="base-button" @click="create" />
+    <PButton text="Добавить" skin="royal" @click="create" type="blue" />
   </ModalCard>
 </template>
 
@@ -34,6 +34,7 @@ const emit = defineEmits(['add']);
 const user: Ref<User> = ref(User.Create());
 
 const create = async (): Promise<void> => {
+  await Store.Create('humans', user.value.human);
   await Store.Create('usersAccounts', user.value.userAccount);
   await Store.Create('users', user.value);
   Provider.store.commit('users/unshiftToAll', user.value);

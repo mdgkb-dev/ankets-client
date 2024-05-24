@@ -8,7 +8,7 @@
         <slot />
       </div>
       <input class="text-field__input" type="text" :name="label" :id="label" :placeholder="placeholder"
-        :readonly="readonly" :disabled="disabled" v-model="model">
+        @blur="$emit('blur')" :readonly="readonly" :disabled="disabled" v-model="model">
       <div class="right-field">
         <slot name="right" />
       </div>
@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-
+const emits = defineEmits(["blur"]);
 const model = defineModel();
 
 defineOptions({ inheritAttrs: false });
