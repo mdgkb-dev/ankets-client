@@ -1,17 +1,17 @@
 <template>
   <AdminListWrapper v-if="mounted" pagination show-header>
     <div class="scroll-block">
-      <div class="research-count">Количество исследований: {{ count }}</div>
-      <div v-for="research in researches" :key="research.id">
+      <div class="research-count">Количество анкет: {{ count }}</div>
+      <div v-for="(research, i) in researches" :key="research.id">
         <CollapseItem :is-collaps="false" padding="0 8px">
           <template #inside-title>
             <div class="flex-block" @click.prevent="() => undefined">
               <div class="item-flex">
                 <div class="line-item-left">
-                  <Button button-class="edit-button" color="#006bb4" icon="edit" icon-class="edit-icon"
-                    @click="Router.ToAdmin('researches/' + research.id)" />
-                  <PButton skin="text" text="Назначить" type="blue" @click="assignResearch(research.id)" />
-                  <StringItem :string="research.name" />
+                  <StringItem :string="i + 1" width="42px" margin="4px 0 0 0" />
+                  <PButton skin="text" text="Редактировать" width="120px" @click="Router.ToAdmin('researches/' + research.id)" />
+                  <PButton skin="text" text="Назначить" width="90px" @click="assignResearch(research.id)" />
+                  <StringItem :string="research.name" margin="4px 0 0 0"/>
                 </div>
               </div>
               <div class="item-flex">
@@ -239,12 +239,12 @@ Hooks.onBeforeMount(load, {
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  margin: 0 10px 0 0;
+  // margin: 0 10px 0 0;
 }
 
-.item-flex:last-child {
-  margin: 10px 0;
-}
+// .item-flex:last-child {
+//   margin: 10px 0;
+// }
 
 .line-item-left {
   display: flex;
@@ -296,12 +296,12 @@ Hooks.onBeforeMount(load, {
 }
 
 @media (max-width: 1915px) {
-  .flex-block {
-    width: 100%;
-    display: block;
-    justify-content: space-between;
-    align-items: center;
-  }
+  // .flex-block {
+  //   width: 100%;
+  //   display: block;
+  //   justify-content: space-between;
+  //   align-items: center;
+  // }
 
   .line-item {
     display: flex;
@@ -316,7 +316,7 @@ Hooks.onBeforeMount(load, {
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10px;
+    // margin-top: 10px;
   }
 
   .item-flex:last-child {
