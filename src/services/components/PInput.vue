@@ -7,8 +7,8 @@
       <div class="left-field">
         <slot />
       </div>
-      <input class="text-field__input" type="text" :name="label" :id="label" :placeholder="placeholder"
-        @blur="$emit('blur')" :readonly="readonly" :disabled="disabled" v-model="model">
+      <input :type="getInputType()" class="text-field__input" type="text" :name="label" :id="label"
+        :placeholder="placeholder" @blur="$emit('blur')" :readonly="readonly" :disabled="disabled" v-model="model">
       <div class="right-field">
         <slot name="right" />
       </div>
@@ -30,8 +30,14 @@ const props = defineProps({
   disabled: { type: Boolean as PropType<Boolean>, default: false, required: false },
   margin: { type: String as PropType<string>, required: false, default: '' },
   padding: { type: String as PropType<string>, default: '', required: false },
+  password: { type: Boolean as PropType<boolean>, default: false, required: false },
 });
-
+const getInputType = () => {
+  if (props.password) {
+    return 'password'
+  }
+  return ''
+}
 </script>
 
 <style lang="scss" scoped>

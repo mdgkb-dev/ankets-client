@@ -9,7 +9,7 @@
 <script setup lang="ts">
 import DateInput from '@/services/components/DateInput.vue';
 
-import Message from '../classes/Message';
+import Message from '@/services/Message';
 
 const props = defineProps({
   start: {

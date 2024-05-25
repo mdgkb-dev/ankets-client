@@ -188,7 +188,7 @@ declare module 'vue' {
     PInput: typeof import('./src/services/components/PInput.vue')['default']
     PInput_old: typeof import('./src/services/components/PInput_old.vue')['default']
     PInputData: typeof import('./src/services/components/PInputData.vue')['default']
-    PMessage: typeof import('./src/components/Base/PMessage.vue')['default']
+    PMessage: typeof import('./src/services/components/PMessage.vue')['default']
     PModalWindow: typeof import('./src/services/components/PModalWindow.vue')['default']
     PPagination: typeof import('./src/services/components/PPagination.vue')['default']
     Profile: typeof import('./src/components/Profile/Profile.vue')['default']

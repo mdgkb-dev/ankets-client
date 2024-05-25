@@ -6,7 +6,7 @@
         margin="40px auto 0 auto">
         <IconUser />
       </PInput>
-      <PInput v-if="form.password.show(form.status)" v-model="form.password.password" placeholder="Пароль"
+      <PInput password v-if="form.password.show(form.status)" v-model="form.password.password" placeholder="Пароль"
         margin="10px auto 0 auto">
         <IconPassword />
         <template #right>
@@ -32,17 +32,12 @@ const props = defineProps({
 
 import AuthStatuses from '@/services/interfaces/AuthStatuses';
 import AuthButton from '@/services/classes/AuthButton'
-// import AuthButton from '@/services/classes/AuthButton';
 import AuthForm from '@/services/classes/AuthForm';
-// import Message from '@/services/classes/Message';
-// import Provider from '@/services/Provider/Provider';
 import PInput from '@/services/components/PInput.vue';
 import IconUser from '@/components/Icons/IconUser.vue';
 import IconPassword from '@/components/Icons/IconPassword.vue';
 import PCheckBox from '@/services/components/PCheckBox.vue';
 import IconAnketsSwitch from '@/components/Icons/IconAnketsSwitch.vue';
-import Message from '@/services/classes/Message'
-// import AuthStatuses from '@/services/interfaces/AuthStatuses.ts';
 import StringItem from '@/services/components/StringItem.vue';
 import PButton from '@/services/components/PButton.vue';
 
@@ -101,38 +96,36 @@ const authButtonClick = async (authButton: AuthButton): Promise<void> => {
   }
 
   const errors = form.value.getErrors();
-  console.log(errors)
   if (errors.length > 0) {
-    console.log(errors)
     Message.Error(errors.join(', '));
     authButton.on();
     return;
   }
 
-
   try {
-    Store.Dispatch(`auth/${form.value.getAction()}`);
-    Message.Success(form.value.getSuccessMessage());
+    await Store.Dispatch(`auth/${form.value.getAction()}`);
+    Message.Success("Вы успешно вошли в систему");
+    switch (form.value.status) {
+      case AuthStatuses.Login:
+        login();
+        break;
+      case AuthStatuses.Restore:
+        await restore();
+        break;
+
+      case AuthStatuses.Refresh:
+        await refresh();
+        break;
+      default:
+        break;
+    }
+    authButton.on();
+    emits('action');
   } catch (error) {
+    console.log("1")
+    authButton.on();
     return;
   }
-  switch (form.value.status) {
-    case AuthStatuses.Login:
-      login();
-      break;
-
-    case AuthStatuses.Restore:
-      await restore();
-      break;
-
-    case AuthStatuses.Refresh:
-      await refresh();
-      break;
-    default:
-      break;
-  }
-  authButton.on();
-  emits('action');
 };
 
 onBeforeUnmount(() => {
@@ -186,5 +179,4 @@ onBeforeUnmount(() => {
   font-family: Gilroy, Arial, Helvetica, sans-serif;
   opacity: 1;
 }
-
 </style>

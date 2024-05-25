@@ -15,7 +15,6 @@ const action = () => {
 </script>
 
 <style scoped lang="scss">
-
 .auth-container {
   width: 100%;
   height: 70vh;

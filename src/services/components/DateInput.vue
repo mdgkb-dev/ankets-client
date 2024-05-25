@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts" setup>
-import Message from '@/services/classes/Message';
+import Message from '@/services/Message';
 import DatesFormatter from '@/services/DatesFormatter';
 
 const props = defineProps({

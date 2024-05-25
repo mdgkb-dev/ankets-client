@@ -26,7 +26,7 @@
 <script lang="ts" setup>
 import AuthButton from '@/services/classes/AuthButton';
 import AuthForm from '@/services/classes/AuthForm';
-import Message from '@/services/classes/Message';
+import Message from '@/services/Message';
 import Provider from '@/services/Provider/Provider';
 
 import AuthStatuses from '../interfaces/AuthStatuses';

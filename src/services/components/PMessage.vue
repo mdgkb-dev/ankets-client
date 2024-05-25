@@ -1,29 +1,20 @@
 <template>
-  <div
-    class="message"
-    :style="{
-      background: status === 'success' ? '#C7ECEA' : '#ECC7C7',
-      marginTop: showMessage ? '0px' : '-300px',
-    }"
-  >
+  <div v-if="Message.IsVisible()" class="message" :style="{
+    background: Message.GetType() === 'success' ? '#C7ECEA' : '#ECC7C7',
+    marginTop: '100px',
+  }">
     <div class="message-title">
-      <StringItem :string="title" />
+      <StringItem :string="Message.GetTitle()" />
     </div>
     <div class="message-text">
-      <StringItem :string="text" />
+      <StringItem :string="Message.GetText()" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import StringItem from '@/services/components/StringItem.vue';
-
-const props = defineProps({
-  showMessage: { type: Boolean as PropType<string>, default: true, },
-  status: { type: String as PropType<string>, default: 'success', },
-  title: { type: String as PropType<string>, default: '', },
-  text: { type: String as PropType<string>, default: '', },
-});
+import Message from '@/services/Message';
 
 </script>
 
@@ -46,12 +37,7 @@ const props = defineProps({
   transition: 0.3s;
 }
 
-.message-title {
+.message-title {}
 
-}
-
-.message-text {
-  
-}
+.message-text {}
 </style>
-
