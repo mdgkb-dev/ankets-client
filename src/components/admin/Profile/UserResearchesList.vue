@@ -72,7 +72,7 @@ const updateUser = async (item: User): Promise<void> => {
   await Store.Update('users', item);
 };
 const edit = async (item: User): Promise<void> => {
-  await Router.ToAdmin('users/' + item.id);
+  Message.Warning("В разработке")
 };
 </script>
 <style lang="scss" scoped>

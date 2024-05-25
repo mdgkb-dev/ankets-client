@@ -7,9 +7,17 @@
 <script lang="ts" setup>
 import AnketAuthForm from '@/components/Auth/AnketAuthForm.vue';
 const form: ComputedRef<AuthForm> = Store.Getters('auth/form');
+const auth: ComputedRef<AuthForm> = Store.Getters('auth/auth');
+const user = computed(() => auth.value.user.get());
+
 const action = () => {
-  if (form.value.isLogin()) {
+  if (user.value.role === 'expert') {
+    Router.To("/profile/users-researches/" + user.value.id);
+    return
+  }
+  if (user.value.role === 'admin') {
     Router.ToAdmin('/users');
+    return
   }
 };
 </script>

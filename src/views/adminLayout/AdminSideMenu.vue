@@ -16,19 +16,19 @@
     </div>
     <div class="menu-body">
       <div>
-        <DropListItem name="Мой профиль">
-          <StringItem string="Общие данные" width="auto" justify-content="left" padding="6px 0"
-            @click="Router.To('/profile')" />
-          <StringItem string="Мои анкеты" width="auto" justify-content="left" padding="6px 0"
-            @click="Router.To('/profile/users-researches/' + user.id)" />
-          <!-- <StringItem string="Документы" width="auto" justify-content="left" padding="6px 0" /> -->
-          <!-- <StringItem string="Экспертизы" width="auto" justify-content="left" padding="6px 0" /> -->
-          <!-- <StringItem string="Мои настройки" width="auto" justify-content="left" padding="6px 0" /> -->
-        </DropListItem>
-        <DropListItem name="Анкеты" v-if="isAdmin">
-          <StringItem string="Список анкет" width="auto" justify-content="left" padding="6px 0" />
-          <StringItem string="Конструктор анкет" width="auto" justify-content="left" padding="6px 0" />
-        </DropListItem>
+        <!-- <DropListItem name="Мой профиль"> -->
+        <!-- <StringItem string="Общие данные" width="auto" justify-content="left" padding="6px 0" -->
+        <!--   @click="Router.To('/profile')" /> -->
+        <StringItem string="Мои анкеты" width="auto" justify-content="left" padding="6px 0"
+          @click="Router.To('/profile/users-researches/' + user.id)" />
+        <!-- <StringItem string="Документы" width="auto" justify-content="left" padding="6px 0" /> -->
+        <!-- <StringItem string="Экспертизы" width="auto" justify-content="left" padding="6px 0" /> -->
+        <!-- <StringItem string="Мои настройки" width="auto" justify-content="left" padding="6px 0" /> -->
+        <!-- </DropListItem> -->
+        <!-- <DropListItem name="Анкеты" v-if="isAdmin"> -->
+        <!--   <!-- <StringItem string="Список анкет" width="auto" justify-content="left" padding="6px 0" /> -->
+        <!--   <StringItem string="Конструктор анкет" width="auto" justify-content="left" padding="6px 0" /> -->
+        <!-- </DropListItem> -->
         <DropListItem name="Администрирование" v-if="isAdmin">
           <template v-for="item in menus" :key="item.name">
             <div v-if="item.link !== '/'"
@@ -37,16 +37,16 @@
               {{ item.name }}
             </div>
           </template>
-          <StringItem string="Документы" width="auto" justify-content="left" padding="6px 0" />
-          <StringItem string="Экспертизы" width="auto" justify-content="left" padding="6px 0" />
-          <StringItem string="Мои настройки" width="auto" justify-content="left" padding="6px 0" />
+          <!-- <StringItem string="Документы" width="auto" justify-content="left" padding="6px 0" /> -->
+          <!-- <StringItem string="Экспертизы" width="auto" justify-content="left" padding="6px 0" /> -->
+          <!-- <StringItem string="Мои настройки" width="auto" justify-content="left" padding="6px 0" /> -->
         </DropListItem>
-        <DropListItem name="Аналитика" v-if="isAdmin"></DropListItem>
-        <DropListItem name="Чат"></DropListItem>
+        <!-- <DropListItem name="Аналитика" v-if="isAdmin"></DropListItem> -->
+        <!-- <DropListItem name="Чат"></DropListItem> -->
       </div>
     </div>
     <div class="exit-button-container">
-      <PButton skin="royal" type="blue" text="Выйти" @click="logout" height="30px" margin="0 10px"/>
+      <PButton skin="royal" type="blue" text="Выйти" @click="logout" height="30px" margin="0 10px" />
     </div>
   </div>
 </template>
