@@ -25,8 +25,8 @@
     <template #footer-info>
       <GridContainer grid-template-columns="repeat(auto-fit, minmax(280px, 1fr))" background="#ffffff" max-width="100%"
         gridGap="10px" margin="0 auto">
-        <PInput v-model="user.phone" placeholder="Рабочий телефон" margin="0" @blur="update" />
-        <PInput v-model="user.phone" placeholder="Мобильный телефон" margin="0" @blur="update" />
+        <PInput v-model="user.phone" placeholder="Рабочий телефон" margin="10px 0 0 0" @blur="update" />
+        <PInput v-model="user.phone" placeholder="Мобильный телефон" margin="10px 0 0 0" @blur="update" />
       </GridContainer>
       <GridContainer grid-template-columns="repeat(auto-fit, minmax(280px, 1fr))" background="#ffffff" max-width="100%"
         gridGap="10px" margin="0 auto">

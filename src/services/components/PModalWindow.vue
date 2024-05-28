@@ -1,17 +1,19 @@
 <template>
   <div v-if="show" class="blur" @click="$emit('close')"></div>
-  <div v-if="show" class="modal-w" :style="{
-    maxWidth: width,
-    width: width,
-    margin: margin,
-    padding: padding,
-    top: top,
-  }" @close="$emit('close')" :show-close="true" :before-close="beforeClose">
-    <div v-if="showClose" class="icon-box" @click="$emit('close')">
-      <IconClose hover-color="#5E6CE7" size="20px" />
+  <transition name="fade">
+    <div v-if="show" class="modal-w" :style="{
+      maxWidth: width,
+      width: width,
+      margin: margin,
+      padding: padding,
+      top: top,
+    }" @close="$emit('close')" :show-close="true" :before-close="beforeClose">
+      <div v-if="showClose" class="icon-box" @click="$emit('close')">
+        <IconClose hover-color="#5E6CE7" size="20px" />
+      </div>
+      <slot />
     </div>
-    <slot />
-  </div>
+  </transition>
 </template>
 
 <script lang="ts">
@@ -185,5 +187,15 @@ export default defineComponent({
 :deep(.el-dialog__header) {
   padding-top: 0;
   font-size: 20px;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

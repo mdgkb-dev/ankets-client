@@ -35,9 +35,23 @@ import Message from '@/services/Message';
   min-height: 50px;
   max-width: 300px;
   transition: 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.message-title {}
+.message-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 
-.message-text {}
+.message-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 </style>

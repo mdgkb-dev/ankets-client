@@ -23,10 +23,10 @@
       </div>
     </div>
   </AdminListWrapper>
-  <ModalWindow :show="showAddModal" title="Добавить анкету" @close="showAddModal = false">
+  <PModalWindow width="960px" top="10vh" :show="showAddModal" @close="showAddModal = false">
     <CreateResearchForm @add="showAddModal = false" />
-  </ModalWindow>
-  <PModalWindow :show="showAssignResearchModal" @close="showAssignResearchModal = false">
+  </PModalWindow>
+  <PModalWindow width="960px" top="10vh" :show="showAssignResearchModal" @close="showAssignResearchModal = false">
     <AssignResearchForm @add="showAssignResearchModal = false" :research-id="assignResearchId" />
   </PModalWindow>
 </template>

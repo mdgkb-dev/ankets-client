@@ -7,7 +7,9 @@
       <div class="left-field">
         <slot />
       </div>
-      <input :type="getInputType()" class="text-field__input" type="text" :name="label" :id="label"
+      <input v-if="password" class="text-field__input" type="password" :name="label" :id="label"
+        :placeholder="placeholder" @blur="$emit('blur')" :readonly="readonly" :disabled="disabled" v-model="model">
+      <input v-else class="text-field__input" :name="label" :id="label"
         :placeholder="placeholder" @blur="$emit('blur')" :readonly="readonly" :disabled="disabled" v-model="model">
       <div class="right-field">
         <slot name="right" />
@@ -102,6 +104,13 @@ const getInputType = () => {
   border: $input-border;
   margin: $input-margin;
   padding: $input-padding;
+}
+
+input:-webkit-autofill {
+  // -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  background-color: $input-background !important;
+  background-image:none !important;
+  color: $input-font-color !important;
 }
 
 .text-field__input::placeholder {

@@ -1,6 +1,6 @@
 <template>
   <ModalCard title="Добавить нового пользователя">
-    <PInput placeholder="Email" margin="40px auto 0 auto" v-model="user.userAccount.email" />
+    <PInput placeholder="Email" margin="40px auto 10px auto" v-model="user.userAccount.email" />
     <!-- <PSelect placeholder="Должность" margin="10px auto 0 auto" v-model="user.role"> -->
     <!--   <template #left> -->
     <!--     <IconJob /> -->
