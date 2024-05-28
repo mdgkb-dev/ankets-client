@@ -2,12 +2,13 @@
   <div v-if="Message.IsVisible()" class="message" :style="{
     background: Message.GetType() === 'success' ? '#C7ECEA' : '#ECC7C7',
     marginTop: '100px',
-  }">
-    <div class="message-title">
-      <StringItem :string="Message.GetTitle()" />
-    </div>
-    <div class="message-text">
-      <StringItem :string="Message.GetText()" />
+  }"><div>
+      <div class="message-title">
+        <StringItem :string="Message.GetTitle()" />
+      </div>
+      <div class="message-text">
+        <StringItem :string="Message.GetText()" />
+      </div>
     </div>
   </div>
 </template>
@@ -28,7 +29,7 @@ import Message from '@/services/Message';
   z-index: 9999;
   transform: translateX(-50%);
   width: 300px;
-  margin: 0 auto;
+  margin: auto;
   border-radius: 5px;
   box-sizing: border-box;
   border: 1px solid $base-font-color;
@@ -38,20 +39,21 @@ import Message from '@/services/Message';
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 }
 
 .message-title {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: auto;
+  margin: auto;
 }
 
 .message-text {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: auto;
+  margin: auto;
 }
 </style>
