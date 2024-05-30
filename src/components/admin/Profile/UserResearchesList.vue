@@ -8,16 +8,23 @@
             <div class="flex-block" @click.prevent="() => undefined">
               <div class="item-flex">
                 <div class="line-item-left">
+                  <StringItem :string="i + 1" width="42px" margin="4px 0 0 0" />
                   <PButton skin="text" text="Заполнить" margin="0 20px 0 5px" @click="edit(userResearch)" />
-                  <InfoItem>
-                    <StringItem :string="userResearch.num" width="42px" margin="4px 0 0 0" />
+                  <InfoItem title="номер" margin="0 10px 0 0" :withOpenWindow="false">
+                    <StringItem :string="userResearch.num" margin="4px 0 0 0" min-width="130px" />
                   </InfoItem>
                 </div>
-                <InfoItem>
-                  <StringItem :string="userResearch.createdAt" width="42px" margin="4px 0 0 0" />
+                <InfoItem title="дата создания" margin="0 10px 0 0" :withOpenWindow="false">
+                  <StringItem :string="userResearch.createdAt" width="130px" margin="4px 0 0 0" />
                 </InfoItem>
-                <InfoItem>
-                  <StringItem :string="userResearch.research.name" width="42px" margin="4px 0 0 0" />
+                <InfoItem title="эксперт" margin="0 10px 0 0" :withOpenWindow="false">
+                    <StringItem string="Афанасьев В.Д." margin="4px 0 0 0" min-width="130px" />
+                  </InfoItem>
+                <InfoItem title="дата заполнения" margin="0 10px 0 0" :withOpenWindow="false">
+                  <StringItem :string="userResearch.createdAt" width="130px" margin="4px 0 0 0" />
+                </InfoItem>
+                <InfoItem title="терапевтическая область" margin="0 10px 0 0" :withOpenWindow="false" >
+                  <StringItem :string="userResearch.research.name" width="150px" margin="4px 0 0 0" />
                 </InfoItem>
               </div>
             </div>
@@ -268,9 +275,9 @@ const edit = async (item: User): Promise<void> => {
 
 .line-item-left {
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   align-items: center;
-  width: 100%;
+  width: auto;
   margin-right: 10px;
   padding: 0;
 }
