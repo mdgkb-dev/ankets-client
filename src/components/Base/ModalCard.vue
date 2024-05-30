@@ -36,6 +36,7 @@ export default defineComponent({
   border-radius: 5px;
   box-sizing: border-box;
   padding: 60px 20px;
+  transition: 0.3s;
 }
 
 .base-title {

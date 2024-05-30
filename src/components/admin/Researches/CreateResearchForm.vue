@@ -1,14 +1,8 @@
 <template>
-  <el-form>
-    <div>
-      <InfoItem title="название" icon="edit-title" :with-open-window="false" :with-hover="false" border-color="#ffffff" base-box-margin="0 0 15px 0" padding="0" width="100%">
-        <el-form-item style="width: 100%" prop="surname">
-          <el-input v-model="research.name" />
-        </el-form-item>
-      </InfoItem>
-      <Button button-class="save-button" text="Создать" @click="create" />
-    </div>
-  </el-form>
+  <ModalCard title="Добавить новую анкету">
+    <PInput placeholder="Название" margin="40px auto 10px auto" v-model="research.name" />
+    <PButton text="Добавить" skin="royal" @click="create" type="blue" />
+  </ModalCard>
 </template>
 
 <script setup lang="ts">
@@ -16,6 +10,7 @@ import { onBeforeMount, Ref, ref } from 'vue';
 
 import Research from '@/classes/Research';
 import Provider from '@/services/Provider/Provider';
+import ModalCard from '@/components/Base/ModalCard.vue';
 
 const showSnilsForm: Ref<boolean> = ref(true);
 const research: Ref<Research> = ref(Research.Create());
