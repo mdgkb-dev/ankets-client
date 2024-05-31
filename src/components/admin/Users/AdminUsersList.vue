@@ -16,11 +16,11 @@
                   </ToggleInfoItem>
                 </div>
 
-                <div class="line-item-right">
+                <!-- <div class="line-item-right">
                   <ToggleInfoItem title="Должность" :content="user.position" @submit="updateUser(user)">
                     <el-input v-model="user.position" />
                   </ToggleInfoItem>
-                </div>
+                </div> -->
               </div>
               <!-- <div class="item-flex">
                 <ToggleInfoItem title="Подразделение" :content="user.division" @submit="updateUser(user)">

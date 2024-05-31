@@ -18,15 +18,20 @@
       <div>
         <!-- <DropListItem name="Мой профиль"> -->
         <!-- <StringItem string="Общие данные" width="auto" justify-content="left" padding="6px 0" -->
-        <!--   @click="Router.To('/profile')" /> -->
-        <StringItem string="Мои анкеты" width="auto" justify-content="left" padding="6px 0"
-          @click="Router.To('/profile/users-researches')" />
+        <!--   @click="Router.To('/profile')" /> -->            
+        <div
+          :class="{ 'selected-menu-item': '/profile/users-researches' === activePath, 'menu-item': '/profile/users-researches' !== activePath }"
+          @click="Router.To('/profile/users-researches')">
+          Мои анкеты
+        </div>
+        <!-- <StringItem string="Мои анкеты" width="auto" justify-content="left" padding="6px 0"
+          @click="Router.To('/profile/users-researches')" /> -->
         <!-- < StringItem string =" Документы" width="auto" justify-content="left" padding="6px 0" /> -->
         <!-- <StringItem string="Экспертизы" width="auto" justify-content="left" padding="6px 0" /> -->
         <!-- <StringItem string="Мои настройки" width="auto" justify-content="left" padding="6px 0" /> -->
         <!-- </DropListItem> -->
         <!-- <DropListItem name="Анкеты" v-if="isAdmin"> -->
-        <!--   <!-- <StringItem string="Список анкет" width="auto" justify-content="left" padding="6px 0" /> -->
+        <!-- <StringItem string="Список анкет" width="auto" justify-content="left" padding="6px 0" /> -->
         <!--   <StringItem string="Конструктор анкет" width="auto" justify-content="left" padding="6px 0" /> -->
         <!-- </DropListItem> -->
         <DropListItem name="Администрирование" v-if="isAdmin">
