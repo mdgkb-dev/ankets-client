@@ -39,8 +39,8 @@
     <template #header-info>
       <GridContainer grid-template-columns="repeat(auto-fit, minmax(280px, 1fr))" background="#ffffff" max-width="100%"
         gridGap="10px" margin="0 auto">
-        <PInput v-model="user.passportNum" label="Документ, удостоверяющий личность" placeholder="Паспорт"
-          margin="10px 0 0 0" @blur="update" />
+        <PInput readonly label="Документ, удостоверяющий личность" placeholder="Паспорт" margin="10px 0 0 0"
+          @blur="update" />
         <PInput v-model="user.passportNum" label="Номер" margin="10px 0 0 0" @blur="update" />
         <PInput v-model="user.passportSeria" label="Серия" margin="10px 0 0 0" @blur="update" />
       </GridContainer>
@@ -70,6 +70,10 @@ const components = {
 
 const updateHuman = async () => {
   await Store.Update('humans', user.value.human);
+};
+
+const updateUserAccount = async () => {
+  await Store.Update('usersAccounts', user.value.userAccount);
 };
 
 const update = async () => {

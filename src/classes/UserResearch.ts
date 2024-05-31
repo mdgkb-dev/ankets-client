@@ -1,8 +1,8 @@
 import ClassHelper from '@/services/ClassHelper';
 import Research from '@/classes/Research'
 import User from '@/classes/User'
-
 import ResearchResult from '@/classes/ResearchResult';
+
 export default class UserResearch {
   id = '';
   userId = '';
@@ -19,6 +19,9 @@ export default class UserResearch {
 
   constructor(i?: UserResearch) {
     ClassHelper.BuildClass(this, i);
+  }
+  static GetClassName(): string {
+    return 'userResearch'
   }
   static Create(): UserResearch {
     const item = new UserResearch()

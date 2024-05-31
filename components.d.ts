@@ -145,6 +145,7 @@ declare module 'vue' {
     TopSliderContainer: typeof import('./src/services/components/TopSliderContainer.vue')['default']
     UploaderSingleScan: typeof import('./src/services/components/UploaderSingleScan.vue')['default']
     UserResearchesList: typeof import('./src/components/admin/Profile/UserResearchesList.vue')['default']
+    UserResearchesListFilters: typeof import('./src/components/admin/Profile/UserResearchesListFilters.vue')['default']
     UserResearchPage: typeof import('./src/components/admin/UsersResearches/UserResearchPage.vue')['default']
     VerticalCollapseContainer: typeof import('./src/services/components/Collapse/VerticalCollapseContainer.vue')['default']
   }
