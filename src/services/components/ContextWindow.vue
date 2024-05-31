@@ -35,7 +35,7 @@ const outsideClick = () => {
 };
 </script>
 <stype lang="scss">
-@import './src/assets/styles/elements/base-style.scss';
+@import './src/assets/styles/base-style.scss';
 
 .context-window {
   position: fixed;

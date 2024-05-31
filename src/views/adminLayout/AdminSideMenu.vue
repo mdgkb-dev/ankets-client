@@ -20,8 +20,8 @@
         <!-- <StringItem string="Общие данные" width="auto" justify-content="left" padding="6px 0" -->
         <!--   @click="Router.To('/profile')" /> -->
         <StringItem string="Мои анкеты" width="auto" justify-content="left" padding="6px 0"
-          @click="Router.To('/profile/users-researches/' + user.id)" />
-        <!-- <StringItem string="Документы" width="auto" justify-content="left" padding="6px 0" /> -->
+          @click="Router.To('/profile/users-researches')" />
+        <!-- < StringItem string =" Документы" width="auto" justify-content="left" padding="6px 0" /> -->
         <!-- <StringItem string="Экспертизы" width="auto" justify-content="left" padding="6px 0" /> -->
         <!-- <StringItem string="Мои настройки" width="auto" justify-content="left" padding="6px 0" /> -->
         <!-- </DropListItem> -->

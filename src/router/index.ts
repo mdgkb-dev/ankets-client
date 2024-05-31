@@ -7,6 +7,7 @@ import UserService from '@/services/User';
 import store from '@/store/index';
 import ProfileInfoPage from '@/components/Profile/ProfileInfoPage.vue';
 import UserResearchesList from '@/components/admin/Profile/UserResearchesList.vue';
+import UserResearchPage from '@/components/admin/UsersResearches/UserResearchPage.vue';
 
 export const isAuthorized = (next: NavigationGuardNext): void => {
   next();
@@ -54,8 +55,12 @@ const routes: Array<RouteRecordRaw> = [
     component: ProfileInfoPage,
   },
   {
-    path: '/profile/users-researches/:id',
+    path: '/profile/users-researches',
     component: UserResearchesList,
+  },
+  {
+    path: '/profile/users-researches/:id',
+    component: UserResearchPage,
   },
   {
     path: '/:pathMatch(.*)*',

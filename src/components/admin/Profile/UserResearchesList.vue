@@ -9,7 +9,7 @@
               <div class="item-flex">
                 <div class="line-item-left">
                   <StringItem :string="i + 1" width="42px" margin="4px 0 0 0" />
-                  <PButton skin="text" text="Заполнить" margin="0 20px 0 5px" @click="edit(userResearch)" />
+                  <PButton skin="text" text="Заполнить" margin="0 20px 0 5px" @click="edit(userResearch.id)" />
                   <InfoItem title="номер" margin="0 10px 0 0" :withOpenWindow="false">
                     <StringItem :string="userResearch.num" margin="4px 0 0 0" min-width="130px" />
                   </InfoItem>
@@ -18,12 +18,12 @@
                   <StringItem :string="userResearch.createdAt" width="130px" margin="4px 0 0 0" />
                 </InfoItem>
                 <InfoItem title="эксперт" margin="0 10px 0 0" :withOpenWindow="false">
-                    <StringItem string="Афанасьев В.Д." margin="4px 0 0 0" min-width="130px" />
-                  </InfoItem>
+                  <StringItem :string="userResearch.user.userAccount.email" margin="4px 0 0 0" min-width="130px" />
+                </InfoItem>
                 <InfoItem title="дата заполнения" margin="0 10px 0 0" :withOpenWindow="false">
                   <StringItem :string="userResearch.createdAt" width="130px" margin="4px 0 0 0" />
                 </InfoItem>
-                <InfoItem title="терапевтическая область" margin="0 10px 0 0" :withOpenWindow="false" >
+                <InfoItem title="терапевтическая область" margin="0 10px 0 0" :withOpenWindow="false">
                   <StringItem :string="userResearch.research.name" width="150px" margin="4px 0 0 0" />
                 </InfoItem>
               </div>
@@ -47,6 +47,7 @@ import StringItem from '@/services/components/StringItem.vue';
 const showAddModal: Ref<boolean> = ref(false);
 const usersResearches: Ref<UserResearch[]> = Store.Items('usersResearches');
 const count: Ref<number> = Store.Count('users');
+const auth: Ref<number> = Store.Getters('auth/auth');
 
 const mounted = ref(false);
 
@@ -78,8 +79,8 @@ const updateUserAccount = async (item: UserAccount): Promise<void> => {
 const updateUser = async (item: User): Promise<void> => {
   await Store.Update('users', item);
 };
-const edit = async (item: User): Promise<void> => {
-  Message.Warning("В разработке")
+const edit = async (id: string): Promise<void> => {
+  Router.To(`/profile/users-researches/${id}`)
 };
 </script>
 <style lang="scss" scoped>

@@ -11,7 +11,7 @@ export default class ResearchResult {
   id?: string;
   date = new Date();
   editMode = false;
-  patientResearchId?: string;
+  userResearchId?: string;
   fillingPercentage = 0;
   @ClassHelper.GetClassConstructor(Answer)
   answers: Answer[] = [];
@@ -21,10 +21,10 @@ export default class ResearchResult {
     ClassHelper.BuildClass(this, i);
   }
 
-  static Create(research: Research, patientResearchId?: string): ResearchResult {
+  static Create(research: Research, userResearchId?: string): ResearchResult {
     const item = new ResearchResult();
     item.id = uuidv4();
-    item.patientResearchId = patientResearchId;
+    item.userResearchId = userResearchId;
     item.answers.push(...Answer.CreateMany(research.questions));
     return item;
   }

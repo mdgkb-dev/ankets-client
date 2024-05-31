@@ -4,7 +4,7 @@
       <template #left>
         <IconUser />
       </template>
-      <option v-for="user in users" :key="user.id" :label="user.userAccount.email" :value="user.id"> {{
+      <option v-for="user in users" :key="user.id" :label="user.userAccount.email" :value="user.id">{{
         user.userAccount.email
       }}</option>
     </PSelect>
@@ -16,6 +16,7 @@
 import { onBeforeMount, Ref, ref } from 'vue';
 
 import Research from '@/classes/Research';
+import ResearchResult from '@/classes/ResearchResult';
 import UserResearch from '@/classes/UserResearch';
 import Provider from '@/services/Provider/Provider';
 import ModalCard from '@/components/Base/ModalCard.vue';
@@ -35,6 +36,7 @@ const userResearch: Ref<Research> = ref(UserResearch.Create());
 
 const emits = defineEmits(['add']);
 const users = Store.Items('users')
+const research = Store.Item('researches')
 const selectedUserId = ref('')
 
 onBeforeMount(async () => {
@@ -46,6 +48,8 @@ onBeforeMount(async () => {
 const create = async (): Promise<void> => {
   userResearch.value.assign(selectedUserId.value, props.researchId)
   await Store.Create('usersResearches', userResearch.value)
+  await Store.Get('researches', props.researchId)
+  await Store.Create('researchesResults', ResearchResult.Create(research.value, userResearch.value.id))
   emits('add');
 };
 
