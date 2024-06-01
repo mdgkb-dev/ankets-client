@@ -7,10 +7,12 @@
       <div class="left-field">
         <slot name="left" />
       </div>
-      <select class="text-field__input" v-model="model" @change="select">
-        <option disabled>{{ placeholder }}</option>
-        <slot />
-      </select>
+      <div class="sl">
+        <div v-if="ph" class="ph">{{ placeholder }}</div>
+        <select class="text-field__input" v-model="model" @change="select" >
+          <slot />
+        </select>
+      </div>
       <div class="right-field">
         <slot name="right" />
       </div>
@@ -21,6 +23,7 @@
 <script setup lang="ts">
 
 const model = defineModel();
+const ph: Ref<boolean> = ref(true);
 const emits = defineEmits(['change']);
 defineOptions({ inheritAttrs: false });
 
@@ -36,6 +39,7 @@ const props = defineProps({
 });
 
 const select = (v: unknown) => {
+  ph.value = false;
   emits('change', v)
 }
 
@@ -55,7 +59,6 @@ option {
 }
 
 .field {
-  position: relative;
   display: flex;
   justify-content: left;
   align-items: center;
@@ -65,6 +68,11 @@ option {
   padding: $p-input-padding;
   margin: $p-input-margin;
   overflow: hidden;
+}
+
+.sl {
+  width: 100%;
+  position: relative;
 }
 
 .right-field {
@@ -110,10 +118,16 @@ option {
   padding: 0;
 }
 
-.text-field__input::placeholder {
+.ph {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 5px;
+  z-index: 10;
   font-family: $input-font;
   font-size: $input-font-size;
   color: $input-font-color;
+  white-space: nowrap;
 }
 
 .text-field__input:focus {
@@ -131,7 +145,6 @@ option {
 }
 
 .text-field__input option {
-
   font-weight: normal;
 }
 </style>
