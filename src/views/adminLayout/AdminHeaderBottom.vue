@@ -12,6 +12,7 @@
           <el-badge v-if="headerParams.applicationsCount" :value="headerParams.applicationsCount" type="danger" />
         </h4>
         <div class="button-group">
+          <PButton v-if="headerParams.showBackButton" skin="royal" type="blue" height="30px" padding="0 25px" text="Назад" width="100px" @click="goBack"/>
           <div v-for="item in headerParams.buttons" :key="item" style="margin: 0 0 0 10px">
             <!-- <Button v-if="item.action && item.condition" :text="item.text" :button-class="item.type" @click="action(item.action)" /> -->
             <PButton v-if="item.action && item.condition" :text="item.text" skin="royal" type="blue" height="30px" padding="0 25px" @click="action(item.action)" >
@@ -121,11 +122,9 @@ h4 {
 
 .button-group {
   display: flex;
-  flex-wrap: wrap;
-
-  .el-button {
-    margin-left: 5px;
-  }
+  justify-content: space-between;
+  align-items: center;
+  padding:0px;
 }
 
 .loader-text {
