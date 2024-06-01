@@ -1,88 +1,50 @@
 <template>
-  <UserResearchesListFilters @load="load" />
-  <AdminListWrapper v-if="mounted" pagination show-header>
-    <div class="scroll-block">
-      <!-- <div class="user-count">Количество пользователей: {{ count }}</div> -->
-      <div v-for="(userResearch, i) in usersResearches" :key="userResearch.id">
-        <CollapseItem :is-collaps="false" padding="0 8px">
-          <template #inside-title>
-            <div class="flex-block" @click.prevent="() => undefined">
-              <div class="item-flex">
-                <div class="line-item-left">
-                  <StringItem :string="i + 1" width="42px" margin="4px 0 0 0" />
-                  <PButton skin="text" text="Заполнить" margin="0 20px 0 5px" @click="edit(userResearch.id)" />
-                  <InfoItem title="номер" margin="0 10px 0 0" :withOpenWindow="false">
-                    <StringItem :string="userResearch.id" margin="4px 0 0 0" min-width="130px" />
-                  </InfoItem>
-                </div>
-                <InfoItem title="дата создания" margin="0 10px 0 0" :withOpenWindow="false">
-                  <StringItem :string="userResearch.createdAt" width="130px" margin="4px 0 0 0" />
-                </InfoItem>
-                <InfoItem title="эксперт" margin="0 10px 0 0" :withOpenWindow="false">
-                  <StringItem :string="userResearch.user.userAccount.email" margin="4px 0 0 0" min-width="130px" />
-                </InfoItem>
-                <InfoItem title="дата заполнения" margin="0 10px 0 0" :withOpenWindow="false">
-                  <StringItem :string="userResearch.createdAt" width="130px" margin="4px 0 0 0" />
-                </InfoItem>
-                <InfoItem title="терапевтическая область" margin="0 10px 0 0" :withOpenWindow="false">
-                  <StringItem :string="userResearch.research.name" width="150px" margin="4px 0 0 0" />
-                </InfoItem>
-              </div>
-            </div>
-          </template>
-        </CollapseItem>
-      </div>
-    </div>
-  </AdminListWrapper>
-  <PModalWindow width="960px" top="10vh" :show="showAddModal" @close="showAddModal = false">
-    <CreateUserForm @add="showAddModal = false" />
-  </PModalWindow>
+  <div v-if="mounted">
+    <FiltersButtonsSelect :models="getUsersModels()" @load="$emit('load')" />
+    <FiltersButtonsSelect :models="getResearchesModels()" @load="$emit('load')" />
+  </div>
 </template>
 
 <script lang="ts" setup>
-import User from '@/classes/User';
-import PButton from '@/services/components/PButton.vue';
-import PModalWindow from '@/services/components/PModalWindow.vue';
-import StringItem from '@/services/components/StringItem.vue';
 import UserResearchFiltersLib from '@/libs/filters/UserResearchesFiltersLib'
-const showAddModal: Ref<boolean> = ref(false);
-const usersResearches: Ref<UserResearch[]> = Store.Items('usersResearches');
-const count: Ref<number> = Store.Count('users');
+// import Research from '@/classes/Research'
+defineEmits(['load']);
+
+const researches = Store.Items('researches');
+const users = Store.Items('users');
+
 const auth: Ref<Auth> = Store.Getters('auth/auth');
 const user = computed(() => auth.value.user.get())
 
 const mounted = ref(false);
 
-const ftsp = FTSP.Get()
-if (user.value.role !== 'admin') {
-  ftsp.f.push(UserResearchFiltersLib.byUserId(user.value.id))
-}
-
-const load = async () => {
-  await Store.FTSP('usersResearches')
-  mounted.value = true
+const loadUsers = async () => {
+  await Store.FTSP('users', { ftsp: new FTSP() });
+  await Store.FTSP('researches', { ftsp: new FTSP() });
+  mounted.value = true;
 };
 
-const addUser = async (): Promise<void> => {
-  showAddModal.value = !showAddModal.value;
-};
 
-Hooks.onBeforeMount(load, {
-  adminHeader: {
-    title: 'Мои анкеты',
-    // buttons: [{ text: 'Добавить пользователя', type: 'normal-button', action: addUser }],
-  },
-  pagination: { storeModule: 'usersResearches', action: 'ftsp' },
-  // sortsLib: UsersSortsLib,
+
+onBeforeMount(async () => {
+  await loadUsers()
 });
-const updateUserAccount = async (item: UserAccount): Promise<void> => {
-  await Store.Update('usersAccounts', item);
+
+const getUsersModels = (): Promise<void> => {
+  const models = users.value.map((u: User) => {
+    const model = UserResearchFiltersLib.byUserId(u.id)
+    model.label = u.userAccount.email
+    return model
+  })
+  return models
 };
-const updateUser = async (item: User): Promise<void> => {
-  await Store.Update('users', item);
-};
-const edit = async (id: UserResearch): Promise<void> => {
-  Router.To(`/profile/users-researches/${id}/`)
+const getResearchesModels = (): Promise<void> => {
+  const models = researches.value.map((i: Research) => {
+    const model = UserResearchFiltersLib.byResearchId(i.id)
+    model.label = i.name
+    return model
+  })
+  return models
 };
 </script>
 <style lang="scss" scoped>

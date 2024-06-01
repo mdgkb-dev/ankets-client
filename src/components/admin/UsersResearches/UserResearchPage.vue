@@ -1,6 +1,8 @@
 <template>
   <!-- <PatientResearchesResultsList v-if="research.id && research.withDates && patientResearch.id" :research="research" -->
   <!--   :patient-research="patientResearch" @select="selectResult" @add-result="addResult" @save="$emit('save')" /> -->
+
+
   <PatientResearchesQuestion v-if="researchResult.id" :key="researchResult.id" />
 </template>
 
@@ -9,7 +11,6 @@ import Patient from '@/classes/Patient';
 import PatientResearch from '@/classes/PatientResearch';
 import Research from '@/classes/Research';
 import ResearchResult from '@/classes/ResearchResult';
-import PatientResearchesQuestion from '@/components/admin/UsersResearches/PatientResearchesQuestion.vue';
 // import PatientResearchesResultsList from '@/components/admin/UsersResearches/PatientResearchesResultsList.vue';
 import Provider from '@/services/Provider/Provider';
 import scroll from '@/services/Scroll';
