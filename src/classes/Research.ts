@@ -51,6 +51,7 @@ export default class Research {
   addQuestion(): Question {
     const item = Question.Create(this.id)
     this.questions.push(item);
+    this.setQuestionsOrder()
     return item;
   }
 
