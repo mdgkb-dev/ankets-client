@@ -9,12 +9,13 @@
       </div>
       <div class="sl">
         <div v-if="ph" class="ph">{{ placeholder }}</div>
-        <select class="text-field__input" v-model="model" @change="select" >
+        <select class="text-field__input" v-model="model" @change="select">
           <slot />
         </select>
       </div>
       <div class="right-field">
         <slot name="right" />
+        <span v-if="clearable" @click="clear">x</span>
       </div>
     </div>
   </div>
@@ -24,7 +25,7 @@
 
 const model = defineModel();
 const ph: Ref<boolean> = ref(true);
-const emits = defineEmits(['change']);
+const emits = defineEmits(['change', 'clear']);
 defineOptions({ inheritAttrs: false });
 
 const props = defineProps({
@@ -36,13 +37,18 @@ const props = defineProps({
   disabled: { type: Boolean as PropType<Boolean>, default: false, required: false },
   margin: { type: String as PropType<string>, required: false, default: '' },
   padding: { type: String as PropType<string>, required: false, default: '' },
+  clearable: { type: Boolean as PropType<boolean>, required: false, default: false },
 });
 
 const select = (v: unknown) => {
   ph.value = false;
   emits('change', v)
 }
-
+const clear = () => {
+  emits('change')
+  emits('clear')
+  ph.value = true
+}
 </script>
 
 <style lang="scss" scoped>

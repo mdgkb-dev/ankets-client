@@ -1,17 +1,10 @@
 <template>
   <div class="filters" v-if="mounted">
-    <GridContainer max-width="100%" grid-gap="10px" grid-template-columns="repeat(auto-fit, minmax(200px, 1fr))" margin="0">
-    <PSelect placeholder="Выберите терапевтичсекую область" margin="0 auto" >
-      <option><div class="opt">Эксперт</div></option>
-      <option>Администратор</option>
-    </PSelect>
-    <PSelect placeholder="Выберите email" margin="0 auto" >
-      <option>Эксперт</option>
-      <option>Администратор</option>
-    </PSelect>
-  </GridContainer>
-    <!-- <FiltersButtonsSelect :models="getUsersModels()" @load="$emit('load')" />
-    <FiltersButtonsSelect :models="getResearchesModels()" @load="$emit('load')" /> -->
+    <GridContainer max-width="100%" grid-gap="10px" grid-template-columns="repeat(auto-fit, minmax(200px, 1fr))"
+      margin="0">
+      <FilterSelect default-label="Выберите пользователя" :models="getUsersModels()" @load="$emit('load')" />
+      <FilterSelect default-label="Выберите анкету" :models="getResearchesModels()" @load="$emit('load')" />
+    </GridContainer>
   </div>
 </template>
 
@@ -77,5 +70,4 @@ const getResearchesModels = (): Promise<void> => {
   min-height: 60px;
   background: red;
 }
-
 </style>

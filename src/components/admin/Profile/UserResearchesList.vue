@@ -59,7 +59,7 @@ if (user.value.role !== 'admin') {
 }
 
 const load = async () => {
-  await Store.FTSP('usersResearches')
+  await Store.FTSP('usersResearches', { ftsp: ftsp })
   mounted.value = true
 };
 

@@ -10,12 +10,12 @@
         margin="10px auto 0 auto">
         <IconPassword />
         <template #right>
-          <StringItem custom-class="help-string" string="Забыли пароль?" @click="restore" />
+          <!-- <StringItem custom-class="help-string" string="Забыли пароль?" @click="restore" /> -->
         </template>
       </PInput>
-      <PCheckBox v-model="check" label="Запомнить пароль" width="24px" height="24px" font-size="12px">
-        <IconAnketsSwitch :switch-position="check" margin="12px 10px 12px 0" hover-color="#343E5C" size="22px" />
-      </PCheckBox>
+      <!-- <PCheckBox v-model="check" label="Запомнить пароль" width="24px" height="24px" font-size="12px"> -->
+      <!--   <IconAnketsSwitch :switch-position="check" margin="12px 10px 12px 0" hover-color="#343E5C" size="22px" /> -->
+      <!-- </PCheckBox> -->
       <PButton v-for="b in buttons" :key="b.label" :text="b.label" skin="royal" type="blue"
         @click="authButtonClick(b)" />
     </div>
