@@ -69,6 +69,7 @@ declare module 'vue' {
     ElOption: typeof import('element-plus/es')['ElOption']
     ElRadio: typeof import('element-plus/es')['ElRadio']
     ElSelect: typeof import('element-plus/es')['ElSelect']
+    ElSwitch: typeof import('element-plus/es')['ElSwitch']
     EmailForm: typeof import('./src/services/components/EmailForm.vue')['default']
     FilesProp: typeof import('./src/components/admin/Research/FilesProp.vue')['default']
     Filter: typeof import('./src/services/components/Icons/Filter/Filter.vue')['default']

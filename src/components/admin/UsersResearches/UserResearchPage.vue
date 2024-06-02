@@ -3,6 +3,40 @@
   <!--   :patient-research="patientResearch" @select="selectResult" @add-result="addResult" @save="$emit('save')" /> -->
 
 
+  <TopSliderContainer slider-on-height="250px">
+    <template #title>
+      <div class="title">Фильтры</div>
+      <div v-if="userResearch.research.withScores" class="title">&nbsp;(Баллов: {{
+        researchResult.calculateScores(research.getAnswerVariants()) }})</div>
+    </template>
+    <div v-show="!research.showOnlyFilled" class="flex-line">
+      <StringItem string="Скрыть&nbsp;заполненные" font-size="14px" padding="0 10px 0 0" />
+      <el-switch v-model="userResearch.research.showOnlyNotFilled" placeholder="Отобразить только незаполненные" />
+    </div>
+    <div v-show="!research.showOnlyNotFilled" class="flex-line">
+      <StringItem string="Скрыть&nbsp;незаполненные" font-size="14px" padding="0 10px 0 0" />
+      <el-switch v-model="userResearch.research.showOnlyFilled" placeholder="Отобразить только заполненные" />
+    </div>
+    <div class="search">
+      <el-input v-model="userResearch.research.filterString" placeholder="Найти вопрос" />
+    </div>
+    <!-- <div v-for="res in getCalculationsResults(research)" :key="res.name" class="flex-line4">
+              <div v-if="Number.isFinite(res.value)" class="res-name">{{ res.formulaName + ':' }}</div>
+              <div v-if="Number.isFinite(res.value)">{{ res.value.toFixed(2) }}</div>
+              <div :style="{ color: res.color }">{{ res.result }}</div>
+            </div> -->
+  </TopSliderContainer>
+  <!-- <div v-show="!research.showOnlyFilled" class="flex-line"> -->
+  <!--   <StringItem string="Скрыть&nbsp;заполненные" font-size="14px" padding="0 10px 0 0" /> -->
+  <!--   <el-switch v-model="research.showOnlyNotFilled" placeholder="Отобразить только незаполненные" /> -->
+  <!-- </div> -->
+  <!-- <div v-show="!research.showOnlyNotFilled" class="flex-line"> -->
+  <!--   <StringItem string="Скрыть&nbsp;незаполненные" font-size="14px" padding="0 10px 0 0" /> -->
+  <!--   <el-switch v-model="research.showOnlyFilled" placeholder="Отобразить только заполненные" /> -->
+  <!-- </div> -->
+  <!-- <div class="search"> -->
+  <!--   <el-input v-model="research.filterString" placeholder="Найти вопрос" /> -->
+  <!-- </div> -->
   <PatientResearchesQuestion v-if="researchResult.id" :key="researchResult.id" />
 </template>
 

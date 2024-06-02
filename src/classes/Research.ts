@@ -92,7 +92,7 @@ export default class Research {
   getQuestionsByString(): Question[] {
     return this.filterString === ''
       ? this.questions
-      : this.questions.filter((q: Question) => Strings.StringsEquals(this.filterString, q.name));
+      : this.questions.filter((q: Question) => Strings.StringsEquals(q.name, this.filterString));
   }
 
   getFilteredQuestions(researchResult: ResearchResult): Question[] {

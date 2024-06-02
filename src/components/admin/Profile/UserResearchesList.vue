@@ -16,16 +16,19 @@
                   </InfoItem>
                 </div>
                 <InfoItem title="дата создания" margin="0 10px 0 0" :withOpenWindow="false">
-                  <StringItem :string="userResearch.createdAt" width="130px" margin="4px 0 0 0" />
+                  <StringItem :string="DatesFormatter.Format(userResearch.createdAt)" width="130px"
+                    margin="4px 0 0 0" />
                 </InfoItem>
                 <InfoItem title="эксперт" margin="0 10px 0 0" :withOpenWindow="false">
                   <StringItem :string="userResearch.user.userAccount.email" margin="4px 0 0 0" min-width="130px" />
                 </InfoItem>
-                <InfoItem title="дата заполнения" margin="0 10px 0 0" :withOpenWindow="false">
-                  <StringItem :string="userResearch.createdAt" width="130px" margin="4px 0 0 0" />
-                </InfoItem>
-                <InfoItem title="терапевтическая область" margin="0 10px 0 0" :withOpenWindow="false">
-                  <StringItem :string="userResearch.research.name" width="150px" margin="4px 0 0 0" />
+                <!-- <InfoItem title="дата заполнения" margin="0 10px 0 0" :withOpenWindow="false"> -->
+                <!--   <StringItem :string="DatesFormatter.Format(userResearch.createdAt)" width="130px" margin="4px 0 0 0" /> -->
+                <!-- </InfoItem> -->
+                <InfoItem title="Анкета" margin="0 10px 0 0" :withOpenWindow="false">
+                  <StringItem
+                    :string="userResearch.research.name + ` (${userResearch.getLastResult().fillingPercentage}%)`"
+                    width="150px" margin="4px 0 0 0" />
                 </InfoItem>
               </div>
             </div>

@@ -1,23 +1,14 @@
 <template>
-  <el-radio
-    v-for="variant in question.answerVariants"
-    :key="variant.id"
-    v-model="answer.answerVariantId"
-    class="block"
-    :style="{ width: 'calc(100% - 10px)', height: 'auto' }"
-    :label="variant.id"
-    @change="filledCheck(variant)"
-  >
+  <el-radio v-for="variant in question.answerVariants" :key="variant.id" v-model="answer.answerVariantId" class="block"
+    :style="{ width: 'calc(100% - 10px)', height: 'auto' }" :label="variant.id" @change="filledCheck(variant)">
     <p>{{ variant.name }}</p>
   </el-radio>
-  <el-form v-if="selectedVariant && selectedVariant.showMoreQuestions" class="line">
-    <el-form-item v-for="additionalQuestion in question.children" :key="additionalQuestion.id" :label="additionalQuestion.name">
-      <component
-        :is="additionalQuestion.valueType.getComponentType()"
-        :research-result="researchResult"
-        :question="additionalQuestion"
-        @fill="$emit('fill')"
-      />
+  <el-form
+    v-if="(selectedVariant && selectedVariant.showMoreQuestions) || (question.children.length > 0 && question.answerVariants.length < 1)">
+    <el-form-item v-for="additionalQuestion in question.children" :key="additionalQuestion.id"
+      :label="additionalQuestion.name">
+      <component :is="additionalQuestion.valueType.getComponentType()" :research-result="researchResult"
+        :question="additionalQuestion" @fill="$emit('fill')" />
     </el-form-item>
   </el-form>
 </template>

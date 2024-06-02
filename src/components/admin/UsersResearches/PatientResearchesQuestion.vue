@@ -3,7 +3,8 @@
     <div class="scroll-block">
       <PButton @click="saveResult" skin="royal" type="blue" text="Сохранить" />
       <CollapseContainer>
-        <CollapseItem v-for="question in research.questions" :key="question.id" :tab-id="question.id"
+        {{ research.filterString }}
+        <CollapseItem v-for="question in filteredQuestions" :key="question.id" :tab-id="question.id"
           :active-id="question.id" :title="`${question.order + 1}. ${question.name}`" :is-collaps="true"
           :change-color="researchResult.getOrCreateAnswer(question).filled" background="#DFF2F8"
           background-attention="#EECEAF" margin-top="20px">
@@ -37,7 +38,7 @@ const research: Ref<Research> = computed(() => userResearch.value.research);
 const researchResult: Ref<ResearchResult> = computed(() => Provider.store.getters['researchesResults/item']);
 
 const filteredQuestions: ComputedRef<Question[]> = computed(() => {
-  return research.value.getFilteredQuestions(researchResult.value);
+  return userResearch.value.research.getFilteredQuestions(researchResult.value);
 });
 
 const birthDateToMonth = (birthDate: string): number => {
