@@ -153,4 +153,18 @@ export default class Question {
     this.questionVariants.push(item);
     return item;
   }
+  copy(): Question {
+    const item = new Question(this)
+    item.id = ClassHelper.CreateUUID()
+    item.answerVariants.forEach((i: AnswerVariant) => {
+      i.id = ClassHelper.CreateUUID()
+      i.questionId = item.id
+    })
+    item.children = item.children.map((i: Question) => {
+      const childCopy = i.copy()
+      childCopy.parentId = item.id
+      return childCopy
+    })
+    return item
+  }
 }

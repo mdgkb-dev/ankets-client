@@ -26,7 +26,9 @@
                         <el-input v-model="element.name" placeholder="Введите текст вопроса" @focus.prevent
                           @blur="setName(element)" />
                       </div>
-                      <Button button-class="del-button" icon="del" icon-class="edit-icon"
+                      <PButton skin="royal" type="error" height="30px" padding="0 25px" text="Копировать" width="100px"
+                        @click="copyQuestion(element)" />
+                      <PButton skin="royal" type="error" height="30px" padding="0 25px" text="Удалить" width="100px"
                         @click="removeQuestion(element.id)" />
                     </template>
                     <template #inside-content>
@@ -71,6 +73,26 @@ const addQuestion = async () => {
   await Store.Create('questions', item);
 };
 
+const copyQuestion = async (question: Question) => {
+  const item = question.copy()
+  item.researchId = research.value.id
+  research.value.questions.push(item)
+  sort(research.value.questions);
+  research.value.setQuestionsOrder();
+  await Store.Create('questions', item);
+  research.value.questions.forEach((q: Question) => {
+    Store.Update('questions', q);
+  });
+  item.answerVariants.forEach((q: AnswerVariant) => {
+    Store.Create('answerVariants', q);
+  });
+  item.children.forEach((q: Question) => {
+    Store.Create('questions', q);
+    q.answerVariants.forEach((q: AnswerVariant) => {
+      Store.Create('answerVariants', q);
+    });
+  });
+};
 const removeQuestion = async (id: string) => {
   await Store.Remove('questions', id);
   ClassHelper.RemoveFromClassById(id, research.value.questions);
