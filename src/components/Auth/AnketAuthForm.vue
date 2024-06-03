@@ -16,7 +16,7 @@
       <!-- <PCheckBox v-model="check" label="Запомнить пароль" width="24px" height="24px" font-size="12px"> -->
       <!--   <IconAnketsSwitch :switch-position="check" margin="12px 10px 12px 0" hover-color="#343E5C" size="22px" /> -->
       <!-- </PCheckBox> -->
-      <PButton v-for="b in buttons" :key="b.label" :text="b.label" skin="royal" type="blue"
+      <PButton v-for="b in buttons" :key="b.label" :text="b.label" skin="royal" type="blue" margin="40px 0 0 0"
         @click="authButtonClick(b)" />
     </div>
   </div>
