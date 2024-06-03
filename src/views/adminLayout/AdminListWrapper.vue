@@ -85,7 +85,8 @@ defineProps({
   &-main {
     flex-shrink: 1;
     overflow: hidden;
-    height: calc(100% - 100px);
+    height: calc(100% - 280px);
+    overflow-y: auto;
   }
 
   .filters {

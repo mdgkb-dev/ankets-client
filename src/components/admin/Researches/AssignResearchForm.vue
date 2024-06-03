@@ -8,7 +8,7 @@
         user.userAccount.email
       }}</option>
     </PSelect>
-    <PButton text="Назначить" skin="royal" type="blue" @click="create" />
+    <PButton text="Назначить" skin="royal" type="blue" @click="create" margin="10px 0 0 0"/>
   </ModalCard>
 </template>
 

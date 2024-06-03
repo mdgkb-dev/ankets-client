@@ -1,7 +1,6 @@
 <template>
   <UserResearchesListFilters @load="load" />
   <AdminListWrapper v-if="mounted" pagination show-header>
-    <div class="scroll-block">
       <!-- <div class="user-count">Количество пользователей: {{ count }}</div> -->
       <div v-for="(userResearch, i) in usersResearches" :key="userResearch.id">
         <CollapseItem :is-collaps="false" padding="0 8px">
@@ -35,7 +34,6 @@
           </template>
         </CollapseItem>
       </div>
-    </div>
   </AdminListWrapper>
   <PModalWindow width="960px" top="10vh" :show="showAddModal" @close="showAddModal = false">
     <CreateUserForm @add="showAddModal = false" />
@@ -229,7 +227,7 @@ const edit = async (id: UserResearch): Promise<void> => {
 }
 
 .scroll-block {
-  height: 78vh;
+  height: 70vh;
   overflow: hidden;
   overflow-y: auto;
   padding: 0 20px;
