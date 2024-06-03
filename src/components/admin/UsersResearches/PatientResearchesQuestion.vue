@@ -88,7 +88,7 @@ const saveResult = async (): Promise<void> => {
 
 .research-info {
   width: calc(100% - 22px);
-  height: calc(100% - 22px);
+  height: 88vh;
   background: #dff2f8;
   margin: 0;
   padding: 0px 10px 10px 10px;

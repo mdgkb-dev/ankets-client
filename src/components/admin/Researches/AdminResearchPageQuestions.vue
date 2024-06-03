@@ -1,7 +1,6 @@
 <template>
   <MenuContainer>
     <template #body>
-
       <div class="research-info">
         <div class="scroll-block">
           <div class="st">
