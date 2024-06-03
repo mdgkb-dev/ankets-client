@@ -83,7 +83,7 @@ declare module 'vue' {
     IconAddButton: typeof import('./src/components/Icons/IconAddButton.vue')['default']
     IconAnketsSwitch: typeof import('./src/components/Icons/IconAnketsSwitch.vue')['default']
     IconArrowDrop: typeof import('./src/components/Icons/IconArrowDrop.vue')['default']
-    IconClose: typeof import('./src/components/Icons/IconClose.vue')['default']
+    IconClose: typeof import('./src/services/components/Icons/IconClose.vue')['default']
     IconDepartment: typeof import('./src/components/Icons/IconDepartment.vue')['default']
     IconJob: typeof import('./src/components/Icons/IconJob.vue')['default']
     IconLink: typeof import('./src/components/Icons/IconLink.vue')['default']
