@@ -9,7 +9,7 @@ $base-content-color: $site_light_grey;
 
 
 //---------------------------------------------------------------BASE------------------------------------------------------------------
-@import '@/services/assets/style/buttons/base-button-colors.scss'; //base buttons skin colors (базовые цвета скинов кнопок)
+@import '@/services/assets/style/components/buttons/base-button-colors.scss'; //base buttons skin colors (базовые цвета скинов кнопок)
 //-------------------------------------------------------------------------------------------------------------------------------------
 @import '@/assets/styles/ankets-color.scss'; //ankets project colors (цвета проекта)
 @import '@/assets/styles/ankets-font.scss'; // ankets project font (шрифты проекта)
