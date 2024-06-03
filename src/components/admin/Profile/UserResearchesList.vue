@@ -1,40 +1,42 @@
 <template>
-  <UserResearchesListFilters @load="load" />
-  <AdminListWrapper v-if="mounted" pagination show-header>
-      <!-- <div class="user-count">Количество пользователей: {{ count }}</div> -->
-      <div v-for="(userResearch, i) in usersResearches" :key="userResearch.id">
-        <CollapseItem :is-collaps="false" padding="0 8px">
-          <template #inside-title>
-            <div class="flex-block" @click.prevent="() => undefined">
-              <div class="item-flex">
-                <div class="line-item-left">
-                  <StringItem :string="i + 1" width="42px" margin="4px 0 0 0" />
-                  <PButton skin="text" text="Заполнить" margin="0 20px 0 5px" @click="edit(userResearch.id)" />
-                  <InfoItem title="номер" margin="0 10px 0 0" :withOpenWindow="false">
-                    <StringItem :string="userResearch.id" margin="4px 0 0 0" min-width="130px" />
-                  </InfoItem>
-                </div>
-                <InfoItem title="дата создания" margin="0 10px 0 0" :withOpenWindow="false">
-                  <StringItem :string="DatesFormatter.Format(userResearch.createdAt)" width="130px"
-                    margin="4px 0 0 0" />
-                </InfoItem>
-                <InfoItem title="эксперт" margin="0 10px 0 0" :withOpenWindow="false">
-                  <StringItem :string="userResearch.user.userAccount.email" margin="4px 0 0 0" min-width="130px" />
-                </InfoItem>
-                <!-- <InfoItem title="дата заполнения" margin="0 10px 0 0" :withOpenWindow="false"> -->
-                <!--   <StringItem :string="DatesFormatter.Format(userResearch.createdAt)" width="130px" margin="4px 0 0 0" /> -->
-                <!-- </InfoItem> -->
-                <InfoItem title="Анкета" margin="0 10px 0 0" :withOpenWindow="false">
-                  <StringItem
-                    :string="userResearch.research.name + ` (${userResearch.getLastResult().fillingPercentage}%)`"
-                    width="150px" margin="4px 0 0 0" />
+  <PaginationWrapper v-if="mounted" pagination in-header="85px">
+    <template #in-header>
+      <UserResearchesListFilters @load="load" />
+    </template>
+    <div class="user-count">Количество анкет: {{ count }}</div>
+    <div v-for="(userResearch, i) in usersResearches" :key="userResearch.id">
+      <CollapseItem :is-collaps="false" padding="0 8px">
+        <template #inside-title>
+          <div class="flex-block" @click.prevent="() => undefined">
+            <div class="item-flex">
+              <div class="line-item-left">
+                <StringItem :string="i + 1" width="42px" margin="4px 0 0 0" />
+                <PButton skin="text" text="Заполнить" margin="0 20px 0 5px" @click="edit(userResearch.id)" />
+                <InfoItem title="номер" margin="0 10px 0 0" :withOpenWindow="false">
+                  <StringItem :string="userResearch.id" margin="4px 0 0 0" min-width="130px" />
                 </InfoItem>
               </div>
+              <InfoItem title="дата создания" margin="0 10px 0 0" :withOpenWindow="false">
+                <StringItem :string="DatesFormatter.Format(userResearch.createdAt)" width="130px"
+                  margin="4px 0 0 0" />
+              </InfoItem>
+              <InfoItem title="эксперт" margin="0 10px 0 0" :withOpenWindow="false">
+                <StringItem :string="userResearch.user.userAccount.email" margin="4px 0 0 0" min-width="130px" />
+              </InfoItem>
+              <!-- <InfoItem title="дата заполнения" margin="0 10px 0 0" :withOpenWindow="false"> -->
+              <!--   <StringItem :string="DatesFormatter.Format(userResearch.createdAt)" width="130px" margin="4px 0 0 0" /> -->
+              <!-- </InfoItem> -->
+              <InfoItem title="Анкета" margin="0 10px 0 0" :withOpenWindow="false">
+                <StringItem
+                  :string="userResearch.research.name + ` (${userResearch.getLastResult().fillingPercentage}%)`"
+                  width="150px" margin="4px 0 0 0" />
+              </InfoItem>
             </div>
-          </template>
-        </CollapseItem>
-      </div>
-  </AdminListWrapper>
+          </div>
+        </template>
+      </CollapseItem>
+    </div>
+  </PaginationWrapper>
   <PModalWindow width="960px" top="10vh" :show="showAddModal" @close="showAddModal = false">
     <CreateUserForm @add="showAddModal = false" />
   </PModalWindow>
@@ -48,7 +50,7 @@ import StringItem from '@/services/components/StringItem.vue';
 import UserResearchFiltersLib from '@/libs/filters/UserResearchesFiltersLib'
 const showAddModal: Ref<boolean> = ref(false);
 const usersResearches: Ref<UserResearch[]> = Store.Items('usersResearches');
-const count: Ref<number> = Store.Count('users');
+const count: Ref<number> = Store.Count('usersResearches');
 const auth: Ref<Auth> = Store.Getters('auth/auth');
 const user = computed(() => auth.value.user.get())
 

@@ -1,5 +1,5 @@
 <template>
-  <AdminListWrapper v-if="mounted" pagination show-header>
+  <PaginationWrapper v-if="mounted" pagination show-header>
       <div class="research-count">Количество анкет: {{ count }}</div>
       <div v-for="(research, i) in researches" :key="research.id">
         <CollapseItem :is-collaps="false" padding="0 8px">
@@ -20,7 +20,7 @@
           </template>
         </CollapseItem>
       </div>
-  </AdminListWrapper>
+  </PaginationWrapper>
   <PModalWindow width="960px" top="10vh" :show="showAddModal" @close="showAddModal = false">
     <CreateResearchForm @add="showAddModal = false" />
   </PModalWindow>
