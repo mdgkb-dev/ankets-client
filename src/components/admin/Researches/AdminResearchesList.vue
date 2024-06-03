@@ -1,6 +1,5 @@
 <template>
   <AdminListWrapper v-if="mounted" pagination show-header>
-    <div class="scroll-block">
       <div class="research-count">Количество анкет: {{ count }}</div>
       <div v-for="(research, i) in researches" :key="research.id">
         <CollapseItem :is-collaps="false" padding="0 8px">
@@ -21,7 +20,6 @@
           </template>
         </CollapseItem>
       </div>
-    </div>
   </AdminListWrapper>
   <PModalWindow width="960px" top="10vh" :show="showAddModal" @close="showAddModal = false">
     <CreateResearchForm @add="showAddModal = false" />
@@ -193,14 +191,6 @@ Hooks.onBeforeMount(load, {
 
 .hidden {
   display: none;
-}
-
-.scroll-block {
-  height: 78vh;
-  overflow: hidden;
-  overflow-y: auto;
-  padding: 0 20px;
-  background: $base-content-color;
 }
 
 .registers-tooltip {

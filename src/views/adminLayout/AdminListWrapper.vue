@@ -21,7 +21,7 @@
     <div>
       <slot name="footer" />
     </div>
-    <div v-if="pagination">
+    <div class="pagination" v-if="pagination">
       <PPagination />
     </div>
   </div>
@@ -85,7 +85,8 @@ defineProps({
   &-main {
     flex-shrink: 1;
     overflow: hidden;
-    height: calc(100% - 100px);
+    height: calc(100% - 280px);
+    overflow-y: auto;
   }
 
   .filters {
@@ -160,4 +161,12 @@ defineProps({
 :deep(.el-input-number) {
   z-index: 0;
 }
+
+// .pagination {
+//   position: sticky;
+//   bottom: 0;
+//   margin: 0 auto;
+//   left: 50%;
+//   transform: translateX(-50%);
+// }
 </style>

@@ -139,7 +139,7 @@ Hooks.onBeforeMount(load, {
 }
 
 .scroll-block {
-  height: 84vh;
+  height: 80vh;
   overflow-x: auto;
 }
 
