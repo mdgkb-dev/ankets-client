@@ -7,16 +7,9 @@
           <AdminSideMenu :shadow="false" :border="false" padding="20px" />
           <div class="admin-container">
             <AdminHeaderBottom style="position: sticky; z-index: 2;" />
-            <slot />
-            <!-- <div v-if="$route.meta.adminLayout === AdminLayout.TableList" class="field" style="height: inherit">
-              <slot />
-            </div>
-            <div v-else class="field" style="height: inherit">
-              <slot />
-            </div> -->
+            <div class="content"><slot /></div>
           </div>
         </div>
-        <!-- <AdminMenuDrawer /> -->
       </div>
     </KeepAlive>
   </div>
@@ -63,6 +56,7 @@ export default defineComponent({
 .admin-container {
   width: 100%;
   box-sizing: border-box;
+  height: 100vh;
 }
 
 .el-main {
@@ -76,6 +70,10 @@ export default defineComponent({
   height: 100%;
   box-sizing: border-box;
   background: $site_light_grey;
+}
+
+.content {
+  height: 100%;
 }
 
 @media (max-width: 992px) {

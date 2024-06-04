@@ -2,7 +2,7 @@
   <div class="q-ch">
     <div class="tools-buttons">
       <StringItem string="Под-вопросы:" font-size="14px" padding="0" justify-content="left" margin="0" width="auto" />
-      <button class="admin-add2" @click="addChild">+ Добавить под-вопрос</button>
+      <PButton skin="text" type="success" text="+ Добавить под-вопрос" @click="addChild"  margin="0"/>
     </div>
 
     <draggable :list="question.children" item-key="id" @end="updateOrder">
@@ -15,7 +15,7 @@
           </div>
           <el-input v-model="element.name" placeholder="Введите текст вопроса" @blur="" />
 
-          <button class="admin-del" @click="removeQuestion(element.id)">Удалить</button>
+          <PButton skin="text" type="del" text="удалить" @click="removeQuestion(element.id)" />
 
           <QuestionEdit :question="element" />
           <!-- <el-input v-model="variant.name" @blur="updateVariant(variant)" /> -->

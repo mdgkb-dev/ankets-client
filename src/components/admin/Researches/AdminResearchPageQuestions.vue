@@ -1,13 +1,14 @@
 <template>
-  <MenuContainer>
-    <template #body>
-      <div class="research-info">
-        <div class="scroll-block">
-          <div class="st">
-            <StringItem :string="'Вопросов: ' + research.questions.length" font-size="14px" padding="0"
-              justify-content="left" margin="0" width="auto" />
-            <button class="admin-add2" @click="addQuestion()">+ Добавить вопрос</button>
-          </div>
+  <PaginationWrapper in-header="40px">
+      <!-- <div class="research-info">
+        <div class="scroll-block"> -->
+          <template #in-header>
+            <div class="st">
+              <StringItem :string="'Вопросов: ' + research.questions.length" font-size="14px" padding="0"
+                justify-content="left" margin="0" width="auto" />
+              <PButton skin="text" type="success" text="+ Добавить вопрос" margin="0" @click="addQuestion()" />
+            </div>
+          </template>
           <CollapseContainer>
             <draggable :list="research.questions" item-key="id" @end="updateOrder">
               <template #item="{ element }">
@@ -22,12 +23,13 @@
                         </svg>
                       </div>
                       <div class="q-text" @click.stop>
+                        <!-- <PInput v-model="element.name" placeholder="Введите текст вопроса" /> -->
                         <el-input v-model="element.name" placeholder="Введите текст вопроса" @focus.prevent
                           @blur="setName(element)" />
                       </div>
-                      <PButton skin="royal" type="error" height="30px" padding="0 25px" text="Копировать" width="100px"
+                      <PButton skin="text" type="primary" height="30px" padding="0 15px" text="Копировать"
                         @click="copyQuestion(element)" />
-                      <PButton skin="royal" type="error" height="30px" padding="0 25px" text="Удалить" width="100px"
+                      <PButton skin="text" type="del" height="30px" padding="0 10px" text="Удалить" 
                         @click="removeQuestion(element.id)" />
                     </template>
                     <template #inside-content>
@@ -43,10 +45,9 @@
               </template>
             </draggable>
           </CollapseContainer>
-        </div>
-      </div>
-    </template>
-  </MenuContainer>
+        <!-- </div>
+      </div> -->
+    </PaginationWrapper>
   <Move />
 </template>
 
@@ -148,12 +149,13 @@ const updateOrder = async (): Promise<void> => {
   box-sizing: border-box;
   width: 100%;
   height: 40px;
-  background: #dff2f8;
+  background: $royal_blue;
+  background: $main_white;
   border-bottom: 1px solid #c3c3c3;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 5px;
+  // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 5px;
   padding: 0 10px;
 }
 
@@ -248,7 +250,7 @@ const updateOrder = async (): Promise<void> => {
 .scroll-block {
   position: relative;
   width: 100%;
-  height: calc(100% - 60px);
+  height: calc(100% - 100px);
   overflow: hidden;
   overflow-y: auto;
 }

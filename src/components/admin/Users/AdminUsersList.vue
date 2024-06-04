@@ -1,5 +1,5 @@
 <template>
-  <AdminListWrapper v-if="mounted" pagination show-header>
+  <PaginationWrapper v-if="mounted" pagination show-header>
     <div class="scroll-block">
       <div class="user-count">Количество пользователей: {{ count }}</div>
       <div v-for="(user, i) in users" :key="user.id">
@@ -32,7 +32,7 @@
         </CollapseItem>
       </div>
     </div>
-  </AdminListWrapper>
+  </PaginationWrapper>
   <PModalWindow width="960px" top="10vh" :show="showAddModal" @close="showAddModal = false">
     <CreateUserForm @add="showAddModal = false" />
   </PModalWindow>

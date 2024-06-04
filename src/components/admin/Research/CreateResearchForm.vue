@@ -1,5 +1,9 @@
 <template>
-  <el-form>
+  <ModalCard title="Назначить анкету">
+    <PInput v-model="research.name" placeholder="Введите название анкеты" margin="40px 0 0 0" />
+    <PButton text="Создать" skin="royal" type="blue" @click="create" margin="10px 0 0 0"/>
+  </ModalCard>
+  <!-- <el-form>
     <div>
       <InfoItem title="название" icon="edit-title" :with-open-window="false" :with-hover="false" border-color="#ffffff" base-box-margin="0 0 15px 0" padding="0" width="100%">
         <el-form-item style="width: 100%" prop="surname">
@@ -8,7 +12,7 @@
       </InfoItem>
       <Button button-class="save-button" text="Создать" @click="create" />
     </div>
-  </el-form>
+  </el-form> -->
 </template>
 
 <script setup lang="ts">

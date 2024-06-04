@@ -54,16 +54,11 @@ const getResearchesModels = (): Promise<void> => {
 @import '@/assets/styles/base-style.scss';
 
 .filters {
-  position: sticky;
   display: flex;
   justify-content: left;
   align-items: center;
-  top: 0px;
-  z-index: 10;
-  background: $main_white;
-  border-radius: $border-radius;
+  background: $royal_blue;
   padding: 10px;
-  margin: 0 20px;
 }
 
 .opt {
