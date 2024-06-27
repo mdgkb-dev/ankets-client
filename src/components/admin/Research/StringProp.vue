@@ -1,5 +1,5 @@
 <template>
-  <el-input v-if="answer" ref="inputRef" v-model="answer.valueString" @input="filledCheck" />
+  <el-input v-if="answer && question.children.length == 0" ref="inputRef" v-model="answer.valueString" @input="filledCheck" />
 </template>
 
 <script lang="ts">
@@ -8,7 +8,6 @@ import { computed, defineComponent, PropType, Ref } from 'vue';
 import Answer from '@/classes/Answer';
 import Question from '@/classes/Question';
 import ResearchResult from '@/classes/ResearchResult';
-
 export default defineComponent({
   name: 'StringProp',
   props: {

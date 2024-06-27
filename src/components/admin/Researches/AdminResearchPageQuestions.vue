@@ -1,53 +1,61 @@
 <template>
   <PaginationWrapper in-header="40px">
-      <!-- <div class="research-info">
+    <!-- <div class="research-info">
         <div class="scroll-block"> -->
-          <template #in-header>
-            <div class="st">
-              <StringItem :string="'Вопросов: ' + research.questions.length" font-size="14px" padding="0"
-                justify-content="left" margin="0" width="auto" />
-              <PButton skin="text" type="success" text="+ Добавить вопрос" margin="0" @click="addQuestion()" />
-            </div>
-          </template>
-          <CollapseContainer>
-            <draggable :list="research.questions" item-key="id" @end="updateOrder">
-              <template #item="{ element }">
+    <template #in-header>
+      <div class="st">
+        <StringItem
+          :string="'Вопросов: ' + research.questions.length"
+          font-size="14px"
+          padding="0"
+          justify-content="left"
+          margin="0"
+          width="auto"
+        />
+        <PButton skin="text" type="success" text="+ Добавить вопрос" margin="0" @click="addQuestion()" />
+      </div>
+    </template>
+    <CollapseContainer>
+      <draggable :list="research.questions" item-key="id" @end="updateOrder">
+        <template #item="{ element }">
+          <div>
+            <CollapseItem
+              :tab-id="element.id"
+              :active-id="element.id"
+              :is-collaps="true"
+              background="#F1F2F7"
+              background-attention="#F1F2F7"
+            >
+              <template #inside-title>
+                <div class="number">
+                  {{ element.order + 1 }}
+                  <svg class="icon-move">
+                    <use xlink:href="#move" />
+                  </svg>
+                </div>
+                <div class="q-text" @click.stop>
+                  <!-- <PInput v-model="element.name" placeholder="Введите текст вопроса" /> -->
+                  <el-input v-model="element.name" placeholder="Введите текст вопроса" @focus.prevent @blur="setName(element)" />
+                </div>
+                <PButton skin="text" type="primary" height="30px" padding="0 15px" text="Копировать" @click="copyQuestion(element)" />
+                <PButton skin="text" type="del" height="30px" padding="0 10px" text="Удалить" @click="removeQuestion(element.id)" />
+              </template>
+              <template #inside-content>
+                <div :id="element.getIdWithoutDashes()" class="background-container">
+                  <QuestionEdit :question="element" />
+                </div>
                 <div>
-                  <CollapseItem :tab-id="element.id" :active-id="element.id" :is-collaps="true" background="#F1F2F7"
-                    background-attention="#F1F2F7">
-                    <template #inside-title>
-                      <div class="number">
-                        {{ element.order + 1 }}
-                        <svg class="icon-move">
-                          <use xlink:href="#move" />
-                        </svg>
-                      </div>
-                      <div class="q-text" @click.stop>
-                        <!-- <PInput v-model="element.name" placeholder="Введите текст вопроса" /> -->
-                        <el-input v-model="element.name" placeholder="Введите текст вопроса" @focus.prevent
-                          @blur="setName(element)" />
-                      </div>
-                      <PButton skin="text" type="primary" height="30px" padding="0 15px" text="Копировать"
-                        @click="copyQuestion(element)" />
-                      <PButton skin="text" type="del" height="30px" padding="0 10px" text="Удалить" 
-                        @click="removeQuestion(element.id)" />
-                    </template>
-                    <template #inside-content>
-                      <div :id="element.getIdWithoutDashes()" class="background-container">
-                        <QuestionEdit :question="element" />
-                      </div>
-                      <div>
-                        <QuestionChildrenEdit :question="element" />
-                      </div>
-                    </template>
-                  </CollapseItem>
+                  <QuestionChildrenEdit :question="element" />
                 </div>
               </template>
-            </draggable>
-          </CollapseContainer>
-        <!-- </div>
+            </CollapseItem>
+          </div>
+        </template>
+      </draggable>
+    </CollapseContainer>
+    <!-- </div>
       </div> -->
-    </PaginationWrapper>
+  </PaginationWrapper>
   <Move />
 </template>
 
@@ -69,14 +77,14 @@ const setName = (question: Question) => {
 };
 const addQuestion = async () => {
   const item = research.value.addQuestion();
-  console.log(research.value)
+  console.log(research.value);
   await Store.Create('questions', item);
 };
 
 const copyQuestion = async (question: Question) => {
-  const item = question.copy()
-  item.researchId = research.value.id
-  research.value.questions.push(item)
+  const item = question.copy();
+  item.researchId = research.value.id;
+  research.value.questions.push(item);
   sort(research.value.questions);
   research.value.setQuestionsOrder();
   await Store.Create('questions', item);
@@ -114,7 +122,7 @@ const updateOrder = async (): Promise<void> => {
 @import '@/assets/elements/collapse.scss';
 @import '@/assets/styles/base-style.scss';
 
-.number:hover>.icon-move {
+.number:hover > .icon-move {
   visibility: visible;
 }
 

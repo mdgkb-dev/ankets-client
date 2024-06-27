@@ -41,7 +41,7 @@ export const adminGuard = async (to: RouteLocationNormalized, _: RouteLocationNo
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/admin/patients',
+    redirect: '/profile/users-researches',
   },
   {
     path: '/login',

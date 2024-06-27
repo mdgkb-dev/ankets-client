@@ -1,23 +1,21 @@
 <template>
   <div class="an-v">
     <div class="tools-buttons">
-      <StringItem string="Варианты ответов:" font-size="14px" padding="0" justify-content="left" margin="0" width="auto"/> 
-      <button class="admin-add2" @click="addAnswerVariant()" >+ Добавить вариант ответа</button>
+      <StringItem string="Варианты ответов:" font-size="14px" padding="0" justify-content="left" margin="0" width="auto" />
+      <button class="admin-add2" @click="addAnswerVariant()">+ Добавить вариант ответа</button>
     </div>
     <draggable :list="question.answerVariants" item-key="id" @end="updateOrder">
       <template #item="{ element, index }">
         <div class="container">
-          <div class="ch-title" >
-            <StringItem :string="'Вариант ' + (index + 1)" font-size="14px" padding="0" justify-content="left" margin="0 0 5px 5px"/> 
+          <div class="ch-title">
+            <StringItem :string="'Вариант ' + (index + 1)" font-size="14px" padding="0" justify-content="left" margin="0 0 5px 5px" />
           </div>
-          <button class="admin-del" @click="removeAnswerVariant(element.id)" >
-            Удалить
-          </button>
+          <button class="admin-del" @click="removeAnswerVariant(element.id)">Удалить</button>
           <el-input v-model="element.name" @blur="updateAnswerVariant(element)" />
+          <el-checkbox label="При выборе показать доп.вопросы" v-model="element.showMoreQuestions" @change="updateAnswerVariant(element)" />
         </div>
       </template>
     </draggable>
-
   </div>
 </template>
 
@@ -28,9 +26,10 @@ import AnswerVariant from '@/classes/AnswerVariant';
 import Question from '@/classes/Question';
 import ClassHelper from '@/services/ClassHelper';
 import StringItem from '@/services/components/StringItem.vue';
+
 const props = defineProps({
   question: {
-    type: Object as PropType<Question>,
+    type: Question,
     required: true,
   },
 });
@@ -80,7 +79,7 @@ const updateOrder = async (): Promise<void> => {
   align-items: center;
   border: none;
   background: inherit;
-  color: #343D5B;
+  color: #343d5b;
   transition: 0.3s;
   cursor: pointer;
 }
@@ -174,7 +173,6 @@ const updateOrder = async (): Promise<void> => {
   background: #dff2f8;
 }
 
-
 .list-number {
   position: absolute;
   top: 7px;
@@ -188,7 +186,6 @@ const updateOrder = async (): Promise<void> => {
   background: #1979cf;
   border-radius: 20px;
 }
-
 
 @media screen and (max-width: 400px) {
   .container {

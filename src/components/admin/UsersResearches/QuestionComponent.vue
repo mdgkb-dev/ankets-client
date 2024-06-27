@@ -1,6 +1,5 @@
 <template>
-  <SetSelect v-if="question.questionVariants.length" :research-result="researchResult" :question="question"
-    @fill="fill" />
+  <SetSelect v-if="question.questionVariants.length" :research-result="researchResult" :question="question" @fill="fill" />
   <component :is="getComponent()" v-else :research-result="researchResult" :question="question" @fill="fill" />
 </template>
 
@@ -57,9 +56,9 @@ export default defineComponent({
     const fill = () => {
       scroll(props.question.getIdWithoutDashes());
       researchResult.value.changed = true;
-      console.log(researchResult.value);
-      emit('fill')
+      emit('fill');
     };
+
     return {
       getComponent,
       researchResult,

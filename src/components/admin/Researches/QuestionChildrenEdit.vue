@@ -2,7 +2,7 @@
   <div class="q-ch">
     <div class="tools-buttons">
       <StringItem string="Под-вопросы:" font-size="14px" padding="0" justify-content="left" margin="0" width="auto" />
-      <PButton skin="text" type="success" text="+ Добавить под-вопрос" @click="addChild"  margin="0"/>
+      <PButton skin="text" type="success" text="+ Добавить под-вопрос" @click="addChild" margin="0" />
     </div>
 
     <draggable :list="question.children" item-key="id" @end="updateOrder">
@@ -10,10 +10,9 @@
         <div class="container">
           <div class="q-marker"></div>
           <div class="ch-title">
-            <StringItem :string="'Под-вопрос ' + (index + 1)" font-size="14px" padding="0" justify-content="left"
-              margin="0 0 5px 5px" />
+            <StringItem :string="'Под-вопрос ' + (index + 1)" font-size="14px" padding="0" justify-content="left" margin="0 0 5px 5px" />
           </div>
-          <el-input v-model="element.name" placeholder="Введите текст вопроса" @blur="" />
+          <el-input v-model="element.name" placeholder="Введите текст вопроса" @blur="updateQuestion(element)" />
 
           <PButton skin="text" type="del" text="удалить" @click="removeQuestion(element.id)" />
 
@@ -51,8 +50,11 @@ const addChild = async () => {
   await Store.Create('questions', item);
 };
 
+const updateQuestion = async (item: Question) => {
+  await Store.Update('questions', item);
+};
 const removeQuestion = async (id: string) => {
-  console.log(id)
+  console.log(id);
   await Store.Remove('questions', id);
   ClassHelper.RemoveFromClassById(id, props.question.children);
   sort(props.question.children);
@@ -161,7 +163,7 @@ const updateOrder = async (): Promise<void> => {
   padding: 40px 10px 10px 10px;
   background: #dff2f8;
   background: #ffffff;
-  background: #C7ECEA;
+  background: #c7ecea;
 }
 
 .list-number {

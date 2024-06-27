@@ -4,13 +4,21 @@
       <PButton @click="saveResult" skin="royal" type="blue" text="Сохранить" />
       <CollapseContainer>
         {{ research.filterString }}
-        <CollapseItem v-for="question in filteredQuestions" :key="question.id" :tab-id="question.id"
-          :active-id="question.id" :title="`${question.order + 1}. ${question.name}`" :is-collaps="true"
-          :change-color="researchResult.getOrCreateAnswer(question).filled" background="#DFF2F8"
-          background-attention="#EECEAF" margin-top="20px">
+        <CollapseItem
+          v-for="question in filteredQuestions"
+          :key="question.id"
+          :tab-id="question.id"
+          :active-id="question.id"
+          :title="`${question.order + 1}. ${question.name}`"
+          :is-collaps="true"
+          :change-color="researchResult.getOrCreateAnswer(question).filled"
+          background="#DFF2F8"
+          background-attention="#EECEAF"
+          margin-top="20px"
+        >
           <template #inside-content>
             <div :id="question.getIdWithoutDashes()" class="background-container">
-              <QuestionComponent :question="question" :research-result="researchResult" />
+              <QuestionComponent :question="question" :research-result="researchResult" @fill="saveResult" />
             </div>
           </template>
         </CollapseItem>
@@ -31,9 +39,9 @@ import CollapseContainer from '@/services/components/Collapse/CollapseContainer.
 import CollapseItem from '@/services/components/Collapse/CollapseItem.vue';
 import Provider from '@/services/Provider/Provider';
 
-const emits = defineEmits(['fill'])
+const emits = defineEmits(['fill']);
 const patient: Ref<Patient> = computed(() => Provider.store.getters['patients/item']);
-const userResearch: ComputedRef<PatientResearch> = Store.Item('usersResearches')
+const userResearch: ComputedRef<PatientResearch> = Store.Item('usersResearches');
 const research: Ref<Research> = computed(() => userResearch.value.research);
 const researchResult: Ref<ResearchResult> = computed(() => Provider.store.getters['researchesResults/item']);
 
