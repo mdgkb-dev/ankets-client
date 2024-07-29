@@ -29,9 +29,9 @@ export default class HttpError {
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
-        await AuthStore.RefreshToken();
+        // await AuthStore.RefreshToken();
       } catch (e) {
-        await AuthStore.Logout();
+        // await AuthStore.Logout();
         return;
       }
       axiosInstance.defaults.headers.common['token'] = TokenService.getAccessToken();

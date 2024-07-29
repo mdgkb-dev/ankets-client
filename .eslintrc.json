@@ -3,7 +3,7 @@
   "env": {
     "node": true
   },
-  "extends": ["plugin:vue/vue3-recommended", "eslint:recommended", "prettier", "./imports/.eslintrc-auto-import.json"],
+  "extends": ["plugin:vue/vue3-recommended", "eslint:recommended", "prettier", "./.eslintrc-auto-import.json"],
   "parser": "vue-eslint-parser",
   "parserOptions": {
     "ecmaVersion": 2024,

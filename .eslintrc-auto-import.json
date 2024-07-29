@@ -112,6 +112,16 @@
     "watch": true,
     "watchEffect": true,
     "watchPostEffect": true,
-    "watchSyncEffect": true
+    "watchSyncEffect": true,
+    "AuthStore": true,
+    "ContactsStore": true,
+    "EmailsStore": true,
+    "FTSPPresetsStore": true,
+    "MenusStore": true,
+    "PhonesStore": true,
+    "UserAccountsStore": true,
+    "ValueTypesStore": true,
+    "CropperStore": true,
+    "SearchStore": true
   }
 }

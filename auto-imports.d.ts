@@ -7,6 +7,7 @@ export {}
 declare global {
   const Arrays: typeof import('@/services/Main')['Arrays']
   const Auth: typeof import('@/services/Main')['Auth']
+  const AuthStore: typeof import('@/store/StoreModules')['AuthStore']
   const Axios: typeof import('@/services/Main')['Axios']
   const Button: typeof import('@/services/Main')['Button']
   const Cache: typeof import('@/services/Main')['Cache']
@@ -14,7 +15,9 @@ declare global {
   const ClassHelper: typeof import('@/services/Main')['ClassHelper']
   const Color: typeof import('@/services/Main')['Color']
   const Contact: typeof import('@/services/Main')['Contact']
+  const ContactsStore: typeof import('@/store/StoreModules')['ContactsStore']
   const CreateSortModels: typeof import('@/services/Main')['CreateSortModels']
+  const CropperStore: typeof import('@/store/StoreModules')['CropperStore']
   const Cursor: typeof import('@/services/Main')['Cursor']
   const DateFormat: typeof import('@/services/Main')['DateFormat']
   const DateMask: typeof import('@/services/Main')['DateMask']
@@ -24,20 +27,25 @@ declare global {
   const Dragger: typeof import('@/services/Main')['Dragger']
   const EffectScope: typeof import('vue')['EffectScope']
   const Email: typeof import('@/services/Main')['Email']
+  const EmailsStore: typeof import('@/store/StoreModules')['EmailsStore']
   const FTSP: typeof import('@/services/Main')['FTSP']
+  const FTSPPresetsStore: typeof import('@/store/StoreModules')['FTSPPresetsStore']
   const Favourite: typeof import('@/services/Main')['Favourite']
   const FilterModel: typeof import('@/services/Main')['FilterModel']
   const GetExtension: typeof import('@/services/Main')['GetExtension']
   const Hooks: typeof import('@/services/Main')['Hooks']
   const HttpClient: typeof import('@/services/Main')['HttpClient']
   const MakeCarousel: typeof import('@/services/Main')['MakeCarousel']
+  const MenusStore: typeof import('@/store/StoreModules')['MenusStore']
   const PHelp: typeof import('@/services/Main')['PHelp']
   const Period: typeof import('@/services/Main')['Period']
   const PhoneService: typeof import('@/services/Main')['PhoneService']
+  const PhonesStore: typeof import('@/store/StoreModules')['PhonesStore']
   const ResearchesStore: typeof import('@/store/StoreModules')['ResearchesStore']
   const Router: typeof import('@/services/Main')['Router']
   const Scheduler: typeof import('@/services/Main')['Scheduler']
   const Scroll: typeof import('@/services/Main')['Scroll']
+  const SearchStore: typeof import('@/store/StoreModules')['SearchStore']
   const SortModel: typeof import('@/services/Main')['SortModel']
   const Store: typeof import('@/classes/Main')['Store']
   const Strings: typeof import('@/services/Main')['Strings']
@@ -45,7 +53,9 @@ declare global {
   const TimeFormatter: typeof import('@/services/Main')['TimeFormatter']
   const Token: typeof import('@/services/Main')['Token']
   const User: typeof import('@/services/Main')['User']
+  const UserAccountsStore: typeof import('@/store/StoreModules')['UserAccountsStore']
   const ValueType: typeof import('@/services/Main')['ValueType']
+  const ValueTypesStore: typeof import('@/store/StoreModules')['ValueTypesStore']
   const WaitElement: typeof import('@/services/Main')['WaitElement']
   const WebSocketClient: typeof import('@/services/Main')['WebSocketClient']
   const brandColors: typeof import('@/services/Main')['brandColors']
@@ -121,6 +131,7 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly Arrays: UnwrapRef<typeof import('@/services/Main')['Arrays']>
     readonly Auth: UnwrapRef<typeof import('@/services/Main')['Auth']>
+    readonly AuthStore: UnwrapRef<typeof import('@/store/StoreModules')['AuthStore']>
     readonly Axios: UnwrapRef<typeof import('@/services/Main')['Axios']>
     readonly Button: UnwrapRef<typeof import('@/services/Main')['Button']>
     readonly Cache: UnwrapRef<typeof import('@/services/Main')['Cache']>
@@ -128,38 +139,45 @@ declare module 'vue' {
     readonly ClassHelper: UnwrapRef<typeof import('@/services/Main')['ClassHelper']>
     readonly Color: UnwrapRef<typeof import('@/services/Main')['Color']>
     readonly Contact: UnwrapRef<typeof import('@/services/Main')['Contact']>
+    readonly ContactsStore: UnwrapRef<typeof import('@/store/StoreModules')['ContactsStore']>
     readonly CreateSortModels: UnwrapRef<typeof import('@/services/Main')['CreateSortModels']>
+    readonly CropperStore: UnwrapRef<typeof import('@/store/StoreModules')['CropperStore']>
     readonly Cursor: UnwrapRef<typeof import('@/services/Main')['Cursor']>
     readonly DateFormat: UnwrapRef<typeof import('@/services/Main')['DateFormat']>
     readonly DateMask: UnwrapRef<typeof import('@/services/Main')['DateMask']>
     readonly Dates: UnwrapRef<typeof import('@/services/Main')['Dates']>
     readonly DatesFormatter: UnwrapRef<typeof import('@/services/Main')['DatesFormatter']>
-    readonly Doctor: UnwrapRef<typeof import('@/classes/Main')['Doctor']>
     readonly Dragger: UnwrapRef<typeof import('@/services/Main')['Dragger']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly Email: UnwrapRef<typeof import('@/services/Main')['Email']>
+    readonly EmailsStore: UnwrapRef<typeof import('@/store/StoreModules')['EmailsStore']>
     readonly FTSP: UnwrapRef<typeof import('@/services/Main')['FTSP']>
+    readonly FTSPPresetsStore: UnwrapRef<typeof import('@/store/StoreModules')['FTSPPresetsStore']>
     readonly Favourite: UnwrapRef<typeof import('@/services/Main')['Favourite']>
     readonly FilterModel: UnwrapRef<typeof import('@/services/Main')['FilterModel']>
     readonly GetExtension: UnwrapRef<typeof import('@/services/Main')['GetExtension']>
     readonly Hooks: UnwrapRef<typeof import('@/services/Main')['Hooks']>
     readonly HttpClient: UnwrapRef<typeof import('@/services/Main')['HttpClient']>
     readonly MakeCarousel: UnwrapRef<typeof import('@/services/Main')['MakeCarousel']>
+    readonly MenusStore: UnwrapRef<typeof import('@/store/StoreModules')['MenusStore']>
     readonly PHelp: UnwrapRef<typeof import('@/services/Main')['PHelp']>
     readonly Period: UnwrapRef<typeof import('@/services/Main')['Period']>
     readonly PhoneService: UnwrapRef<typeof import('@/services/Main')['PhoneService']>
+    readonly PhonesStore: UnwrapRef<typeof import('@/store/StoreModules')['PhonesStore']>
     readonly ResearchesStore: UnwrapRef<typeof import('@/store/StoreModules')['ResearchesStore']>
     readonly Router: UnwrapRef<typeof import('@/services/Main')['Router']>
     readonly Scheduler: UnwrapRef<typeof import('@/services/Main')['Scheduler']>
     readonly Scroll: UnwrapRef<typeof import('@/services/Main')['Scroll']>
+    readonly SearchStore: UnwrapRef<typeof import('@/store/StoreModules')['SearchStore']>
     readonly SortModel: UnwrapRef<typeof import('@/services/Main')['SortModel']>
-    readonly Store: UnwrapRef<typeof import('@/classes/Main')['Store']>
     readonly Strings: UnwrapRef<typeof import('@/services/Main')['Strings']>
     readonly Time: UnwrapRef<typeof import('@/services/Main')['Time']>
     readonly TimeFormatter: UnwrapRef<typeof import('@/services/Main')['TimeFormatter']>
     readonly Token: UnwrapRef<typeof import('@/services/Main')['Token']>
     readonly User: UnwrapRef<typeof import('@/services/Main')['User']>
+    readonly UserAccountsStore: UnwrapRef<typeof import('@/store/StoreModules')['UserAccountsStore']>
     readonly ValueType: UnwrapRef<typeof import('@/services/Main')['ValueType']>
+    readonly ValueTypesStore: UnwrapRef<typeof import('@/store/StoreModules')['ValueTypesStore']>
     readonly WaitElement: UnwrapRef<typeof import('@/services/Main')['WaitElement']>
     readonly WebSocketClient: UnwrapRef<typeof import('@/services/Main')['WebSocketClient']>
     readonly brandColors: UnwrapRef<typeof import('@/services/Main')['brandColors']>
@@ -228,6 +246,7 @@ declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly Arrays: UnwrapRef<typeof import('@/services/Main')['Arrays']>
     readonly Auth: UnwrapRef<typeof import('@/services/Main')['Auth']>
+    readonly AuthStore: UnwrapRef<typeof import('@/store/StoreModules')['AuthStore']>
     readonly Axios: UnwrapRef<typeof import('@/services/Main')['Axios']>
     readonly Button: UnwrapRef<typeof import('@/services/Main')['Button']>
     readonly Cache: UnwrapRef<typeof import('@/services/Main')['Cache']>
@@ -235,38 +254,45 @@ declare module '@vue/runtime-core' {
     readonly ClassHelper: UnwrapRef<typeof import('@/services/Main')['ClassHelper']>
     readonly Color: UnwrapRef<typeof import('@/services/Main')['Color']>
     readonly Contact: UnwrapRef<typeof import('@/services/Main')['Contact']>
+    readonly ContactsStore: UnwrapRef<typeof import('@/store/StoreModules')['ContactsStore']>
     readonly CreateSortModels: UnwrapRef<typeof import('@/services/Main')['CreateSortModels']>
+    readonly CropperStore: UnwrapRef<typeof import('@/store/StoreModules')['CropperStore']>
     readonly Cursor: UnwrapRef<typeof import('@/services/Main')['Cursor']>
     readonly DateFormat: UnwrapRef<typeof import('@/services/Main')['DateFormat']>
     readonly DateMask: UnwrapRef<typeof import('@/services/Main')['DateMask']>
     readonly Dates: UnwrapRef<typeof import('@/services/Main')['Dates']>
     readonly DatesFormatter: UnwrapRef<typeof import('@/services/Main')['DatesFormatter']>
-    readonly Doctor: UnwrapRef<typeof import('@/classes/Main')['Doctor']>
     readonly Dragger: UnwrapRef<typeof import('@/services/Main')['Dragger']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly Email: UnwrapRef<typeof import('@/services/Main')['Email']>
+    readonly EmailsStore: UnwrapRef<typeof import('@/store/StoreModules')['EmailsStore']>
     readonly FTSP: UnwrapRef<typeof import('@/services/Main')['FTSP']>
+    readonly FTSPPresetsStore: UnwrapRef<typeof import('@/store/StoreModules')['FTSPPresetsStore']>
     readonly Favourite: UnwrapRef<typeof import('@/services/Main')['Favourite']>
     readonly FilterModel: UnwrapRef<typeof import('@/services/Main')['FilterModel']>
     readonly GetExtension: UnwrapRef<typeof import('@/services/Main')['GetExtension']>
     readonly Hooks: UnwrapRef<typeof import('@/services/Main')['Hooks']>
     readonly HttpClient: UnwrapRef<typeof import('@/services/Main')['HttpClient']>
     readonly MakeCarousel: UnwrapRef<typeof import('@/services/Main')['MakeCarousel']>
+    readonly MenusStore: UnwrapRef<typeof import('@/store/StoreModules')['MenusStore']>
     readonly PHelp: UnwrapRef<typeof import('@/services/Main')['PHelp']>
     readonly Period: UnwrapRef<typeof import('@/services/Main')['Period']>
     readonly PhoneService: UnwrapRef<typeof import('@/services/Main')['PhoneService']>
+    readonly PhonesStore: UnwrapRef<typeof import('@/store/StoreModules')['PhonesStore']>
     readonly ResearchesStore: UnwrapRef<typeof import('@/store/StoreModules')['ResearchesStore']>
     readonly Router: UnwrapRef<typeof import('@/services/Main')['Router']>
     readonly Scheduler: UnwrapRef<typeof import('@/services/Main')['Scheduler']>
     readonly Scroll: UnwrapRef<typeof import('@/services/Main')['Scroll']>
+    readonly SearchStore: UnwrapRef<typeof import('@/store/StoreModules')['SearchStore']>
     readonly SortModel: UnwrapRef<typeof import('@/services/Main')['SortModel']>
-    readonly Store: UnwrapRef<typeof import('@/classes/Main')['Store']>
     readonly Strings: UnwrapRef<typeof import('@/services/Main')['Strings']>
     readonly Time: UnwrapRef<typeof import('@/services/Main')['Time']>
     readonly TimeFormatter: UnwrapRef<typeof import('@/services/Main')['TimeFormatter']>
     readonly Token: UnwrapRef<typeof import('@/services/Main')['Token']>
     readonly User: UnwrapRef<typeof import('@/services/Main')['User']>
+    readonly UserAccountsStore: UnwrapRef<typeof import('@/store/StoreModules')['UserAccountsStore']>
     readonly ValueType: UnwrapRef<typeof import('@/services/Main')['ValueType']>
+    readonly ValueTypesStore: UnwrapRef<typeof import('@/store/StoreModules')['ValueTypesStore']>
     readonly WaitElement: UnwrapRef<typeof import('@/services/Main')['WaitElement']>
     readonly WebSocketClient: UnwrapRef<typeof import('@/services/Main')['WebSocketClient']>
     readonly brandColors: UnwrapRef<typeof import('@/services/Main')['brandColors']>

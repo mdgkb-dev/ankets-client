@@ -1,7 +1,7 @@
 #!/bin/sh
-
+npm run lint
 retVal=$?
 if [ $retVal -eq 1 ]; then
-	echo 'Lint failed'
+	echo 'Lint failed. Commit stopped'
 	exit 1
 fi

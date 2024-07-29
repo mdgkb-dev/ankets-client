@@ -1,7 +1,6 @@
 // const AutoImport = require('unplugin-auto-import/webpack');
 import vue from '@vitejs/plugin-vue';
 import AutoImport from 'unplugin-auto-import/vite';
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import Components from 'unplugin-vue-components/vite';
 import { fileURLToPath, URL } from 'url';
 import { defineConfig, loadEnv } from 'vite';
@@ -38,7 +37,6 @@ export default ({ mode }) => {
       }),
       svgLoader({ svgo: false }),
       Components({
-        resolvers: [ElementPlusResolver()],
         // dts: true,
         dirs: ['src/components', 'src/services/components', 'src/views'],
       }),
@@ -55,10 +53,8 @@ export default ({ mode }) => {
           {
             '@/services/Main': ServicesNames,
             '@/store/StoreModules': StoreModulesNames,
-            '@/classes/Main': ['Doctor', 'Store'],
           },
         ],
-        resolvers: [ElementPlusResolver()],
         // dirs: ['srs/classes', 'srs/services/**', 'srs/services'],
         // ignoreDts: ['srs/services', 'Message'],
         vueTemplate: true,
