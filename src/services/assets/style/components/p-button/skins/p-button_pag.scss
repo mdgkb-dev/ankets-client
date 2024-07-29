@@ -1,0 +1,44 @@
+@import '../../../utils/index.scss';
+
+//skin: pag (for pagination)
+//type: active, not-active, neutral
+
+.p-button_pag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  transition: $transition;
+  cursor: pointer;
+  min-width: 32px;
+  max-width: 32px;
+  min-height: 32px;
+  max-height: 32px;
+  border-radius: 3px;
+  margin: 0 4px;
+  font-size: 14px;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  &_neutral {
+    background: #f0f2f5;
+    color: #345e5c;
+    &:hover {
+      background: #f0f2f5;
+      color: #409eff;
+    }
+  }
+
+  &_active {
+    background: #409eff;
+    color: #ffffff;
+  }
+
+  &_not-active {
+    background: #f0f2f5;
+    color: #c3c3c3;
+    cursor: not-allowed;
+  }
+}

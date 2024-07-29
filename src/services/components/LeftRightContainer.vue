@@ -1,45 +1,46 @@
 <template>
   <div class="mainblock">
     <div class="mainline">
-      <div class="mainblock-left" :style="{
-        minWidth: leftWidth,
-        maxWidth: leftWidth,
-        background: background,
-        display: leftWidth !== '0px' ? 'block' : 'none',
-      }">
+      <div
+        class="mainblock-left"
+        :style="{
+          minWidth: leftWidth,
+          maxWidth: leftWidth,
+          background: background,
+          display: leftWidth !== '0px' ? 'block' : 'none',
+        }"
+      >
         <slot name="left" />
       </div>
-      <div class="mainblock-right" :style="{
-        background: background,
-      }">
+      <div
+        class="mainblock-right"
+        :style="{
+          background: background,
+        }"
+      >
         <slot name="right" />
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from 'vue';
-
-export default defineComponent({
-  name: 'LeftRightContainer',
-  props: {
-    leftWidth: {
-      type: String as PropType<string>,
-      required: false,
-      default: '0px',
-    },
-    background: {
-      type: String as PropType<string>,
-      required: false,
-      default: 'inherit',
-    },
+<script lang="ts" setup>
+defineProps({
+  leftWidth: {
+    type: String as PropType<string>,
+    required: false,
+    default: '0px',
+  },
+  background: {
+    type: String as PropType<string>,
+    required: false,
+    default: 'inherit',
   },
 });
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/base-style.scss';
+@import '@/services/assets/style/index.scss';
 
 .mainblock {
   box-sizing: border-box;

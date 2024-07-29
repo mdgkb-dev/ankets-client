@@ -1,11 +1,12 @@
 <template>
-  <div v-if="!isToggle" class="blur" @click="isToggle = true"></div>
+  <div v-if="!isToggle" class="blur" @click.prevent="isToggle = true" @click.stop="() => undefined"></div>
   <div
     class="top-slider"
     :style="{
       marginTop: isToggle ? `calc(${sliderOffHeight} - ${sliderOnHeight})` : `0`,
       height: sliderOnHeight,
     }"
+    @click.stop="() => undefined"
   >
     <div class="top-slider-content">
       <div class="center">
@@ -24,62 +25,45 @@
   </div>
 </template>
 
-<script lang="ts">
-import { watch } from '@vue/runtime-core';
-import { defineComponent, PropType, ref } from 'vue';
-
-export default defineComponent({
-  name: 'TopSliderContainer',
-  props: {
-    sliderOffHeight: {
-      type: String as PropType<string>,
-      required: false,
-      default: '53px',
-    },
-    sliderOnHeight: {
-      type: String as PropType<string>,
-      required: false,
-      default: '220px',
-    },
-    background: {
-      type: String as PropType<string>,
-      required: false,
-      default: 'inherit',
-    },
-    toggle: {
-      type: Boolean as PropType<boolean>,
-      default: false,
-    },
+<script lang="ts" setup>
+const props = defineProps({
+  sliderOffHeight: {
+    type: String as PropType<string>,
+    required: false,
+    default: '53px',
   },
-  emits: ['toggle'],
-  setup(props, { emit }) {
-    const isToggle = ref(true);
-    watch(
-      () => props.toggle,
-      () => {
-        isToggle.value = !isToggle.value;
-      }
-    );
-
-    const mobileWindow = ref(window.matchMedia('(max-width: 768px)').matches);
-    const toggleSlider = (toggle: boolean) => {
-      isToggle.value = !isToggle.value;
-      emit('toggle', toggle);
-    };
-    const hovering = ref(false);
-
-    return {
-      toggleSlider,
-      hovering,
-      mobileWindow,
-      isToggle,
-    };
+  sliderOnHeight: {
+    type: String as PropType<string>,
+    required: false,
+    default: '220px',
+  },
+  background: {
+    type: String as PropType<string>,
+    required: false,
+    default: 'inherit',
+  },
+  toggle: {
+    type: Boolean as PropType<boolean>,
+    default: false,
   },
 });
+const emit = defineEmits(['toggle']);
+const isToggle = ref(true);
+watch(
+  () => props.toggle,
+  () => {
+    isToggle.value = !isToggle.value;
+  }
+);
+
+const toggleSlider = (toggle: boolean) => {
+  isToggle.value = !isToggle.value;
+  emit('toggle', toggle);
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/base-style.scss';
+@import '@/services/assets/style/index.scss';
 
 * {
   box-sizing: border-box;
@@ -92,6 +76,8 @@ export default defineComponent({
   width: 100%;
   height: 100%;
   z-index: 3;
+  background: black;
+  opacity: 0.3;
 }
 
 .top-slider {

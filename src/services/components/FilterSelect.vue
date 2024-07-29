@@ -1,19 +1,13 @@
 <template>
-  <PSelect :clearable="filterModel ? true : false" :placeholder="defaultLabel" @change="selectFilter"
-    v-model="filterModel">
-    <option v-for="( model, i ) in models" :key="i" :value="model">{{ model.label }}</option>
+  <PSelect v-model="filterModel" :clearable="filterModel" :placeholder="defaultLabel" @change="selectFilter">
+    <option v-for="(model, i) in models" :key="i" :value="model" :label="model.label" />
   </PSelect>
 </template>
 
 <script lang="ts" setup>
 import FilterModel from '@/services/classes/filters/FilterModel';
-import PButton from '@/services/components/PButton.vue';
-import GridContainer from '@/services/components/GridContainer.vue';
-import InfoItem from '@/services/components/InfoItem.vue';
-import StringItem from '@/services/components/StringItem.vue';
-import Provider from '@/services/Provider/Provider';
 
-const props = defineProps({
+defineProps({
   models: {
     type: Array as PropType<FilterModel[]>,
     default: () => [],
@@ -25,30 +19,24 @@ const props = defineProps({
   inverse: { type: Boolean as PropType<boolean>, required: false, default: false },
 });
 const emits = defineEmits(['load']);
-// const ftsp = Store.Item('filter', 'ftsp');
-const ftsp = FTSP.Get()
-const restore = Store.Item('filter', 'restore');
+const ftsp = FTSP.Get();
 
-
-watch(
-  () => restore.value,
-  () => {
-    // const finded = props.models.find((m: FilterModel) => {
-    //   return ftsp.value.f.some((f: FilterModel) => {
-    //     return m.valueEq(f);
-    //   });
-    // });
-    // setFilter(finded);
-  }
-);
+// watch(
+//   () => restore.value,
+//   () => {
+//     // const finded = props.models.find((m: FilterModel) => {
+//     //   return ftsp.value.f.some((f: FilterModel) => {
+//     //     return m.valueEq(f);
+//     //   });
+//     // });
+//     // setFilter(finded);
+//   }
+// );
 const filterModel: Ref<FilterModel | undefined> = ref(undefined);
 
 const setFilter = async (model?: FilterModel) => {
   ftsp.replaceF(model, filterModel.value);
   filterModel.value = model;
-  // Provider.dropPagination();
-  // Provider.getPagination().drop();
-  console.log(ftsp)
 };
 
 const selectFilter = async (model?: FilterModel) => {
@@ -57,7 +45,6 @@ const selectFilter = async (model?: FilterModel) => {
   } else {
     await setFilter(filterModel.value);
   }
-  console.log(filterModel.value)
   emits('load');
 };
 </script>

@@ -1,8 +1,7 @@
 const ServicesNames = [
   'Contact',
+  'Button',
   'Email',
-  'Message',
-  'Provider',
   'FTSP',
   'Arrays',
   'Axios',
@@ -12,7 +11,6 @@ const ServicesNames = [
   'CarouselSwipe',
   'ClassHelper',
   'Color',
-  'Confirm',
   'countRating',
   'CreateSortModels',
   'Cursor',
@@ -33,9 +31,8 @@ const ServicesNames = [
   'Scheduler',
   'Scroll',
   'sort',
-  'Store',
+  // 'Store',
   'Strings',
-  'Swapper',
   'Time',
   'TimeFormatter',
   'Token',
@@ -46,6 +43,11 @@ const ServicesNames = [
   'WebSocketClient',
   'Hooks',
   'ValueType',
+  'PHelp',
+  'Auth',
+  //
+  'FilterModel',
+  'SortModel',
 ];
 
 export default ServicesNames;

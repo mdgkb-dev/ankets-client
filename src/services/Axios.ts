@@ -1,6 +1,6 @@
 import axios, { AxiosPromise, ResponseType } from 'axios';
 
-import HttpError from './classes/HttpError';
+import HttpError from './HttpError';
 import HttpHeaders from './types/HttpHeaders';
 import { HttpMethods } from './types/HttpMethods';
 
@@ -22,7 +22,7 @@ export default abstract class HttpEngine {
     headers['Content-Type'] = 'multipart/form-data';
     return await engine({ method: HttpMethods.PUT, url: url, headers: headers, data: data });
   }
-  static async Delete(url: string, headers: HttpHeaders, data: unknown): Promise<AxiosPromise> {
+  static async Delete(url: string, headers: HttpHeaders): Promise<AxiosPromise> {
     return await engine({ method: HttpMethods.DELETE, url: url, headers: headers });
   }
 }

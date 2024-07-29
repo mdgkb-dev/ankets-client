@@ -1,0 +1,88 @@
+@import '../../../utils/index.scss';
+
+//skin:&
+//type: primary, success, warning, danger, neutral, disabled
+
+//button&
+.p-button_auth {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: $p-button-transition;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+  margin: $p-button-margin;
+  padding: $p-button-padding;
+  border-radius: $p-button-border-radius;
+  min-height: 38px;
+  max-height: 38px;
+  width: 100%;
+  max-width: $p-button-max-width;
+  min-width: $p-button-min-width;
+  font-size: $base-font-size;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  &_primary {
+    border: 1px solid $button_primary_color;
+    background: $button_primary_background;
+    color: $button_primary_color;
+    &:hover {
+      color: #ffffff;
+      background: $button_primary_color;
+    }
+  }
+
+  &_success {
+    border: 1px solid $button_success_color;
+    background: $button_success_background;
+    color: $button_success_color;
+    &:hover {
+      color: #ffffff;
+      background: $button_success_color;
+    }
+  }
+
+  &_warning {
+    border: 1px solid $button_warning_color;
+    background: $button_warning_background;
+    color: $button_warning_color;
+    &:hover {
+      color: #ffffff;
+      background: $button_warning_color;
+    }
+  }
+
+  &_danger {
+    border: 1px solid $button_danger_color;
+    background: $button_danger_background;
+    color: $button_danger_color;
+    &:hover {
+      color: #ffffff;
+      background: $button_danger_color;
+    }
+  }
+
+  &_neutral {
+    border: 1px solid $button_neutral_color;
+    background: $button_neutral_background;
+    color: $button_neutral_color;
+    &:hover {
+      color: #ffffff;
+      background: $button_neutral_color;
+    }
+  }
+
+  &_disabled {
+    border: 1px solid $button_disabled_color;
+    background: $button_disabled_background;
+    color: $button_disabled_color;
+    cursor: auto;
+    &:hover {
+      background: $button_disabled_background;
+    }
+  }
+}

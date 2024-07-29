@@ -1,0 +1,75 @@
+@import '../../../utils/index.scss';
+
+//skin: text
+//type: primary, success, warning, danger, neutral, del
+
+.p-button_text {
+  border: none;
+  margin: $p-button-margin;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: $p-button-transition;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+  padding: $p-button-padding;
+  border-radius: $p-button-border-radius;
+  height: auto;
+  width: aprimaryuto;
+  background: none;
+  font-family: $base-font;
+  font-size: $base-font-size;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  &_primary {
+    color: $button_primary_color;
+  }
+
+  &:hover {
+    color: $button_dark_primary_color;
+  }
+
+  &_success {
+    color: $button_success_color;
+  }
+
+  &:hover {
+    color: $button_dark_success_color;
+  }
+
+  &_warning {
+    color: $button_warning_color;
+  }
+
+  &:hover {
+    color: $button_dark_warning_color;
+  }
+
+  &_danger {
+    color: $button_danger_color;
+  }
+
+  &:hover {
+    color: $button_dark_danger_color;
+  }
+
+  &_neutral {
+    color: $button_neutral_color;
+  }
+
+  &:hover {
+    color: $button_dark_neutral_color;
+  }
+
+  &_del {
+    color: $button_neutral_color;
+  }
+
+  &_del:hover {
+    color: $button_dark_danger_color;
+  }
+}

@@ -3,7 +3,6 @@ import { v4 as uuidv4 } from 'uuid';
 import Contact from '@/services/classes/Contact';
 import FileInfo from '@/services/classes/FileInfo';
 import CustomSection from '@/services/classes/page/CustomSection';
-import PageComment from '@/services/classes/page/PageComment';
 import PageDocument from '@/services/classes/page/PageDocument';
 import PageImage from '@/services/classes/page/PageImage';
 import PageSection from '@/services/classes/page/PageSection';
@@ -37,18 +36,32 @@ export default class Page {
   pageSectionsForDelete: string[] = [];
   @ClassHelper.GetClassConstructor(PageDocument)
   pageDocuments: PageDocument[] = [];
-  @ClassHelper.GetClassConstructor(PageComment)
-  pageComments: PageComment[] = [];
+  // @ClassHelper.GetClassConstructor(PageComment)
+  // pageComments: PageComment[] = [];
   contact: Contact = new Contact();
   contactId?: string;
   role: Role = new Role();
   roleId?: string;
 
-  // 
-  filterStr = ''
+  //
+  filterStr = '';
+  activeMenuId = '';
+
   constructor(i?: Page) {
     ClassHelper.BuildClass(this, i);
-    this.menus = this.pageSideMenus
+    this.menus = this.pageSideMenus;
+  }
+
+  getActiveMenu(): PageSideMenu {
+    const activeMenu = this.pageSideMenus.find((p: PageSideMenu) => p.id === this.activeMenuId);
+    if (!activeMenu) {
+      return this.pageSideMenus[0];
+    }
+    return activeMenu;
+  }
+
+  setActiveMenuId(id: string) {
+    this.activeMenuId = id;
   }
 
   getLink(): string {
@@ -125,20 +138,20 @@ export default class Page {
       this.pageSideMenus.push(contactSideMenu);
     }
     if (this.filterStr === '') {
-      return this.pageSideMenus
+      return this.pageSideMenus;
     }
 
     // return this.pageSideMenus.filter((p: PageSideMenu) => p.name.includes(this.filterStr));
-    return this.pageSideMenus.filter((p: PageSideMenu) => p.infoExists(this.filterStr))
+    return this.pageSideMenus.filter((p: PageSideMenu) => p.infoExists(this.filterStr));
   }
 
   filter(): void {
     if (this.filterStr === '') {
-      this.menus = this.pageSideMenus
+      this.menus = this.pageSideMenus;
     } else {
-      this.menus = this.pageSideMenus.filter((p: PageSideMenu) => p.infoExists(this.filterStr))
+      this.menus = this.pageSideMenus.filter((p: PageSideMenu) => p.infoExists(this.filterStr));
     }
-    this.menus.forEach((m: PageSideMenu) => m.filter(this.filterStr))
+    this.menus.forEach((m: PageSideMenu) => m.filter(this.filterStr));
   }
 
   static GetClassName(): string {

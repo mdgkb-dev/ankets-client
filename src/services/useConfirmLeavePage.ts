@@ -1,6 +1,7 @@
-import { ElMessage, ElMessageBox } from 'element-plus';
 import { Ref, ref } from 'vue';
 import { NavigationGuardNext } from 'vue-router';
+
+import PHelp from './PHelp';
 
 declare type SubmitCallback = () => void;
 interface IReturn {
@@ -27,23 +28,14 @@ export default function (): IReturn {
 
   const showConfirmModal = (submit: SubmitCallback, next: NavigationGuardNext): void => {
     if (confirmLeave.value && !saveButtonClick.value) {
-      ElMessageBox.confirm('У вас есть несохранённые изменения', 'Вы уверены, что хотите покинуть страницу?', {
-        distinguishCancelAndClose: true,
-        confirmButtonText: 'Сохранить',
-        cancelButtonText: 'Не сохранять',
-      })
+      PHelp.Dialog.Save()
         .then(() => {
-          // Вызывается при сохранении
           submit();
+          next();
         })
-        .catch((action: string) => {
-          if (action === 'cancel') {
-            ElMessage({
-              type: 'warning',
-              message: 'Изменения не были сохранены',
-            });
-            next();
-          }
+        .catch(() => {
+          PHelp.Notification.Warning('Изменения не были сохранены');
+          next();
         });
     } else {
       next();

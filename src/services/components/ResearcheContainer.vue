@@ -24,36 +24,23 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from 'vue';
-
-export default defineComponent({
-  name: 'ResearcheContainer',
-  props: {
-    background: {
-      type: String as PropType<string>,
-      required: false,
-      default: 'inherit',
-    },
-    padding: {
-      type: String as PropType<string>,
-      required: false,
-      default: '0px 10px',
-    },
+<script lang="ts" setup>
+defineProps({
+  background: {
+    type: String as PropType<string>,
+    required: false,
+    default: 'inherit',
   },
-  setup() {
-    let autoHeight: number;
-    autoHeight = window.innerHeight;
-
-    return {
-      autoHeight,
-    };
+  padding: {
+    type: String as PropType<string>,
+    required: false,
+    default: '0px 10px',
   },
 });
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/base-style.scss';
+@import '@/services/assets/style/index.scss';
 
 .mainblock {
   position: relative;

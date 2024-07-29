@@ -25,12 +25,14 @@ export default class FileInfo implements IFileInfo {
     this.url = i.url;
   }
 
-  getImageUrl(): string {
-    return this.url ? this.url : `${import.meta.env.VITE_APP_STATIC_URL}/${this.fileSystemPath}`;
+  getImageUrl(): string | URL {
+    const u = this.url ? this.url : `${import.meta.env.VITE_APP_STATIC_URL}/${this.fileSystemPath}`;
+    return new URL(u, import.meta.url);
   }
 
   getFileUrl(): string {
-    return this.url ? this.url : `${import.meta.env.VITE_APP_STATIC_URL}/${this.fileSystemPath}`;
+    const url = this.url ? this.url : `${import.meta.env.VITE_APP_STATIC_URL}/${this.fileSystemPath}`;
+    return url;
   }
 
   getFileListObject(): IFilesList {
@@ -76,9 +78,13 @@ export default class FileInfo implements IFileInfo {
     this.category = '';
   }
 
-  errorImg(event: Event, errorImgName?: string): void {
+  errorImg(event: Event, errorImgName?: string): void | URL {
     if (event.target) {
-      // (event.target as HTMLImageElement).src = errorImgName ? require(`@/assets/img/${errorImgName}`) : require('@/services/assets/img/avatar.webp');
+      let src = `/src/services/assets/img/avatar.webp`;
+      if (errorImgName) {
+        src = `@/assets/img/${errorImgName}`;
+      }
+      return new URL(src, import.meta.url);
     }
   }
   getFileInfos(): FileInfo[] {

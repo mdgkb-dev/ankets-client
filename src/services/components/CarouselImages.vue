@@ -15,7 +15,7 @@
         >
           <div class="image">
             <div class="image-box">
-              <h2 class="event-name" @click="$router.push(`/events/${carouselGroupElement.slug}`)">{{ carouselGroupElement.name }}</h2>
+              <!-- <h2 class="event-name" @click="$router.push(`/events/${carouselGroupElement.slug}`)">{{ carouselGroupElement.name }}</h2> -->
               <!-- {{ carouselGroupElement }} -->
               <!-- <img -->
               <!--   :id="carouselGroupElement.fileInfo.getImageUrl()" -->
@@ -53,151 +53,117 @@
   <!-- <ArrowNext /> -->
 </template>
 
-<script lang="ts">
-import { computed, ComputedRef, defineComponent, onMounted, PropType, Ref, ref } from 'vue';
-
-import ArrowNext from '@/assets/svg/CarouselImages/ArrowNext.svg';
-import ArrowPrev from '@/assets/svg/CarouselImages/ArrowPrev.svg';
+<script lang="ts" setup>
+import NewsImage from '@/classes/NewsImage';
+import GridContainer from '@/services/components/GridContainer.vue';
 import { Animations } from '@/services/interfaces/Animations';
 import makeCarousel from '@/services/MakeCarousel';
-import Event from '@/classes/Event';
-import GridContainer from '@/services/components/GridContainer.vue';
-
-export default defineComponent({
-  name: 'CarouselImages',
-  components: {
-    ArrowPrev,
-    ArrowNext,
-    GridContainer,
+const props = defineProps({
+  events: {
+    type: Array as PropType<Array<NewsImage>>,
+    required: true,
   },
-  props: {
-    events: {
-      type: Array as PropType<Array<Event>>,
-      required: true,
-    },
-    quantity: {
-      type: Number,
-      default: 1,
-      required: false,
-    },
-    animationTime: {
-      type: Number,
-      default: 500,
-    },
-
-    height: {
-      type: String,
-      default: '360px',
-    },
-    maxHeight: {
-      type: String,
-      default: '360px',
-    },
-    startActiveGroupIndex: {
-      type: Number,
-      default: 0,
-    },
+  quantity: {
+    type: Number,
+    default: 1,
+    required: false,
   },
-  emits: ['openModalWindow'],
-  setup(props) {
-    const cssAnimationTime = `${props.animationTime}ms`;
-    const fullScreenMode: Ref<boolean> = ref(false);
-    const activeGroupIndex = ref(props.startActiveGroupIndex);
+  animationTime: {
+    type: Number,
+    default: 500,
+  },
 
-    const mobileWindow = computed(() => {
-      const width = window.innerWidth;
-      let divisor = 3.5;
-      if (width < 1600) {
-        divisor = 2.5;
-      }
-      if (width < 600) {
-        divisor = 1.6;
-      }
-      return width / divisor;
-    });
-
-    const animation: Ref<Animations> = ref(Animations.None);
-
-    let carousel: Ref<Event[][]> = ref(makeCarousel<Event>(props.events, props.quantity));
-
-    const activeCarouselGroup: ComputedRef<Event[]> = computed(() => {
-      return carousel.value[activeGroupIndex.value];
-    });
-
-    const showImageInFullScreen = () => {
-      fullScreenMode.value = true;
-    };
-
-    onMounted(() => {
-      // document.addEventListener('keyup', function (evt) {
-      //   switch (evt.key) {
-      //     case 'ArrowLeft': {
-      //       toPrev();
-      //       break;
-      //     }
-      //     case 'ArrowRight': {
-      //       toNext();
-      //       break;
-      //     }
-      //     case 'Escape': {
-      //       fullScreenMode.value = false;
-      //       break;
-      //     }
-      //   }
-      // });
-    });
-
-    const toNextGroup = () =>
-      (activeGroupIndex.value = activeGroupIndex.value + 1 < carousel.value.length ? activeGroupIndex.value + 1 : 0);
-    const toPreviousGroup = () =>
-      (activeGroupIndex.value = activeGroupIndex.value - 1 < 0 ? carousel.value.length - 1 : activeGroupIndex.value - 1);
-
-    const callAnimation = (curAnimation: Animations) => {
-      animation.value = curAnimation;
-      setTimeout(() => (animation.value = Animations.None), props.animationTime);
-    };
-
-    const toGroup = (value: number) => {
-      if (value == activeGroupIndex.value) {
-        return;
-      }
-      callAnimation(value < activeGroupIndex.value ? Animations.Prev : Animations.Next);
-      setTimeout(() => (activeGroupIndex.value = value), props.animationTime / 2);
-    };
-
-    const toNext = () => {
-      callAnimation(Animations.Next);
-      setTimeout(toNextGroup, props.animationTime / 2);
-    };
-
-    const toPrev = () => {
-      callAnimation(Animations.Prev);
-      setTimeout(toPreviousGroup, props.animationTime / 2);
-    };
-
-    return {
-      fullScreenMode,
-      mobileWindow,
-      Animations,
-      carousel,
-      activeGroupIndex,
-      carouselGroups: Array(carousel.value.length).keys(),
-      toGroup,
-      toNextGroup,
-      toPreviousGroup,
-      activeCarouselGroup,
-      showImageInFullScreen,
-      animation,
-      toNext,
-      toPrev,
-      cssAnimationTime,
-    };
+  height: {
+    type: String,
+    default: '360px',
+  },
+  maxHeight: {
+    type: String,
+    default: '360px',
+  },
+  startActiveGroupIndex: {
+    type: Number,
+    default: 0,
   },
 });
+defineEmits(['openModalWindow']);
+const cssAnimationTime = `${props.animationTime}ms`;
+// const fullScreenMode: Ref<boolean> = ref(false);
+const activeGroupIndex = ref(props.startActiveGroupIndex);
+
+// const mobileWindow = computed(() => {
+//   const width = window.innerWidth;
+//   let divisor = 3.5;
+//   if (width < 1600) {
+//     divisor = 2.5;
+//   }
+//   if (width < 600) {
+//     divisor = 1.6;
+//   }
+//   return width / divisor;
+// });
+//
+const animation: Ref<Animations> = ref(Animations.None);
+
+const carousel: Ref<NewsImage[][]> = ref(makeCarousel<NewsImage>(props.events, props.quantity));
+
+const activeCarouselGroup: ComputedRef<NewsImage[]> = computed(() => {
+  return carousel.value[activeGroupIndex.value];
+});
+
+// const showImageInFullScreen = () => {
+//   fullScreenMode.value = true;
+// };
+
+onMounted(() => {
+  // document.addEventListener('keyup', function (evt) {
+  //   switch (evt.key) {
+  //     case 'ArrowLeft': {
+  //       toPrev();
+  //       break;
+  //     }
+  //     case 'ArrowRight': {
+  //       toNext();
+  //       break;
+  //     }
+  //     case 'Escape': {
+  //       fullScreenMode.value = false;
+  //       break;
+  //     }
+  //   }
+  // });
+});
+
+const toNextGroup = () => (activeGroupIndex.value = activeGroupIndex.value + 1 < carousel.value.length ? activeGroupIndex.value + 1 : 0);
+const toPreviousGroup = () =>
+  (activeGroupIndex.value = activeGroupIndex.value - 1 < 0 ? carousel.value.length - 1 : activeGroupIndex.value - 1);
+
+const callAnimation = (curAnimation: Animations) => {
+  animation.value = curAnimation;
+  setTimeout(() => (animation.value = Animations.None), props.animationTime);
+};
+
+const toGroup = (value: number) => {
+  if (value == activeGroupIndex.value) {
+    return;
+  }
+  callAnimation(value < activeGroupIndex.value ? Animations.Prev : Animations.Next);
+  setTimeout(() => (activeGroupIndex.value = value), props.animationTime / 2);
+};
+
+const toNext = () => {
+  callAnimation(Animations.Next);
+  setTimeout(toNextGroup, props.animationTime / 2);
+};
+
+const toPrev = () => {
+  callAnimation(Animations.Prev);
+  setTimeout(toPreviousGroup, props.animationTime / 2);
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/base-style.scss';
+@import '@/services/assets/style/index.scss';
 .event-name {
   height: auto;
   &:hover {

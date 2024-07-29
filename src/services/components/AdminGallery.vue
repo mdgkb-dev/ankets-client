@@ -9,7 +9,7 @@
             </svg>
             <button class="admin-del2" @click.prevent="remove(element)">Удалить</button>
           </div>
-          <UploaderSingleScan
+          <UploderImage
             :file-info="element.fileInfo"
             :height="150"
             :default-ratio="defaultRatio"
@@ -28,14 +28,13 @@
 </template>
 
 <script lang="ts" setup>
-import { defineComponent, PropType } from 'vue';
+import { PropType } from 'vue';
 import draggable from 'vuedraggable';
 
-import Move from '@/services/assets/svg/Move.svg';
-import UploaderSingleScan from '@/services/components/UploaderSingleScan.vue';
-import IFiler from '@/services/interfaces/IFiler';
 import Arrays from '@/services/Arrays';
+import Move from '@/services/assets/svg/Move.svg';
 import ClassHelper from '@/services/ClassHelper';
+import IFiler from '@/services/interfaces/IFiler';
 const props = defineProps({
   fileList: {
     type: Array as PropType<IFiler[]>,
@@ -69,7 +68,7 @@ const remove = async (filer: IFiler) => {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/base-style.scss';
+@import '@/services/assets/style/index.scss';
 
 .groups {
   width: 100%;

@@ -1,31 +1,21 @@
 <template>
   <div class="admin-header fixed">
-    <div class="left-panel">
-      <!-- To open drawer -->
-      <el-button icon="el-icon-menu" class="hidden-md-and-up" @click="openDrawer"></el-button>
-      <!-- To open collapse side menu -->
-      <el-button icon="el-icon-menu" class="hidden-sm-and-down" @click="collapseSideMenu"></el-button>
-      <h3>Панель управления МДГКБ</h3>
-    </div>
+    <div class="left-panel"></div>
     <div class="right-panel">
       <AdminSearchMenu />
       <el-dropdown>
         <el-button>
           <div class="user-info">
             <div class="user-info-container">
-              <span>{{ user.email }}</span>
-              <!--              <span v-if="user.role.label">{{ user.role.label }}</span>-->
-              <!--              <span v-else>{{ user.role.name }}</span>-->
+              <!-- <span v-if="user.role.label">{{ user.role.label }}</span> -->
+              <!-- <span v-else>{{ user.role.name }}</span> -->
             </div>
             <i class="el-icon-user"></i>
           </div>
         </el-button>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item @click="logout">
-              <Logout />
-              Выйти
-            </el-dropdown-item>
+            <el-dropdown-item @click="logout"> <LogoutOutlined />Выйти </el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -35,42 +25,23 @@
   <div class="spacer"></div>
 </template>
 
-<script lang="ts">
-import { computed, ComputedRef, defineComponent } from 'vue';
-import { useRouter } from 'vue-router';
-import { useStore } from 'vuex';
+<script lang="ts" setup>
+import { LogoutOutlined } from '@ant-design/icons-vue';
 
-import Logout from '@/assets/svg/Logout.svg';
-import AdminSearchMenu from '@/views/adminLayout/AdminSearchMenu.vue';
+import AdminSearchMenu from '@/components/admin/AdminSearchMenu.vue';
 
-export default defineComponent({
-  name: 'AdminHeaderTop',
-  components: { Logout, AdminSearchMenu },
-
-  setup() {
-    const store = useStore();
-    const router = useRouter();
-    const collapseSideMenu = () => store.commit('admin/collapseSideMenu');
-    const openDrawer = () => store.commit('admin/openDrawer');
-    const user: ComputedRef<any> = computed(() => store.getters['auth/user']);
-    const logout = async () => {
-      await store.dispatch('auth/logout');
-      await router.push('/login');
-    };
-
-    return {
-      collapseSideMenu,
-      openDrawer,
-      logout,
-      user,
-    };
-  },
-});
+const logout = async () => {
+  PHelp.Auth.Logout();
+  await Router.To('/');
+};
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/styles/base-style.scss';
 $header-background-color: whitesmoke;
-$header-shadow: 0 0 10px 2px rgb(0 0 0 / 20%), 0 0px 10px rgb(0 0 0 / 24%);
+$header-shadow:
+  0 0 10px 2px rgb(0 0 0 / 20%),
+  0 0px 10px rgb(0 0 0 / 24%);
 $header-height: 61px;
 $button-background-color: #fff;
 
@@ -122,6 +93,11 @@ $button-background-color: #fff;
 .right-panel {
   display: flex;
   align-items: center;
+}
+
+.left-panel {
+  width: 60px;
+  height: 30px;
 }
 
 .fixed {

@@ -1,31 +1,31 @@
 <template>
+  <slot name="main" />
   <div v-if="mounted" class="mainblock">
     <div
       class="mainblock-left"
       :style="{
         minWidth: mobileWindow ? '100%' : menuWidth,
+        maxWidth: mobileWindow ? '100%' : menuWidth,
         marginLeft: mobileWindow ? '-110%' : '0',
-        top: mobileWindow ? '50px' : '',
+        position: mobileWindow ? 'fixed' : 'relative',
+        top: mobileWindow ? '140px' : '',
       }"
     >
       <div
         class="left-menu"
         :style="{
-          display: mobileWindow ? 'block' : 'flex',
-          justifyContent: mobileWindow ? '' : 'center',
-          minWidth: mobileWindow ? 'auto' : '100%',
-          boxShadow: '0 0px 10px 0px rgba(0 0 0 / 20%)',
+          minWidth: mobileWindow ? 'auto' : menuWidth,
+          boxShadow: mobileWindow ? '0 0px 10px 0px rgba(0 0 0 / 20%)' : '',
           marginLeft: !collapsed && mobileWindow ? '110%' : '0',
           borderTopLeftRadius: !mobileWindow ? '' : '0',
           borderBottomLeftRadius: !mobileWindow ? '' : '0',
-          left: mobileWindow ? '0' : '50%',
-          transform: mobileWindow ? 'none' : 'translateX(-50%)',
         }"
         @click="handClick()"
       >
         <slot name="menu" />
       </div>
     </div>
+    <div class="mainblock-right">
       <div class="title">
         <div
           class="icon"
@@ -36,64 +36,50 @@
         >
           <slot name="icon" />
         </div>
+        <slot name="title" />
+      </div>
+
+      <div class="body">
+        <slot name="body" />
       </div>
     </div>
-  <Menu />
+  </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, onBeforeMount, PropType, Ref, ref } from 'vue';
-
-import Menu from '@/services/assets/svg/Menu.svg';
-
-export default defineComponent({
-  name: 'AdaptiveContainer',
-  components: {
-    Menu,
+<script lang="ts" setup>
+const props = defineProps({
+  menuWidth: {
+    type: String as PropType<string>,
+    required: false,
+    default: '0px',
   },
-  props: {
-    menuWidth: {
-      type: String as PropType<string>,
-      required: false,
-      default: '0px',
-    },
-    mobileWidth: {
-      type: String as PropType<string>,
-      required: false,
-      default: '768px',
-    },
+  mobileWidth: {
+    type: String as PropType<string>,
+    required: false,
+    default: '1330px',
   },
-  setup(props) {
-    const mounted = ref(false);
-    const collapsed: Ref<boolean> = ref(true);
-    const mobileWindow = ref(window.matchMedia('(max-width: 768px)').matches);
+});
+const mounted = ref(false);
+const collapsed: Ref<boolean> = ref(true);
+const mobileWindow = ref(window.matchMedia('(max-width: 1330px)').matches);
 
-    const handClick = () => {
-      collapsed.value = !collapsed.value;
-    };
+const handClick = () => {
+  collapsed.value = !collapsed.value;
+};
 
-    onBeforeMount(async () => {
-      window.addEventListener('resize', () => {
-        switch (props.mobileWidth) {
-          case '1330px':
-            return (mobileWindow.value = window.matchMedia('(max-width: 1330px)').matches);
-          case '1024px':
-            return (mobileWindow.value = window.matchMedia('(max-width: 1024px)').matches);
-          case '768px':
-            return (mobileWindow.value = window.matchMedia('(max-width: 768px)').matches);
-        }
+onBeforeMount(async () => {
+  window.addEventListener('resize', () => {
+    switch (props.mobileWidth) {
+      case '1330px':
         return (mobileWindow.value = window.matchMedia('(max-width: 1330px)').matches);
-      });
-      mounted.value = true;
-    });
-
-    return {
-      collapsed,
-      handClick,
-      mobileWindow,
-      mounted,
-    };
-  },
+      case '1024px':
+        return (mobileWindow.value = window.matchMedia('(max-width: 1024px)').matches);
+      case '768px':
+        return (mobileWindow.value = window.matchMedia('(max-width: 768px)').matches);
+    }
+    return (mobileWindow.value = window.matchMedia('(max-width: 1330px)').matches);
+  });
+  mounted.value = true;
 });
 </script>
 
@@ -101,41 +87,60 @@ export default defineComponent({
 @import '@/assets/styles/base-style.scss';
 
 .mainblock {
-  position: fixed;
   display: flex;
   justify-content: space-between;
   width: 100%;
-  z-index: 100;
+  height: auto;
 }
 
 .mainblock-left {
   position: relative;
   display: flex;
   justify-content: left;
+  margin-right: 30px;
   height: 100%;
   left: 0px;
-  width: 100%;
+  z-index: 10;
 }
 
 .left-menu {
   position: absolute;
   top: 0px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0px;
   z-index: 1;
   max-height: 70vh;
   transition: 0.3s;
   overflow: hidden;
   overflow-y: auto;
-  background: #f57e20;
+  background: #ffffff;
+  border: $normal-border;
+}
+
+.mainblock-right {
+  position: relative;
+  width: 100%;
+  max-height: 100%;
+}
+
+.title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .icon {
   position: absolute;
-  top: 0px;
+  top: 50%;
+  transform: translateY(-50%);
   left: 16px;
   justify-content: center;
   align-items: center;
+}
+
+.body {
+  width: 100%;
 }
 
 @media screen and (max-width: 768px) {

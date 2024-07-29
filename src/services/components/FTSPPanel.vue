@@ -1,10 +1,9 @@
 <template>
-  <el-select v-model="curFTSP" label="Фильтры" clearable @change="set" @clear="clear"
-    placeholder="Выберите шаблон фильтра">
+  <el-select v-model="curFTSP" label="Фильтры" clearable placeholder="Выберите шаблон фильтра" @change="set" @clear="clear">
     <el-option v-for="preset in ftspPresets" :key="preset" :label="preset.name" :value="preset.id" />
   </el-select>
-  <PButton type="text" color="add" text="Добавить текущий фильтр в список фильтров" @click="openModal" v-if="ftsp.f.length > 0"/>
-  <PButton type="text" color="del" text="Удалить выбранный фильтр из списка фильтров" @click="remove" v-if="curFTSP" />
+  <PButton v-if="ftsp.f.length > 0" type="text" color="add" text="Добавить текущий фильтр в список фильтров" @click="openModal" />
+  <PButton v-if="curFTSP" type="text" color="del" text="Удалить выбранный фильтр из списка фильтров" @click="remove" />
   <ModalWindow v-if="modalOpened" :show="modalOpened">
     <el-input v-model="ftspName" placeholder="Введите название" />
     <PButton type="admin" color="blue" text="Сохранить" @click="save" />
@@ -15,11 +14,10 @@
 import FTSPPreset from '@/services/classes/FTSPPreset';
 
 const emit = defineEmits(['change']);
-const ftsp = Store.Item('filter', 'ftsp');
 
-const ftspPresets: Ref<FTSPPreset[]> = Store.Items('ftspPresets');
+const ftspPresets: FTSPPreset[] = FTSPPresetsStore.Items();
 const modalOpened = ref(false);
-const curFTSP = ref(undefined);
+const curFTSP: Ref<FTSP | undefined> = ref(undefined);
 
 const openModal = () => {
   modalOpened.value = true;
@@ -27,46 +25,44 @@ const openModal = () => {
 const ftspName = ref('');
 
 const clear = async () => {
-  curFTSP.value = undefined
-  ftsp.value.resetF()
-  Store.Set('filter/setRestore');
-  emit('change')
+  curFTSP.value = undefined;
+  FTSP.Get().resetF();
+  emit('change');
 };
 
 const remove = async () => {
-  await Store.Remove('ftspPresets', curFTSP.value);
-  ftsp.value.resetF()
-  curFTSP.value = undefined
-  emit('change')
+  await FTSPPresetsStore.Remove(curFTSP.value);
+  FTSP.Get().resetF();
+  curFTSP.value = undefined;
+  emit('change');
 };
 
 const set = async (ftspPresetId?: string) => {
   if (!ftspPresetId) {
-    return
+    return;
   }
-  const preset = ftspPresets.value.find((f: FTSPPreset) => f.id === ftspPresetId)
-  curFTSP.value = preset.id;
-  ftsp.value.createFrom(preset.ftsp);
-  Store.Set('filter/setRestore');
+  const preset = ftspPresets.find((f: FTSPPreset) => f.id === ftspPresetId);
+  curFTSP.value = preset?.id;
+  // FTSP.Get().createFrom(preset?.ftsp);
   emit('change');
 };
 
 const save = async () => {
-  const preset = FTSPPreset.Create(Provider.ftsp.value);
+  const preset = FTSPPreset.Create(FTSP.Get());
   preset.name = ftspName.value;
-  ftspName.value = ''
-  await Store.Create('ftspPresets', preset);
-  Store.AppendToAll('ftspPresets', [preset]);
+  ftspName.value = '';
+  await FTSPPresetsStore.Create(preset);
+  FTSPPresetsStore.AppendToAll([preset]);
   curFTSP.value = preset.id;
   modalOpened.value = false;
 };
 
 onBeforeMount(async () => {
-  await Store.GetAll('ftspPresets');
+  await FTSPPresetsStore.GetAll();
 });
 </script>
 <style lang="scss" scoped>
-@import '@/assets/styles/base-style.scss';
+@import '@/services/assets/style/index.scss';
 
 // .filter-save {
 //   position: sticky;

@@ -1,6 +1,7 @@
 <template>
   <div class="mainblock">
     <div
+      ref="menuRef"
       class="top-menu"
       :style="{
         gridTemplateColumns: `repeat(auto-fit, minmax(${minMenuItemWidth}, 1fr))`,
@@ -8,9 +9,11 @@
     >
       <slot name="menu" />
     </div>
+    {{ h }}
     <div
       class="body-container"
       :style="{
+        height: h,
         background: background,
       }"
     >
@@ -19,33 +22,41 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from 'vue';
-
-export default defineComponent({
-  name: 'MenuContainer',
-  props: {
-    height: {
-      type: String as PropType<string>,
-      required: false,
-      default: '',
-    },
-    minMenuItemWidth: {
-      type: String as PropType<string>,
-      required: false,
-      default: '150px',
-    },
-    background: {
-      type: String as PropType<string>,
-      required: false,
-      default: '#ffffff',
-    },
+<script lang="ts" setup>
+defineProps({
+  height: {
+    type: String as PropType<string>,
+    required: false,
+    default: '',
   },
+  minMenuItemWidth: {
+    type: String as PropType<string>,
+    required: false,
+    default: '150px',
+  },
+  background: {
+    type: String as PropType<string>,
+    required: false,
+    default: '#ffffff',
+  },
+});
+const windowWidth = ref(window.innerWidth);
+const menuRef = ref();
+const menuH = ref(50);
+const onWidthChange = () => {
+  windowWidth.value = window.innerWidth;
+  menuH.value = menuRef.value ? menuRef.value.clientHeight : 50;
+};
+onMounted(() => window.addEventListener('resize', onWidthChange));
+onUnmounted(() => window.removeEventListener('resize', onWidthChange));
+
+const h = computed(() => {
+  return `calc(100%-${menuH.value}px)`;
 });
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/base-style.scss';
+@import '@/services/assets/style/index.scss';
 
 .mainblock {
   display: block;
@@ -73,41 +84,17 @@ export default defineComponent({
   margin-top: 1px;
   border-top: 0.5px solid #343d5c;
   box-sizing: border-box;
-  overflow: auto;
+  overflow: scroll;
   height: 100%;
   overflow: hidden;
   overflow-y: auto;
   padding-bottom: 50px;
 }
 
-@media (max-width: 1436px) {
-  .body-container {
-    height: calc(100% - 55px);
-    height: 100%;
-  }
-}
-
-@media (max-width: 1050px) {
-  .body-container {
-    height: calc(100% - 81px);
-  }
-}
-
 @media (max-width: 992px) {
   .mainblock {
     margin: 0 10px;
     width: calc(100% - 22px);
-  }
-  .body-container {
-    height: calc(100% - 40px);
-    // height: 100%;
-    // height: calc(100vh - 10px);
-  }
-}
-
-@media (max-width: 822px) {
-  .body-container {
-    height: calc(100% - 45px);
   }
 }
 

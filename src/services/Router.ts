@@ -1,22 +1,40 @@
 import { RouteLocationNormalizedLoaded } from 'vue-router';
+import { RouteLocation } from 'vue-router';
 
 import router from '@/router';
 
+import PHelp from './PHelp';
+
 export default abstract class Router {
   static async To(route: string) {
-    router.push(route);
+    PHelp.Loading.Show();
+    await router.push(route);
+    PHelp.Loading.Hide();
   }
 
-  static Id() {
-    return Router.Route().params['id'];
+  static async Replace(route: string) {
+    await router.replace(route);
   }
+
+  static Id(): string {
+    return Router.GetStringParam('id');
+  }
+
+  static Slug(): string {
+    return Router.GetStringParam('slug');
+  }
+
+  static async Back() {
+    PHelp.Loading.Show();
+    router.go(-1);
+    PHelp.Loading.Hide();
+  }
+
   static GetQid() {
     return Router.GetStringQueryParam('qid');
   }
 
   static Route(): RouteLocationNormalizedLoaded {
-    console.log("route");
-
     return router.currentRoute.value;
   }
 
@@ -39,7 +57,7 @@ export default abstract class Router {
     if (safePath[0] === '/') {
       safePath = path.substring(1);
     }
-    await router.push(`/admin/${safePath}`);
+    await Router.To(`/admin/${safePath}`);
   }
   static GetStringQueryParam(param: string): string {
     return String(Router.Route().query[param]);
@@ -47,5 +65,15 @@ export default abstract class Router {
 
   static GetNumberQueryParam(param: string): number {
     return Number(Router.Route().query[param] ?? 0);
+  }
+  static GetStringParam(param: string): string {
+    return Router.Route().params[param] as string;
+  }
+
+  static Resolve(link: string): RouteLocation {
+    return router.resolve(link);
+  }
+  static GetRouter() {
+    return router;
   }
 }

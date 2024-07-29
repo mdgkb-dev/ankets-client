@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts" setup>
-const props = defineProps({
+defineProps({
   title: {
     type: String as PropType<string>,
     required: true,
@@ -31,7 +31,7 @@ const submit = async (): Promise<void> => {
 };
 </script>
 <style lang="scss" scoped>
-@import '@/assets/styles/base-style.scss';
+@import '@/services/assets/style/index.scss';
 
 .button {
   width: auto;

@@ -1,0 +1,98 @@
+@import '../../../utils/index.scss';
+
+//skin: profile
+//type: primary, success, warning, danger, neutral, disabled, c_blue, c_green
+.p-button_profile {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: $p-button-transition;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+  margin: 0;
+  padding: $p-button-padding;
+  border-radius: 100px;
+  min-height: 32px;
+  max-height: 32px;
+  width: 100%;
+  max-width: $p-button-max-width;
+  min-width: $p-button-min-width;
+  font-size: $base-font-size;
+
+  &_primary {
+    border: 1px solid $button_primary_color;
+    background: $button_primary_background;
+    color: $button_primary_color;
+    &:hover {
+      background: lighten($button_primary_background, $percent);
+    }
+  }
+
+  &_success {
+    border: 1px solid $button_success_color;
+    background: $button_success_background;
+    color: $button_success_color;
+    &:hover {
+      background: lighten($button_success_background, $percent);
+    }
+  }
+
+  &_warning {
+    border: 1px solid $button_warning_color;
+    background: $button_warning_background;
+    color: $button_warning_color;
+    &:hover {
+      background: lighten($button_warning_background, $percent);
+    }
+  }
+
+  &_danger {
+    border: 1px solid $button_danger_color;
+    background: $button_danger_background;
+    color: $button_danger_color;
+    &:hover {
+      background: lighten($button_danger_background, $percent);
+    }
+  }
+
+  &_neutral {
+    border: 1px solid $button_neutral_color;
+    background: $button_neutral_background;
+    color: $button_neutral_color;
+    &:hover {
+      background: lighten($button_neutral_background, $percent);
+    }
+  }
+
+  &_disabled {
+    border: 1px solid $button_disabled_color;
+    background: $button_disabled_background;
+    color: $button_disabled_color;
+    cursor: auto;
+    &:hover {
+      background: $button_disabled_background;
+    }
+  }
+
+  &_c_blue {
+    border: 1px solid $site_blue;
+    background: $site_blue;
+    color: #ffffff;
+    &:hover {
+      background: darken($site_blue, 10%);
+      border-color: darken($site_blue, 10%);
+    }
+  }
+
+  &_c_green {
+    border: 1px solid $main_green;
+    background: $main_green;
+    color: #ffffff;
+    &:hover {
+      background: darken($main_green, 10%);
+      border-color: darken($main_green, 10%);
+    }
+  }
+}

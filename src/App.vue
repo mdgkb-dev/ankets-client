@@ -1,7 +1,9 @@
 <template>
-  <PMessage />
+  <PNotification />
+  <PDialog />
+  <PLoader v-if="PHelp.Loading.IsVisible()" />
   <Suspense>
-    <component :is="$route.meta.layout || 'AdminLayout'" v-if="mounted">
+    <component :is="$route.meta.layout || 'MainLayout'" v-if="mounted">
       <router-view />
     </component>
   </Suspense>
@@ -10,35 +12,29 @@
 <script lang="ts">
 import { defineComponent, watch } from 'vue';
 import { onBeforeMount, Ref, ref } from 'vue';
-import AdminLayout from '@/views/adminLayout/AdminLayout.vue';
-import LoginLayout from '@/views/loginLayout/LoginLayout.vue';
-import Provider from './services/Provider/Provider';
+import { useRoute } from 'vue-router';
 
-// const message =
+import AdminLayout from '@/views/adminLayout/AdminLayout.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
     AdminLayout,
-    LoginLayout,
   },
   setup() {
+    const route = useRoute();
     const mounted: Ref<boolean> = ref(false);
-    watch(
-      () => Provider.route(),
-      () => {
-        changeDocumentTitle();
-      }
-    );
+    watch(route, () => {
+      changeDocumentTitle();
+    });
 
     const changeDocumentTitle = () => {
-      const defaultTitle = 'ANKETS';
-      document.title = Provider.route().meta.title ? `${Provider.route().meta.title} | ТСР` : defaultTitle;
+      const defaultTitle = 'Тестовые проект';
+      document.title = route.meta.title ? `${route.meta.title} | МДГКБ` : defaultTitle;
     };
-
     onBeforeMount(async (): Promise<void> => {
+      PHelp.Auth.Actualize();
       changeDocumentTitle();
-      // await Provider.store.dispatch('auth/setAuth');
       mounted.value = true;
     });
 

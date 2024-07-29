@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "target": "ESNext",
     "module": "esnext",
     "strict": true,
     "jsx": "preserve",
@@ -15,21 +15,11 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": [
-      "webpack-env",
-      "jest"
-    ],
+    "types": ["webpack-env", "jest"],
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     },
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ]
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
   "include": [
     "src/**/*.ts",
@@ -38,10 +28,11 @@
     "tests/**/*.ts",
     "tests/**/*.tsx",
     "src/components",
-    "src/index.d.ts",
-    "src/custom.d.ts"
+    "src/custom.d.ts",
+    "src/vue3-emoji-picker.d.ts",
+    "src/index.d.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "files": ["./auto-imports.d.ts"],
+  "exclude": ["node_modules"]
 }
+

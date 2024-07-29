@@ -1,40 +1,34 @@
 <template>
-  <div class="filter-form">
-    <!-- <PCheckBox v-model="filterModel.boolean" :label="filterModel.label" size="mini" @change="setFilterModel" /> -->
-    <el-form label-position="top">
-      <el-form-item>
-        <el-checkbox :model-value="filterModel.boolean" :label="filterModel.label" size="mini"
-          @change="setFilterModel" />
-      </el-form-item>
-    </el-form>
-  </div>
+  <PCheckBox v-model="checked" :label="model.label" size="mini" @change="setFilterModel" />
+  <!-- <el-checkbox :model-value="model.boolean" :label="model.label" size="mini" -->
+  <!--   @change="setFilterModel" /> -->
 </template>
 
 <script lang="ts" setup>
-import PCheckBox from '@/services/components/PCheckBox.vue';
 import FilterModel from '@/services/classes/filters/FilterModel';
 const props = defineProps({
-  filterModel: {
+  model: {
     type: Object as PropType<FilterModel>,
     default: () => new FilterModel(),
     required: true,
   },
-})
-const emits = defineEmits(['load'])
+});
+const checked = ref(false);
+const emits = defineEmits(['load']);
 
-const setFilterModel = (value: boolean) => {
-  props.filterModel.setBoolean(value);
-  if (value) {
-    FTSP.Get().setF(props.filterModel)
+const setFilterModel = () => {
+  props.model.setBoolean(checked.value);
+  if (checked.value) {
+    FTSP.Get().setF(props.model);
   } else {
-    FTSP.Get().removeF(props.filterModel)
+    FTSP.Get().removeF(props.model);
   }
   emits('load');
 };
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/base-style.scss';
+@import '@/services/assets/style/index.scss';
 // @import '@/assets/elements/filterForm.scss';
 
 :deep(.el-input__inner) {
@@ -77,4 +71,5 @@ const setFilterModel = (value: boolean) => {
 
 // .filter-form {
 // width: 100%;
-// }</style>
+// }
+</style>

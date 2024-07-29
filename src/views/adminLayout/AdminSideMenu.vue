@@ -1,115 +1,70 @@
 <template>
-  <div class="menu-icon" @click="openMenuBar()">
-    <IconMenuLines hover-color="#343D5C" size="32px" margin="0 0 0 15px" />
+  <div class="menu-icon" @click="PHelp.AdminUI.Menu.Toggle()">
+    <IconMenuLines hover-color="#343D5C" size="32px" margin="0 0 0 9px" />
   </div>
-  <div v-if="mounted" class="admin-side-menu" :style="{
-    marginLeft: showMenuBar ? '0px' : '-250px',
-    boxShadow: shadow ? '0 0 6px rgba(0, 0, 0, 0.3)' : 'none',
-    borderRight: border ? '1px solid #c4c4c4' : 'none',
-  }">
-    <div class="menu-header">
-      <StringItem string="Логотип" padding="33px 0 0 0" color="#6B7CC6" /> <!--Logo-->
+  <div
+    class="admin-side-menu"
+    :style="{
+      marginLeft: PHelp.AdminUI.Menu.IsOpen() ? '0px' : '-344px',
+      boxShadow: shadow ? '0 0 6px rgba(0, 0, 0, 0.3)' : 'none',
+      borderRight: border ? '1px solid #c4c4c4' : 'none',
+    }"
+  >
+    <div class="menu-tools">
+      <PInput v-model="PHelp.AdminUI.Menu.filterString" style="width: 100%; margin-right: 10px" placeholder="Поиск по меню" />
     </div>
-    <div class="menu-tools" @click="showMenuBar = false">
-      <IconPfArrowLeft size="20px" />
-      <StringItem string="Скрыть меню" width="auto" margin="0 0 0 10px" padding="3px 0 0 0" />
-    </div>
-    <div class="menu-body">
+    <div v-if="mounted" class="menu-body">
       <div>
-        <!-- <DropListItem name="Мой профиль"> -->
-        <!-- <StringItem string="Общие данные" width="auto" justify-content="left" padding="6px 0" -->
-        <!--   @click="Router.To('/profile')" /> -->            
-        <div
-          :class="{ 'selected-menu-item': '/profile/users-researches' === activePath, 'menu-item': '/profile/users-researches' !== activePath }"
-          @click="Router.To('/profile/users-researches')">
-          Мои анкеты
-        </div>
-        <!-- <StringItem string="Мои анкеты" width="auto" justify-content="left" padding="6px 0"
-          @click="Router.To('/profile/users-researches')" /> -->
-        <!-- < StringItem string =" Документы" width="auto" justify-content="left" padding="6px 0" /> -->
-        <!-- <StringItem string="Экспертизы" width="auto" justify-content="left" padding="6px 0" /> -->
-        <!-- <StringItem string="Мои настройки" width="auto" justify-content="left" padding="6px 0" /> -->
-        <!-- </DropListItem> -->
-        <!-- <DropListItem name="Анкеты" v-if="isAdmin"> -->
-        <!-- <StringItem string="Список анкет" width="auto" justify-content="left" padding="6px 0" /> -->
-        <!--   <StringItem string="Конструктор анкет" width="auto" justify-content="left" padding="6px 0" /> -->
-        <!-- </DropListItem> -->
-        <DropListItem name="Администрирование" v-if="isAdmin">
-          <template v-for="item in menus" :key="item.name">
-            <div v-if="item.link !== '/'"
-              :class="{ 'selected-menu-item': item.link === activePath, 'menu-item': item.to !== activePath }"
-              :index="item.link" @click="Router.To(item.link)">
-              {{ item.name }}
-            </div>
-          </template>
-          <!-- <StringItem string="Документы" width="auto" justify-content="left" padding="6px 0" /> -->
-          <!-- <StringItem string="Экспертизы" width="auto" justify-content="left" padding="6px 0" /> -->
-          <!-- <StringItem string="Мои настройки" width="auto" justify-content="left" padding="6px 0" /> -->
+        <DropListItem v-for="item in PHelp.AdminUI.Menu.Get()" :key="item.name" :name="item.name">
+          <div
+            v-for="children in PHelp.AdminUI.Menu.GetChildren(item)"
+            :key="children.to"
+            :index="children.to"
+            :class="{
+              'selected-menu-item': children.to === PHelp.AdminUI.Menu.GetPath(),
+              'menu-item': children.to !== PHelp.AdminUI.Menu.GetPath(),
+            }"
+            @click="Router.To(children.to)"
+          >
+            {{ children.name }}
+          </div>
         </DropListItem>
-        <!-- <DropListItem name="Аналитика" v-if="isAdmin"></DropListItem> -->
-        <!-- <DropListItem name="Чат"></DropListItem> -->
       </div>
     </div>
     <div class="exit-button-container">
-      <PButton skin="royal" type="blue" text="Выйти" @click="logout" height="30px" margin="0 10px" />
+      <PButton skin="base" type="primary" text="На главную" height="30px" margin="10px" width="120px" @click="Router.To('/')" />
+      <PButton skin="base" text="Выйти" height="30px" margin="10px" width="120px" @click="logout" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import IconMenuLines from '@/components/Icons/IconMenuLines.vue';
-import MenusSortsLib from '@/libs/sorts/MenusSortsLib';
-import Menu from '@/services/classes/Menu';
-import Router from '@/services/Router';
-import StringItem from '@/services/components/StringItem.vue';
-import IconPfArrowLeft from '@/components/Icons/IconPfArrowLeft.vue';
-import PButton from '@/services/components/PButton.vue';
-import DropListItem from '@/views/adminLayout/DropListItem.vue';
+import menuList from './menuList';
 
-const props = defineProps({
+defineProps({
   shadow: { type: Boolean as PropType<Boolean>, default: true },
   border: { type: Boolean as PropType<Boolean>, default: true },
 });
 
-
-const isCollapseSideMenu = Store.Item('admin', 'isCollapseSideMenu');
-const closeDrawer = () => Store.Commit('admin/closeDrawer');
-const activePath: Ref<string> = ref('');
-const auth = Store.Item('auth', 'auth');
-const user = computed(() => auth.value.user.get())
-const isAdmin = computed(() => user.value.role === 'admin')
-// const applicationsCounts: Ref<IApplicationsCount[]> = computed(() => store.getters['admin/applicationsCounts']);
+// const activePath: Ref<string> = ref('');
 const mounted = ref(false);
-const showMenuBar: Ref<boolean> = ref(true);
-// const userPermissions: ComputedRef<IPathPermission[]> = computed(() => store.getters['auth/userPathPermissions']);
-const menus: ComputedRef<Menu[]> = Store.Items('menus');
 
 watch(
-  () => Router.Route().path,
+  () => Router.GetPath(),
   () => {
-    activePath.value = Router.Route().path;
+    PHelp.AdminUI.Menu.SetPath(Router.GetPath());
   }
 );
 
 onBeforeMount(async () => {
-  const ftsp = new FTSP();
-  ftsp.setSortModel(MenusSortsLib.byOrder());
-  await Store.FTSP('menus', { withCache: true, ftsp: ftsp });
-  activePath.value = Router.Route().path;
+  PHelp.AdminUI.Menu.Set(menuList);
+  PHelp.AdminUI.Menu.SetPath(Router.GetPath());
   mounted.value = true;
 });
 
-onBeforeUnmount(async () => {
-  // await store.dispatch('admin/unsubscribeApplicationsCountsGet');
-});
-
-const openMenuBar = async () => {
-  showMenuBar.value = true;
-};
-
 const logout = async () => {
-  // auth.value.logout();
-  await Router.To('/login');
+  PHelp.Auth.Logout();
+  await Router.To('/');
 };
 </script>
 
@@ -119,8 +74,8 @@ const logout = async () => {
 .menu-icon {
   position: absolute;
   top: 14px;
-  left: 5px;
-  z-index: 5;
+  left: 2px;
+  z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -129,10 +84,10 @@ const logout = async () => {
 
 .admin-side-menu {
   box-sizing: border-box;
-  width: 240px;
+  min-width: 300px;
   position: relative;
   min-height: inherit;
-  height: inherit;
+  height: 100%;
   float: left;
   background-color: $menu-background;
   border-right: 1px solid #e6e6e6;
@@ -140,20 +95,21 @@ const logout = async () => {
   overflow-x: hidden;
   padding: 0;
   border-right: 1px solid #c4c4c4;
-  z-index: 10;
+  z-index: 999;
   -webkit-user-select: none;
   /* Safari */
   -ms-user-select: none;
   /* IE 10 and IE 11 */
   user-select: none;
   /* Standard syntax */
+  transition: $transition;
 }
 
 .menu-header {
   box-sizing: border-box;
   margin: 0 20px;
   height: 65px;
-  border-bottom: 1px solid #E3E7FB;
+  border-bottom: 1px solid #e3e7fb;
 }
 
 .menu-tools {
@@ -161,7 +117,7 @@ const logout = async () => {
   display: flex;
   justify-content: left;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 10px 0 55px;
   cursor: pointer;
 }
 
@@ -199,11 +155,12 @@ const logout = async () => {
 
 .exit-button-container {
   margin: 0;
-  width: 100%;
   display: flex;
-  justify-content: left;
+  justify-content: center;
   position: absolute;
-  bottom: 50px;
+  bottom: 0px;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .exit-button {

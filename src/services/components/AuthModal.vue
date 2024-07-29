@@ -1,20 +1,15 @@
 <template>
-  <ModalWindow :show="modal.visible" @close="close" width="320px">
+  <PModalWindow :show="PHelp.AuthModal.IsVisible()" :closable="PHelp.AuthModal.IsClosable()" width="320px" padding="30px" @close="close">
     <AuthForm @action="$emit('action')" />
-  </ModalWindow>
+  </PModalWindow>
 </template>
 
 <script lang="ts" setup>
-import Provider from '@/services/Provider/Provider';
-
-const modal: ComputedRef<AuthModal> = computed(() => Provider.store.getters['auth/modal']);
-const form: ComputedRef<AuthForm> = computed(() => Provider.store.getters['auth/form']);
-
-const emits = defineEmits(['action']);
+defineEmits(['action']);
 
 const close = () => {
-  modal.value.close();
-  form.value.reset();
+  PHelp.AuthModal.Close();
+  PHelp.AuthForm.Reset();
 };
 </script>
 

@@ -1,6 +1,13 @@
 <template>
-  <el-dialog v-if="show" top="10vh" :model-value="show" :width="width" :show-close="true" :before-close="beforeClose"
-    @close="$emit('close')">
+  <el-dialog
+    v-if="show"
+    top="10vh"
+    :model-value="show"
+    :width="width"
+    :show-close="true"
+    :before-close="beforeClose"
+    @close="$emit('close')"
+  >
     <template #title>
       {{ title }}
     </template>
@@ -9,9 +16,7 @@
 </template>
 
 <script lang="ts">
-import { ElMessage, ElMessageBox } from 'element-plus';
-import { v4 as uuidv4 } from 'uuid';
-import { computed, defineComponent, onBeforeMount, PropType, Ref, ref, withDirectives } from 'vue';
+import { defineComponent, PropType, ref } from 'vue';
 
 export default defineComponent({
   name: 'ModalWindow',
@@ -32,9 +37,8 @@ export default defineComponent({
   },
   emits: ['save', 'close'],
 
-  setup(props, { emit }) {
+  setup(props) {
     const form = ref();
-    // const representative: Ref<Representative> = computed(() => Provider.store.getters['representatives/item']);
 
     const submitForm = async (): Promise<void> => {
       // saveButtonClick.value = true;
@@ -48,39 +52,36 @@ export default defineComponent({
 
     const beforeClose = (done: () => void) => {
       if (props.showCloseDialog) {
-        ElMessageBox.confirm('У вас есть несохранённые изменения', 'Вы уверены, что хотите закрыть окно?', {
-          distinguishCancelAndClose: true,
-          confirmButtonText: 'Закрыть',
-          cancelButtonText: 'Не закрывать',
-        })
-          .then(() => {
-            // Вызывается при сохранении
-            ElMessage({
-              type: 'warning',
-              message: 'Данные не были сохранёны',
-            });
-            done();
-          })
-          .catch(() => null);
+        // ElMessageBox.confirm('У вас есть несохранённые изменения', 'Вы уверены, что хотите закрыть окно?', {
+        //   distinguishCancelAndClose: true,
+        //   confirmButtonText: 'Закрыть',
+        //   cancelButtonText: 'Не закрывать',
+        // })
+        //   .then(() => {
+        //     // Вызывается при сохранении
+        //     PHelp.Notification.Warning( 'Данные не были сохранёны',);
+        //     done();
+        //   })
+        // .catch(() => null);
       } else {
         done();
       }
     };
 
     const close = () => {
-      ElMessageBox.confirm('У вас есть несохранённые изменения', 'Вы уверены, что хотите закрыть окно?', {
-        distinguishCancelAndClose: true,
-        confirmButtonText: 'Закрыть',
-        cancelButtonText: 'Отмена',
-      })
-        .then(() => {
-          ElMessage({
-            type: 'warning',
-            message: 'Данные не были сохранёны',
-          });
-          emit('close');
-        })
-        .catch(() => null);
+      // ElMessageBox.confirm('У вас есть несохранённые изменения', 'Вы уверены, что хотите закрыть окно?', {
+      //   distinguishCancelAndClose: true,
+      //   confirmButtonText: 'Закрыть',
+      //   cancelButtonText: 'Отмена',
+      // })
+      //   .then(() => {
+      //     ElMessage({
+      //       type: 'warning',
+      //       message: 'Данные не были сохранёны',
+      //     });
+      //     emit('close');
+      //   })
+      //   .catch(() => null);
     };
 
     return {
@@ -117,7 +118,7 @@ export default defineComponent({
 
 :deep(.el-dialog__body) {
   padding: 10px;
-  overflow: auto;
+  overflow: scroll;
 }
 
 :deep(.el-dialog__header) {

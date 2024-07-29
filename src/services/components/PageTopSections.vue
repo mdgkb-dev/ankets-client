@@ -2,8 +2,7 @@
   <MenuContainer v-if="mounted" min-menu-item-width="160px" background="#DFF2F8">
     <template #menu>
       <div v-for="menu in sections" :key="menu.id">
-        <div :class="{ 'selected-tab': activeMenu.id === menu.id, tab: activeMenu.id !== menu.id }"
-          @click="changeMenu(menu.id)">
+        <div :class="{ 'selected-tab': activeMenu.id === menu.id, tab: activeMenu.id !== menu.id }" @click="changeMenu(menu.id)">
           {{ menu.name }}
         </div>
       </div>
@@ -15,51 +14,45 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ComputedRef, onBeforeMount, onMounted, PropType, Ref, ref } from 'vue';
-
 import CustomSection from '@/services/classes/page/CustomSection';
 import MenuContainer from '@/services/components/MenuContainer.vue';
-import Provider from '@/services/Provider/Provider';
 
 const componentKey = ref(0);
 const mounted = ref(false);
-const customSections: ComputedRef<CustomSection[]> = computed(() => Provider.store.getters['customSections/items']);
 const sections: Ref<CustomSection[]> = ref([]);
 const activeMenu: Ref<CustomSection> = ref(sections.value[0]);
-const props = defineProps({
+defineProps({
   components: {
     type: Object as PropType<Object>,
     required: true,
   },
 });
 
-const component = shallowRef(props.components[props.components[0]]);
+// const component = shallowRef(props.components[props.components[0]]);
 
 const setMenuFromRoute = () => {
-  let menu = Provider.route().query.menu as string;
-  if (!menu) {
-    menu = customSections.value.find((c) => props.components[c.component])?.id;
-  }
-  changeMenu(menu);
+  // let menu = Router.Route().query.menu as string;
+  // if (!menu) {
+  //   // menu = customSections.value.find((c) => props.components[c.component])?.id;
+  // }
+  // changeMenu(menu);
 };
 
 const changeMenu = (customSectionId: string) => {
   console.log(customSectionId);
-  const section = customSections.value.find((m: CustomSection) => {
-    return m.id === customSectionId;
-  });
-  if (!section) {
-    return;
-  }
-  activeMenu.value = section;
-  component.value = props.components[activeMenu.value.component];
-  Provider.router.replace({ query: { menu: section.id as string } });
+  // const section = customSections.value.find((m: CustomSection) => {
+  //   return m.id === customSectionId;
+  // });
+  // if (!section) {
+  //   return;
+  // }
+  // activeMenu.value = section;
+  // component.value = props.components[activeMenu.value.component];
   componentKey.value += 1;
 };
 
 const load = async () => {
-  await Provider.store.dispatch('customSections/getAll', { withCache: true });
-  sections.value = customSections.value.filter((item) => props.components[item.component]);
+  // sections.value = customSections.value.filter((item) => props.components[item.component]);
   setMenuFromRoute();
   mounted.value = true;
 };
@@ -71,7 +64,7 @@ onBeforeMount(async () => {
 
 <style lang="scss" scoped>
 @import '@/assets/elements/collapse.scss';
-@import '@/assets/styles/base-style.scss';
+@import '@/services/assets/style/index.scss';
 
 .field {
   width: 100%;

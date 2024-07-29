@@ -9,12 +9,12 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'DateInputRange_v2',
+  name: 'DateInputRangeV2',
 });
 </script>
 
 <style scoped lang="scss">
-@import '@/assets/styles/base-style.scss';
+@import '@/services/assets/style/index.scss';
 
 .date-range {
   display: flex;

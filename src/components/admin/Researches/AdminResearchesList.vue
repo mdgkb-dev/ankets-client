@@ -1,56 +1,55 @@
 <template>
-  <PaginationWrapper v-if="mounted" pagination show-header>
-      <div class="research-count">Количество анкет: {{ count }}</div>
-      <div v-for="(research, i) in researches" :key="research.id">
-        <CollapseItem :is-collaps="false" padding="0 8px">
-          <template #inside-title>
-            <div class="flex-block" @click.prevent="() => undefined">
-              <div class="item-flex">
-                <div class="line-item-left">
-                  <StringItem :string="i + 1" width="42px" margin="4px 0 0 0" />
-                  <PButton skin="text" text="Редактировать" width="120px" @click="Router.ToAdmin('researches/' + research.id)" />
-                  <PButton skin="text" text="Назначить" width="90px" @click="assignResearch(research.id)" />
-                  <StringItem :string="research.name" margin="4px 0 0 0"/>
-                </div>
-              </div>
-              <div class="item-flex">
-                <GridContainer max-width="1920px" custom-class="grid"> </GridContainer>
+  <AdminListWrapper v-if="mounted" show-header :store="ResearchesStore">
+    <div class="research-count">Количество анкет: {{ count }}</div>
+    <div v-for="(research, i) in researches" :key="research.id">
+      <CollapseItem :is-collaps="false" padding="0 8px">
+        <template #inside-title>
+          <div class="flex-block" @click.prevent="() => undefined">
+            <div class="item-flex">
+              <div class="line-item-left">
+                <StringItem :string="i + 1" width="42px" margin="4px 0 0 0" />
+                <PButton skin="text" text="Редактировать" width="120px" @click="Router.ToAdmin('researches/' + research.id)" />
+                <PButton skin="text" text="Назначить" width="90px" @click="assignResearch(research.id as string)" />
+                <StringItem :string="research.name" margin="4px 0 0 0" />
               </div>
             </div>
-          </template>
-        </CollapseItem>
-      </div>
-  </PaginationWrapper>
+            <div class="item-flex">
+              <GridContainer max-width="1920px" custom-class="grid"> </GridContainer>
+            </div>
+          </div>
+        </template>
+      </CollapseItem>
+    </div>
+  </AdminListWrapper>
   <PModalWindow width="960px" top="10vh" :show="showAddModal" @close="showAddModal = false">
     <CreateResearchForm @add="showAddModal = false" />
   </PModalWindow>
   <PModalWindow width="960px" top="10vh" :show="showAssignResearchModal" @close="showAssignResearchModal = false">
-    <AssignResearchForm @add="showAssignResearchModal = false" :research-id="assignResearchId" />
+    <AssignResearchForm :research-id="assignResearchId" @add="showAssignResearchModal = false" />
   </PModalWindow>
 </template>
 
 <script lang="ts" setup>
 import Research from '@/classes/Research';
-import ResearchesSortsLib from '@/libs/sorts/ResearchesSortsLib';
+// import ResearchesSortsLib from '@/libs/sorts/ResearchesSortsLib';
 import Hooks from '@/services/Hooks/Hooks';
-import Provider from '@/services/Provider/Provider';
-import PModalWindow from '@/services/components/PModalWindow.vue';
 
 const showAddModal: Ref<boolean> = ref(false);
 const showAssignResearchModal: Ref<boolean> = ref(false);
 const assignResearchId: Ref<string> = ref('');
-const researches: Ref<Research[]> = computed(() => Provider.store.getters['researches/items']);
-const count: Ref<number> = computed(() => Provider.store.getters['researches/count']);
+const researches: Research[] = ResearchesStore.Items();
+const count: Ref<number> = ResearchesStore.Count();
 
 const mounted = ref(false);
 
 const loadResearches = async () => {
-  await Provider.store.dispatch('researches/ftsp');
+  await ResearchesStore.FTSP();
   mounted.value = true;
 };
 
 const load = async () => {
   await Promise.all([loadResearches()]);
+  PHelp.AdminUI.Head.Set('Список анкет', [Button.Success('Добавить', addResearch)]);
 };
 
 const addResearch = async (): Promise<void> => {
@@ -58,19 +57,11 @@ const addResearch = async (): Promise<void> => {
 };
 
 const assignResearch = async (researchId: string): Promise<void> => {
-  assignResearchId.value = researchId
+  assignResearchId.value = researchId;
   showAssignResearchModal.value = !showAssignResearchModal.value;
 };
 
-Hooks.onBeforeMount(load, {
-  adminHeader: {
-    title: 'Список анкет',
-    buttons: [{ text: 'Добавить', type: 'normal-button', action: addResearch }],
-  },
-  pagination: { storeModule: 'researches', action: 'ftsp' },
-  sortsLib: ResearchesSortsLib,
-});
-
+Hooks.onBeforeMount(load);
 </script>
 <style lang="scss" scoped>
 @import '@/assets/styles/base-style.scss';

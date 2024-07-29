@@ -1,10 +1,10 @@
-import FileInfo from '@/services/classes/FileInfo';
 import HttpEngine from '@/services/Axios';
+import FileInfo from '@/services/classes/FileInfo';
 import { IBodilessParams, IBodyfulParams } from '@/services/interfaces/IHTTPTypes';
 
 import LocalStore from './classes/LocalStore';
 import LocalStoreKeys from './interfaces/LocalStoreKeys';
-import HttpHeaders, { HttpHeadersValues, HttpHeadersKeys } from './types/HttpHeaders';
+import HttpHeaders, { HttpHeadersKeys,HttpHeadersValues } from './types/HttpHeaders';
 
 const baseUrl = import.meta.env.VITE_APP_BASE_URL ?? '';
 const apiVersion = import.meta.env.VITE_APP_API_V1 ?? '';
@@ -37,14 +37,14 @@ export default class HttpClient {
   }
 
   private static getDownloadFileName(clientFileName: string | undefined, headers: any): string {
+    if (clientFileName) {
+      return clientFileName;
+    }
     const headerLine = headers['content-disposition'];
     const startFileNameIndex = headerLine.indexOf('"') + 1;
     const endFileNameIndex = headerLine.lastIndexOf('"');
     const serverFileName = headerLine.substring(startFileNameIndex, endFileNameIndex);
 
-    if (clientFileName) {
-      return clientFileName;
-    }
     if (serverFileName) {
       return serverFileName;
     }

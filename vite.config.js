@@ -6,8 +6,10 @@ import Components from 'unplugin-vue-components/vite';
 import { fileURLToPath, URL } from 'url';
 import { defineConfig, loadEnv } from 'vite';
 import svgLoader from 'vite-svg-loader';
+
 import ServicesNames from './src/services/ServicesNames';
- 
+import StoreModulesNames from './src/store/StoreModulesNames';
+
 export default ({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
   return defineConfig({
@@ -24,6 +26,8 @@ export default ({ mode }) => {
         },
       },
     },
+    base: '/',
+    includeAbsolute: false,
     plugins: [
       vue({
         template: {
@@ -50,13 +54,13 @@ export default ({ mode }) => {
           'vue',
           {
             '@/services/Main': ServicesNames,
-
-            '@/classes/Main': ['Doctor'],
+            '@/store/StoreModules': StoreModulesNames,
+            '@/classes/Main': ['Doctor', 'Store'],
           },
         ],
         resolvers: [ElementPlusResolver()],
-        dirs: ['srs/classes', 'srs/services/**'],
-
+        // dirs: ['srs/classes', 'srs/services/**', 'srs/services'],
+        // ignoreDts: ['srs/services', 'Message'],
         vueTemplate: true,
         dts: true,
         eslintrc: {
@@ -65,7 +69,10 @@ export default ({ mode }) => {
       }),
     ],
     resolve: {
-      alias: [{ find: '@', replacement: fileURLToPath(new URL('./src', import.meta.url)) }],
+      alias: [
+        { find: '@', replacement: fileURLToPath(new URL('./src', import.meta.url)) },
+        { find: 'source-map-js', replacement: 'source-map' },
+      ],
     },
   });
 };
