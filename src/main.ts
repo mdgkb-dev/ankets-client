@@ -8,6 +8,7 @@ const app = createApp(App);
 app.use(router);
 
 // app.use(Maska);
+console.log(1);
 
 app.directive('click-outside', {
   mounted(el, binding) {
