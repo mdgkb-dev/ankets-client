@@ -13,8 +13,7 @@
             :file-info="element.fileInfo"
             :height="150"
             :default-ratio="defaultRatio"
-            @remove-file="$classHelper.RemoveFromClassByIndex(index, fileList, fileListForDelete)"
-            @ratio="(e) => (element.ratio = e)"
+            @remove-file="ClassHelper.RemoveFromClassByIndex(index, fileList, fileListForDelete)"
             @crop="crop(element)"
           />
         </div>

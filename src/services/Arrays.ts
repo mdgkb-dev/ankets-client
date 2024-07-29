@@ -2,8 +2,6 @@ import IOrdered from '@/services/interfaces/IOrdered';
 
 import IWithId from './interfaces/IWithId';
 
-export type Constructable<T> = { new (...args: any[]): T };
-
 export default abstract class Arrays {
   static Shuffle<ArrayType>(array: ArrayType[]) {
     for (let i = array.length - 1; i > 0; i--) {

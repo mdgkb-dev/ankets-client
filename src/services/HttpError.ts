@@ -21,6 +21,7 @@ export default class HttpError {
     return this.err.charAt(0).toUpperCase() + this.err.slice(1);
   }
 
+  // eslint-disable-next-line
   static async Handle(error: any, axiosInstance: AxiosInstance) {
     const originalRequest = error.config;
     if (!error.response) {

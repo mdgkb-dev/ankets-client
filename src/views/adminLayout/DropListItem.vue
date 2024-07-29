@@ -15,7 +15,7 @@ import IconArrowDrop from '@/components/Icons/IconArrowDrop.vue';
 import StringItem from '@/services/components/StringItem.vue';
 
 const props = defineProps({
-  name: { type: String as PropType<String>, default: 'Name' },
+  name: { type: String, default: 'Name' },
   rolledUp: { type: Boolean as PropType<boolean>, default: true }, // начальное состояние списка: свернут или развернут
 });
 

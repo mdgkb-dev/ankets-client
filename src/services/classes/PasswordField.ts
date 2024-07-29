@@ -34,6 +34,6 @@ export default class EmailPasswordForm {
   }
 
   focus(): void {
-    (this.passwordRef as any).value.focus();
+    this.passwordRef.value.focus();
   }
 }

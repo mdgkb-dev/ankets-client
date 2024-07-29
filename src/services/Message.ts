@@ -47,6 +47,7 @@ export default class Message extends Visible {
     this.showMessage(m, Statuses.Warning);
   }
 
+  // eslint-disable-next-line
   FormMessage(errorFields: any): string {
     let errorMessage = '<strong>Проверьте правильность введенных данных:</strong><ul>';
     for (const item of Object.keys(errorFields)) {

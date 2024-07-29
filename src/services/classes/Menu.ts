@@ -5,6 +5,7 @@ import FileInfo from '@/services/classes/FileInfo';
 import Page from '@/services/classes/page/Page';
 import SubMenu from '@/services/classes/SubMenu';
 import ClassHelper from '@/services/ClassHelper';
+import IFile from '@/services/interfaces/IFile';
 
 export default class Menu {
   id?: string;
@@ -64,7 +65,7 @@ export default class Menu {
     return fileInfos;
   }
 
-  addFile(file: any): void {
+  addFile(file: File & IFile): void {
     if (!this.icon.id) {
       this.icon.id = uuidv4();
     }

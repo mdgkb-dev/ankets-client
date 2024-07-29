@@ -33,8 +33,8 @@ defineProps({
   text: { type: String as PropType<string>, default: '', required: false },
   label: { type: String as PropType<string>, default: '', required: false },
   placeholder: { type: String as PropType<string>, default: '', required: false },
-  readonly: { type: Boolean as PropType<Boolean>, default: false, required: false },
-  disabled: { type: Boolean as PropType<Boolean>, default: false, required: false },
+  readonly: { type: Boolean, default: false, required: false },
+  disabled: { type: Boolean, default: false, required: false },
   margin: { type: String as PropType<string>, required: false, default: '' },
   padding: { type: String as PropType<string>, default: '', required: false },
 });

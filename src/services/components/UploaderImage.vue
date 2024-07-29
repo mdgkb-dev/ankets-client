@@ -25,6 +25,7 @@
 <script lang="ts" setup>
 import Cropper from '@/services/classes/Cropper';
 import FileInfo from '@/services/classes/FileInfo';
+import IFile from '@/services/interfaces/IFile';
 
 const props = defineProps({
   withCrop: {
@@ -76,7 +77,7 @@ const uploader = ref();
 //   }
 // };
 
-const openCropper = (file: any) => {
+const openCropper = (file: FileInfo) => {
   const ratio = props.cropRatio ? props.defaultRatio : 0;
   CropperStore.Open(Cropper.CreateCropper(file.url, ratio, props.fileInfo.id));
   cropperOpened.value = true;
@@ -94,7 +95,7 @@ const handleRemove = () => {
   });
 };
 
-const crop = (file: any) => {
+const crop = (file: IFile) => {
   props.fileInfo.setFile(file);
   if (props.fileInfo.fileSystemPath) {
     uploadedImg.value = props.fileInfo;
@@ -136,7 +137,7 @@ onMounted(() => {
   fileInput = document.getElementById(fileInputId) as HTMLInputElement;
 });
 //
-function preventDefaults(e: any) {
+function preventDefaults(e: Event) {
   e.preventDefault();
   e.stopPropagation();
 }
@@ -146,8 +147,11 @@ const openUploadDialog = () => {
   }
 };
 
-function handleDrop(e: any) {
+function handleDrop(e: DragEvent) {
   e.preventDefault();
+  if (!e.dataTransfer) {
+    return;
+  }
   const files = e.dataTransfer.files;
   if (files.length && fileInput) {
     fileInput.files = files;
@@ -158,10 +162,10 @@ const uploadFile = () => {
   if (!fileInput || !fileInput.files || !fileInput.files.length) {
     return;
   }
-  const file = fileInput.files[0];
-  file.url = URL.createObjectURL(file);
+  const file = fileInput.files[0] as unknown as FileInfo;
+  file.url = URL.createObjectURL(file as unknown as MediaSource);
   uploadedImg.value = file;
-  props.fileInfo.uploadNewFile(file);
+  props.fileInfo.uploadNewFile(file as unknown as IFile);
   openCropper(uploadedImg.value);
 };
 </script>

@@ -3,6 +3,7 @@ import Message, { MessageOpts } from './Message';
 type DialogResultType = 'cancel' | 'submit';
 interface DialogResult {
   type: DialogResultType;
+  // eslint-disable-next-line
   [key: string]: any;
 }
 
@@ -16,7 +17,9 @@ class DialogConstructor extends Message {
   private confirmButtonText = 'Да';
   private cancelButtonText = 'Нет';
 
+  // eslint-disable-next-line
   private resolve?: any;
+  // eslint-disable-next-line
   private reject?: any;
 
   GetConfirmButtonText(): string {

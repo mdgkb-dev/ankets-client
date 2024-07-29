@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import FileInfo from '@/services/classes/FileInfo';
 import Page from '@/services/classes/page/Page';
 import ClassHelper from '@/services/ClassHelper';
+import IFile from '@/services/interfaces/IFile';
 
 export default class SubMenu {
   id?: string;
@@ -45,7 +46,7 @@ export default class SubMenu {
   isPageLink(): boolean {
     return this.pageId !== undefined && this.pageId !== '';
   }
-  addFile(file: any): void {
+  addFile(file: File & IFile): void {
     if (!this.icon.id) {
       this.icon.id = uuidv4();
     }

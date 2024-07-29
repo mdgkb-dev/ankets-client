@@ -4,7 +4,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 import IWithId from '@/services/interfaces/IWithId';
 
+// eslint-disable-next-line
 export type ClassType = { [key: string]: any };
+// eslint-disable-next-line
 export type Constructable<T> = { new (...args: any[]): T };
 
 export default class ClassHelper {
@@ -47,7 +49,7 @@ export default class ClassHelper {
     };
   };
 
-  private static isPrimitive(prop: any): boolean {
+  private static isPrimitive(prop: unknown): boolean {
     return prop !== null && typeof prop !== 'undefined' && prop !== Object(prop);
   }
 

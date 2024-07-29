@@ -1,4 +1,4 @@
 export default interface IStorePaginator {
-  Count: () => Ref<Number>;
+  Count: () => Ref<number>;
   FTSP: () => Promise<void>;
 }

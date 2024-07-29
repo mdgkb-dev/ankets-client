@@ -43,7 +43,7 @@ class S<UserT extends IWithId> {
   }
 
   async RefreshToken(): Promise<void> {
-    await HttpClient.Post<any, { user: UserT; token: ITokens }>({
+    await HttpClient.Post<unknown, { user: UserT; token: ITokens }>({
       query: 'auth/refresh-token',
       payload: { refreshToken: TokenService.getRefreshToken() },
     });

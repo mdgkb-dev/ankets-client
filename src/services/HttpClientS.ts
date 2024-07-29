@@ -18,7 +18,7 @@ export default abstract class HttpClient {
     return new WebSocket(url);
   }
 
-  private static download(clientFileName: string | undefined, res: any) {
+  private static download(clientFileName: string | undefined, res: unknown) {
     const fileName = HttpClient.getDownloadFileName(clientFileName, res.headers);
     const url = URL.createObjectURL(res.data);
 
@@ -30,6 +30,7 @@ export default abstract class HttpClient {
     link.click();
   }
 
+  // eslint-disable-next-line
   private static getDownloadFileName(clientFileName: string | undefined, headers: any): string {
     if (clientFileName) {
       return clientFileName;
@@ -58,7 +59,7 @@ export default abstract class HttpClient {
 
   private static returnResponse<ReturnType, PayloadType>(
     params: IBodilessParams | IBodyfulParams<PayloadType> | undefined,
-    res: any
+    res: unknown
   ): ReturnType | void {
     if (!res) {
       return;
@@ -103,11 +104,7 @@ export default abstract class HttpClient {
   static async Delete<PayloadType, ReturnType>(params: IBodyfulParams<PayloadType>): Promise<ReturnType | void> {
     return HttpClient.returnResponse(
       params,
-      await HttpEngine.Delete(
-        HttpClient.buildUrl(params?.query),
-        HttpClient.getHeaders(params?.headers),
-        HttpClient.createFormDataPayload<PayloadType>(params?.payload, params?.fileInfos)
-      )
+      await HttpEngine.Delete(HttpClient.buildUrl(params?.query), HttpClient.getHeaders(params?.headers))
     );
   }
 

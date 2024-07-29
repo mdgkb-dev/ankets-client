@@ -42,8 +42,8 @@
 import menuList from './menuList';
 
 defineProps({
-  shadow: { type: Boolean as PropType<Boolean>, default: true },
-  border: { type: Boolean as PropType<Boolean>, default: true },
+  shadow: { type: Boolean, default: true },
+  border: { type: Boolean, default: true },
 });
 
 // const activePath: Ref<string> = ref('');

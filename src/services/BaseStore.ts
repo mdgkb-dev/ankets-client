@@ -122,7 +122,11 @@ export default class BaseStore<T extends IWithId & IFileInfosGetter> {
     this.Set();
   }
 
-  async Remove(id: string): Promise<void> {
+  async Remove(id: string | undefined): Promise<void> {
+    if (!id) {
+      console.warn('BaseStore/Remove. id is undefined');
+      return;
+    }
     await HttpClient.Delete({ query: this.getUrl(`${id}`) });
     this.RemoveItem(id);
   }

@@ -4,7 +4,7 @@ import { IBodilessParams, IBodyfulParams } from '@/services/interfaces/IHTTPType
 
 import LocalStore from './classes/LocalStore';
 import LocalStoreKeys from './interfaces/LocalStoreKeys';
-import HttpHeaders, { HttpHeadersKeys,HttpHeadersValues } from './types/HttpHeaders';
+import HttpHeaders, { HttpHeadersKeys, HttpHeadersValues } from './types/HttpHeaders';
 
 const baseUrl = import.meta.env.VITE_APP_BASE_URL ?? '';
 const apiVersion = import.meta.env.VITE_APP_API_V1 ?? '';
@@ -24,7 +24,7 @@ export default class HttpClient {
     return new WebSocket(url);
   }
 
-  private static download(clientFileName: string | undefined, res: any) {
+  private static download(clientFileName: string | undefined, res: unknown) {
     const fileName = HttpClient.getDownloadFileName(clientFileName, res.headers);
     const url = URL.createObjectURL(res.data);
 
@@ -36,6 +36,7 @@ export default class HttpClient {
     link.click();
   }
 
+  // eslint-disable-next-line
   private static getDownloadFileName(clientFileName: string | undefined, headers: any): string {
     if (clientFileName) {
       return clientFileName;
@@ -64,7 +65,7 @@ export default class HttpClient {
 
   private returnResponse<ReturnType, PayloadType>(
     params: IBodilessParams | IBodyfulParams<PayloadType> | undefined,
-    res: any
+    res: unknown
   ): ReturnType | void {
     if (!res) {
       return;

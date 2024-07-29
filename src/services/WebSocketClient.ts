@@ -39,6 +39,7 @@ export default class WebSocketClient {
     if (!this.client) {
       return;
     }
+    // eslint-disable-next-line
     this.client.onmessage = (e: MessageEvent<any>) => {
       if (!e.data) {
         return;

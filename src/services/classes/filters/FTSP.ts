@@ -39,7 +39,8 @@ export default class FTSP {
     return f;
   }
 
-  private static EmptyEntiries(sm: any): unknown {
+  // eslint-disable-next-line
+  private static EmptyEntiries(sm: unknown): unknown {
     if (!sm) {
       return;
     }

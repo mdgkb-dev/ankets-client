@@ -21,14 +21,14 @@ const componentKey = ref(0);
 const mounted = ref(false);
 const sections: Ref<CustomSection[]> = ref([]);
 const activeMenu: Ref<CustomSection> = ref(sections.value[0]);
-defineProps({
+const props = defineProps({
   components: {
-    type: Object as PropType<Object>,
+    type: Object as PropType<Component[]>,
     required: true,
   },
 });
 
-// const component = shallowRef(props.components[props.components[0]]);
+const component = shallowRef(props.components[0] as Component);
 
 const setMenuFromRoute = () => {
   // let menu = Router.Route().query.menu as string;

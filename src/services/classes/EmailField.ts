@@ -1,5 +1,3 @@
-import { ref } from 'vue';
-
 import AuthStatuses from '@/services/interfaces/AuthStatuses';
 type MyCallbackWithOptParam = (error?: Error) => void;
 
@@ -39,6 +37,6 @@ export default class EmailField {
   }
 
   focus(): void {
-    (this.emailRef as any).value.focus();
+    this.emailRef.value.focus();
   }
 }
