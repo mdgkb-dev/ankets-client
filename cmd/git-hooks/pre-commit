@@ -1,0 +1,7 @@
+#!/bin/sh
+
+retVal=$?
+if [ $retVal -eq 1 ]; then
+	echo 'Lint failed'
+	exit 1
+fi
