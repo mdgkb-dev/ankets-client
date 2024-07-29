@@ -7,7 +7,7 @@
     "serve": "vite",
     "build": "vite build --mode prod",
     "start": "vite preview --port 8195",
-    "lint": "eslint src",
+    "lint": "eslint --ext .vue,.ts src",
     "lint:fix": "eslint src --fix"
   },
   "dependencies": {
@@ -16,8 +16,6 @@
     "chart.js": "^4.4.2",
     "vue-eslint-parser": "^9.4.2",
     "chartjs-plugin-annotation": "^3.0.1",
-    "core-js": "^3.36.1",
-    "dayjs": "^1.11.10",
     "js-cookie": "^3.0.5",
     "maska": "^2.1.11",
     "math-expression-evaluator": "^2.0.5",
@@ -36,6 +34,7 @@
     "@types/js-cookie": "^3.0.6",
     "@types/sortablejs": "^1.15.8",
     "@types/uuid": "^9.0.8",
+    "vite-bundle-visualizer": "^1.2.1",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "@typescript-eslint/parser": "^7.4.0",
     "eslint": "^8.57.0",

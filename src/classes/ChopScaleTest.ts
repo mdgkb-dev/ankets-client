@@ -3,7 +3,6 @@ import ChopScaleQuestionScore from '@/classes/ChopScaleQuestionScore';
 import ChopScaleTestResult from '@/classes/ChopScaleTestResult';
 import ClassBuilder from '@/services/ClassBuilder';
 import RemoveFromClass from '@/services/RemoveFromClass';
-import Strings from '@/services/Strings';
 
 export default class ChopScaleTest {
   id?: string;
@@ -31,7 +30,10 @@ export default class ChopScaleTest {
     if (findedIndex > -1 && this.chopScaleTestResults[findedIndex].chopScaleQuestionScoreId === chopScaleScore.id) {
       return;
     }
-    if (findedIndex > -1 && this.chopScaleTestResults[findedIndex].chopScaleQuestionScore?.chopScaleQuestionId === chopScaleScore.chopScaleQuestionId) {
+    if (
+      findedIndex > -1 &&
+      this.chopScaleTestResults[findedIndex].chopScaleQuestionScore?.chopScaleQuestionId === chopScaleScore.chopScaleQuestionId
+    ) {
       RemoveFromClass(findedIndex, this.chopScaleTestResults, this.chopScaleTestResultsForDelete);
     }
     const r = new ChopScaleTestResult();
@@ -57,7 +59,7 @@ export default class ChopScaleTest {
     }
     return Math.round((this.chopScaleTestResults.length * 100) / questionsQuantity);
   }
-// TODO
+  // TODO
   // getFormattedScoresSum(): string {
   //   return Strings.BuildNameNumbersFromNumber(this.getScoresSum(), ['балл', 'балла', 'баллов']);
   // }

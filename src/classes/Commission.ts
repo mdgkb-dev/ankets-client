@@ -62,7 +62,7 @@ export default class Commission {
   //   return item;
   // }
 
-  doctorExists(id?: string): boolean {
+  doctorExists(): boolean {
     return true;
     // return this.commissionsDoctors.some((c: CommissionDoctor) => c.doctorId === id);
   }

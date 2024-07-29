@@ -2,7 +2,7 @@
 import { createApp } from 'vue';
 import App from '@/App.vue';
 import router from '@/router/index';
-import 'dayjs/locale/ru';
+// import 'dayjs/locale/ru';
 import '@/router/componentHooks';
 
 import DateTimeFormatter from '@/services/DateFormat';

@@ -1,7 +1,6 @@
 import ChopScaleQuestion from '@/classes/ChopScaleQuestion';
 import IFileInfo from '@/interfaces/files/IFileInfo';
 import ClassBuilder from '@/services/ClassBuilder';
-import Strings from '@/services/Strings';
 
 export default class ChopScaleQuestionScore {
   id?: string;
@@ -17,9 +16,9 @@ export default class ChopScaleQuestionScore {
   getFileInfos(): IFileInfo[] {
     return [];
   }
-// TODO
+  // TODO
   // getFormattedScores(): string {
-    
-    // return Strings.BuildNameNumbersFromNumber(this.score, ['балл', 'балла', 'баллов']);
+
+  // return Strings.BuildNameNumbersFromNumber(this.score, ['балл', 'балла', 'баллов']);
   // }
 }
