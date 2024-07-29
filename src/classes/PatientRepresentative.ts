@@ -1,9 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
 
 import RepresentativeType from '@/classes/RepresentativeType';
+import ClassHelper from '@/services/ClassHelper';
+
 import Patient from './Patient';
 import Representative from './Representative';
-import ClassHelper from '@/services/ClassHelper';
 
 export default class PatientRepresentative {
   id?: string;

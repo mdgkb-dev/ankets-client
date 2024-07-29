@@ -37,7 +37,7 @@ import InfoItem from '@/services/components/InfoItem.vue';
 import PButton from '@/services/components/PButton.vue';
 import StringItem from '@/services/components/StringItem.vue';
 
-const props = defineProps({
+defineProps({
   models: {
     type: Array<FilterModel>,
     default: () => [],

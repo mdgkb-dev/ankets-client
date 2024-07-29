@@ -3,7 +3,6 @@ import HmfseScaleQuestionScore from '@/classes/HmfseScaleQuestionScore';
 import HmfseScaleTestResult from '@/classes/HmfseScaleTestResult';
 import ClassBuilder from '@/services/ClassBuilder';
 import RemoveFromClass from '@/services/RemoveFromClass';
-import Strings from '@/services/Strings';
 
 export default class HmfseScaleTest {
   id?: string;
@@ -31,7 +30,10 @@ export default class HmfseScaleTest {
     if (findedIndex > -1 && this.hmfseScaleTestResults[findedIndex].hmfseScaleQuestionScoreId === hmfseScaleScore.id) {
       return;
     }
-    if (findedIndex > -1 && this.hmfseScaleTestResults[findedIndex].hmfseScaleQuestionScore?.hmfseScaleQuestionId === hmfseScaleScore.hmfseScaleQuestionId) {
+    if (
+      findedIndex > -1 &&
+      this.hmfseScaleTestResults[findedIndex].hmfseScaleQuestionScore?.hmfseScaleQuestionId === hmfseScaleScore.hmfseScaleQuestionId
+    ) {
       RemoveFromClass(findedIndex, this.hmfseScaleTestResults, this.hmfseScaleTestResultsForDelete);
     }
     const r = new HmfseScaleTestResult();
@@ -57,7 +59,7 @@ export default class HmfseScaleTest {
     }
     return Math.round((this.hmfseScaleTestResults.length * 100) / questionsQuantity);
   }
-// TODO
+  // TODO
   // getFormattedScoresSum(): string {
   //   return Strings.BuildNameNumbersFromNumber(this.getScoresSum(), ['балл', 'балла', 'баллов']);
   // }
