@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import User from '@/classes/User';
+// import User from '@/classes/User';
 import ClassHelper from '@/services/ClassHelper';
 export enum ChateMessageTypes {
   Ping = 'ping',
@@ -14,8 +14,8 @@ export enum ChateMessageTypes {
 export default class ChatMessage {
   id?: string;
   message = '';
-  user: User = new User();
-  userId?: string;
+  // user: User = new User();
+  // userId?: string;
   userName?: string;
   createdOn = new Date();
   chatId?: string;
@@ -29,7 +29,7 @@ export default class ChatMessage {
     const item = new ChatMessage();
     item.id = uuidv4();
     item.chatId = chatId;
-    item.userId = userId;
+    // item.userId = userId;
     item.message = messageText;
     item.userName = userName;
     return item;

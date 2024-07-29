@@ -46,6 +46,7 @@ import User from './User';
 import validate from './validate';
 import WaitElement from './WaitElement';
 import WebSocketClient from './WebSocketClient';
+
 export {
   Arrays,
   Auth,

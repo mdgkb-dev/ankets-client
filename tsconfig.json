@@ -15,7 +15,6 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": ["webpack-env", "jest"],
     "paths": {
       "@/*": ["src/*"]
     },
@@ -35,4 +34,3 @@
   "files": ["./auto-imports.d.ts"],
   "exclude": ["node_modules"]
 }
-
