@@ -26,12 +26,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineComponent, watch } from 'vue';
-import { onBeforeMount, Ref, ref } from 'vue';
 import { useRoute } from 'vue-router';
-
-import AdminLayout from '@/views/adminLayout/AdminLayout.vue';
-
 const route = useRoute();
 const mounted: Ref<boolean> = ref(false);
 watch(route, () => {
