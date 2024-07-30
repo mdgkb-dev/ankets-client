@@ -1,4 +1,4 @@
-:global(:root[data-theme='light']) {
+:root[data-theme='light'] {
   /* background, divider */
   --background-subtle-background-color: var(--palette-neutral-10-white);
   --divider-subtle-background-color: var(--palette-neutral-40);
