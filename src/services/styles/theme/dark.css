@@ -1,4 +1,4 @@
-:root[data-theme='dark'] {
+:global(:root[data-theme='dark']) {
   --background-subtle-background-color: var(--palette-neutral-100);
   --divider-subtle-background-color: var(--palette-neutral-80);
   --divider-strong-background-color: var(--palette-neutral-60B);
@@ -47,12 +47,7 @@
   --input-field-enabled-border-color: var(--palette-neutral-50);
   --input-field-enabled-background-color: rgba(255, 255, 255, 0);
   --input-field-hover-border-color: var(--palette-neutral-50);
-  --input-field-hover-background-color: rgba(
-    255,
-    255,
-    255,
-    0.05000000074505806
-  );
+  --input-field-hover-background-color: rgba(255, 255, 255, 0.05000000074505806);
   --input-field-active-border-color: var(--palette-neutral-70);
   --input-field-active-background-color: rgba(255, 255, 255, 0);
   --input-field-focus-border-color: var(--palette-active-50);
@@ -62,12 +57,7 @@
   --input-field-invalid-border-color: var(--palette-semantic-error-60B);
   --input-field-invalid-background-color: rgba(255, 255, 255, 0);
   --input-field-disabled-border-color: var(--palette-neutral-60B);
-  --input-field-disabled-background-color: rgba(
-    0.33216095762327313,
-    0.33216095762327313,
-    0.33216095762327313,
-    0.10000000149011612
-  );
+  --input-field-disabled-background-color: rgba(0.33216095762327313, 0.33216095762327313, 0.33216095762327313, 0.10000000149011612);
   --typography-h1-font-color: var(--palette-neutral-10-white);
   --typography-h2-font-color: var(--palette-neutral-10-white);
   --typography-h3-font-color: var(--palette-neutral-10-white);
@@ -115,23 +105,17 @@
   --input-checkbox-indeterminate-background-hover: var(--palette-active-50);
   --input-checkbox-indeterminate-background-active: var(--palette-active-50);
   --input-checkbox-indeterminate-background-invalid: rgba(255, 255, 255, 0);
-  --input-checkbox-indeterminate-background-disabled: var(
-    --palette-neutral-60B
-  );
+  --input-checkbox-indeterminate-background-disabled: var(--palette-neutral-60B);
   --input-checkbox-indeterminate-icon-enabled: var(--palette-neutral-10-white);
   --input-checkbox-indeterminate-icon-hover: var(--palette-neutral-10-white);
   --input-checkbox-indeterminate-icon-active: var(--palette-neutral-10-white);
   --input-checkbox-indeterminate-icon-invalid: var(--palette-semantic-error-50);
   --input-checkbox-indeterminate-icon-disabled: var(--palette-neutral-10-white);
-  --input-checkbox-indeterminate-label-default: var(
-    --typography-body-font-color
-  );
+  --input-checkbox-indeterminate-label-default: var(--typography-body-font-color);
   --input-checkbox-indeterminate-outline-enabled: var(--palette-active-60B);
   --input-checkbox-indeterminate-outline-hover: var(--palette-active-70);
   --input-checkbox-indeterminate-outline-active: var(--palette-active-70);
-  --input-checkbox-indeterminate-outline-invalid: var(
-    --palette-semantic-error-50
-  );
+  --input-checkbox-indeterminate-outline-invalid: var(--palette-semantic-error-50);
   --input-checkbox-indeterminate-outline-disabled: var(--palette-neutral-60B);
   --input-radio-assistive-default: var(--typography-body-font-color);
   --input-radio-assistive-invalid: var(--palette-semantic-error-50);
