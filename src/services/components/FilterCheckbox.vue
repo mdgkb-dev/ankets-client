@@ -1,7 +1,5 @@
 <template>
   <PCheckBox v-model="checked" :label="model.label" size="mini" @change="setFilterModel" />
-  <!-- <el-checkbox :model-value="model.boolean" :label="model.label" size="mini" -->
-  <!--   @change="setFilterModel" /> -->
 </template>
 
 <script lang="ts" setup>

@@ -1,11 +1,11 @@
 <template>
-  <el-select v-model="curFTSP" label="Фильтры" clearable placeholder="Выберите шаблон фильтра" @change="set" @clear="clear">
-    <el-option v-for="preset in ftspPresets" :key="preset" :label="preset.name" :value="preset.id" />
-  </el-select>
-  <PButton v-if="ftsp.f.length > 0" type="text" color="add" text="Добавить текущий фильтр в список фильтров" @click="openModal" />
+  <PSelect v-model="curFTSP" label="Фильтры" clearable placeholder="Выберите шаблон фильтра" @change="set" @clear="clear">
+    <option v-for="preset in ftspPresets" :key="preset.id" :label="preset.name" :value="preset.id" />
+  </PSelect>
+  <PButton v-if="curFTSP.f.length > 0" type="text" color="add" text="Добавить текущий фильтр в список фильтров" @click="openModal" />
   <PButton v-if="curFTSP" type="text" color="del" text="Удалить выбранный фильтр из списка фильтров" @click="remove" />
   <ModalWindow v-if="modalOpened" :show="modalOpened">
-    <el-input v-model="ftspName" placeholder="Введите название" />
+    <PInput v-model="ftspName" label="Введите название" />
     <PButton type="admin" color="blue" text="Сохранить" @click="save" />
   </ModalWindow>
 </template>

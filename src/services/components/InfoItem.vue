@@ -1,36 +1,49 @@
 <template>
   <div v-if="isToggle" class="blur"></div>
   <div class="base-box" :style="baseBoxStyle" @click.prevent.stop="changeState()">
-    <div class="body" :class="insideClass" :style="bodyStyle"
-      @mouseenter="withHover ? (hovering = true) : (hovering = false)" @mouseleave="hovering = false">
+    <div
+      class="body"
+      :class="insideClass"
+      :style="bodyStyle"
+      @mouseenter="withHover ? (hovering = true) : (hovering = false)"
+      @mouseleave="hovering = false"
+    >
       <div v-if="!isToggle" class="close-window" :style="closeWindowStyle" :class="customClass">
         <slot />
       </div>
-      <div v-if="isToggle" id="info-item-opened-content" v-click-outside.prevent="outsideClick" class="open-window"
-        :style="openWindowStyle">
+      <div
+        v-if="isToggle"
+        id="info-item-opened-content"
+        v-click-outside.prevent="outsideClick"
+        class="open-window"
+        :style="openWindowStyle"
+      >
         <slot name="open-inside-content" />
       </div>
       <div class="top-title" :style="topTitleStyle">
         <slot name="title">
-          <StringItem :string="title" font-size="10px" padding="0 0 0 3px" :style="{
-            color: hovering ? '#006BB4' : '#c4c4c4',
-            transition: '0.2s',
-          }" />
+          <StringItem
+            :string="title"
+            font-size="10px"
+            padding="0 0 0 3px"
+            :style="{
+              color: hovering ? '#006BB4' : '#c4c4c4',
+              transition: '0.2s',
+            }"
+          />
         </slot>
       </div>
     </div>
   </div>
-  <el-dialog v-if="showSaveDialog" v-model="isMessageBoxOpen" center width="500px"
-    title="У вас остались несохраненные изменения, вы уверены что хотите закрыть окно?">
+  <PModalWindow :show="isMessageBoxOpen" title="У вас остались несохраненные изменения, вы уверены что хотите закрыть окно?">
     <div style="display: flex; justify-content: center">
-      <el-button size="small" type="danger" @click="notSaveClickHandler"> Не сохранять </el-button>
-      <el-button size="small" type="success" @click="saveClickHandler"> Сохранить </el-button>
+      <PButton text="Не сохранять" @click="notSaveClickHandler" />
+      <PButton text="Сохранять" @click="saveClickHandler" />
     </div>
-  </el-dialog>
+  </PModalWindow>
 </template>
 
 <script lang="ts" setup>
-
 // import Del from '@/assets/svg/Del.svg';
 // import EditTitle from '@/assets/svg/EditTitle.svg';
 import StringItem from '@/services/components/StringItem.vue';
@@ -84,12 +97,12 @@ const keysHandler = (e: KeyboardEvent) => {
       isToggle.value = false;
     }
   }
-      // Прописывать в родителе @keyup-enter="submit"
-      // if (e.key === 'Enter') {
-      // emit('keyup-enter');
-      // isToggle.value = false;
-      // }
-    };
+  // Прописывать в родителе @keyup-enter="submit"
+  // if (e.key === 'Enter') {
+  // emit('keyup-enter');
+  // isToggle.value = false;
+  // }
+};
 
 watch(isToggle, async () => {
   await nextTick();
@@ -116,13 +129,13 @@ const changeState = () => {
 const baseBoxStyle = computed(() => {
   return props.customClass === ''
     ? {
-      width: props.width,
-      minHeight: '40px',
-      height: 'auto',
-      maxWidth: props.maxWidth,
-      minWidth: props.minWidth,
-      margin: props.baseBoxMargin,
-    }
+        width: props.width,
+        minHeight: '40px',
+        height: 'auto',
+        maxWidth: props.maxWidth,
+        minWidth: props.minWidth,
+        margin: props.baseBoxMargin,
+      }
     : undefined;
 });
 

@@ -4,30 +4,38 @@
       {{ PHelp.AuthForm.GetTitle() }}
     </div>
     <div>
-      <el-form ref="form" :model="form" :label-position="'top'">
-        <el-form-item v-if="PHelp.AuthForm.Email().show(PHelp.AuthForm.Status())" prop="email" label="Введите email">
-          <el-input ref="emailRef" v-model="PHelp.AuthForm.Email().email" placeholder="Email" :autofocus="true" />
-        </el-form-item>
-        <el-form-item v-if="PHelp.AuthForm.Password().show(PHelp.AuthForm.Status())" prop="password" label="Введите пароль">
-          <el-input ref="passwordRef" v-model="PHelp.AuthForm.Password().password" placeholder="Пароль" type="password" />
-        </el-form-item>
-        <el-form-item v-if="PHelp.AuthForm.PasswordRepeat().show(PHelp.AuthForm.Status())" prop="passwordRepeat" label="Повторите пароль">
-          <el-input ref="passwordRepeatRef" v-model="PHelp.AuthForm.PasswordRepeat().text" placeholder="Пароль" type="password" />
-        </el-form-item>
-        <div class="btn-group">
-          <PButton
-            v-for="btn in buttons"
-            :key="btn.getStatus()"
-            :disabled="blockBtn"
-            type="primary"
-            skin="auth"
-            :text="btn.label"
-            :color="btn.isSubmit ? 'blue' : 'grey'"
-            margin="10px 0 0 0"
-            @click="authButtonClick(btn)"
-          />
-        </div>
-      </el-form>
+      <PInput
+        v-if="PHelp.AuthForm.Email().show(PHelp.AuthForm.Status())"
+        v-model="PHelp.AuthForm.Email().email"
+        label="Введите email"
+        placeholder="Email"
+      />
+      <PInput
+        v-if="PHelp.AuthForm.Password().show(PHelp.AuthForm.Status())"
+        v-model="PHelp.AuthForm.Password().password"
+        label="Введите пароль"
+        placeholder="Пароль"
+      />
+      <PInput
+        v-if="PHelp.AuthForm.PasswordRepeat().show(PHelp.AuthForm.Status())"
+        v-model="PHelp.AuthForm.PasswordRepeat().text"
+        prop="email"
+        label="Введите email"
+        placeholder="Email"
+      />
+      <div class="btn-group">
+        <PButton
+          v-for="btn in buttons"
+          :key="btn.getStatus()"
+          :disabled="blockBtn"
+          type="primary"
+          skin="auth"
+          :text="btn.label"
+          :color="btn.isSubmit ? 'blue' : 'grey'"
+          margin="10px 0 0 0"
+          @click="authButtonClick(btn)"
+        />
+      </div>
     </div>
   </div>
 </template>

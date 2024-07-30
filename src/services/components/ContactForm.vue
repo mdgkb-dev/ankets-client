@@ -1,27 +1,19 @@
 <template>
   <div v-if="full" class="contact-container">
-    <el-form-item label="Описание">
-      <el-input :model-value="contact.description" @input="(e: string) => contact.updateDescription(e)" />
-    </el-form-item>
-    <el-form-item label="Время работы">
-      <el-input :model-value="contact.time" @input="(e: string) => contact.updateTime(e)" />
-    </el-form-item>
-    <el-form-item label="Широта (для карты)">
-      <el-input :model-value="contact.latitude" @input="(e: string) => contact.updateLatitude(e)" />
-    </el-form-item>
-    <el-form-item label="Долгота (для карты)">
-      <el-input :model-value="contact.longitude" @input="(e: string) => contact.updateLongitutde(e)" />
-    </el-form-item>
+    <PInput v-model="contact.description" label="Описание" />
+    <PInput v-model="contact.time" label="Время работы" />
+    <PInput v-model="contact.latitude" label="Широта (для карты)" />
+    <PInput v-model="contact.longitude" label="Долгота (для карты)" />
   </div>
 
   <div class="contact-container" :style="{ background: contact.phones.length ? '' : '#F9FAFB' }">
     <div class="bottom-buttons">
       <div class="title" :style="{ color: !contact.phones.length ? '#c4c4c4' : '#303133' }">Телефоны</div>
-      <button class="admin-add" @click.prevent="addPhone()">+ Добавить</button>
+      <PButton class="admin-add" text="+ Добавить" @click="addPhone()" />
     </div>
 
     <div v-for="(phone, i) in contact.phones" :key="phone.id" class="contact-container-item">
-      <button class="admin-del" @click.prevent="removePhone(phone.id)">Удалить</button>
+      <PButton class="admin-del" text="Удалить" @click="removePhone(phone.id)" />
       <div class="list-number">
         {{ i + 1 }}
       </div>
@@ -32,11 +24,11 @@
   <div class="contact-container" :style="{ background: contact.emails.length ? '' : '#F9FAFB' }">
     <div class="bottom-buttons">
       <div class="title" :style="{ color: !contact.emails.length ? '#c4c4c4' : '#303133' }">Электронная почта</div>
-      <button class="admin-add" @click.prevent="addEmail()">+ Добавить</button>
+      <PButton class="admin-add" text="+ Добавить" @click="addEmail()" />
     </div>
 
     <div v-for="(email, i) in contact.emails" :key="email.id" class="contact-container-item">
-      <button class="admin-del" @click.prevent="removeEmail(email.id)">Удалить</button>
+      <PButton class="admin-del" text="Удалить" @click="removeEmail(email.id)" />
       <div class="list-number">
         {{ i + 1 }}
       </div>

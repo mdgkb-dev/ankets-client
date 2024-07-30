@@ -1,8 +1,8 @@
 <template>
   <StringItem string="Выберите вид ответа:" font-size="14px" padding="0" justify-content="left" margin="10px 0" />
-  <el-select :model-value="selectedType.name" placeholder="Вид ответа" @change="select">
-    <el-option v-for="(value, type) in types" :key="value" :label="value" :value="type" />
-  </el-select>
+  <PSelect :model-value="selectedType" placeholder="Вид ответа" @change="select">
+    <option v-for="(value, type) in types" :key="value" :label="value" :value="type" />
+  </PSelect>
 </template>
 
 <script setup lang="ts">
@@ -26,7 +26,6 @@ const types = {
 const emits = defineEmits(['select']);
 
 const select = (t: ValueTypes) => {
-  console.log(t);
   emits('select', t);
 };
 </script>
