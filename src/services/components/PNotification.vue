@@ -44,7 +44,6 @@ const typeClass = computed(() => {
   align-items: center;
   box-shadow: $normal-shadow;
   padding: 20px;
-  background: $neutral_background;
 }
 
 .primary {

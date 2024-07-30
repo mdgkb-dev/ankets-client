@@ -1,3 +1,5 @@
+@import '../brandbook.css';
+
 :global(:root[data-theme='light']) {
   /* background, divider */
   --background-subtle-background-color: var(--palette-neutral-10-white);
