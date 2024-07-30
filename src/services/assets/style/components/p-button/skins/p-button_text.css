@@ -24,6 +24,14 @@
   user-select: none;
 }
 
+.p-button_text_info {
+  color: var(--button-information-enabled-background-color);
+}
+
+.p-button_text_info:hover {
+  color: var(--button-information-hover-background-color);
+}
+
 .p-button_text_primary {
   color: var(--button-primary-enabled-background-color);
 }
