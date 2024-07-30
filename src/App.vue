@@ -57,9 +57,6 @@ onBeforeMount(async (): Promise<void> => {
 </script>
 
 <style>
-@import '@/services/styles/brandbook.css';
-@import '@/services/styles/theme/light.css';
-@import '@/services/styles/theme/dark.css';
 .flex {
   display: flex;
   justify-content: left;

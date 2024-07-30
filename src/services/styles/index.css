@@ -7,3 +7,5 @@
 @import './platform/webmobile.css';
 @import './platform/webtablet.css';
 @import './platform/webdesktop.css';
+
+@import '../assets/style/components/p-button/p-button.css';

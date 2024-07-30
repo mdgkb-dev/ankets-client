@@ -42,8 +42,7 @@ const buttonClass = computed(() => 'p-button' + '_' + props.skin + ' ' + 'p-butt
 </script>
 
 <style scoped>
-@import '@/services/styles/theme/light.css';
-@import '@/services/assets/style/components/p-button/p-button.css';
+@import '@/services/styles/index.css';
 
 /* skin: text */
 /* type: primary, secondary, success, warning, danger, neutral, del */
