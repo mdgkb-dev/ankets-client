@@ -1,15 +1,13 @@
-FROM node:current-alpine
+FROM node:lts-alpine as develop-stage
 
 WORKDIR /app
 
-RUN apk add --no-cache alpine-sdk python3 python3-dev py3-pip
-RUN npm install -g node-gyp
-
-COPY ./package.json .
-COPY ./package-lock.json .
-
-RUN npm i
-
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
 COPY . .
+RUN npm install -g @vue/cli
+ENV HOST 0.0.0.0
+EXPOSE 3085
 
-CMD [ "npm", "run", "serve" ]
+CMD ["npm", "run", "serve"]

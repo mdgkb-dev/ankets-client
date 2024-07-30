@@ -160,3 +160,5 @@ log.txt
 /plugins
 /www
 
+auto-imports.d.ts
+components.d.ts
