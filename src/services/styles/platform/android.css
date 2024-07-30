@@ -1,50 +1,30 @@
-:root[data-platform='android'] {
+:global(:root[data-platform='android']) {
   --layout-screen-padding-horizontal: var(--whiteSpace-general-2x);
   --button-font-size-default: var(--font-size-l);
   --button-font-size-medium: var(--font-size-m);
   --button-font-size-small: var(--font-size-s);
   --button-font-size-xl: var(--font-size-xl);
-  --button-primary-medium-whiteSpace-padding-horizontal: var(
-    --whiteSpace-general-2x
-  );
-  --button-primary-medium-whiteSpace-padding-vertical: var(
-    --whiteSpace-general-1_5x
-  );
+  --button-primary-medium-whiteSpace-padding-horizontal: var(--whiteSpace-general-2x);
+  --button-primary-medium-whiteSpace-padding-vertical: var(--whiteSpace-general-1_5x);
   --button-primary-medium-whiteSpace-gap: var(--whiteSpace-general-1x);
   --button-primary-medium-borderRadius-default: var(--borderRadius-general-4x);
-  --button-secondary-medium-whiteSpace-padding-horizontal: var(
-    --whiteSpace-general-2x
-  );
-  --button-secondary-medium-whiteSpace-padding-vertical: var(
-    --whiteSpace-general-1_5x
-  );
+  --button-secondary-medium-whiteSpace-padding-horizontal: var(--whiteSpace-general-2x);
+  --button-secondary-medium-whiteSpace-padding-vertical: var(--whiteSpace-general-1_5x);
   --button-secondary-medium-whiteSpace-gap: var(--whiteSpace-general-1x);
-  --button-secondary-medium-borderRadius-default: var(
-    --borderRadius-general-4x
-  );
+  --button-secondary-medium-borderRadius-default: var(--borderRadius-general-4x);
   --button-tertiary-borderRadius-default: var(--borderRadius-general-2x);
   --button-tertiary-medium-whiteSpace-gap: var(--whiteSpace-general-_5x);
   --button-round-size-default: var(--size-general-4x);
   --button-round-size-small: var(--size-general-3x);
   --button-round-size-large: var(--size-general-6x);
-  --button-outlined-medium-whiteSpace-padding-horizontal: var(
-    --whiteSpace-general-2x
-  );
-  --button-outlined-medium-whiteSpace-padding-vertical: var(
-    --whiteSpace-general-1_5x
-  );
+  --button-outlined-medium-whiteSpace-padding-horizontal: var(--whiteSpace-general-2x);
+  --button-outlined-medium-whiteSpace-padding-vertical: var(--whiteSpace-general-1_5x);
   --button-outlined-medium-whiteSpace-gap: var(--whiteSpace-general-1x);
   --button-outlined-medium-borderRadius-default: var(--borderRadius-general-4x);
-  --button-transparent-medium-borderRadius-default: var(
-    --borderRadius-general-4x
-  );
+  --button-transparent-medium-borderRadius-default: var(--borderRadius-general-4x);
   --button-transparent-medium-whiteSpace-gap: var(--whiteSpace-general-1x);
-  --input-field-whiteSpace-field-padding-horizontal: var(
-    --whiteSpace-general-2x
-  );
-  --input-field-whiteSpace-field-padding-vertical: var(
-    --whiteSpace-general-1_5x
-  );
+  --input-field-whiteSpace-field-padding-horizontal: var(--whiteSpace-general-2x);
+  --input-field-whiteSpace-field-padding-vertical: var(--whiteSpace-general-1_5x);
   --input-field-whiteSpace-field-gap: var(--whiteSpace-general-1x);
   --input-field-whiteSpace-label-gap: var(--whiteSpace-general-1x);
   --input-field-whiteSpace-caption-gap: var(--whiteSpace-general-1x);

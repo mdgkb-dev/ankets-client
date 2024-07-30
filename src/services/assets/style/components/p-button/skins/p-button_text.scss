@@ -1,75 +1,81 @@
-@import '../../../utils/index.scss';
-
-//skin: text
-//type: primary, success, warning, danger, neutral, del
+/* skin: text */
+/* type: primary, secondary, success, warning, danger, neutral, del */
 
 .p-button_text {
   border: none;
-  margin: $p-button-margin;
+  margin: var(--button-primary-medium-whiteSpace-gap);
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: $p-button-transition;
+  // transition: var();
   text-align: center;
   cursor: pointer;
   overflow: hidden;
-  padding: $p-button-padding;
-  border-radius: $p-button-border-radius;
+  padding: var(--button-primary-medium-whiteSpace-padding-vertical), var(--button-primary-medium-whiteSpace-padding-horizontal);
+  border-radius: none;
   height: auto;
-  width: aprimaryuto;
+  width: auto;
   background: none;
-  font-family: $base-font;
-  font-size: $base-font-size;
+  /* font-family: var(); */
+  font-size: var(--button-font-size-default);
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
 
-  &_primary {
-    color: $button_primary_color;
-  }
+.p-button_text_primary {
+  color: var(--button-primary-enabled-background-color);
+}
 
-  &:hover {
-    color: $button_dark_primary_color;
-  }
+.p-button_text_primary:hover {
+  color: var(--button-primary-hover-background-color);
+}
 
-  &_success {
-    color: $button_success_color;
-  }
+.p-button_text_secondary {
+  color: var(--button-secondary-enabled-background-color);
+}
 
-  &:hover {
-    color: $button_dark_success_color;
-  }
+.p-button_text_secondary:hover {
+  color: var(--button-secondary-hover-background-color);
+}
 
-  &_warning {
-    color: $button_warning_color;
-  }
+.p-button_text_success {
+  color: var(--button-success-enabled-background-color);
+}
 
-  &:hover {
-    color: $button_dark_warning_color;
-  }
+.p-button_text_success:hover {
+  color: var(--button-success-hover-background-color);
+}
 
-  &_danger {
-    color: $button_danger_color;
-  }
+.p-button_text_warning {
+  color: var(--button-warning-enabled-background-color);
+}
 
-  &:hover {
-    color: $button_dark_danger_color;
-  }
+.p-button_text_warning:hover {
+  color: var(--button-warning-hover-background-color);
+}
 
-  &_neutral {
-    color: $button_neutral_color;
-  }
+.p-button_text_danger {
+  color: var(--button-error-enabled-background-color);
+}
 
-  &:hover {
-    color: $button_dark_neutral_color;
-  }
+.p-button_text_danger:hover {
+  color: var(--button-error-hover-background-color);
+}
 
-  &_del {
-    color: $button_neutral_color;
-  }
+.p-button_text_neutral {
+  color: var(--button-neutral-enabled-background-color);
+}
 
-  &_del:hover {
-    color: $button_dark_danger_color;
-  }
+.p-button_text_neutral:hover {
+  color: var(--button-neutral-hover-background-color);
+}
+
+.p-button_text_del {
+  color: var(--button-neutral-enabled-background-color);
+}
+
+.p-button_text_del:hover {
+  color: var(--button-error-hover-background-color);
 }
