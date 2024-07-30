@@ -32,5 +32,6 @@
     "src/index.d.ts"
   ],
   "files": ["./auto-imports.d.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "types": ["vitest/globals"]
 }

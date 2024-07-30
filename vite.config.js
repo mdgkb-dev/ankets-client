@@ -50,6 +50,7 @@ export default ({ mode }) => {
         ],
         imports: [
           'vue',
+          'vitest',
           {
             '@/services/Main': ServicesNames,
             '@/store/StoreModules': StoreModulesNames,
@@ -69,6 +70,10 @@ export default ({ mode }) => {
         { find: '@', replacement: fileURLToPath(new URL('./src', import.meta.url)) },
         { find: 'source-map-js', replacement: 'source-map' },
       ],
+    },
+    test: {
+      globals: true,
+      environment: 'happy-dom',
     },
   });
 };
