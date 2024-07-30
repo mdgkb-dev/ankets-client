@@ -41,9 +41,9 @@ const changeState = () => {
 const buttonClass = computed(() => 'p-button' + '_' + props.skin + ' ' + 'p-button' + '_' + props.skin + '_' + props.type);
 </script>
 
-<style>
-/* @import '@/services/assets/style/index.scss'; */
-@import '@/services/assets/style/components/p-button/p-button.scss';
+<style scoped>
+@import '@/services/styles/theme/light.css';
+@import '@/services/assets/style/components/p-button/p-button.css';
 
 /* skin: text */
 /* type: primary, secondary, success, warning, danger, neutral, del */

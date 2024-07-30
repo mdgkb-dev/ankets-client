@@ -1,15 +1,14 @@
 // eslint-disable-next-line simple-import-sort/imports
 import { createApp } from 'vue';
+import '@/services/styles/index.css';
 import App from '@/App.vue';
 import router from '@/router/index';
 import '@/router/componentHooks';
-import '@/services/styles/index.css';
 
 const app = createApp(App);
 app.use(router);
 
 // app.use(Maska);
-console.log(1);
 
 app.directive('click-outside', {
   mounted(el, binding) {
