@@ -11,8 +11,8 @@
             <StringItem :string="'Вариант ' + (index + 1)" font-size="14px" padding="0" justify-content="left" margin="0 0 5px 5px" />
           </div>
           <button class="admin-del" @click="removeAnswerVariant(element.id)">Удалить</button>
-          <el-input v-model="element.name" @blur="updateAnswerVariant(element)" />
-          <el-checkbox label="При выборе показать доп.вопросы" v-model="element.showMoreFields" @change="updateAnswerVariant(element)" />
+          <PInput v-model="element.name" @blur="updateAnswerVariant(element)" />
+          <PCheckbox label="При выборе показать доп.вопросы" v-model="element.showMoreFields" @change="updateAnswerVariant(element)" />
         </div>
       </template>
     </draggable>
