@@ -65,9 +65,9 @@
   --button-error-font-color-disabled: var(--palette-gray-1);
 
   /* button neutral*/
-  --button-neutral-background: var(--palette-semantic-neutral-60B);
-  --button-neutral-background-hovered: var(--palette-semantic-neutral-80);
-  --button-neutral-background-pressed: var(--palette-semantic-neutral-90);
+  --button-neutral-background: var(--palette-neutral-60B);
+  --button-neutral-background-hovered: var(--palette-neutral-70);
+  --button-neutral-background-pressed: var(--palette-neutral-80);
   --button-neutral-background-disabled: var(--palette-gray-3);
   --button-neutral-font-color: var(--palette-gray-1);
   --button-neutral-font-color-hovered: var(--palette-gray-1);

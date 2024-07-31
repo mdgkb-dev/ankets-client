@@ -90,13 +90,13 @@
 }
 
 .p-button_base_disabled {
-  border: 1px solid var(--button-disabled-background);
-  background: var(--button-disabled-background);
-  color: var(--button-disabled-font-color);
+  border: 1px solid var(--button-neutral-background);
+  background: var(--button-neutral-background);
+  color: var(--button-neutral-font-color-disabled);
   cursor: auto;
 }
 
 .p-button_base_disabled:hover {
-  background: var(--button-disabled-background-hovered);
-  border: 1px solid var(--button-disabled-background-hovered);
+  background: var(--button-neutral-background);
+  border: 1px solid var(--button-neutral-font-color);
 }
