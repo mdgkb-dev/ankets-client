@@ -22,14 +22,14 @@
 defineOptions({ inheritAttrs: false });
 
 const props = defineProps({
-  text: { type: String as PropType<string>, default: '', required: false },
-  margin: { type: String as PropType<string>, default: '', required: false },
-  padding: { type: String as PropType<string>, default: '', required: false },
-  width: { type: String as PropType<string>, default: '', required: false },
-  height: { type: String as PropType<string>, default: '', required: false },
-  skin: { type: String as PropType<string>, default: 'base', required: false },
-  type: { type: String as PropType<string>, default: 'neutral', required: false },
-  fontSize: { type: String as PropType<string>, default: '', required: false },
+  text: { type: String, default: '', required: false },
+  margin: { type: String, default: '', required: false },
+  padding: { type: String, default: '', required: false },
+  width: { type: String, default: '', required: false },
+  height: { type: String, default: '', required: false },
+  skin: { type: String, default: 'base', required: false },
+  type: { type: String, default: 'neutral', required: false },
+  fontSize: { type: String, default: '', required: false },
   disabled: { type: Boolean, default: false, required: false },
 });
 
