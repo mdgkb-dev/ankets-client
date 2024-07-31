@@ -42,14 +42,12 @@
 
 <script lang="ts" setup>
 import AuthButton from '@/services/classes/AuthButton';
-import PButton from '@/services/components/PButton.vue';
-
-import AuthStatuses from '../interfaces/AuthStatuses';
+import AuthStatuses from '@/services/interfaces/AuthStatuses';
 
 const form = PHelp.AuthForm;
 const blockBtn = ref(false);
-const emailRef = ref();
-const passwordRef = ref();
+// const emailRef = ref();
+// const passwordRef = ref();
 
 const emits = defineEmits(['action']);
 const buttons = computed(() => form.GetAuthButtons());
@@ -130,22 +128,6 @@ const authButtonClick = async (authButton: AuthButton): Promise<void> => {
 
 onBeforeUnmount(() => {
   form.Reset();
-});
-const focus = () => {
-  if (form.IsRefresh()) {
-    passwordRef.value.focus();
-    return;
-  }
-  emailRef.value.focus();
-};
-watch(
-  () => form.Status(),
-  () => {
-    focus();
-  }
-);
-onMounted(() => {
-  focus();
 });
 </script>
 

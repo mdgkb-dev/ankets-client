@@ -1,6 +1,6 @@
 <template>
-  <AdminListWrapper v-if="mounted" show-header :store="FormsStore">
-    <div class="research-count">Количество анкет: {{ count }}</div>
+  <AdminListWrapper v-if="mounted" :store="FormsStore">
+    <div class="form-count">Количество анкет: {{ count }}</div>
     <div v-for="(form, i) in forms" :key="form.id">
       <CollapseItem :is-collaps="false" padding="0 8px">
         <template #inside-title>
@@ -9,7 +9,7 @@
               <div class="line-item-left">
                 <StringItem :string="i + 1" width="42px" margin="4px 0 0 0" />
                 <PButton skin="text" text="Редактировать" width="120px" @click="Router.ToAdmin('forms/' + form.id)" />
-                <PButton skin="text" text="Назначить" width="90px" @click="assignResearch(form.id as string)" />
+                <PButton skin="text" text="Назначить" width="90px" @click="assignForm(form.id)" />
                 <StringItem :string="form.name" margin="4px 0 0 0" />
               </div>
             </div>
@@ -21,44 +21,42 @@
       </CollapseItem>
     </div>
   </AdminListWrapper>
-  <PModalWindow width="960px" top="10vh" :show="showAddModal" @close="showAddModal = false">
-    <CreateResearchForm @add="showAddModal = false" />
-  </PModalWindow>
-  <PModalWindow width="960px" top="10vh" :show="showAssignResearchModal" @close="showAssignResearchModal = false">
-    <AssignResearchForm :research-id="assignResearchId" @add="showAssignResearchModal = false" />
-  </PModalWindow>
 </template>
 
 <script lang="ts" setup>
 import Form from '@/classes/Form';
-// import ResearchesSortsLib from '@/libs/sorts/ResearchesSortsLib';
+// import FormesSortsLib from '@/libs/sorts/FormesSortsLib';
 import Hooks from '@/services/Hooks/Hooks';
+// import Provider from '@/services/Provider/Provider';
 
 const showAddModal: Ref<boolean> = ref(false);
-const showAssignResearchModal: Ref<boolean> = ref(false);
-const assignResearchId: Ref<string> = ref('');
+const showAssignFormModal: Ref<boolean> = ref(false);
+const assignFormId: Ref<string> = ref('');
 const forms: Form[] = FormsStore.Items();
 const count: Ref<number> = FormsStore.Count();
 
 const mounted = ref(false);
 
-const loadResearches = async () => {
+const loadFormes = async () => {
   await FormsStore.FTSP();
   mounted.value = true;
 };
 
 const load = async () => {
-  await Promise.all([loadResearches()]);
-  PHelp.AdminUI.Head.Set('Список анкет', [Button.Success('Добавить', addResearch)]);
+  await Promise.all([loadFormes()]);
 };
 
-const addResearch = async (): Promise<void> => {
+const addForm = async (): Promise<void> => {
   showAddModal.value = !showAddModal.value;
 };
 
-const assignResearch = async (researchId: string): Promise<void> => {
-  assignResearchId.value = researchId;
-  showAssignResearchModal.value = !showAssignResearchModal.value;
+const assignForm = async (formId: string | undefined): Promise<void> => {
+  if (!formId) {
+    return;
+  }
+  assignFormId.value = formId;
+  showAssignFormModal.value = !showAssignFormModal.value;
+  PHelp.AdminUI.Head.Set('Список форм', [Button.Success('Добавить', addForm)]);
 };
 
 Hooks.onBeforeMount(load);
@@ -172,7 +170,7 @@ Hooks.onBeforeMount(load);
   }
 }
 
-.research-name {
+.form-name {
   color: #006bb4;
   font-size: 17px;
   min-width: 150px;
@@ -190,7 +188,7 @@ Hooks.onBeforeMount(load);
   }
 }
 
-.research-link {
+.form-link {
   &:hover {
     cursor: pointer;
     text-decoration: underline;
@@ -266,7 +264,7 @@ Hooks.onBeforeMount(load);
   cursor: pointer;
 }
 
-.research-count {
+.form-count {
   color: $base-font-color;
   font-size: $base-font-size;
   font-family: $base-font;

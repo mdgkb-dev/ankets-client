@@ -75,8 +75,6 @@ const close = () => {
 </script>
 
 <style lang="scss" scoped>
-@import '@//services/assets/style/utils/variables/colors.scss';
-
 .blur {
   position: fixed;
   top: 0;
@@ -105,7 +103,7 @@ const close = () => {
   border-radius: 5px;
   overflow: hidden;
   max-height: 70vh;
-  background: $main-white;
+  background: var(white);
   min-height: 40px;
 }
 </style>
