@@ -21,7 +21,7 @@ emits('switchPosition', switchPosition);
 </script>
 
 <style lang="scss" scoped>
-@import '@/services/assets/style/index.scss';
+@import '@/services/assets/styles/index.scss';
 
 .hidden {
   display: none;

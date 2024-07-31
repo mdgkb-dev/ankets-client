@@ -35,7 +35,7 @@ const select = (item?: string) => {
 </script>
 
 <style lang="scss" scoped>
-@import '@/services/assets/style/index.scss';
+@import '@/services/assets/styles/index.scss';
 
 .save-button {
   width: 100%;

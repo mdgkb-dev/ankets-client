@@ -49,7 +49,7 @@ const format = (d: Date): Date => {
 </script>
 
 <style lang="scss" scoped>
-@import '@/services/assets/style/index.scss';
+@import '@/services/assets/styles/index.scss';
 
 *,
 *::before,

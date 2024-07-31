@@ -49,6 +49,6 @@ const preview: Preview = {
   },
 };
 
-import '@/services/styles/index.css';
+import '@/services/assets/styles/index.css';
 
 export default preview;

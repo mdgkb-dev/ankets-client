@@ -42,5 +42,5 @@ const buttonClass = computed(() => 'p-button' + '_' + props.skin + ' ' + 'p-butt
 </script>
 
 <style lang="scss" scoped>
-@import '@/services/assets/style/index.scss';
+@import '@/services/assets/styles/index.scss';
 </style>

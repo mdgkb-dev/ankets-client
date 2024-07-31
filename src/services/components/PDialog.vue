@@ -27,7 +27,7 @@ const typeClass = computed(() => {
 });
 </script>
 <style lang="scss" scoped>
-@import '@/services/assets/style/index.scss';
+@import '@/services/assets/styles/index.scss';
 
 .message {
   position: fixed;
@@ -47,22 +47,6 @@ const typeClass = computed(() => {
   align-items: center;
   box-shadow: $normal-shadow;
   padding: 20px;
-}
-
-.primary {
-  background: $primary_background;
-}
-.success {
-  background: $success_background;
-}
-.warning {
-  background: $warning_background;
-}
-.danger {
-  background: $danger_background;
-}
-.neutral {
-  background: $neutral_background;
 }
 
 .message-title {

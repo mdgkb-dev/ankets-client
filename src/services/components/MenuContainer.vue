@@ -56,7 +56,7 @@ const h = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-@import '@/services/assets/style/index.scss';
+@import '@/services/assets/styles/index.scss';
 
 .mainblock {
   display: block;

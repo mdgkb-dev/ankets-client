@@ -38,7 +38,7 @@ const styleObject = {
 </script>
 
 <style scoped lang="scss">
-@import '@/services/assets/style/index.scss';
+@import '@/services/assets/styles/index.scss';
 
 .string {
   max-width: 100%;

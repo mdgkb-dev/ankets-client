@@ -26,7 +26,7 @@ const setFilterModel = () => {
 </script>
 
 <style lang="scss" scoped>
-@import '@/services/assets/style/index.scss';
+@import '@/services/assets/styles/index.scss';
 // @import '@/assets/elements/filterForm.scss';
 
 :deep(.el-input__inner) {

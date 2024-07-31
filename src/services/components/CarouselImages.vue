@@ -163,7 +163,7 @@ const toPrev = () => {
 </script>
 
 <style lang="scss" scoped>
-@import '@/services/assets/style/index.scss';
+@import '@/services/assets/styles/index.scss';
 .event-name {
   height: auto;
   &:hover {

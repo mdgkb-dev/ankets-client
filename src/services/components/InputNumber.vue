@@ -49,7 +49,7 @@ const input = (v: number) => {
 </script>
 
 <style lang="scss" scoped>
-@import '@/services/assets/style/index.scss';
+@import '@/services/assets/styles/index.scss';
 
 .input-field:hover {
   cursor: text !important;

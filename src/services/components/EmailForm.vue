@@ -14,7 +14,7 @@ const update = async () => {
 </script>
 
 <style lang="scss" scoped>
-@import '@/services/assets/style/index.scss';
+@import '@/services/assets/styles/index.scss';
 
 .admin-add {
   border: none;

@@ -31,7 +31,7 @@ const submit = async (): Promise<void> => {
 };
 </script>
 <style lang="scss" scoped>
-@import '@/services/assets/style/index.scss';
+@import '@/services/assets/styles/index.scss';
 
 .button {
   width: auto;

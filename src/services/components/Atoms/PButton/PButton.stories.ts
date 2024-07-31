@@ -1,5 +1,3 @@
-import '@/services/styles/index.css';
-
 import { Meta, StoryFn } from '@storybook/vue3';
 
 import PButton from './PButton.vue';

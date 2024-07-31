@@ -76,7 +76,7 @@ const removePhone = async (id: string | undefined) => {
 </script>
 
 <style lang="scss" scoped>
-@import '@/services/assets/style/index.scss';
+@import '@/services/assets/styles/index.scss';
 
 .admin-add {
   border: none;

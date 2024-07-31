@@ -14,7 +14,7 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-@import '@/services/assets/style/index.scss';
+@import '@/services/assets/styles/index.scss';
 
 .date-range {
   display: flex;
