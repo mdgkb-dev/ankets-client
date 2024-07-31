@@ -66,11 +66,11 @@
   --button-error-font-color-disabled: var(--palette-gray-1);
 
   /* button neutral*/
-  --button-neutral-background: var(--palette-semantic-neutral-20);
-  --button-neutral-background-hovered: var(--palette-semantic-neutral-40);
-  --button-neutral-background-pressed: var(--palette-semantic-neutral-50);
+  --button-neutral-background: var(--palette-neutral-40);
+  --button-neutral-background-hovered: var(--palette-neutral-70);
+  --button-neutral-background-pressed: var(--palette-neutral-80);
   --button-neutral-background-disabled: var(--palette-gray-3);
-  --button-neutral-font-color: var(--palette-gray-1);
+  --button-neutral-font-color: var(--palette-gray-);
   --button-neutral-font-color-hovered: var(--palette-gray-1);
   --button-neutral-font-color-pressed: var(--palette-gray-1);
   --button-neutral-font-color-disabled: var(--palette-gray-1);
