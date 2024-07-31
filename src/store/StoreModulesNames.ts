@@ -1,5 +1,4 @@
 const StoreModulesNames = [
-  'ResearchesStore',
   'AuthStore',
   'ContactsStore',
   'CropperStore',
@@ -8,7 +7,7 @@ const StoreModulesNames = [
   'FTSPPresetsStore',
   'MenusStore',
   'PhonesStore',
-  'ResearchesStore',
+  'FormsStore',
   'UserAccountsStore',
   'ValueTypesStore',
 ];

@@ -162,3 +162,5 @@ log.txt
 
 auto-imports.d.ts
 components.d.ts
+
+*storybook.log

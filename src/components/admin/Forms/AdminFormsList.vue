@@ -1,16 +1,16 @@
 <template>
-  <AdminListWrapper v-if="mounted" show-header :store="ResearchesStore">
+  <AdminListWrapper v-if="mounted" show-header :store="FormsStore">
     <div class="research-count">Количество анкет: {{ count }}</div>
-    <div v-for="(research, i) in researches" :key="research.id">
+    <div v-for="(form, i) in forms" :key="form.id">
       <CollapseItem :is-collaps="false" padding="0 8px">
         <template #inside-title>
           <div class="flex-block" @click.prevent="() => undefined">
             <div class="item-flex">
               <div class="line-item-left">
                 <StringItem :string="i + 1" width="42px" margin="4px 0 0 0" />
-                <PButton skin="text" text="Редактировать" width="120px" @click="Router.ToAdmin('researches/' + research.id)" />
-                <PButton skin="text" text="Назначить" width="90px" @click="assignResearch(research.id as string)" />
-                <StringItem :string="research.name" margin="4px 0 0 0" />
+                <PButton skin="text" text="Редактировать" width="120px" @click="Router.ToAdmin('forms/' + form.id)" />
+                <PButton skin="text" text="Назначить" width="90px" @click="assignResearch(form.id as string)" />
+                <StringItem :string="form.name" margin="4px 0 0 0" />
               </div>
             </div>
             <div class="item-flex">
@@ -30,20 +30,20 @@
 </template>
 
 <script lang="ts" setup>
-import Research from '@/classes/Research';
+import Form from '@/classes/Form';
 // import ResearchesSortsLib from '@/libs/sorts/ResearchesSortsLib';
 import Hooks from '@/services/Hooks/Hooks';
 
 const showAddModal: Ref<boolean> = ref(false);
 const showAssignResearchModal: Ref<boolean> = ref(false);
 const assignResearchId: Ref<string> = ref('');
-const researches: Research[] = ResearchesStore.Items();
-const count: Ref<number> = ResearchesStore.Count();
+const forms: Form[] = FormsStore.Items();
+const count: Ref<number> = FormsStore.Count();
 
 const mounted = ref(false);
 
 const loadResearches = async () => {
-  await ResearchesStore.FTSP();
+  await FormsStore.FTSP();
   mounted.value = true;
 };
 

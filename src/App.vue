@@ -1,5 +1,5 @@
 <template>
-  <PButton text="Сменить тему" width="120px" margin="40px 20px" @click="toggleTheme" />
+  <PButton text="Сменить тему" @click="toggleTheme" width="120px" margin="40px 20px" />
   <div class="flex">
     <PButton skin="base" type="primary" width="120px" margin="20px">Primary</PButton>
     <PButton skin="base" type="info" width="120px" margin="20px">Info</PButton>
@@ -30,6 +30,7 @@
 
 <script lang="ts" setup>
 import { useRoute } from 'vue-router';
+
 const route = useRoute();
 const mounted: Ref<boolean> = ref(false);
 watch(route, () => {

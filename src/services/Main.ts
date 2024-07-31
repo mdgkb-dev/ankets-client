@@ -33,6 +33,7 @@ import Period from './Period';
 import PHelp from './PHelp';
 import PhoneService from './PhoneService';
 import Router from './Router';
+import RouterGuard from './RouterGuard';
 import Scheduler from './Scheduler';
 import Scroll from './Scroll';
 import sort from './sort';
@@ -83,6 +84,7 @@ export {
   PHelp,
   PhoneService,
   Router,
+  RouterGuard,
   Scheduler,
   Scroll,
   sort,
