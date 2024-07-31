@@ -1,19 +1,22 @@
 <template>
   <PButton text="Сменить тему" @click="toggleTheme" width="120px" margin="40px 20px" />
   <div class="flex">
-    <PButton skin="profile" type="primary" width="120px" margin="20px">Кнопка</PButton>
-    <PButton skin="profile" type="success" width="120px" margin="20px">Кнопка</PButton>
-    <PButton skin="profile" type="warning" width="120px" margin="20px">Кнопка</PButton>
-    <PButton skin="profile" type="danger" width="120px" margin="20px">Кнопка</PButton>
-    <PButton skin="profile" type="neutral" width="120px" margin="20px">Кнопка</PButton>
-    <PButton skin="profile" type="disabled" width="120px" margin="20px">Кнопка</PButton>
+    <PButton skin="base" type="primary" width="120px" margin="20px">Primary</PButton>
+    <PButton skin="base" type="info" width="120px" margin="20px">Info</PButton>
+    <PButton skin="base" type="success" width="120px" margin="20px">Success</PButton>
+    <PButton skin="base" type="warning" width="120px" margin="20px">Warning</PButton>
+    <PButton skin="base" type="danger" width="120px" margin="20px">Danger</PButton>
+    <PButton skin="base" type="neutral" width="120px" margin="20px">Neutral</PButton>
+    <PButton skin="base" type="disabled" width="120px" margin="20px">Disabled</PButton>
   </div>
   <div class="flex">
-    <PButton skin="text" type="primary" width="120px" margin="20px">Кнопка</PButton>
-    <PButton skin="text" type="success" width="120px" margin="20px">Кнопка</PButton>
-    <PButton skin="text" type="warning" width="120px" margin="20px">Кнопка</PButton>
-    <PButton skin="text" type="danger" width="120px" margin="20px">Кнопка</PButton>
-    <PButton skin="text" type="neutral" width="120px" margin="20px">Кнопка</PButton>
+    <PButton skin="text" type="primary" width="120px" margin="20px">Primary</PButton>
+    <PButton skin="text" type="info" width="120px" margin="20px">Info</PButton>
+    <PButton skin="text" type="success" width="120px" margin="20px">Success</PButton>
+    <PButton skin="text" type="warning" width="120px" margin="20px">Warning</PButton>
+    <PButton skin="text" type="danger" width="120px" margin="20px">Danger</PButton>
+    <PButton skin="text" type="neutral" width="120px" margin="20px">Neutral</PButton>
+    <PButton skin="text" type="del" width="120px" margin="20px">Del</PButton>
   </div>
   <!-- <PNotification />
   <PDialog />
@@ -54,8 +57,12 @@ onBeforeMount(async (): Promise<void> => {
 
 <style>
 .flex {
+  width: 100%;
+  box-sizing: border-box;
   display: flex;
   justify-content: left;
   align-items: center;
+  background: var(--background-subtle-background-color);
+  padding: 40px;
 }
 </style>

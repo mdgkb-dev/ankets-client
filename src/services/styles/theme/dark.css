@@ -1,40 +1,81 @@
-:global(:root[data-theme='dark']) {
+:root[data-theme='dark'] {
+  /* background, divider */
   --background-subtle-background-color: var(--palette-neutral-100);
   --divider-subtle-background-color: var(--palette-neutral-80);
   --divider-strong-background-color: var(--palette-neutral-60B);
   --background-strong-background-color: var(--palette-neutral-100);
-  --button-primary-enabled-background-color: var(--palette-primary-30);
-  --button-primary-enabled-font-color: var(--palette-neutral-10-white);
-  --button-primary-hover-background-color: var(--palette-primary-40);
-  --button-primary-hover-font-color: var(--palette-neutral-10-white);
-  --button-primary-active-background-color: var(--palette-primary-50);
-  --button-primary-active-font-color: var(--palette-neutral-10-white);
-  --button-primary-disabled-background-color: var(--palette-neutral-60B);
-  --button-primary-disabled-font-color: var(--palette-neutral-40);
-  --button-secondary-enabled-background-color: var(--palette-secondary-60B);
-  --button-secondary-hover-background-color: var(--palette-secondary-70);
-  --button-secondary-enabled-font-color: var(--palette-neutral-130-black);
-  --button-secondary-hover-font-color: var(--palette-neutral-130-black);
-  --button-secondary-active-background-color: var(--palette-secondary-80);
-  --button-secondary-active-font-color: var(--palette-neutral-130-black);
-  --button-secondary-disabled-background-color: var(--palette-neutral-60B);
-  --button-secondary-disabled-font-color: var(--palette-neutral-40);
-  --button-outlined-enabled-background-color: rgba(255, 255, 255, 0);
-  --button-outlined-enabled-border-color: var(--palette-neutral-40);
-  --button-outlined-enabled-font-color: var(--palette-neutral-40);
-  --button-outlined-hover-background-color: rgba(255, 255, 255, 0);
-  --button-outlined-hover-border-color: var(--palette-neutral-60B);
-  --button-outlined-hover-font-color: var(--palette-neutral-60B);
-  --button-outlined-active-background-color: rgba(255, 255, 255, 0);
-  --button-outlined-active-border-color: var(--palette-neutral-40);
-  --button-outlined-active-font-color: var(--palette-neutral-40);
-  --button-outlined-disabled-background-color: rgba(255, 255, 255, 0);
-  --button-outlined-disabled-border-color: var(--palette-neutral-60B);
-  --button-outlined-disabled-font-color: var(--palette-neutral-40);
-  --button-transparent-enabled-font-color: var(--palette-neutral-10-white);
-  --button-transparent-hover-font-color: var(--palette-neutral-10-white);
-  --button-transparent-active-font-color: var(--palette-neutral-10-white);
-  --button-transparent-disabled-font-color: var(--palette-neutral-40);
+
+  /* button primary */
+  --button-primary-background: var(--palette-primary-20);
+  --button-primary-background-hovered: var(--palette-primary-40);
+  --button-primary-background-pressed: var(--palette-primary-50);
+  --button-primary-background-disabled: var(--palette-gray-3);
+  --button-primary-font-color: var(--palette-neutral-10-white);
+  --button-primary-font-color-hovered: var(--palette-neutral-10-white);
+  --button-primary-font-color-pressed: var(--palette-neutral-10-white);
+  --button-primary-font-color-disabled: var(--palette-gray-4);
+
+  /* button secondary */
+  --button-secondary-background: var(--palette-secondary-20);
+  --button-secondary-background-hovered: var(--palette-secondary-40);
+  --button-secondary-background-pressed: var(--palette-secondary-50);
+  --button-secondary-background-disabled: var(--palette-gray-3);
+  --button-secondary-font-color: var(--palette-neutral-10-white);
+  --button-secondary-font-color-hovered: var(--palette-neutral-10-white);
+  --button-secondary-font-color-pressed: var(--palette-neutral-10-white);
+  --button-secondary-font-color-disabled: var(--palette-gray-4);
+
+  /* button information*/
+  --button-info-background: var(--palette-semantic-information-20);
+  --button-info-background-hovered: var(--palette-semantic-information-40);
+  --button-info-background-pressed: var(--palette-semantic-information-50);
+  --button-info-background-disabled: var(--palette-gray-3);
+  --button-info-font-color: var(--palette-gray-1);
+  --button-info-font-color-hovered: var(--palette-gray-1);
+  --button-info-font-color-pressed: var(--palette-gray-1);
+  --button-info-font-color-disabled: var(--palette-gray-1);
+
+  /* button success*/
+  --button-success-background: var(--palette-semantic-success-20);
+  --button-success-background-hovered: var(--palette-semantic-success-40);
+  --button-success-background-pressed: var(--palette-semantic-success-50);
+  --button-success-background-disabled: var(--palette-gray-3);
+  --button-success-font-color: var(--palette-gray-1);
+  --button-success-font-color-hovered: var(--palette-gray-1);
+  --button-success-font-color-pressed: var(--palette-gray-1);
+  --button-success-font-color-disabled: var(--palette-gray-1);
+
+  /* button warning*/
+  --button-warning-background: var(--palette-semantic-warning-20);
+  --button-warning-background-hovered: var(--palette-semantic-warning-40);
+  --button-warning-background-pressed: var(--palette-semantic-warning-50);
+  --button-warning-background-disabled: var(--palette-gray-3);
+  --button-warning-font-color: var(--palette-gray-1);
+  --button-warning-font-color-hovered: var(--palette-gray-1);
+  --button-warning-font-color-pressed: var(--palette-gray-1);
+  --button-warning-font-color-disabled: var(--palette-gray-1);
+
+  /* button error*/
+  --button-error-background: var(--palette-semantic-error-20);
+  --button-error-background-hovered: var(--palette-semantic-error-40);
+  --button-error-background-pressed: var(--palette-semantic-error-50);
+  --button-error-background-disabled: var(--palette-gray-3);
+  --button-error-font-color: var(--palette-gray-1);
+  --button-error-font-color-hovered: var(--palette-gray-1);
+  --button-error-font-color-pressed: var(--palette-gray-1);
+  --button-error-font-color-disabled: var(--palette-gray-1);
+
+  /* button neutral*/
+  --button-neutral-background: var(--palette-semantic-neutral-20);
+  --button-neutral-background-hovered: var(--palette-semantic-neutral-40);
+  --button-neutral-background-pressed: var(--palette-semantic-neutral-50);
+  --button-neutral-background-disabled: var(--palette-gray-3);
+  --button-neutral-font-color: var(--palette-gray-1);
+  --button-neutral-font-color-hovered: var(--palette-gray-1);
+  --button-neutral-font-color-pressed: var(--palette-gray-1);
+  --button-neutral-font-color-disabled: var(--palette-gray-1);
+
+  /* input regular */
   --input-field-enabled-label-font-color: var(--palette-neutral-130-black);
   --input-field-enabled-assistive-font-color: var(--palette-neutral-130-black);
   --input-field-enabled-font-color: var(--palette-neutral-70);
@@ -52,12 +93,32 @@
   --input-field-active-background-color: rgba(255, 255, 255, 0);
   --input-field-focus-border-color: var(--palette-active-50);
   --input-field-focus-background-color: rgba(255, 255, 255, 0);
+  --input-field-active-label-font-color: var(--palette-neutral-130-black);
+  --input-field-active-assistive-font-color: var(--palette-neutral-130-black);
+  --input-field-hover-label-font-color: var(--palette-neutral-130-black);
+  --input-field-hover-assistive-font-color: var(--palette-neutral-130-black);
+  --input-field-focus-label-font-color: var(--palette-neutral-130-black);
+  --input-field-focus-assistive-font-color: var(--palette-neutral-130-black);
+  --input-field-valid-label-font-color: var(--palette-neutral-130-black);
+  --input-field-valid-assistive-font-color: var(--palette-neutral-130-black);
+  --input-field-disabled-label-font-color: var(--palette-neutral-130-black);
+  --input-field-disabled-assistive-font-color: var(--palette-neutral-130-black);
+  --input-field-invalid-label-font-color: var(--palette-neutral-130-black);
+  --input-field-invalid-assistive-font-color: var(--palette-semantic-error-60B);
+
+  /* input valid */
   --input-field-valid-border-color: var(--palette-semantic-success-70);
   --input-field-valid-background-color: rgba(255, 255, 255, 0);
+
+  /* input invalid */
   --input-field-invalid-border-color: var(--palette-semantic-error-60B);
   --input-field-invalid-background-color: rgba(255, 255, 255, 0);
+
+  /* input disabled */
   --input-field-disabled-border-color: var(--palette-neutral-60B);
   --input-field-disabled-background-color: rgba(0.33216095762327313, 0.33216095762327313, 0.33216095762327313, 0.10000000149011612);
+
+  /* typo */
   --typography-h1-font-color: var(--palette-neutral-10-white);
   --typography-h2-font-color: var(--palette-neutral-10-white);
   --typography-h3-font-color: var(--palette-neutral-10-white);
@@ -72,6 +133,7 @@
   --typography-link-hover-font-color: var(--palette-active-50);
   --typography-link-active-font-color: var(--palette-active-60B);
   --typography-link-visited-font-color: var(--palette-active-60B);
+  /* checkbox */
   --input-checkbox-assistive-default: var(--typography-body-font-color);
   --input-checkbox-assistive-invalid: var(--palette-semantic-error-50);
   --input-checkbox-unchecked-background-enabled: rgba(255, 255, 255, 0);
@@ -117,6 +179,7 @@
   --input-checkbox-indeterminate-outline-active: var(--palette-active-70);
   --input-checkbox-indeterminate-outline-invalid: var(--palette-semantic-error-50);
   --input-checkbox-indeterminate-outline-disabled: var(--palette-neutral-60B);
+  /* input radio */
   --input-radio-assistive-default: var(--typography-body-font-color);
   --input-radio-assistive-invalid: var(--palette-semantic-error-50);
   --input-radio-unchecked-background-enabled: rgba(255, 255, 255, 0);
@@ -143,16 +206,4 @@
   --input-radio-checked-outline-hover: var(--palette-active-80);
   --input-radio-checked-outline-active: var(--palette-active-80);
   --input-radio-checked-outline-disabled: var(--palette-neutral-60B);
-  --input-field-active-label-font-color: var(--palette-neutral-130-black);
-  --input-field-active-assistive-font-color: var(--palette-neutral-130-black);
-  --input-field-hover-label-font-color: var(--palette-neutral-130-black);
-  --input-field-hover-assistive-font-color: var(--palette-neutral-130-black);
-  --input-field-focus-label-font-color: var(--palette-neutral-130-black);
-  --input-field-focus-assistive-font-color: var(--palette-neutral-130-black);
-  --input-field-valid-label-font-color: var(--palette-neutral-130-black);
-  --input-field-valid-assistive-font-color: var(--palette-neutral-130-black);
-  --input-field-disabled-label-font-color: var(--palette-neutral-130-black);
-  --input-field-disabled-assistive-font-color: var(--palette-neutral-130-black);
-  --input-field-invalid-label-font-color: var(--palette-neutral-130-black);
-  --input-field-invalid-assistive-font-color: var(--palette-semantic-error-60B);
 }

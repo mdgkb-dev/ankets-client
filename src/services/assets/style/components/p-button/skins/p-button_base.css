@@ -1,0 +1,102 @@
+/* skin: base*/
+/* type: primary, success, warning, danger, neutral, disabled */
+
+.p-button_base {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* transition: ; */
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+  margin: 0;
+  padding: var(--button-primary-medium-whiteSpace-padding-vertical), var(--button-primary-medium-whiteSpace-padding-horizontal);
+  border-radius: 100px;
+  min-height: 32px;
+  max-height: 32px;
+  width: 100%;
+  max-width: 300px;
+  min-width: 40px;
+  /* font-size: ; */
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.p-button_base_info {
+  border: 1px solid var(--button-info-background);
+  background: var(--button-info-background);
+  color: var(--button-info-font-color);
+}
+
+.p-button_base_info:hover {
+  background: var(--button-info-background-hovered);
+  border: 1px solid var(--button-info-background-hovered);
+}
+
+.p-button_base_primary {
+  border: 1px solid var(--button-primary-background);
+  background: var(--button-primary-background);
+  color: var(--button-primary-font-color);
+}
+
+.p-button_base_primary:hover {
+  background: var(--button-primary-background-hovered);
+  border: 1px solid var(--button-primary-background-hovered);
+}
+
+.p-button_base_success {
+  border: 1px solid var(--button-success-background);
+  background: var(--button-success-background);
+  color: var(--button-success-font-color);
+}
+
+.p-button_base_success:hover {
+  background: var(--button-success-background-hovered);
+  border: 1px solid var(--button-success-background-hovered);
+}
+
+.p-button_base_warning {
+  border: 1px solid var(--button-warning-background);
+  background: var(--button-warning-background);
+  color: var(--button-warning-font-color);
+}
+.p-button_base_warning:hover {
+  background: var(--button-warning-background-hovered);
+  border: 1px solid var(--button-warning-background-hovered);
+}
+
+.p-button_base_danger {
+  border: 1px solid var(--button-error-background);
+  background: var(--button-error-background);
+  color: var(--button-error-font-color);
+}
+
+.p-button_base_danger:hover {
+  background: var(--button-error-background-hovered);
+  border: 1px solid var(--button-error-background-hovered);
+}
+
+.p-button_base_neutral {
+  border: 1px solid var(--button-neutral-background);
+  background: var(--button-neutral-background);
+  color: var(--button-neutral-font-color);
+}
+
+.p-button_base_neutral:hover {
+  background: var(--button-neutral-background-hovered);
+  border: 1px solid var(--button-neutral-background-hovered);
+}
+
+.p-button_base_disabled {
+  border: 1px solid var(--button-disabled-background);
+  background: var(--button-disabled-background);
+  color: var(--button-disabled-font-color);
+  cursor: auto;
+}
+
+.p-button_base_disabled:hover {
+  background: var(--button-disabled-background-hovered);
+  border: 1px solid var(--button-disabled-background-hovered);
+}
