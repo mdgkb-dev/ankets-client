@@ -8,14 +8,19 @@
     "eslint:recommended",
     "prettier",
     "./.eslintrc-auto-import.json",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:storybook/recommended"
   ],
   "parser": "vue-eslint-parser",
   "parserOptions": {
     "ecmaVersion": 2024,
     "parser": "@typescript-eslint/parser"
   },
-  "plugins": ["@typescript-eslint", "simple-import-sort", "unused-imports"],
+  "plugins": [
+    "@typescript-eslint",
+    "simple-import-sort",
+    "unused-imports"
+  ],
   "rules": {
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
@@ -31,7 +36,10 @@
   },
   "overrides": [
     {
-      "files": ["**/__tests__/*.{j,t}s?(x)", "**/tests/unit/**/*.spec.{j,t}s?(x)"],
+      "files": [
+        "**/__tests__/*.{j,t}s?(x)",
+        "**/tests/unit/**/*.spec.{j,t}s?(x)"
+      ],
       "env": {
         "jest": true
       }

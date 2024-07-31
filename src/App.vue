@@ -1,5 +1,5 @@
 <template>
-  <PButton text="Сменить тему" width="120px" margin="40px 20px" @click="toggleTheme" />
+  <PButton text="Сменить тему" @click="toggleTheme" width="120px" margin="40px 20px" />
   <div class="flex">
     <PButton skin="profile" type="primary" width="120px" margin="20px">Кнопка</PButton>
     <PButton skin="profile" type="success" width="120px" margin="20px">Кнопка</PButton>
@@ -14,7 +14,6 @@
     <PButton skin="text" type="warning" width="120px" margin="20px">Кнопка</PButton>
     <PButton skin="text" type="danger" width="120px" margin="20px">Кнопка</PButton>
     <PButton skin="text" type="neutral" width="120px" margin="20px">Кнопка</PButton>
-    <PButton skin="text" type="neutral" width="120px" margin="20px">Кнопка</PButton>
   </div>
   <!-- <PNotification />
   <PDialog />
@@ -28,6 +27,7 @@
 
 <script lang="ts" setup>
 import { useRoute } from 'vue-router';
+
 const route = useRoute();
 const mounted: Ref<boolean> = ref(false);
 watch(route, () => {

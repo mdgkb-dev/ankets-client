@@ -1,3 +1,10 @@
-import AdminResearchesRouters from './AdminResearchesRouters';
+import AdminFormsRouters from './AdminFormsRouters';
+const routes = [...AdminFormsRouters];
 
-export default [...AdminResearchesRouters];
+routes.forEach((r) => {
+  // r.beforeEnter = RouterGuard.BeforeEnter;
+  r.meta = {
+    layout: 'AdminLayout',
+  };
+});
+export default routes;

@@ -11,17 +11,17 @@ import {
   ValueTypesStore,
 } from '@/services/store/ServicesStores';
 
-import ResearchesStore from './ResearchesStore';
+import FormsStore from './FormsStore';
 
 export {
   AuthStore,
   ContactsStore,
   CropperStore,
   EmailsStore,
+  FormsStore,
   FTSPPresetsStore,
   MenusStore,
   PhonesStore,
-  ResearchesStore,
   SearchStore,
   UserAccountsStore,
   ValueTypesStore,

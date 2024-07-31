@@ -1,9 +1,9 @@
-import Research from '@/classes/Research';
+import Form from '@/classes/Form';
 import BaseStore from '@/services/BaseStore';
 
-class S extends BaseStore<Research> {
+class S extends BaseStore<Form> {
   constructor() {
-    super(Research, 'researches');
+    super(Form, 'forms');
   }
 }
 

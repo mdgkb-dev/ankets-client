@@ -135,6 +135,8 @@
     "suite": true,
     "test": true,
     "vi": true,
-    "vitest": true
+    "vitest": true,
+    "FormsStore": true,
+    "RouterGuard": true
   }
 }

@@ -24,6 +24,7 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
+    "src/**/*.stories.ts",
     "tests/**/*.ts",
     "tests/**/*.tsx",
     "src/components",
