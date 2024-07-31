@@ -4,7 +4,7 @@ export const parameters = {
   rootAttributes: [
     {
       root: 'html',
-      attribute: 'data-platform',
+      attribute: 'data-brandbook',
       defaultState: {
         name: 'Ankets',
         value: 'ankets',
@@ -49,7 +49,6 @@ const preview: Preview = {
   },
 };
 
-import '@/services/styles/brandbook.css';
 import '@/services/styles/index.css';
 
 export default preview;
