@@ -8,6 +8,7 @@
     "build": "vite build --mode prod",
     "start": "vite preview --port 8195",
     "lint": "eslint --ext .vue,.ts src",
+    "test": "vitest",
     "lint:fix": "eslint src --fix"
   },
   "dependencies": {
@@ -30,6 +31,7 @@
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
+    "@testing-library/vue": "^8.1.0",
     "@types/js-cookie": "^3.0.6",
     "@types/sortablejs": "^1.15.8",
     "@types/uuid": "^9.0.8",
@@ -41,6 +43,7 @@
     "eslint-plugin-simple-import-sort": "^12.0.0",
     "eslint-plugin-unused-imports": "^3.1.0",
     "eslint-plugin-vue": "^9.24.0",
+    "happy-dom": "^14.12.3",
     "identity-obj-proxy": "^3.0.0",
     "lint-staged": "^15.2.2",
     "node-sass": "^9.0.0",
@@ -55,6 +58,7 @@
     "vite": "^5.2.7",
     "vite-bundle-visualizer": "^1.2.1",
     "vite-svg-loader": "^5.1.0",
+    "vitest": "^2.0.4",
     "vue-loader-v16": "^16.0.0-beta.5.4",
     "vue-svg-loader": "^0.17.0-beta.2"
   }

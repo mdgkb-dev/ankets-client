@@ -1,17 +1,21 @@
 <template>
-  <PModalWindow :show="open" @close="$emit('close')">
+  <PModalWindow :show="open" title="Настройка изображения" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false">
     <div class="background-container">
       <div class="tools-line">
         <div class="line-block">
-          <PSelect v-model="resolution" label="Пропорции изображения">
-            <option label="2:3 (формат A4)" :value="2 / 3" />
-            <option label="4:3 (для карточек новостей)" :value="4 / 3" />
-            <option label="1:1 (для фото сотрудников)" :value="1" />
-            <option label="3:2" :value="3 / 2" />
-            <option label="16:9" :value="16 / 9" />
-            <option label="3:4 (вертикальное изображение)" :value="3 / 4" />
-            <option label="Задать пропорции вручную" :value="0" />
-          </PSelect>
+          <el-form>
+            <el-form-item label="Задайте пропорции фото:">
+              <PSelect v-model="resolution" label="Пропорции изображения" @change="selectResolution">
+                <option label="2:3 (формат A4)" :value="2 / 3" />
+                <option label="4:3 (для карточек новостей)" :value="4 / 3" />
+                <option label="1:1 (для фото сотрудников)" :value="1" />
+                <option label="3:2" :value="3 / 2" />
+                <option label="16:9" :value="16 / 9" />
+                <option label="3:4 (вертикальное изображение)" :value="3 / 4" />
+                <option label="Задать пропорции вручную" :value="0" />
+              </PSelect>
+            </el-form-item>
+          </el-form>
         </div>
       </div>
       <Cropper
@@ -23,7 +27,7 @@
       />
 
       <div class="dialog-footer">
-        <PButton text="Сохранить" @click="save" />
+        <el-button :loading="loading" type="success" @click="save"> Сохранить </el-button>
       </div>
     </div>
   </PModalWindow>

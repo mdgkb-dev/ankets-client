@@ -5,7 +5,6 @@ import '@/services/styles/index.css';
 
 import App from '@/App.vue';
 import router from '@/router/index';
-import '@/router/componentHooks';
 
 const app = createApp(App);
 app.use(router);

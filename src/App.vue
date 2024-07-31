@@ -1,5 +1,5 @@
 <template>
-  <PButton text="Сменить тему" @click="toggleTheme" width="120px" margin="40px 20px" />
+  <PButton text="Сменить тему" width="120px" margin="40px 20px" @click="toggleTheme" />
   <div class="flex">
     <PButton skin="base" type="primary" width="120px" margin="20px">Primary</PButton>
     <PButton skin="base" type="info" width="120px" margin="20px">Info</PButton>
