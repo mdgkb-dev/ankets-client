@@ -14,6 +14,7 @@
     <PButton skin="text" type="warning" width="120px" margin="20px">Кнопка</PButton>
     <PButton skin="text" type="danger" width="120px" margin="20px">Кнопка</PButton>
     <PButton skin="text" type="neutral" width="120px" margin="20px">Кнопка</PButton>
+    <PButton skin="text" type="neutral" width="120px" margin="20px">Кнопка</PButton>
   </div>
   <!-- <PNotification />
   <PDialog />
