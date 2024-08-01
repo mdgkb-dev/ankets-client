@@ -1,4 +1,5 @@
 <template>
+  <PButton text="Сменить тему" @click="toggleTheme" />
   <PNotification />
   <PDialog />
   <PLoader v-if="PHelp.Loading.IsVisible()" />
@@ -11,6 +12,7 @@
 
 <script lang="ts" setup>
 import { useRoute } from 'vue-router';
+
 import AdminLayout from '@/views/adminLayout/AdminLayout.vue';
 
 const components = {
