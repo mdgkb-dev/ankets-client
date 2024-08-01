@@ -15,7 +15,7 @@
     </div>
     <div v-if="mounted" class="menu-body">
       <div>
-        <DropListItem v-for="item in PHelp.AdminUI.Menu.Get()" :key="item.name" :name="item.name">
+        <DropList v-for="item in PHelp.AdminUI.Menu.Get()" :key="item.name" :name="item.name">
           <div
             v-for="children in PHelp.AdminUI.Menu.GetChildren(item)"
             :key="children.to"
@@ -28,7 +28,7 @@
           >
             {{ children.name }}
           </div>
-        </DropListItem>
+        </DropList>
       </div>
     </div>
     <div class="exit-button-container">

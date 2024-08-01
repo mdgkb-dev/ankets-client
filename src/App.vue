@@ -1,5 +1,4 @@
 <template>
-  <PButton text="Сменить тему" @click="toggleTheme" />
   <PNotification />
   <PDialog />
   <PLoader v-if="PHelp.Loading.IsVisible()" />
@@ -25,12 +24,12 @@ watch(route, () => {
   changeDocumentTitle();
 });
 
-const theme = ref('light');
-const toggleTheme = () => {
-  const selectedTheme = theme.value === 'light' ? 'dark' : 'light';
-  document.getElementsByTagName('html')[0].dataset.theme = selectedTheme;
-  theme.value = selectedTheme;
-};
+// const theme = ref('light');
+// const toggleTheme = () => {
+//   const selectedTheme = theme.value === 'light' ? 'dark' : 'light';
+//   document.getElementsByTagName('html')[0].dataset.theme = selectedTheme;
+//   theme.value = selectedTheme;
+// };
 
 const changeDocumentTitle = () => {
   const defaultTitle = 'Тестовые проект';

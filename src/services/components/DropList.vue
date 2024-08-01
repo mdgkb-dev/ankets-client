@@ -11,15 +11,12 @@
 </template>
 
 <script lang="ts" setup>
-import IconArrowDrop from '@/components/Icons/IconArrowDrop.vue';
-import StringItem from '@/services/components/StringItem.vue';
-
 const props = defineProps({
   name: { type: String, default: 'Name' },
-  rolledUp: { type: Boolean as PropType<boolean>, default: true }, // начальное состояние списка: свернут или развернут
+  rolledUp: { type: Boolean, default: true }, // начальное состояние списка: свернут или развернут
 });
 
-const change: Ref<boolean> = props.rolledUp ? ref(true) : ref(false);
+const change: Ref<boolean> = ref(props.rolledUp);
 
 const stateСhange = async () => {
   change.value = !change.value;
@@ -28,7 +25,6 @@ const stateСhange = async () => {
 
 <style lang="scss" scoped>
 @import '@/assets/styles/base-style.scss';
-
 .drop-item-name {
   display: flex;
   justify-content: left;

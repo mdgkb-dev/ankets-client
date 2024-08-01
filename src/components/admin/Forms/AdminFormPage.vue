@@ -1,17 +1,22 @@
 <template>
-  <AdminFormPageFields v-if="mounted" />
+  <div style="display: flex">
+    <div>
+      <AdminFormSections />
+    </div>
+    <div>
+      <FieldEdit />
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import Form from '@/classes/Form';
 import Hooks from '@/services/Hooks/Hooks';
 
-const mounted = ref(false);
 const form: Form = FormsStore.Item();
 
 const load = async () => {
   await FormsStore.Get();
-  mounted.value = true;
   PHelp.AdminUI.Head.Set(form.name, []);
   return;
 };

@@ -139,6 +139,9 @@
     "FormsStore": true,
     "RouterGuard": true,
     "FieldsStore": true,
-    "AnswerVariantsStore": true
+    "AnswerVariantsStore": true,
+    "Sorter": true,
+    "FormFillsStore": true,
+    "FormSectionsStore": true
   }
 }

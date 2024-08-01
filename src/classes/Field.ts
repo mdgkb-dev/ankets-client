@@ -35,17 +35,17 @@ export default class Field {
   // parent?: Field;
   parentId?: string;
 
-  researchId?: string;
+  formSectionId?: string;
   selected = false;
 
   constructor(i?: Field) {
     ClassHelper.BuildClass(this, i);
     this.changeRelation([this.valueType]);
   }
-  static Create(researchId?: string): Field {
+  static Create(formSectionId?: string): Field {
     const item = new Field();
     item.id = ClassHelper.CreateUUID();
-    item.researchId = researchId;
+    item.formSectionId = formSectionId;
     return item;
   }
 

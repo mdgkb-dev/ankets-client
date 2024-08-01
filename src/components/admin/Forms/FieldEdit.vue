@@ -1,12 +1,15 @@
 <template>
-  <div class="q-container">
-    <SelectValueType :selected-type="field.valueType" @select="selectType" />
-    <button v-if="field.valueType.isNumber()" class="admin-add2" @click="edit">+ Добавить варианты ответов числового вида</button>
-  </div>
+  <template v-if="field.id">
+    <div class="q-container">
+      <SelectValueType :selected-type="field.valueType.name" @select="selectType" />
+      <button v-if="field.valueType.isNumber()" class="admin-add2" @click="edit">+ Добавить варианты ответов числового вида</button>
+    </div>
 
-  <!-- <SetSelect v-if="field.fieldVariants.length" :research-result="researchResult" :field="field" @fill="fill" /> -->
-  <!-- <hr /> -->
-  <component :is="component" :field="field" />
+    <!-- <SetSelect v-if="field.fieldVariants.length" :research-result="researchResult" :field="field" @fill="fill" /> -->
+    <!-- <hr /> -->
+    <component :is="component" :field="field" />
+  </template>
+
   <ModalWindow
     v-if="fieldVariantsModalOpened"
     :show="fieldVariantsModalOpened"
@@ -43,19 +46,14 @@ const edit = () => {
   fieldVariantsModalOpened.value = true;
 };
 
-const props = defineProps({
-  field: {
-    type: Object as PropType<Field>,
-    required: true,
-  },
-});
+const field: Field = FieldsStore.Item();
 
 const valueType: ValueType = ValueTypesStore.Item();
 
 const selectType = async (itemName: string) => {
   await ValueTypesStore.Get(itemName);
-  props.field.setType(valueType);
-  await FieldsStore.Update(props.field);
+  field.setType(valueType);
+  await FieldsStore.Update();
 };
 
 const components = {
@@ -66,39 +64,38 @@ const components = {
   date: DatePropEdit,
 };
 const component = computed(() => {
-  console.log(props.field);
-  if (props.field.valueType.isNumber()) {
+  if (field.valueType.isNumber()) {
     return components['num'];
   }
-  if (props.field.valueType.isRadio()) {
+  if (field.valueType.isRadio()) {
     return components['radio'];
   }
-  if (props.field.valueType.isString()) {
+  if (field.valueType.isString()) {
     return components['string'];
   }
-  if (props.field.valueType.isDate()) {
+  if (field.valueType.isDate()) {
     return components['date'];
   }
-  if (props.field.valueType.isSet()) {
+  if (field.valueType.isSet()) {
     return components['set'];
   }
   return 'no';
 });
 
 // const updateVariant = async (item: FieldVariant) => {
-//   sort(props.field.fieldVariants);
+//   sort(field.fieldVariants);
 //   await Store.Update('fieldVariants', item);
 // };
 //
 // const removeVariant = async (id: string) => {
 //   await Store.Remove('fieldVariants', id);
-//   ClassHelper.RemoveFromClassById(id, props.field.fieldVariants);
-//   sort(props.field.fieldVariants);
+//   ClassHelper.RemoveFromClassById(id, field.fieldVariants);
+//   sort(field.fieldVariants);
 // };
 //
 // const addVariant = async () => {
-//   const item = props.field.addFieldVariant();
-//   sort(props.field.fieldVariants);
+//   const item = field.addFieldVariant();
+//   sort(field.fieldVariants);
 //   await Store.Create('fieldVariants', item);
 // };
 </script>

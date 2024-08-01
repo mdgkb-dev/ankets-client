@@ -5,17 +5,17 @@ export default class AnswerVariant {
   name = '';
   score = 0;
   order = 0;
-  showMoreFields = false;
+  showMoreQuestions = false;
 
-  fieldId?: string;
+  questionId?: string;
 
   constructor(i?: AnswerVariant) {
     ClassHelper.BuildClass(this, i);
   }
-  static Create(fieldId?: string): AnswerVariant {
+  static Create(quesionId?: string): AnswerVariant {
     const item = new AnswerVariant();
     item.id = ClassHelper.CreateUUID();
-    item.fieldId = fieldId;
+    item.questionId = quesionId;
     return item;
   }
 }

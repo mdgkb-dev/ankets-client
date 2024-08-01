@@ -11,7 +11,7 @@ import ValueTypes from '@/services/types/ValueTypes';
 
 defineProps({
   selectedType: {
-    type: Object as PropType<ValueTypes>,
+    type: String as PropType<ValueTypes>,
     required: true,
   },
 });

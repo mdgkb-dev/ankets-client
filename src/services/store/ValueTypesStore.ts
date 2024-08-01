@@ -3,7 +3,7 @@ import ValueType from '@/services/classes/ValueType';
 
 class S extends BaseStore<ValueType> {
   constructor() {
-    super(ValueType, 'user-accounts');
+    super(ValueType, 'value-types');
   }
 }
 

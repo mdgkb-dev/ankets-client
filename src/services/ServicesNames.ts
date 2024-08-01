@@ -31,7 +31,7 @@ const ServicesNames = [
   'Router',
   'Scheduler',
   'Scroll',
-  'sort',
+  'Sorter',
   // 'Store',
   'Strings',
   'Time',
