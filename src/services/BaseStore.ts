@@ -59,10 +59,11 @@ export default class BaseStore<T extends IWithId & IFileInfosGetter> {
       this.SetAllWithCount(res as ItemsWithCount<T>);
     }
   }
-  async Get(id: string) {
+  async Get(id?: string) {
     if (!id) {
       console.warn('noFilterSetInQuery');
     }
+    id = Router.Id();
     this.Set(await HttpClient.Get<T>({ query: this.getUrl(id) }));
   }
   async FTSP(options?: GetAllOptions) {

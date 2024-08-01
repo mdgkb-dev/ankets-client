@@ -137,6 +137,8 @@
     "vi": true,
     "vitest": true,
     "FormsStore": true,
-    "RouterGuard": true
+    "RouterGuard": true,
+    "FieldsStore": true,
+    "AnswerVariantsStore": true
   }
 }

@@ -19,7 +19,10 @@
 </template>
 
 <script setup lang="ts">
+import type { PropType, ButtonHTMLAttributes } from 'vue';
 defineOptions({ inheritAttrs: false });
+
+// type ButtonProps = ButtonHTMLAttributes;
 
 const props = defineProps({
   text: { type: String, default: '', required: false },

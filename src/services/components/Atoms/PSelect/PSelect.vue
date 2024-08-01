@@ -34,15 +34,15 @@ defineOptions({ inheritAttrs: false });
 const showClearIcon = ref(false);
 
 defineProps({
-  text: { type: String as PropType<string>, default: '', required: false },
-  label: { type: String as PropType<string>, default: '', required: false },
-  placeholder: { type: String as PropType<string>, default: '', required: false },
-  value: { type: String as PropType<string>, default: '', required: false },
+  text: { type: String, default: '', required: false },
+  label: { type: String, default: '', required: false },
+  placeholder: { type: String, default: '', required: false },
+  value: { type: String, default: '', required: false },
   readonly: { type: Boolean, default: false, required: false },
   disabled: { type: Boolean, default: false, required: false },
-  margin: { type: String as PropType<string>, required: false, default: '' },
-  padding: { type: String as PropType<string>, required: false, default: '' },
-  clearable: { type: Boolean as PropType<boolean>, required: false, default: false },
+  margin: { type: String, required: false, default: '' },
+  padding: { type: String, required: false, default: '' },
+  clearable: { type: Boolean, required: false, default: false },
 });
 
 const select = (v: unknown) => {

@@ -14,8 +14,8 @@
 const switchPosition = defineModel<boolean>();
 const emits = defineEmits(['switchPosition']);
 defineProps({
-  label: { type: String as PropType<string>, default: 'label' },
-  fontSize: { type: String as PropType<string>, default: '14px' },
+  label: { type: String, default: 'label' },
+  fontSize: { type: String, default: '14px' },
 });
 emits('switchPosition', switchPosition);
 </script>

@@ -1,9 +1,10 @@
 <template>
+  <PButton text="Сменить тему" @click="toggleTheme" />
   <PNotification />
   <PDialog />
   <PLoader v-if="PHelp.Loading.IsVisible()" />
   <Suspense>
-    <component :is="$route.meta.layout || 'MainLayout'" v-if="mounted">
+    <component :is="components[$route.meta.layout] || 'MainLayout'" v-if="mounted">
       <router-view />
     </component>
   </Suspense>
@@ -11,6 +12,12 @@
 
 <script lang="ts" setup>
 import { useRoute } from 'vue-router';
+
+import AdminLayout from '@/views/adminLayout/AdminLayout.vue';
+
+const components = {
+  AdminLayout: AdminLayout,
+};
 
 const route = useRoute();
 const mounted: Ref<boolean> = ref(false);

@@ -12,6 +12,12 @@ export default abstract class Router {
     PHelp.Loading.Hide();
   }
 
+  static async ToHome() {
+    PHelp.Loading.Show();
+    const home = import.meta.env.VITE_HOME_PAGE;
+    await router.push(home);
+    PHelp.Loading.Hide();
+  }
   static async Replace(route: string) {
     await router.replace(route);
   }
