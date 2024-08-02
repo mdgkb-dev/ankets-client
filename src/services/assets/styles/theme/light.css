@@ -90,6 +90,7 @@
   /* checkbox */
 
   --checkbox-label-color: var(--palette-primary-50);
+  --checkbox-border-color: var(--palette-primary-50);
   /* --p-input-border-radius: */
   /* --input-field-enabled-label-font-color: var(--palette-neutral-130-black);
   --input-field-enabled-assistive-font-color: var(--palette-neutral-130-black);

@@ -43,3 +43,8 @@ const changeState = () => {
 
 const buttonClass = computed(() => 'p-button' + '_' + props.skin + ' ' + 'p-button' + '_' + props.skin + '_' + props.type);
 </script>
+
+<style type="scss" scoped>
+@import '@/services/components/Atoms/PButton/skins/p-button_base.css';
+@import '@/services/components/Atoms/PButton/skins/p-button_text.css';
+</style>
