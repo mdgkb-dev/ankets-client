@@ -1,4 +1,5 @@
 import FormSection from '@/classes/FormSection';
+import Field from '@/classes/Field';
 import ClassHelper from '@/services/ClassHelper';
 
 export default class Form {
@@ -40,5 +41,9 @@ export default class Form {
     this.formSections.push(item);
     Sorter.Sort(this.formSections);
     return item;
+  }
+
+  getFields(): Field[] {
+    return this.formSections.map((fs: FormSection) => fs.fields).flat();
   }
 }

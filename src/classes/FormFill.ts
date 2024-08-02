@@ -21,11 +21,11 @@ export default class FormFill {
     ClassHelper.BuildClass(this, i);
   }
 
-  static Create(formId?: string): FormFill {
+  static Create(form: Form): FormFill {
     const item = new FormFill();
     item.id = ClassHelper.CreateUUID();
-    item.formId = formId;
-    // item.fieldFills.push(...FieldFill.CreateMany(research.fields));
+    item.formId = form.id;
+    item.fieldFills.push(...FieldFill.CreateMany(form.getFields()));
     return item;
   }
 

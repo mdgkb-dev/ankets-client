@@ -7,15 +7,15 @@ export default class AnswerVariant {
   order = 0;
   showMoreQuestions = false;
 
-  questionId?: string;
+  fieldId?: string;
 
   constructor(i?: AnswerVariant) {
     ClassHelper.BuildClass(this, i);
   }
-  static Create(quesionId?: string): AnswerVariant {
+  static Create(fieldId?: string): AnswerVariant {
     const item = new AnswerVariant();
     item.id = ClassHelper.CreateUUID();
-    item.questionId = quesionId;
+    item.fieldId = fieldId;
     return item;
   }
 }

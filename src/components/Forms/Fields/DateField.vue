@@ -22,7 +22,6 @@ import Patient from '@/classes/Patient';
 import Question from '@/classes/Question';
 import ResearchResult from '@/classes/ResearchResult';
 import dateFormat from '@/services/DateMask';
-import Provider from '@/services/Provider/Provider';
 
 export default defineComponent({
   name: 'DateQuestion',

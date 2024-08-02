@@ -1,5 +1,4 @@
 <template>
-  123
   <PInput :v-model="value" @input="filledCheck" />
 </template>
 

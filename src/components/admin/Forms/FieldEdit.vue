@@ -4,10 +4,7 @@
       <SelectValueType :selected-type="field.valueType.name" @select="selectType" />
       <button v-if="field.valueType.isNumber()" class="admin-add2" @click="edit">+ Добавить варианты ответов числового вида</button>
     </div>
-
-    <!-- <SetSelect v-if="field.fieldVariants.length" :research-result="researchResult" :field="field" @fill="fill" /> -->
-    <!-- <hr /> -->
-    <component :is="component" :field="field" />
+    <component :is="FieldsEditsComponents[field.valueType.name]" :field="field" />
   </template>
 
   <ModalWindow
@@ -33,13 +30,9 @@
 
 <script setup lang="ts">
 import Field from '@/classes/Field';
-import DatePropEdit from '@/components/admin/Forms/DatePropEdit.vue';
-import NumberPropEdit from '@/components/admin/Forms/NumberPropEdit.vue';
-import RadioPropEdit from '@/components/admin/Forms/RadioPropEdit.vue';
-import SetPropEdit from '@/components/admin/Forms/SetPropEdit.vue';
-import StringPropEdit from '@/components/admin/Forms/StringPropEdit.vue';
+import FieldsEditsComponents from '@/components/admin/Forms/Fields/FieldsEditsComponents';
 import ValueType from '@/services/classes/ValueType';
-
+import ValueTypes from '@/services/types/ValueTypes';
 const fieldVariantsModalOpened = ref(false);
 
 const edit = () => {
@@ -55,32 +48,6 @@ const selectType = async (itemName: string) => {
   field.setType(valueType);
   await FieldsStore.Update();
 };
-
-const components = {
-  num: NumberPropEdit,
-  string: StringPropEdit,
-  radio: RadioPropEdit,
-  set: SetPropEdit,
-  date: DatePropEdit,
-};
-const component = computed(() => {
-  if (field.valueType.isNumber()) {
-    return components['num'];
-  }
-  if (field.valueType.isRadio()) {
-    return components['radio'];
-  }
-  if (field.valueType.isString()) {
-    return components['string'];
-  }
-  if (field.valueType.isDate()) {
-    return components['date'];
-  }
-  if (field.valueType.isSet()) {
-    return components['set'];
-  }
-  return 'no';
-});
 
 // const updateVariant = async (item: FieldVariant) => {
 //   sort(field.fieldVariants);

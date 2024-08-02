@@ -20,7 +20,7 @@ export default class FieldFill {
   patientId?: string;
 
   fieldId?: string;
-  fieldVariantId?: string;
+  answerVariantId?: string;
   filled = false;
 
   researchResultId?: string;
@@ -49,6 +49,11 @@ export default class FieldFill {
     this.filled = this.valueString.length > 0;
   }
 
+  setRadio(value?: string): void {
+    this.answerVariantId = value;
+    this.filled = !!this.answerVariantId;
+  }
+
   static CreateMany(fields: Field[]): FieldFill[] {
     return fields.map((q: Field) => FieldFill.Create(q));
   }
@@ -67,7 +72,7 @@ export default class FieldFill {
     return fileInfos;
   }
 
-  getSelectedFieldFillVariant(answerVariantId?: string): boolean {
+  getSelectedAnswerVariant(answerVariantId?: string): boolean {
     // if (registerPropWithDateId) {
     //   return this.registerPropertySetToPatient?.some(
     //     (i: RegisterPropertySetToPatient) => i.registerPropertySetId === setId && i.propWithDateId === registerPropWithDateId

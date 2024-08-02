@@ -18,9 +18,10 @@ onBeforeMount(async () => {
 });
 
 const initFill = async () => {
-  const item = FormFill.Create(form.id);
+  const item = FormFill.Create(form);
   FormFillsStore.Set(item);
   await FormFillsStore.Create(item);
+  // await FieldFillsStore.CreateMany(item.fieldFills)
 };
 
 // onBeforeUnmount(() => {
