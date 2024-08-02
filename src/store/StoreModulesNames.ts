@@ -9,6 +9,8 @@ const StoreModulesNames = [
   'MenusStore',
   'AnswerVariantsStore',
   'PhonesStore',
+  'FormFillsStore',
+  'FormSectionsStore',
   'FormsStore',
   'UserAccountsStore',
   'ValueTypesStore',

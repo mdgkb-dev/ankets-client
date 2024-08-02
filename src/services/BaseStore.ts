@@ -61,9 +61,8 @@ export default class BaseStore<T extends IWithId & IFileInfosGetter> {
   }
   async Get(id?: string) {
     if (!id) {
-      console.warn('noFilterSetInQuery');
+      id = Router.Id();
     }
-    id = Router.Id();
     this.Set(await HttpClient.Get<T>({ query: this.getUrl(id) }));
   }
   async FTSP(options?: GetAllOptions) {
@@ -105,7 +104,9 @@ export default class BaseStore<T extends IWithId & IFileInfosGetter> {
 
   async Update(item?: T): Promise<T | void> {
     const param = item ?? this.item;
-    const opts: IBodyfulParams<T> = { query: this.getUrl(`${param.id}`), payload: item };
+    console.log(param);
+
+    const opts: IBodyfulParams<T> = { query: this.getUrl(`${param.id}`), payload: param };
     if (param.getFileInfos) {
       opts.fileInfos = param.getFileInfos();
       opts.fileInfos.forEach((f: FileInfo) => (f.url = ''));
@@ -132,8 +133,20 @@ export default class BaseStore<T extends IWithId & IFileInfosGetter> {
     this.RemoveItem(id);
   }
 
-  async UpdateMany(): Promise<void> {
-    await HttpClient.Put<T[], T[]>({ query: this.getUrl('many'), payload: this.items });
+  // bun не поддерживает множественное обновление с uuid. Пока отправляем несколько запросов
+  async UpdateMany(items?: T[]): Promise<void> {
+    if (!items) {
+      items = this.items;
+    }
+    if (!items) {
+      return;
+    }
+    const promises: Promise<T | void>[] = [];
+    items.forEach((i) => {
+      promises.push(new Promise(() => this.Update(i)));
+    });
+    Promise.all(promises);
+    // await HttpClient.Put<T[], T[]>({ query: this.getUrl('many'), payload: items });
   }
 
   // ======= //

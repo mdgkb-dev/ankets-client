@@ -5,7 +5,7 @@ export default class AnswerVariant {
   name = '';
   score = 0;
   order = 0;
-  showMoreFields = false;
+  showMoreQuestions = false;
 
   fieldId?: string;
 

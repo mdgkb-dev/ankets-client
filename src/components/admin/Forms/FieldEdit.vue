@@ -1,12 +1,12 @@
 <template>
-  <div class="q-container">
-    <SelectValueType :selected-type="field.valueType" @select="selectType" />
-    <button v-if="field.valueType.isNumber()" class="admin-add2" @click="edit">+ Добавить варианты ответов числового вида</button>
-  </div>
+  <template v-if="field.id">
+    <div class="q-container">
+      <SelectValueType :selected-type="field.valueType.name" @select="selectType" />
+      <button v-if="field.valueType.isNumber()" class="admin-add2" @click="edit">+ Добавить варианты ответов числового вида</button>
+    </div>
+    <component :is="FieldsEditsComponents[field.valueType.name]" :field="field" />
+  </template>
 
-  <!-- <SetSelect v-if="field.fieldVariants.length" :research-result="researchResult" :field="field" @fill="fill" /> -->
-  <!-- <hr /> -->
-  <component :is="component" :field="field" />
   <ModalWindow
     v-if="fieldVariantsModalOpened"
     :show="fieldVariantsModalOpened"
@@ -30,75 +30,39 @@
 
 <script setup lang="ts">
 import Field from '@/classes/Field';
-import DatePropEdit from '@/components/admin/Forms/DatePropEdit.vue';
-import NumberPropEdit from '@/components/admin/Forms/NumberPropEdit.vue';
-import RadioPropEdit from '@/components/admin/Forms/RadioPropEdit.vue';
-import SetPropEdit from '@/components/admin/Forms/SetPropEdit.vue';
-import StringPropEdit from '@/components/admin/Forms/StringPropEdit.vue';
+import FieldsEditsComponents from '@/components/admin/Forms/Fields/FieldsEditsComponents';
 import ValueType from '@/services/classes/ValueType';
-
+import ValueTypes from '@/services/types/ValueTypes';
 const fieldVariantsModalOpened = ref(false);
 
 const edit = () => {
   fieldVariantsModalOpened.value = true;
 };
 
-const props = defineProps({
-  field: {
-    type: Object as PropType<Field>,
-    required: true,
-  },
-});
+const field: Field = FieldsStore.Item();
 
 const valueType: ValueType = ValueTypesStore.Item();
 
 const selectType = async (itemName: string) => {
   await ValueTypesStore.Get(itemName);
-  props.field.setType(valueType);
-  await FieldsStore.Update(props.field);
+  field.setType(valueType);
+  await FieldsStore.Update();
 };
-
-const components = {
-  num: NumberPropEdit,
-  string: StringPropEdit,
-  radio: RadioPropEdit,
-  set: SetPropEdit,
-  date: DatePropEdit,
-};
-const component = computed(() => {
-  console.log(props.field);
-  if (props.field.valueType.isNumber()) {
-    return components['num'];
-  }
-  if (props.field.valueType.isRadio()) {
-    return components['radio'];
-  }
-  if (props.field.valueType.isString()) {
-    return components['string'];
-  }
-  if (props.field.valueType.isDate()) {
-    return components['date'];
-  }
-  if (props.field.valueType.isSet()) {
-    return components['set'];
-  }
-  return 'no';
-});
 
 // const updateVariant = async (item: FieldVariant) => {
-//   sort(props.field.fieldVariants);
+//   sort(field.fieldVariants);
 //   await Store.Update('fieldVariants', item);
 // };
 //
 // const removeVariant = async (id: string) => {
 //   await Store.Remove('fieldVariants', id);
-//   ClassHelper.RemoveFromClassById(id, props.field.fieldVariants);
-//   sort(props.field.fieldVariants);
+//   ClassHelper.RemoveFromClassById(id, field.fieldVariants);
+//   sort(field.fieldVariants);
 // };
 //
 // const addVariant = async () => {
-//   const item = props.field.addFieldVariant();
-//   sort(props.field.fieldVariants);
+//   const item = field.addFieldVariant();
+//   sort(field.fieldVariants);
 //   await Store.Create('fieldVariants', item);
 // };
 </script>

@@ -1,62 +1,37 @@
 <template>
-  <PaginationWrapper in-header="40px">
-    <!-- <div class="research-info">
-        <div class="scroll-block"> -->
-    <template #in-header>
-      <div class="st">
-        <StringItem
-          :string="'Вопросов: ' + form.fields.length"
-          font-size="14px"
-          padding="0"
-          justify-content="left"
-          margin="0"
-          width="auto"
-        />
-        <PButton skin="text" type="success" text="+ Добавить вопрос" margin="0" @click="addField()" />
-      </div>
-    </template>
-    <CollapseContainer>
-      <draggable :list="form.fields" item-key="id" @end="updateOrder">
-        <template #item="{ element }">
-          <div>
-            <CollapseItem
-              :tab-id="element.id"
-              :active-id="element.id"
-              :is-collaps="true"
-              background="#F1F2F7"
-              background-attention="#F1F2F7"
-            >
-              <template #inside-title>
-                <div class="number">
-                  {{ element.order + 1 }}
-                  <svg class="icon-move">
-                    <use xlink:href="#move" />
-                  </svg>
-                </div>
-                <div class="q-text" @click.stop>
-                  <!-- <PInput v-model="element.name" placeholder="Введите текст вопроса" /> -->
-                  <el-input v-model="element.name" placeholder="Введите текст вопроса" @focus.prevent @blur="setName(element)" />
-                </div>
-                <PButton skin="text" type="primary" height="30px" padding="0 15px" text="Копировать" @click="copyField(element)" />
-                <PButton skin="text" type="del" height="30px" padding="0 10px" text="Удалить" @click="removeField(element.id)" />
-              </template>
-              <template #inside-content>
-                <div :id="element.getIdWithoutDashes()" class="background-container">
-                  <FieldEdit :field="element" />
-                </div>
-                <div>
-                  <FieldChildrenEdit :field="element" />
-                </div>
-              </template>
-            </CollapseItem>
-          </div>
-        </template>
-      </draggable>
-    </CollapseContainer>
-    <!-- </div>
-      </div> -->
-  </PaginationWrapper>
-  <Move />
+  <CollapseContainer>
+    <draggable :list="form.formSections" item-key="id" @end="updateOrder">
+      <template #item="{ element }">
+        <div>
+          <CollapseItem :tab-id="element.id" :active-id="element.id" :is-collaps="true" background="#F1F2F7" background-attention="#F1F2F7">
+            <template #inside-title>
+              <div class="number">
+                {{ element.order + 1 }}
+                <svg class="icon-move">
+                  <use xlink:href="#move" />
+                </svg>
+              </div>
+              <div class="q-text" @click.stop>
+                <PInput v-model="element.name" placeholder="Введите текст вопроса" />
+
+                <el-input v-model="element.name" placeholder="Введите текст вопроса" @focus.prevent @blur="setName(element)" />
+              </div>
+              <PButton skin="text" type="primary" height="30px" padding="0 15px" text="Копировать" @click="copyField(element)" />
+              <PButton skin="text" type="del" height="30px" padding="0 10px" text="Удалить" @click="removeField(element.id)" />
+            </template>
+            <template #inside-content>
+              <div :id="element.getIdWithoutDashes()" class="background-container">
+                <FieldEdit :field="element" />
+              </div>
+              <div>
+                <FieldChildrenEdit :field="element" />
+              </div>
+            </template>
+          </CollapseItem>
+        </div>
+      </template>
+    </draggable>
+  </CollapseContainer>
 </template>
 
 <script lang="ts" setup>
@@ -66,54 +41,54 @@ import AnswerVariant from '@/classes/AnswerVariant';
 import Field from '@/classes/Field';
 import Form from '@/classes/Form';
 import Move from '@/services/assets/svg/Move.svg';
-import sort from '@/services/sort';
 
 const form: Form = FormsStore.Item();
 
 const setName = async (field: Field) => {
   await FieldsStore.Update(field);
 };
-const addField = async () => {
-  const item = form.addField();
-  console.log(form);
-  await FieldsStore.Create(item);
-};
-
-const copyField = async (field: Field) => {
-  const item = field.copy();
-  item.researchId = form.id;
-  form.fields.push(item);
-  sort(form.fields);
-  form.setFieldsOrder();
-  await FieldsStore.Create(item);
-  form.fields.forEach((q: Field) => {
-    FieldsStore.Update(q);
-  });
-  item.answerVariants.forEach((q: AnswerVariant) => {
-    AnswerVariantsStore.Create(q);
-  });
-  item.children.forEach((q: Field) => {
-    FieldsStore.Create(q);
-    q.answerVariants.forEach((q: AnswerVariant) => {
-      AnswerVariantsStore.Create(q);
-    });
-  });
-};
-const removeField = async (id: string) => {
-  await FieldsStore.Remove(id);
-  ClassHelper.RemoveFromClassById(id, form.fields);
-  form.setFieldsOrder();
-  sort(form.fields);
-  form.fields.forEach((q: Field) => {
-    FieldsStore.Update(q);
-  });
-};
-const updateOrder = async (): Promise<void> => {
-  sort(form.fields);
-  form.fields.forEach((q: Field) => {
-    FieldsStore.Update(q);
-  });
-};
+// const addField = async () => {
+//   const item = form.addField();
+//   console.log(form);
+//   await FieldsStore.Create(item);
+// };
+//
+// const copyField = async (field: Field) => {
+//   const item = field.copy();
+//   item.researchId = form.id;
+//   form.fields.push(item);
+//   Sorter.Sort(form.fields);
+//   form.setFieldsOrder();
+//   await FieldsStore.Create(item);
+//   form.fields.forEach((q: Field) => {
+//     FieldsStore.Update(q);
+//   });
+//   item.answerVariants.forEach((q: AnswerVariant) => {
+//     AnswerVariantsStore.Create(q);
+//   });
+//   item.children.forEach((q: Field) => {
+//     FieldsStore.Create(q);
+//     q.answerVariants.forEach((q: AnswerVariant) => {
+//       AnswerVariantsStore.Create(q);
+//     });
+//   });
+// };
+//
+// const removeField = async (id: string) => {
+//   await FieldsStore.Remove(id);
+//   ClassHelper.RemoveFromClassById(id, form.fields);
+//   form.setFieldsOrder();
+//   sort(form.fields);
+//   form.fields.forEach((q: Field) => {
+//     FieldsStore.Update(q);
+//   });
+// };
+// const updateOrder = async (): Promise<void> => {
+//   sort(form.fields);
+//   form.fields.forEach((q: Field) => {
+//     FieldsStore.Update(q);
+//   });
+// };
 </script>
 
 <style lang="scss" scoped>

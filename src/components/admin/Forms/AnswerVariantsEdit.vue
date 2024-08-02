@@ -49,10 +49,8 @@ const updateAnswerVariant = async (item?: AnswerVariant) => {
 };
 
 const updateOrder = async (): Promise<void> => {
-  sort(props.field.answerVariants);
-  props.field.answerVariants.forEach((q: AnswerVariant) => {
-    AnswerVariantsStore.Update(q);
-  });
+  Sorter.Sort(props.field.answerVariants);
+  AnswerVariantsStore.UpdateMany(props.field.answerVariants);
 };
 </script>
 

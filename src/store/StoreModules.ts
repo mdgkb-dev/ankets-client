@@ -13,6 +13,8 @@ import {
 
 import AnswerVariantsStore from './AnswerVariantsStore';
 import FieldsStore from './FieldsStore';
+import FormFillsStore from './FormFillsStore';
+import FormSectionsStore from './FormSectionsStore';
 import FormsStore from './FormsStore';
 
 export {
@@ -22,6 +24,8 @@ export {
   CropperStore,
   EmailsStore,
   FieldsStore,
+  FormFillsStore,
+  FormSectionsStore,
   FormsStore,
   FTSPPresetsStore,
   MenusStore,

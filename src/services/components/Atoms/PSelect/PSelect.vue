@@ -26,7 +26,7 @@
 <script setup lang="ts">
 import IconClose from '@/services/components/Icons/IconClose.vue';
 
-const model: unknown = defineModel<unknown>();
+const model: Ref<unknown> = defineModel<unknown>();
 const ph: Ref<boolean> = ref(true);
 const emits = defineEmits(['change', 'clear']);
 defineOptions({ inheritAttrs: false });
@@ -45,9 +45,9 @@ defineProps({
   clearable: { type: Boolean, required: false, default: false },
 });
 
-const select = (v: unknown) => {
+const select = () => {
   ph.value = false;
-  emits('change', v);
+  emits('change', model.value);
 };
 const clear = () => {
   emits('clear', undefined);

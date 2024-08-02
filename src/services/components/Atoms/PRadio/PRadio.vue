@@ -1,7 +1,7 @@
 <template>
   <div class="check-line">
     <label class="check-field__label" :style="{ fontSize: fontSize }">
-      <input v-model="model" class="check-field__input" type="checkbox" :value="value" />
+      <input v-model="model" :value="value" class="check-field__input" type="radio" />
       <div class="pointer">
         <slot />
       </div>
@@ -15,10 +15,10 @@ const model = defineModel<boolean>();
 const emits = defineEmits(['switchPosition']);
 defineProps({
   label: { type: String, default: 'label' },
-  fontSize: { type: String, default: '14px' },
   value: { type: String },
+  fontSize: { type: String, default: '14px' },
 });
-emits('switchPosition', model);
+// emits('switchPosition', switchPosition);
 </script>
 
 <style lang="scss" scoped>
