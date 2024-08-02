@@ -1,4 +1,4 @@
-:global(:root[data-platform='web-desktop']) {
+:root[data-platform='web-desktop'] {
   --layout-screen-padding-horizontal: var(--whiteSpace-general-6x);
   --button-font-size-default: var(--font-size-l);
   --button-font-size-medium: var(--font-size-m);
@@ -30,6 +30,12 @@
   --input-field-whiteSpace-caption-gap: var(--whiteSpace-general-1x);
   --input-field-whiteSpace-assistive-gap: var(--whiteSpace-general-1x);
   --input-field-borderRadius-default: var(--borderRadius-general-4x);
+
+  --input-width-default: var(300px);
+  --input-padding-default: var(--input-padding);
+  --input-margin-default: 0;
+  --input-labal-margin: 20px 0 10px 0;
+
   /* badge */
   --badge-font-size: var(--font-size-l);
   --badge-whiteSpace-gap: var(--whiteSpace-general-_5x);

@@ -1,5 +1,6 @@
 <template>
-  <PButton text="Сменить тему" @click="toggleTheme" />
+  <PButton skin="base" type="primary" text="Сменить тему" @click="toggleTheme" />
+  <PCheckBox />
   <PNotification />
   <PDialog />
   <PLoader v-if="PHelp.Loading.IsVisible()" />
@@ -31,6 +32,9 @@ const toggleTheme = () => {
   document.getElementsByTagName('html')[0].dataset.theme = selectedTheme;
   theme.value = selectedTheme;
 };
+
+const platform = ref('web-desktop');
+document.getElementsByTagName('html')[0].dataset.platform = platform.value;
 
 const changeDocumentTitle = () => {
   const defaultTitle = 'Тестовые проект';

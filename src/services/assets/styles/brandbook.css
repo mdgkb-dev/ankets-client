@@ -145,4 +145,8 @@
   --typography-font-size-2xl: 20px;
   --typography-font-size-3xl: 22px;
   --typography-font-size-4xl: 24px;
+
+  --base-font: Gilroy, Roboto, Helvetica, sans-serif;
+
+  --input-padding: 0 20px;
 }

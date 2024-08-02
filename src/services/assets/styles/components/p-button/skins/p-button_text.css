@@ -17,7 +17,7 @@
   height: auto;
   width: auto;
   background: none;
-  /* font-family: var(); */
+  font-family: var(--base-font);
   font-size: var(--button-font-size-default);
   -webkit-user-select: none;
   -ms-user-select: none;
