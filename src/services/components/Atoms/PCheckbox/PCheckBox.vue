@@ -1,14 +1,14 @@
 <template>
-  <div class="check-line">
-    <input v-model="model" class="check-field__input" type="checkbox" :value="value" />
-    <div class="pointer" :style="{}">
-      <div class="box" :style="{ width: size, height: size, borderRadius: borderRadius }"></div>
-      <div class="check-icon" :style="{ width: size, height: size }">
-        <IconSwitchDefault size="px" margin="auto" :switchPosition="model" />
-        <slot />
-      </div>
-    </div>
+  <div class="check-line" :style="{ padding: padding, margin: margin }">
     <label class="check-field__label" :style="{ fontSize: fontSize }">
+      <input v-model="model" class="check-field__input" type="checkbox" :value="value" />
+      <div class="box" :style="{ width: size, height: size, borderRadius: borderRadius }">
+        <div v-if="model" class="check-icon" :style="{ width: size, height: size }">
+          <IconCheckDefault margin="auto" :size="size" />
+          <!-- <slot /> -->
+        </div>
+      </div>
+
       {{ label }}
     </label>
   </div>
@@ -18,52 +18,18 @@
 const model = defineModel<boolean>();
 const emits = defineEmits(['switchPosition']);
 defineProps({
-  label: { type: String, default: 'label' },
+  label: { type: String, default: 'Label' },
   fontSize: { type: String, default: '14px' },
   value: { type: String },
-  size: { type: String, default: '18px' },
+  size: { type: String, default: '22px' },
   borderRadius: { type: String, default: '' },
   padding: { type: String, default: '' },
+  margin: { type: String, default: '' },
 });
 emits('switchPosition', model);
 </script>
 
 <style scoped>
-.check-line {
-  box-sizing: border-box;
-  padding: 10px 0;
-}
-
-.pointer {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  cursor: pointer;
-  height: auto;
-  margin: 0 0 0 20px;
-}
-
-.box {
-  box-sizing: border-box;
-  position: relative;
-  border: 1px solid;
-  border-color: var(--checkbox-border-color);
-  border-radius: var(--checkbox-border-radius-default);
-  overflow: hidden;
-  background: red;
-}
-
-.check-icon {
-  position: absolute;
-  z-index: 2;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background-color: aqua;
-}
-
 .check-line {
   display: flex;
   justify-content: left;
@@ -73,6 +39,28 @@ emits('switchPosition', model);
   display: flex;
   justify-content: left;
   margin: 0 auto;
+  box-sizing: border-box;
+  padding: 10px 0;
+}
+
+.box {
+  position: relative;
+  border: 1px solid;
+  border-color: var(--checkbox-border-color);
+  border-radius: var(--checkbox-border-radius-default);
+  box-sizing: border-box;
+  margin-right: 10px;
+}
+
+.check-icon {
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  padding: 0;
 }
 
 .check-field__label {
@@ -85,10 +73,19 @@ emits('switchPosition', model);
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
-  margin: 0 0 0 10px;
+  cursor: pointer;
 }
 
-/* .check-field__input {
+.check-field__label:hover {
+  color: var(--checkbox-border-color-hovered);
+}
+
+.check-field__label:hover > .box {
+  border-color: var(--checkbox-border-color-hovered);
+  color: var(--checkbox-border-color-hovered);
+}
+
+.check-field__input {
   display: none;
-} */
+}
 </style>

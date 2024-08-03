@@ -1,6 +1,6 @@
 <template>
   <PButton skin="base" type="primary" text="Сменить тему" @click="toggleTheme" />
-  <PCheckBox />
+  <PCheckBox size="20px" />
   <PNotification />
   <PDialog />
   <PLoader v-if="PHelp.Loading.IsVisible()" />
