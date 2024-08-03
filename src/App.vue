@@ -1,6 +1,5 @@
 <template>
-  <PButton skin="base" type="primary" text="Сменить тему" @click="toggleTheme" />
-  <PCheckBox size="20px" />
+  <!-- <PButton skin="base" type="primary" text="Сменить тему" @click="toggleTheme" /> -->
   <PNotification />
   <PDialog />
   <PLoader v-if="PHelp.Loading.IsVisible()" />
@@ -26,15 +25,15 @@ watch(route, () => {
   changeDocumentTitle();
 });
 
-const theme = ref('light');
-const toggleTheme = () => {
-  const selectedTheme = theme.value === 'light' ? 'dark' : 'light';
-  document.getElementsByTagName('html')[0].dataset.theme = selectedTheme;
-  theme.value = selectedTheme;
-};
+// const theme = ref('light');
+// const toggleTheme = () => {
+//   const selectedTheme = theme.value === 'light' ? 'dark' : 'light';
+//   document.getElementsByTagName('html')[0].dataset.theme = selectedTheme;
+//   theme.value = selectedTheme;
+// };
 
-const platform = ref('web-desktop');
-document.getElementsByTagName('html')[0].dataset.platform = platform.value;
+// const platform = ref('web-desktop');
+// document.getElementsByTagName('html')[0].dataset.platform = platform.value;
 
 const changeDocumentTitle = () => {
   const defaultTitle = 'Тестовые проект';
