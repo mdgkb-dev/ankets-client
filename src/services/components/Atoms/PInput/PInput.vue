@@ -51,9 +51,7 @@ const getInputType = () => {
 };
 </script>
 
-<style lang="scss" scoped>
-@import '@/services/assets/styles/index.scss';
-
+<style scoped>
 *,
 *::before,
 *::after {
@@ -61,15 +59,17 @@ const getInputType = () => {
 }
 
 .field {
+  box-sizing: border-box;
   position: relative;
   display: flex;
   justify-content: left;
   align-items: center;
-  background: $input-background;
-  border-radius: $p-input-border-radius;
-  border: $p-input-border;
-  padding: $p-input-padding;
-  margin: $p-input-margin;
+  background: var(--input-background);
+  border-radius: 100px;
+  border: 1px solid;
+  border-color: var(--input-border-color);
+  padding: var(--input-padding-default);
+  margin: var(--input-margin-default);
   overflow: hidden;
 }
 
@@ -89,7 +89,7 @@ const getInputType = () => {
 }
 
 .text-field {
-  width: $input-width;
+  width: var(--input-width-default);
 }
 
 .text-field__label {
@@ -97,37 +97,37 @@ const getInputType = () => {
   justify-content: left;
   align-items: center;
   width: 100%;
-  font-family: $input-font;
-  color: $input-label-color;
-  font-size: $base-font-size;
-  margin: $input-label-margin;
+  font-family: var(--base-font);
+  color: var(--input-label-color);
+  font-size: var(--button-font-size-default);
+  margin: var(--input-labal-margin);
 }
 
 .text-field__input {
   width: 100%;
-  font-family: $input-font;
-  font-size: $input-font-size;
-  background: $input-background;
-  color: $input-font-color;
-  border: $input-border;
-  margin: $input-margin;
-  padding: $input-padding;
+  font-size: var(--button-font-size-default);
+  font-family: var(--base-font);
+  background: var(--input-background);
+  color: var(--input-font-color);
+  margin: 0;
+  padding: 7px 0 3px 0;
+  border: none;
 }
 
 .text-field__input::placeholder {
-  font-family: $input-font;
-  font-size: $input-font-size;
-  color: $input-font-color;
+  font-family: var(--base-font);
+  font-size: var(--button-font-size-default);
+  color: var(--input-placeholder-color);
 }
 
 .text-field__input:focus {
-  color: $input-font-color;
+  color: var(--input-focus-color);
   outline: 0;
 }
 
 .text-field__input:disabled,
 .text-field__input[readonly] {
-  background-color: $input-readonly-background;
+  background-color: var(--input-readonly-background);
   opacity: 1;
 }
 </style>

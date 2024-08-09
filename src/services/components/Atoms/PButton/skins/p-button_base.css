@@ -12,13 +12,14 @@
   overflow: hidden;
   margin: 0;
   padding: var(--button-primary-medium-whiteSpace-padding-vertical), var(--button-primary-medium-whiteSpace-padding-horizontal);
-  border-radius: 100px;
+  border-radius: var(--button-primary-medium-borderRadius-default);
   min-height: 32px;
   max-height: 32px;
   width: 100%;
   max-width: 300px;
   min-width: 40px;
-  /* font-size: ; */
+  font-size: var(--button-font-size-default);
+  font-family: var(--base-font);
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;

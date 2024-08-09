@@ -1,5 +1,5 @@
 <template>
-  <div class="auth-card">
+  <div class="auth-card" :style="{ width: width, margin: margin }">
     <div class="auth-card-header">
       {{ PHelp.AuthForm.GetTitle() }}
     </div>
@@ -29,7 +29,7 @@
           :key="btn.getStatus()"
           :disabled="blockBtn"
           type="primary"
-          skin="auth"
+          skin="base"
           :text="btn.label"
           :color="btn.isSubmit ? 'blue' : 'grey'"
           margin="10px 0 0 0"
@@ -43,6 +43,17 @@
 <script lang="ts" setup>
 import AuthButton from '@/services/classes/AuthButton';
 import AuthStatuses from '@/services/interfaces/AuthStatuses';
+
+const props = defineProps({
+  width: {
+    type: String as PropType<string>,
+    default: '300px',
+  },
+  margin: {
+    type: String as PropType<string>,
+    default: 'auto',
+  },
+});
 
 const form = PHelp.AuthForm;
 const blockBtn = ref(false);
@@ -140,6 +151,7 @@ onBeforeUnmount(() => {
 
 .btn-group {
   display: block;
+  margin: 40px 0 0 0;
 }
 
 .btn {
@@ -171,10 +183,15 @@ onBeforeUnmount(() => {
   color: #ddf2f9;
 }
 
+.auth-card {
+  margin: auto;
+}
+
 .auth-card-header {
   width: 100%;
   font-size: 20px;
-  color: #409efe;
+  font-family: var(--base-font);
+  color: var(--font-primary-color);
   display: flex;
   justify-content: center;
   align-items: center;

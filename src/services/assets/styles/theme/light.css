@@ -4,6 +4,9 @@
   --divider-subtle-background-color: var(--palette-neutral-40);
   --divider-strong-background-color: var(--palette-neutral-60B);
   --background-strong-background-color: var(--palette-neutral-10-white);
+  /* font-color */
+  --font-primary-color: var(--palette-primary-60B);
+
   /* button primary */
   --button-primary-background: var(--palette-primary-60B);
   --button-primary-background-hovered: var(--palette-primary-80);
@@ -74,8 +77,23 @@
   --button-neutral-font-color-pressed: var(--palette-gray-1);
   --button-neutral-font-color-disabled: var(--palette-gray-1);
 
-  /* input regular */
-  --input-field-enabled-label-font-color: var(--palette-neutral-130-black);
+  /* input */
+
+  --input-background: var(--palette-primary-10);
+  --input-label-color: var(--palette-primary-20);
+  --input-placeholder-color: var(--palette-primary-20);
+  --input-readonly-background: var(--palette-neutral-30);
+  --input-border-color: var(--palette-primary-50);
+  --input-focus-color: var(--palette-primary-80);
+  --input-font-color: var(--palette-primary-50);
+
+  /* checkbox */
+
+  --checkbox-label-color: var(--palette-primary-50);
+  --checkbox-border-color: var(--palette-primary-50);
+  --checkbox-border-color-hovered: var(--palette-primary-80);
+  /* --p-input-border-radius: */
+  /* --input-field-enabled-label-font-color: var(--palette-neutral-130-black);
   --input-field-enabled-assistive-font-color: var(--palette-neutral-130-black);
   --input-field-enabled-font-color: var(--palette-gray-2);
   --input-field-enabled-font-before-after: var(--palette-gray-3);
@@ -98,29 +116,29 @@
   --input-field-hover-label-font-color: var(--palette-neutral-130-black);
   --input-field-hover-assistive-font-color: var(--palette-neutral-130-black);
   --input-field-focus-label-font-color: var(--palette-neutral-130-black);
-  --input-field-focus-assistive-font-color: var(--palette-neutral-130-black);
+  --input-field-focus-assistive-font-color: var(--palette-neutral-130-black); */
 
   /* input valid */
-  --input-field-valid-font-before-after: var(--palette-gray-3);
+  /* --input-field-valid-font-before-after: var(--palette-gray-3);
   --input-field-valid-font-color: var(--palette-gray-2);
   --input-field-valid-border-color: var(--palette-semantic-success-70);
   --input-field-valid-background-color: rgba(255, 255, 255, 0);
   --input-field-valid-label-font-color: var(--palette-neutral-130-black);
-  --input-field-valid-assistive-font-color: var(--palette-neutral-130-black);
+  --input-field-valid-assistive-font-color: var(--palette-neutral-130-black); */
 
   /* input invalid */
-  --input-field-invalid-font-color: var(--palette-semantic-error-60B);
+  /* --input-field-invalid-font-color: var(--palette-semantic-error-60B);
   --input-field-invalid-font-before-after: var(--palette-semantic-error-60B);
   --input-field-invalid-border-color: var(--palette-semantic-error-60B);
   --input-field-invalid-background-color: rgba(255, 255, 255, 0);
   --input-field-invalid-label-font-color: var(--palette-neutral-130-black);
-  --input-field-invalid-assistive-font-color: var(--palette-semantic-error-60B);
+  --input-field-invalid-assistive-font-color: var(--palette-semantic-error-60B); */
   /* input disabled */
-  --input-field-disabled-font-color: var(--palette-gray-3);
+  /* --input-field-disabled-font-color: var(--palette-gray-3);
   --input-field-disabled-border-color: var(--input-regular-border);
   --input-field-disabled-background-color: var(--palette-gray-4);
   --input-field-disabled-label-font-color: var(--palette-neutral-130-black);
-  --input-field-disabled-assistive-font-color: var(--palette-neutral-130-black);
+  --input-field-disabled-assistive-font-color: var(--palette-neutral-130-black); */
   /* typo */
   --typography-h1-font-color: var(--palette-neutral-130-black);
   --typography-h2-font-color: var(--palette-neutral-130-black);
